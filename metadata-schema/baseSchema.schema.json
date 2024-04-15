@@ -1,14 +1,20 @@
 {
-  "$id": "/schema/testSchema",
+  "$id": "/schema/baseSchema",
   "type": "object",
   "properties": {
-   "uuid": {
+   "UUID": {
       "type": "string",
       "format": "uuid",
+      "description" : "FiledID value for the record",
       "message": {
         "format": "uuid must be a valid UUID"
       },
-     "recordExists": "using to ensure file has been transferred"
+     "recordExists": "using to ensure file has been transferred",
+     "tdrName" : "UUID"
+    },
+    "file_reference": {
+      "type": "string",
+      "tdrName" : "FileReference"
     }
   }
 }
