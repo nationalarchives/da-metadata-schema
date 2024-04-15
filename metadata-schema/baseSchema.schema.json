@@ -1,0 +1,15 @@
+{
+  "$id": "/schema/testSchema",
+  "type": "object",
+  "properties": {
+   "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "message": {
+        "format": "uuid must be a valid UUID"
+      },
+     "recordExists": "using to ensure file has been transferred"
+    }
+  }
+}
+
