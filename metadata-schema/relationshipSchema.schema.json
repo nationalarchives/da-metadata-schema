@@ -1,0 +1,25 @@
+{
+  "$id": "/schema/relationship",
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "file_name_translation": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "file_name_translation_language": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": ["file_name_translation_language"]
+      }
+    }
+  ]
+}

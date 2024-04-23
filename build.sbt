@@ -1,17 +1,17 @@
-import Dependencies._
+import Dependencies.*
 import sbt.url
 import sbtrelease.ReleaseStateTransformations._
 
 ThisBuild / organization := "uk.gov.nationalarchives"
 ThisBuild / organizationName := "National Archives"
 
-scalaVersion := "2.13.12"
+scalaVersion := "3.4.0"
 version := version.value
 
 ThisBuild / scmInfo := Some(
   ScmInfo(
-    url("https://github.com/nationalarchives/tdr-metadata-validation"),
-    "git@github.com:nationalarchives/tdr-metadata-validation.git"
+    url("https://github.com/nationalarchives/da-metadata-schema"),
+    "git@github.com:nationalarchives/da-metadata-schema.git"
   )
 )
 
@@ -20,13 +20,13 @@ developers := List(
     id = "tna-digital-archiving-jenkins",
     name = "TNA Digital Archiving",
     email = "digitalpreservation@nationalarchives.gov.uk",
-    url = url("https://github.com/nationalarchives/tdr-metadata-validation")
+    url = url("https://github.com/nationalarchives/da-metadata-schema")
   )
 )
 
 ThisBuild / description := "A library to validate input metadata for Transfer Digital Records"
 ThisBuild / licenses := List("MIT" -> new URL("https://choosealicense.com/licenses/mit/"))
-ThisBuild / homepage := Some(url("https://github.com/nationalarchives/tdr-metadata-validation"))
+ThisBuild / homepage := Some(url("https://github.com/nationalarchives/da-metadata-schema"))
 
 useGpgPinentry := true
 publishTo := sonatypePublishToBundle.value
@@ -53,7 +53,7 @@ resolvers +=
 
 lazy val root = (project in file("."))
   .settings(
-    name := "tdr-metadata-validation",
+    name := "da-metadata-schema",
     libraryDependencies ++= Seq(
       commonsLang3,
       scalaTest % Test,

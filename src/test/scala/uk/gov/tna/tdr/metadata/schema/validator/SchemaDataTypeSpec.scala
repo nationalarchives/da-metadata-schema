@@ -1,37 +1,62 @@
 package uk.gov.tna.tdr.metadata.schema.validator
 
 import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
-import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import com.networknt.schema._
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
 
-import java.io.InputStream
+import java.io.{File, InputStream}
+import java.nio.file.{Files, Path}
+import java.util
 
 
 class SchemaDataTypeSpec extends AnyWordSpec {
 
-  "my test" should {
-    val schemaPath = "/schema/closureSchema.schema.json"
-    val dataPath = "/data/testData.json"
-    val schemaInputStream = getClass.getResourceAsStream(schemaPath)
-    val schema = getJsonSchemaFromStreamContentV7(schemaInputStream)
-    val dataInputStream = getClass.getResourceAsStream(dataPath)
-    val node = getJsonNodeFromStreamContent(dataInputStream)
-    println(node.toPrettyString)
+  "schema validation" should {
+    "fail if no translation language when using relationshipSchema" in {
+      val schemaPath = "metadata-schema/relationshipSchema.schema.json"
+      val dataPath = "/data/relationship.json"
+      val schemaInputStream: InputStream = Files.newInputStream(new File(schemaPath).toPath)
+      val schema = getJsonSchemaFromStreamContentV7(schemaInputStream)
+      val dataInputStream = getClass.getResourceAsStream(dataPath)
+      val node = getJsonNodeFromStreamContent(dataInputStream)
 
-    "work" in {
-      val mapper = new ObjectMapper()
-      mapper.registerModule(DefaultScalaModule)
-      println(schema.validate(node.toPrettyString,InputFormat.JSON))
-    InputFormat.JSON
-      assert(true)
+      val errors: util.Set[ValidationMessage] = schema.validate(node.toPrettyString, InputFormat.JSON)
+
+      errors.iterator().next().getMessage shouldBe "$: required property 'file_name_translation_language' not found"
     }
+
+    "fail if no exemption code and document closed when using closureSchema " in {
+      val schemaPath = "metadata-schema/closureSchema.schema.json"
+      val dataPath = "/data/testData.json"
+      val schemaInputStream = Files.newInputStream(new File(schemaPath).toPath)
+      val schema = getJsonSchemaFromStreamContentV7(schemaInputStream)
+      val dataInputStream = getClass.getResourceAsStream(dataPath)
+      val node = getJsonNodeFromStreamContent(dataInputStream)
+
+      val errors: util.Set[ValidationMessage] = schema.validate(node.toPrettyString, InputFormat.JSON)
+
+      errors.iterator().next().getMessage shouldBe "$.foi_exemption_code: must have at least 1 items but found 0"
+    }
+
+    "pass open document closed when using closureSchema " in {
+      val schemaPath = "metadata-schema/closureSchema.schema.json"
+      val dataPath = "/data/testDataOpen.json"
+      val schemaInputStream = Files.newInputStream(new File(schemaPath).toPath)
+      val schema = getJsonSchemaFromStreamContentV7(schemaInputStream)
+      val dataInputStream = getClass.getResourceAsStream(dataPath)
+      val node = getJsonNodeFromStreamContent(dataInputStream)
+
+      val errors: util.Set[ValidationMessage] = schema.validate(node.toPrettyString, InputFormat.JSON)
+
+      errors.size() shouldBe 0
+    }
+
   }
 
   //  "JSON schema validation" should {
   //
-  //    val schemaPath = "/schema/closureSchema.schema.json"
+  //    val schemaPath = "/schema/closureSchemaOLD.schema.json"
   //    val dataPath = "/data/testData.json"
   //    val schemaInputStream = getClass.getResourceAsStream(schemaPath)
   //    val schema = getJsonSchemaFromStreamContentV7(schemaInputStream)
@@ -81,10 +106,7 @@ class SchemaDataTypeSpec extends AnyWordSpec {
 
     val sch = JsonMetaSchema.getV7
 
-    val factory1 = new JsonSchemaFactory.Builder()
-      .defaultMetaSchemaIri(IRI)
-      .metaSchema(sch)
-      .build()
+    val factory1 = new JsonSchemaFactory.Builder().defaultMetaSchemaIri(IRI).metaSchema(sch).build()
 
     val config = new SchemaValidatorsConfig()
     config.setFormatAssertionsEnabled(true)
@@ -93,27 +115,7 @@ class SchemaDataTypeSpec extends AnyWordSpec {
   }
 
   def transformKey(key: String): String = {
-    val keyMap = Map("FOI decision asserted" -> "foi_exemption_asserted",
-      "Alternative description" -> "description_alternate",
-      "FOI exemption code" -> "foi_exemption_code",
-      "Closure Period" -> "closure_period",
-      "Closure status" -> "closure_type",
-      "Translated title of record" -> "translated_title_of_record",
-      "Add alternative title without the file extension" -> "title_alternate",
-      "Alternative description" -> "description_alternate",
-      "Description" -> "description",
-      "Language" -> "language",
-      "Filename" -> "filename",
-      "Date of the record" -> "date_of_the_record",
-      "Is the description sensitive for the public?" -> "description_public",
-      "Closure Start Date" -> "closure_start_date",
-      "Is the title sensitive for the public?" -> "title_public",
-      "Former reference" -> "former_reference",
-      "Date last modified" -> "date_last_modified",
-      "Closure Start Date" -> "closure_start_date",
-      "Filepath" -> "identifier"
-
-    )
+    val keyMap = Map("FOI decision asserted" -> "foi_exemption_asserted", "Alternative description" -> "description_alternate", "FOI exemption code" -> "foi_exemption_code", "Closure Period" -> "closure_period", "Closure status" -> "closure_type", "Translated title of record" -> "translated_title_of_record", "Add alternative title without the file extension" -> "title_alternate", "Alternative description" -> "description_alternate", "Description" -> "description", "Language" -> "language", "Filename" -> "filename", "Date of the record" -> "date_of_the_record", "Is the description sensitive for the public?" -> "description_public", "Closure Start Date" -> "closure_start_date", "Is the title sensitive for the public?" -> "title_public", "Former reference" -> "former_reference", "Date last modified" -> "date_last_modified", "Closure Start Date" -> "closure_start_date", "Filepath" -> "identifier")
 
 
     keyMap.getOrElse(key, key)
@@ -123,17 +125,12 @@ class SchemaDataTypeSpec extends AnyWordSpec {
 
   def transformValue(value: String): Any = {
 
-    val valueMap = Map("Closed" -> "closed_for",
-      "Open" -> "open_on_transfer",
-      "No" -> "FALSE",
-      "Yes" -> "true"
-    )
+    val valueMap = Map("Closed" -> "closed_for", "Open" -> "open_on_transfer", "No" -> "FALSE", "Yes" -> "true")
 
     def convertToNull(value: String) = {
       value match {
         case "" => null
-        case _ => if (value.forall(Character.isDigit)) value.toInt
-        else value
+        case _ => if (value.forall(Character.isDigit)) value.toInt else value
       }
     }
 

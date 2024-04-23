@@ -1,191 +1,140 @@
 {
   "$id": "/schema/closure",
   "type": "object",
-  "properties": {
-    "identifier": {
-      "type": "string"
-
-    },
-    "foi_exemption_asserted": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "csvSchema": "if($closure_type/is(\"open_on_transfer\"),empty, xDateTime) if($closure_type/is(\"closed_for\"),not($closure_start_date))"
-    },
-    "foi_exemption_code": {
-      "enum": [
-        "23",
-        "24",
-        "26",
-        "27(1)",
-        "27(2)",
-        "28",
-        "29",
-        "30(1)",
-        "30(2)",
-        "31",
-        31,
-        "32",
-        "33",
-        "34",
-        "35(1)(a)",
-        "35(1)(b)",
-        "35(1)(c)",
-        "35(1)(d)",
-        "36",
-        "37(1)(a)",
-        "37(1)(aa)",
-        "37(1)(ac)",
-        "37(1)(ad)",
-        "37(1)(b)",
-        "38",
-        "39",
-        "40(2)",
-        "41",
-        "42",
-        "43",
-        "43(1)",
-        "43(2)",
-        "44",
-        "null",
-        null
-      ],
-      "csvSchema": "if($closure_type/is(\"open_on_transfer\"),is(\"open\"),regex(\"(?:2[34689]|27\\([12]\\)|30\\([12]\\)|3[1-4689]|35\\(1\\)\\([abcd]\\)|37\\(1\\)\\((?:(?:a|ac|ad|b)\\)|a\\) old)|40\\(2\\)|43\\(2\\)|4[1-4])(?:,\\s?(?:2[34689]|27\\([12]\\)|30\\([12]\\)|3[1-4689]|35\\(1\\)\\([abcd]\\)|37\\(1\\)\\((?:(?:a|ac|ad|b)\\)|a\\) old)|40\\(2\\)|4[1-4]))*\"))"
-    },
-    "closure_type": {
-      "default": "open_on_transfer",
-      "enum": [
-        "closed_review",
-        "closed_for",
-        "normal_closure_before_foi",
-        "closed_until",
-        "closed_access_reviewed",
-        "reclosed_in",
-        "open_on_transfer",
-        null
-      ],
-      "csvSchema": "any(\"closed_review\",\"retained_until\",\"closed_for\",\"open_on_transfer\")"
-    },
-    "closure_period": {
-      "type": [
-        "number",
-        "null"
-      ]
-    },
-    "closure_start_date": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "csvSchema": "if($closure_type/is(\"open_on_transfer\"),empty,xDateTime)"
-    },
-    "description_public": {
-      "enum": [
-        "TRUE",
-        "true",
-        "FALSE",
-        "false",
-         null
-      ],
-      "csvSchema": "if($description_alternate/notEmpty,is(\"FALSE\") or is(\"false\"),is(\"true\") or is(\"TRUE\")) or empty"
-    },
-    "description_alternate": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "csvSchema": "if($description_public/any(\"FALSE\",\"false\"),notEmpty,empty)"
-    }
-  },
   "allOf": [
-    {
-      "$ref": "file:src/main/resources/schema/baseSchema.schema.json"
-    },
     {
       "if": {
         "properties": {
           "closure_type": {
-            "const": "open_on_transfer"
+            "pattern": "open_on_transfer|OPEN"
           }
         }
       },
       "then": {
         "properties": {
           "closure_period": {
-            "type": ["number","null"]
+            "type": [
+              "number",
+              "null"
+            ],
+            "maximum": 0
           },
           "closure_start_date": {
-            "type": [ "string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "maxLength": 0
           },
           "foi_exemption_asserted": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "maxLength": 0
-          }
-        }
-      }
-    },
-    {
-      "if": {
-        "properties": {
-          "closure_type": {
-            "not": {
-              "const": "open_on_transfer"
-            }
-          }
-        }
-      },
-      "then": {
-        "properties": {
-          "closure_period": {
-            "minimum": 1,
-            "maximum": 100
           },
-          "closure_start_date": {
-            "inThePast": "future_date"
-          }
-        }
-      }
-    },
-    {
-      "if" : {
-        "properties": {
-          "description_public": {
-             "pattern": "TRUE|true"
-          }
-        }
-      },
-      "then": {
-        "properties": {
-          "description_alternate": {
-            "type": "string",
-            "minLength": 1
+          "foi_exemption_code": {
+            "type": [
+              "array",
+              "null",
+              "string"
+            ],
+            "maxLength": 0,
+            "maxItems": 0
           }
         }
       },
       "else": {
         "properties": {
-          "description_alternate": {
-            "type": ["string","null"],
-            "maxLength": 0
+          "foi_exemption_asserted": {
+            "type": "string",
+            "pattern": "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?"
+          },
+          "foi_exemption_code": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "enum": [
+                "23",
+                "24",
+                "26",
+                "27(1)",
+                "27(2)",
+                "28",
+                "29",
+                "30(1)",
+                "30(2)",
+                "31",
+                "32",
+                "33",
+                "34",
+                "35(1)(a)",
+                "35(1)(b)",
+                "35(1)(c)",
+                "35(1)(d)",
+                "36",
+                "37(1)(a)",
+                "37(1)(aa)",
+                "37(1)(ac)",
+                "37(1)(ad)",
+                "37(1)(b)",
+                "38",
+                "39",
+                "40(2)",
+                "41",
+                "42",
+                "43",
+                "43(1)",
+                "43(2)",
+                "44",
+                "EIRs 12(3) & 13",
+                "EIR 12(5)(a)",
+                "EIR 12(5)(b)",
+                "EIR 12(5)(c)",
+                "EIR 12(5)(d)",
+                "EIR 12(5)(e)",
+                "EIR 12(5)(f)",
+                "EIR 12(5)(g)"
+              ]
+            }
+          },
+          "closure_type": {
+            "enum": [
+              "closed_review",
+              "closed_for",
+              "normal_closure_before_foi",
+              "closed_until",
+              "closed_access_reviewed",
+              "reclosed_in",
+              "CLOSED"
+            ]
+          },
+          "closure_period": {
+            "type": "number",
+            "minimum": 1
+          },
+          "closure_start_date": {
+            "type": "string",
+            "pattern": "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?"
+          },
+          "description_closed": {
+            "enum": [
+              "TRUE",
+              "true",
+              "FALSE",
+              "false"
+            ]
           }
-        }
+        },
+        "required": [
+          "closure_period",
+          "closure_start_date",
+          "description_closed",
+          "foi_exemption_asserted",
+          "foi_exemption_code"
+        ]
       }
-
     }
-  ],
-  "dependencies": {
-    "closure_type": [
-      "closure_period"
-    ]
-  },
-  "required": [
-    "identifier",
-    "foi_exemption_asserted",
-    "closure_period",
-    "closure_start_date",
-    "description_public",
-    "description_alternate"
   ]
 }
