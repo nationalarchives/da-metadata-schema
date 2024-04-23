@@ -229,6 +229,58 @@
       "tdrName": "ClosureStartDate",
       "tdrDescription": "This has been defaulted to the last date modified. If this is not correct, amend the field below.",
       "csvSchema": "if($closure_type/is(\"open_on_transfer\"),empty,xDateTime)"
+    },
+    "title_closed": {
+      "type": "boolean",
+      "tdrName": "TitleClosed"
+    },
+    "title_alternate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "tdrName": "TitleAlternate"
+    },
+    "former_reference_department": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "creating_body": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "original_filepath": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "tdrName": "OriginalFilepath"
+    },
+    "file_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "tdrDescription": "States if the type is a file or folder",
+      "tdrName": "FileType"
+    },
+    "Server Checksum": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "tdrName": "SHA256ServerSideChecksum"
+    },
+    "Checksum": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "tdrName": "SHA256ClientSideChecksum"
     }
   }
 }
