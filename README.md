@@ -174,9 +174,7 @@ To use the JSON schema in your project, follow these steps:
 2. **Integration**: Integrate the `*schema.json` files into your project where metadata validation is required.
 3. **Validation**: Use JSON schema validation libraries in your preferred programming language to validate metadata objects against the provided schema.
 
-Example using scala and the [networknt json-schema-validator library](https://github.com/networknt/json-schema-validator):
-
-Is shown in [SchemaDataTypeSpec.scala](src/test/scala/uk/gov/tna/tdr/metadata/schema/validator/SchemaDataTypeSpec.scala)
+Example using scala and the [networknt json-schema-validator library](https://github.com/networknt/json-schema-validator): is shown in [SchemaDataTypeSpec.scala](src/test/scala/uk/gov/tna/tdr/metadata/schema/validator/SchemaDataTypeSpec.scala)
 
 ```scala
       // load schema
