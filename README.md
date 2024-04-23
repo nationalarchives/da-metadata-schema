@@ -1,4 +1,4 @@
-# Catalogue Metadata JSON Schema
+# TNA Metadata JSON Schema
 
 This project provides the JSON schemas for defining metadata fields and their requirements for The National Archives. It aims to standardize the structure of metadata across for catalogues, facilitating interoperability and consistency in data representation.
 
