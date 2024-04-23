@@ -98,48 +98,46 @@
       "tdrName": "RightsCopyright"
     },
     "start_date": {
-      "end_date": {
-        "type": [
-          "string",
-          "null"
-        ],
-        "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-        "tdrName": "start_date"
-      },
-      "parent_reference": {
-        "type": "string",
-        "tdrName": "ParentReference"
-      },
-      "description_public": {
-        "enum": [
-          "TRUE",
-          "true",
-          "FALSE",
-          "false",
-          null
-        ],
-        "tdrName": "description_public",
-        "csvSchema": "if($description_alternate/notEmpty,is(\"FALSE\") or is(\"false\"),is(\"true\") or is(\"TRUE\")) or empty"
-      },
-      "description_alternate": {
-        "type": [
-          "string",
-          "null"
-        ],
-        "tdrName": "DescriptionAlternate",
-        "csvSchema": "if($description_public/any(\"FALSE\",\"false\"),notEmpty,empty)"
-      },
-      "description_closed": {
-        "enum": [
-          "TRUE",
-          "true",
-          "FALSE",
-          "false",
-          null
-        ],
-        "tdrName": "DescriptionClosed",
-        "csvSchema": "if($description_public/any(\"FALSE\",\"false\"),notEmpty,empty)"
-      }
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
+      "tdrName": "start_date"
+    },
+    "parent_reference": {
+      "type": "string",
+      "tdrName": "ParentReference"
+    },
+    "description_public": {
+      "enum": [
+        "TRUE",
+        "true",
+        "FALSE",
+        "false",
+        null
+      ],
+      "tdrName": "description_public",
+      "csvSchema": "if($description_alternate/notEmpty,is(\"FALSE\") or is(\"false\"),is(\"true\") or is(\"TRUE\")) or empty"
+    },
+    "description_alternate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "tdrName": "DescriptionAlternate",
+      "csvSchema": "if($description_public/any(\"FALSE\",\"false\"),notEmpty,empty)"
+    },
+    "description_closed": {
+      "enum": [
+        "TRUE",
+        "true",
+        "FALSE",
+        "false",
+        null
+      ],
+      "tdrName": "DescriptionClosed",
+      "csvSchema": "if($description_public/any(\"FALSE\",\"false\"),notEmpty,empty)"
     },
     "foi_exemption_asserted": {
       "type": [

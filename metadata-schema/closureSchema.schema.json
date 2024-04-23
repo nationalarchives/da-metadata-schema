@@ -125,6 +125,9 @@
               "FALSE",
               "false"
             ]
+          },
+          "title_closed": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -132,7 +135,8 @@
           "closure_start_date",
           "description_closed",
           "foi_exemption_asserted",
-          "foi_exemption_code"
+          "foi_exemption_code",
+          "title_closed"
         ]
       }
     }
