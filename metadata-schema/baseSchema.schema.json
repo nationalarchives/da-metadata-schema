@@ -24,16 +24,15 @@
         "string",
         "null"
       ],
-      "pattern": "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
+      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
       "tdrName": "ClientSideFileLastModifiedDate",
       "tdrDescription": null
     },
     "file_size": {
       "type": [
-        "string",
+        "number",
         "null"
       ],
-      "pattern": "/^[+]?([0-9]+(?:[\\.][0-9]*)?|\\.[0-9]+)$/",
       "tdrName": "ClientSideFileSize",
       "tdrDescription": null
     },
