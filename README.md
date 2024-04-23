@@ -1,15 +1,13 @@
-# Catalogue Metadata JSON Schema
+# TNA Metadata JSON Schema
 
-This project provides the JSON schemas for defining metadata fields and their requirements for The National Archives. It aims to standardize the structure of metadata across for catalogues, facilitating interoperability and consistency in data representation.
+This project provides the [JSON schemas](https://json-schema.org/) for defining [metadata fields](https://www.nationalarchives.gov.uk/information-management/manage-information/digital-records-transfer/what-are-born-digital-records/) and their requirements for The National Archives. It aims to standardize the structure of metadata across for catalogues, facilitating interoperability and consistency in data representation.
 
 ## Table of Contents
 
 1. [Introduction](#introduction)
 2. [Features](#features)
-3. [Schema](#schmeas)
-3. [Usage](#usage)
-4. [Contributing](#contributing)
-5. [License](#license)
+3. [Schema](#schemas)
+4. [Usage](#usage)
 
 ## Introduction
 
@@ -176,9 +174,7 @@ To use the JSON schema in your project, follow these steps:
 2. **Integration**: Integrate the `*schema.json` files into your project where metadata validation is required.
 3. **Validation**: Use JSON schema validation libraries in your preferred programming language to validate metadata objects against the provided schema.
 
-Example using scala and the [networknt json-schema-validator library](https://github.com/networknt/json-schema-validator):
-
-Is shown in [SchemaDataTypeSpec.scala](src/test/scala/uk/gov/tna/tdr/metadata/schema/validator/SchemaDataTypeSpec.scala)
+Example using scala and the [networknt json-schema-validator library](https://github.com/networknt/json-schema-validator): is shown in [SchemaDataTypeSpec.scala](src/test/scala/uk/gov/tna/tdr/metadata/schema/validator/SchemaDataTypeSpec.scala)
 
 ```scala
       // load schema
