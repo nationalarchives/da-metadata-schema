@@ -6,7 +6,7 @@ This project provides the JSON schemas for defining metadata fields and their re
 
 1. [Introduction](#introduction)
 2. [Features](#features)
-3. [Schema](#schmeas)
+3. [Schema](#schemas)
 4. [Usage](#usage)
 
 ## Introduction
