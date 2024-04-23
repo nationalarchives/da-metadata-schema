@@ -1,6 +1,6 @@
 # TNA Metadata JSON Schema
 
-This project provides the [JSON schemas](https://json-schema.org/) for defining metadata fields and their requirements for The National Archives. It aims to standardize the structure of metadata across for catalogues, facilitating interoperability and consistency in data representation.
+This project provides the [JSON schemas](https://json-schema.org/) for defining [metadata fields](https://www.nationalarchives.gov.uk/information-management/manage-information/digital-records-transfer/what-are-born-digital-records/) and their requirements for The National Archives. It aims to standardize the structure of metadata across for catalogues, facilitating interoperability and consistency in data representation.
 
 ## Table of Contents
 
