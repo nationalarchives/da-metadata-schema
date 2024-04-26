@@ -29,6 +29,7 @@
         "string",
         "null"
       ],
+      "fileExistsError": "This file does not exist in the list of records transferred."
       "tdrName": "Filepath",
       "tdrFileHeader": "Filepath",
       "Emma Says": "There is a filepath and a filename in the upload file, they are both system generated but not sure what to do with these"
