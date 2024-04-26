@@ -239,12 +239,6 @@
       "tdrFileHeader": "Language",
       "Emma Says": "Nothing"
     },
-    "file_name_translation_language": {
-      "type": "string",
-      "tdrName": "file_name_translation_language",
-      "tdrFileHeader": "Translated title of record",
-      "Emma Says": "I don't know what this is, it might be nice to understand"
-    }
   }
 }
 
