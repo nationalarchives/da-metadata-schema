@@ -2,23 +2,23 @@
   "$id": "/schema/baseSchema",
   "type": "object",
   "properties": {
-    "file_reference": {
+      "file_reference": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 6,
+             "maxLength": 6,
       "pattern": ,
       "tdrName": "FileReference",
       "tdrFileHeader": "FileReference",
        "message": {
         "format": "File Reference is invalid"
-                  },
+      },
       "Emma Says": "  We don't actually currently have this field in the download / upload. It is in the bag export but not currently available for users. 
                       It should be though, so we should add it in at some point, maybe not yet. 
                       This is a system generated field so we aren't expecting users to change this, but we could validate it anyway to gain confidence that mistakes havent been made. 
                       Not sure how we manage reporting to users.
                       There is a standard structure to this that we should be able to use a Regex validate for - I'm not sure what it is, but this is why I have added pattern to the list. 
                       I think the first character is a Z"
-    },
+      },
     "UUID": {
       "type": "string",
       "format": "uuid",
