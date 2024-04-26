@@ -44,15 +44,75 @@
       "message": {
         "format": "Date of the Record must be a valid date."
       },
-      "tdrName": "end_date,
+      "lessThanTodayError": "Date of the Record must be earlier than today.",
+      "notDefaultWarning": "Date of the record looks like a default date, please double check this."
+      "tdrName": "end_date",
       "tdrFileHeader": "UUID"
-      "Emma says": "We should also validate that 
+      "Emma says": "There might be more validation that we could put on end date - is there a range that would be acceptable? not earlier than today? pick up on defaults? eg. 1/1/1980)"
     },
     "description": {
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ]
+      "maxLength": 8000,
       "tdrName": "description",
-      "tdrDescription": null
+      "tdrFileHeader": "Description",
+      "emptyWarning": "Description has not been provided, please provide a description."
+      "message": {
+        "format": "Description should be less than 8000 characters"
+      },
+      "Emma Says": "I also want to add a WARNING (not Error) if Description is NULL"
     },
+    "former_reference_department": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 8000,
+      "tdrFileHeader": "Former Reference"
+      "message": {
+        "format": "Description Former Reference should be less than 8000 characters"
+      },
+    },
+    "closure_type": {
+      "enum": [
+        "Closed",
+        "closed",
+        "CLOSED",
+        "Open",
+        "open",
+        "OPEN"
+      ],
+      "tdrName": "ClosureType",
+      "tdrFileHeader": "Closure status"
+      "message": {
+        "format": "Closure Status must be 'Open' or 'Closed'"
+      },
+      "Emma Says": "I'm wondering about case here,and how this gets mapped back to what is stored in the db"
+    },
+    "closure_start_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date",
+      "tdrName": "ClosureStartDate",
+      "tdrFileHeader": "Closure Start Date",
+      "message": {
+        "format": "Closure Start Date must be a valid Date"
+      },
+        "Emma Says": "I intend to remove this field in the longer term and default it to end_date"
+    },
+    "closure_period": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "tdrName": "ClosurePeriod",
+      "tdrFileHeader": "Closure Period"
+    },
+    
     "file_name_language": {
       "type": [
         "string",
@@ -87,30 +147,6 @@
     "language": {
       "type": "string",
       "tdrName": "Language",
-      "tdrDescription": null
-    },
-    "legal_status": {
-      "type": "string",
-      "tdrName": "LegalStatus",
-      "tdrDescription": null
-    },
-    "rights_copyright": {
-      "type": "string",
-      "tdrName": "RightsCopyright",
-      "tdrDescription": null
-    },
-    "start_date": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrName": "start_date",
-      "tdrDescription": null
-    },
-    "parent_reference": {
-      "type": "string",
-      "tdrName": "ParentReference",
       "tdrDescription": null
     },
     "description_public": {
@@ -200,40 +236,7 @@
       "tdrDescription": "Select the exemption code that applies",
       "csvSchema": "if($closure_type/is(\"open_on_transfer\"),is(\"open\"),regex(\"(?:2[34689]|27\\([12]\\)|30\\([12]\\)|3[1-4689]|35\\(1\\)\\([abcd]\\)|37\\(1\\)\\((?:(?:a|ac|ad|b)\\)|a\\) old)|40\\(2\\)|43\\(2\\)|4[1-4])(?:,\\s?(?:2[34689]|27\\([12]\\)|30\\([12]\\)|3[1-4689]|35\\(1\\)\\([abcd]\\)|37\\(1\\)\\((?:(?:a|ac|ad|b)\\)|a\\) old)|40\\(2\\)|4[1-4]))*\"))"
     },
-    "closure_type": {
-      "default": "open_on_transfer",
-      "enum": [
-        "closed_review",
-        "closed_for",
-        "normal_closure_before_foi",
-        "closed_until",
-        "closed_access_reviewed",
-        "reclosed_in",
-        "open_on_transfer",
-        "CLOSED",
-        "OPEN"
-      ],
-      "tdrName": "ClosureType",
-      "csvSchema": "any(\"closed_review\",\"retained_until\",\"closed_for\",\"open_on_transfer\")"
-    },
-    "closure_period": {
-      "type": [
-        "number",
-        "null"
-      ],
-      "tdrName": "ClosurePeriod",
-      "tdrDescription": "Number of years the record is closed from the closure start date"
-    },
-    "closure_start_date": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrName": "ClosureStartDate",
-      "tdrDescription": "This has been defaulted to the last date modified. If this is not correct, amend the field below.",
-      "csvSchema": "if($closure_type/is(\"open_on_transfer\"),empty,xDateTime)"
-    },
+
     "title_closed": {
       "type": "boolean",
       "tdrName": "TitleClosed"
@@ -245,52 +248,7 @@
       ],
       "tdrName": "TitleAlternate"
     },
-    "former_reference_department": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrDescription": null
-    },
-    "creating_body": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrDescription": null
-    },
-    "original_filepath": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrName": "OriginalFilepath",
-      "tdrDescription": "The original filepath of a redacted file"
-    },
-    "file_type": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrDescription": "States if the type is a file or folder",
-      "tdrName": "FileType"
-    },
-    "Server Checksum": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrName": "SHA256ServerSideChecksum",
-      "tdrDescription": null
-    },
-    "Checksum": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrName": "SHA256ClientSideChecksum",
-      "tdrDescription": null
-    }
+
   }
 }
 
