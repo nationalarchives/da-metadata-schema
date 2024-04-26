@@ -23,7 +23,24 @@
         "format": "UUID must be a valid UUID"
       },
       "Emma Says": "This is a system generated field, not sure what we should say back to users if this fails"
-
+    },
+    "file_path": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "tdrName": "Filepath",
+      "tdrFileHeader": "Filepath",
+      "Emma Says": "There is a filepath and a filename in the upload file, they are both system generated but not sure what to do with these"
+    },
+     "file_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "tdrName": "Filename",
+      "tdrFileHeader": "Filename",
+      "Emma Says": "This is a system generated field, not sure what we should say back to users if this fails"
     },
     "date_last_modified": {
       "type": "string",
@@ -74,6 +91,7 @@
       "message": {
         "format": "Description Former Reference should be less than 8000 characters"
       },
+       "Emma Says": "When we introduce retained records, we may need to add validation here"
     },
     "closure_type": {
       "enum": [
@@ -111,86 +129,6 @@
       ],
       "tdrName": "ClosurePeriod",
       "tdrFileHeader": "Closure Period"
-    },
-    
-    "file_name_language": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrName": "file_name_language",
-      "tdrDescription": null
-    },
-    "file_name_translation": {
-      "type": "string",
-      "tdrName": "file_name_translation",
-      "tdrDescription": null
-    },
-    "file_name_translation_language": {
-      "type": "string",
-      "tdrName": "file_name_translation_language",
-      "tdrDescription": null
-    },
-    "file_name": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrName": "Filename",
-      "tdrDescription": null
-    },
-    "held_by": {
-      "type": "string",
-      "tdrName": "HeldBy",
-      "tdrDescription": null
-    },
-    "language": {
-      "type": "string",
-      "tdrName": "Language",
-      "tdrDescription": null
-    },
-    "description_public": {
-      "enum": [
-        "TRUE",
-        "true",
-        "FALSE",
-        "false",
-        null
-      ],
-      "tdrName": "description_public",
-      "tdrDescription": null,
-      "csvSchema": "if($description_alternate/notEmpty,is(\"FALSE\") or is(\"false\"),is(\"true\") or is(\"TRUE\")) or empty"
-    },
-    "description_alternate": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrName": "DescriptionAlternate",
-      "tdrDescription": null,
-      "csvSchema": "if($description_public/any(\"FALSE\",\"false\"),notEmpty,empty)"
-    },
-    "description_closed": {
-      "enum": [
-        "TRUE",
-        "true",
-        "FALSE",
-        "false",
-        null
-      ],
-      "tdrName": "DescriptionClosed",
-      "tdrDescription": null,
-      "csvSchema": "if($description_public/any(\"FALSE\",\"false\"),notEmpty,empty)"
-    },
-    "foi_exemption_asserted": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrName": "FoiExemptionAsserted",
-      "tdrDescription": "Date of the Advisory Council approval (or SIRO approval if appropriate)",
-      "csvSchema": "if($closure_type/is(\"open_on_transfer\"),empty, xDateTime) if($closure_type/is(\"closed_for\"),not($closure_start_date))"
     },
     "foi_exemption_code": {
       "type": "array",
@@ -233,22 +171,80 @@
         ]
       },
       "tdrName": "FoiExemptionCode",
-      "tdrDescription": "Select the exemption code that applies",
-      "csvSchema": "if($closure_type/is(\"open_on_transfer\"),is(\"open\"),regex(\"(?:2[34689]|27\\([12]\\)|30\\([12]\\)|3[1-4689]|35\\(1\\)\\([abcd]\\)|37\\(1\\)\\((?:(?:a|ac|ad|b)\\)|a\\) old)|40\\(2\\)|43\\(2\\)|4[1-4])(?:,\\s?(?:2[34689]|27\\([12]\\)|30\\([12]\\)|3[1-4689]|35\\(1\\)\\([abcd]\\)|37\\(1\\)\\((?:(?:a|ac|ad|b)\\)|a\\) old)|40\\(2\\)|4[1-4]))*\"))"
+      "tdrFileHeader": "FOI exemption code",
+      "message": {
+        "format": "This field contains an invalid FOI Exemption Code, please refer to the list of valid FOI Exemption codes in the Help Guide"
+      },
+        "Emma Says": "Ideally we would be telling the user WHAT it is that they have input that is invalid."
     },
-
+    "foi_exemption_asserted": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date",
+      "lessThanTodayError": "FOI decision asserted must be earlier than today.",
+      "tdrName": "FoiExemptionAsserted",
+      "tdrFileHeader": "FOI decision asserted",
+      "message": {
+        "format": "FOI decision asserted is an invalid date"
+      },
+        "Emma Says": "I also want to validate that this is greater than end_date - this needs to go in the relationship schema maybe? Or the closure schema?."
+    },
     "title_closed": {
       "type": "boolean",
       "tdrName": "TitleClosed"
+      "tdrFileHeader": "Is the title sensitive for the public?",
+      "Emma Says": "This will be a 'Yes' or 'No', but I would like to get rid of this in future. Until then it will need a relationship schema test"
     },
     "title_alternate": {
       "type": [
         "string",
         "null"
       ],
+      "maxLength": 8000,
       "tdrName": "TitleAlternate"
+      "tdrFileHeader": "Add alternative title without the file extension",
+      "Emma Says": "Nothing on this one!"
     },
-
+    "description_closed": {
+      "type": "boolean",
+      "tdrName": "DescriptionClosed",
+      "tdrFileHeader": "Is the description sensitive for the public?",
+      "Emma Says": "This is inconsistent with the title_closed - they should probably be the same"
+    },
+    "description_alternate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 8000,
+      "tdrName": "DescriptionAlternate",
+      "tdrFileHeader": "Alternative description",
+      "Emma Says": "Nothing"
+    },
+    "language": {
+       "enum": [
+              "English",
+              "Welsh",
+               null
+            ],
+      "tdrName": "language",
+      "tdrFileHeader": "Language",
+      "Emma Says": "Nothing"
+    },
+    "file_name_translation": {
+      "type": "string",
+      "tdrName": "Translated title of record",
+      "tdrFileHeader": "Language",
+      "Emma Says": "Nothing"
+    },
+    "file_name_translation_language": {
+      "type": "string",
+      "tdrName": "file_name_translation_language",
+      "tdrFileHeader": "Translated title of record",
+      "Emma Says": "I don't know what this is, it might be nice to understand"
+    }
   }
 }
 
