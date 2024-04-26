@@ -5,62 +5,58 @@
     "file_reference": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 80,
+      "maxLength": 6,
+      "pattern": ,
       "tdrName": "FileReference",
-      "tdrDescription": null
+      "tdrFileHeader": "FileReference",
+       "message": {
+        "format": "File Reference is invalid"
+                  },
+      "Emma Says": "  We don't actually currently have this field in the download / upload. It is in the bag export but not currently available for users. 
+                      It should be though, so we should add it in at some point, maybe not yet. 
+                      This is a system generated field so we aren't expecting users to change this, but we could validate it anyway to gain confidence that mistakes havent been made. 
+                      Not sure how we manage reporting to users.
+                      There is a standard structure to this that we should be able to use a Regex validate for - I'm not sure what it is, but this is why I have added pattern to the list. 
+                      I think the first character is a Z"
     },
     "UUID": {
       "type": "string",
       "format": "uuid",
-      "tdrDescription": "FiledID value for the record",
+      "tdrName": "UUID",
+      "tdrFileHeader": "UUID",
       "message": {
-        "format": "uuid must be a valid UUID"
+        "format": "UUID must be a valid UUID"
       },
-      "tdrName": "UUID"
+      "Emma Says": "This is a system generated field, not sure what we should say back to users if this fails"
+
     },
     "date_last_modified": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
+      "type": "string",
+      "format": "date",
       "tdrName": "ClientSideFileLastModifiedDate",
-      "tdrDescription": null
-    },
-    "file_size": {
-      "type": [
-        "number",
-        "null"
-      ],
-      "tdrName": "ClientSideFileSize",
-      "tdrDescription": null
-    },
-    "date_created": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrDescription": null,
-      "tdrName": "date_created"
-    },
-    "date_range": {
-      "type": "string",
-      "tdrName": "date_range",
-      "tdrDescription": null
-    },
-    "description": {
-      "type": "string",
-      "tdrName": "description",
-      "tdrDescription": null
+      "tdrFileHeader": "Date last modified"
+      "message": {
+        "format": "Date last modified must be a valid date"
+      },
+      "Emma Says": "This is a system generated field, not sure what we should say back to users if this fails"
     },
     "end_date": {
       "type": [
         "string",
         "null"
       ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrName": "end_date"
+      "format": "date",
+      "message": {
+        "format": "Date of the Record must be a valid date."
+      },
+      "tdrName": "end_date,
+      "tdrFileHeader": "UUID"
+      "Emma says": "We should also validate that 
+    },
+    "description": {
+      "type": "string",
+      "tdrName": "description",
+      "tdrDescription": null
     },
     "file_name_language": {
       "type": [
