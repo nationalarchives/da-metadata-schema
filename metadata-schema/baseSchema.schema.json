@@ -3,30 +3,54 @@
   "type": "object",
   "properties": {
     "file_reference": {
-      "type": [
-        "string",
-        "null"
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 6,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "FileReference"
+        }
       ],
-      "tdrName": "FileReference",
       "tdrDescription": null
     },
     "UUID": {
       "type": "string",
       "format": "uuid",
-      "tdrDescription": "FiledID value for the record",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "FileReference"
+        }
+      ],
       "message": {
         "format": "uuid must be a valid UUID"
       },
-      "tdrName": "UUID"
+      "Emma Says": "This is a system generated field, not sure what we should say back to users if this fails"
     },
-    "date_last_modified": {
+    "file_path": {
       "type": [
         "string",
         "null"
       ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrName": "ClientSideFileLastModifiedDate",
-      "tdrDescription": null
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Filepath"
+        }
+      ],
+      "fileExistsError": "This file does not exist in the list of records transferred.",
+      "Emma Says": "There is a filepath and a filename in the upload file, they are both system generated but not sure what to do with these"
+    },
+    "date_last_modified": {
+      "type": "string",
+      "format": "date",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "ClientSideFileLastModifiedDate"
+        }
+      ],
+      "message": {
+        "format": "Date last modified must be a valid date"
+      },
+      "Emma Says": "This is a system generated field, not sure what we should say back to users if this fails"
     },
     "file_size": {
       "type": [
@@ -46,48 +70,66 @@
       "tdrName": "date_created"
     },
     "date_range": {
-      "type": "string",
-      "tdrName": "date_range",
-      "tdrDescription": null
+      "type": "string"
     },
     "description": {
       "type": "string",
-      "tdrName": "description",
-      "tdrDescription": null
+      "maxLength": 8000,
+      "message": {
+        "format": "Description should be less than 8000 characters"
+      },
+      "Emma Says": "I also want to add a WARNING (not Error) if Description is NULL"
     },
     "end_date": {
       "type": [
         "string",
         "null"
       ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrName": "end_date"
+      "format": "date",
+      "message": {
+        "format": "Date of the Record must be a valid date."
+      },
+      "Emma says": "There might be more validation that we could put on end date - is there a range that would be acceptable? not earlier than today? pick up on defaults? eg. 1/1/1980)"
     },
     "file_name_language": {
-      "type": [
-        "string",
-        "null"
+      "enum": [
+        "English",
+        "Welsh",
+        null
       ],
-      "tdrName": "file_name_language",
-      "tdrDescription": null
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Language"
+        }
+      ]
     },
     "file_name_translation": {
       "type": "string",
-      "tdrName": "file_name_translation",
-      "tdrDescription": null
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Translated title of record"
+        }
+      ]
     },
     "file_name_translation_language": {
       "type": "string",
-      "tdrName": "file_name_translation_language",
-      "tdrDescription": null
+      "enum": [
+        "English",
+        "Welsh",
+        null
+      ]
     },
     "file_name": {
       "type": [
         "string",
         "null"
       ],
-      "tdrName": "Filename",
-      "tdrDescription": null
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Filename"
+        }
+      ],
+      "Emma Says": "This is a system generated field, not sure what we should say back to users if this fails"
     },
     "held_by": {
       "type": "string",
@@ -96,75 +138,69 @@
     },
     "language": {
       "type": "string",
-      "tdrName": "Language",
-      "tdrDescription": null
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Language"
+        }
+      ]
     },
     "legal_status": {
       "type": "string",
-      "tdrName": "LegalStatus",
-      "tdrDescription": null
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "LegalStatus"
+        }
+      ]
     },
-    "rights_copyright": {
-      "type": "string",
-      "tdrName": "RightsCopyright",
-      "tdrDescription": null
-    },
-    "start_date": {
+    "parent_reference": {
       "type": [
         "string",
         "null"
       ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrName": "start_date",
-      "tdrDescription": null
-    },
-    "parent_reference": {
-      "type": "string",
-      "tdrName": "ParentReference",
-      "tdrDescription": null
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "ParentReference"
+        }
+      ]
     },
     "description_public": {
-      "enum": [
-        "TRUE",
-        "true",
-        "FALSE",
-        "false",
-        null
-      ],
-      "tdrName": "description_public",
-      "tdrDescription": null,
-      "csvSchema": "if($description_alternate/notEmpty,is(\"FALSE\") or is(\"false\"),is(\"true\") or is(\"TRUE\")) or empty"
+      "type": "boolean"
     },
     "description_alternate": {
       "type": [
         "string",
         "null"
       ],
-      "tdrName": "DescriptionAlternate",
-      "tdrDescription": null,
-      "csvSchema": "if($description_public/any(\"FALSE\",\"false\"),notEmpty,empty)"
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "DescriptionAlternate"
+        }
+      ]
     },
     "description_closed": {
-      "enum": [
-        "TRUE",
-        "true",
-        "FALSE",
-        "false",
-        null
+      "type": "boolean",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "DescriptionClosed"
+        }
       ],
-      "tdrName": "DescriptionClosed",
-      "tdrDescription": null,
-      "csvSchema": "if($description_public/any(\"FALSE\",\"false\"),notEmpty,empty)"
+      "Emma Says": "This is inconsistent with the title_closed - they should probably be the same"
     },
     "foi_exemption_asserted": {
       "type": [
         "string",
         "null"
       ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrName": "FoiExemptionAsserted",
-      "tdrDescription": "Date of the Advisory Council approval (or SIRO approval if appropriate)",
-      "csvSchema": "if($closure_type/is(\"open_on_transfer\"),empty, xDateTime) if($closure_type/is(\"closed_for\"),not($closure_start_date))"
+      "format": "date",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "FOI decision asserted"
+        }
+      ],
+      "message": {
+        "format": "FOI decision asserted is an invalid date"
+      },
+      "Emma Says": "I also want to validate that this is greater than end_date - this needs to go in the relationship schema maybe? Or the closure schema?."
     },
     "foi_exemption_code": {
       "type": "array",
@@ -206,52 +242,81 @@
           null
         ]
       },
-      "tdrName": "FoiExemptionCode",
-      "tdrDescription": "Select the exemption code that applies",
-      "csvSchema": "if($closure_type/is(\"open_on_transfer\"),is(\"open\"),regex(\"(?:2[34689]|27\\([12]\\)|30\\([12]\\)|3[1-4689]|35\\(1\\)\\([abcd]\\)|37\\(1\\)\\((?:(?:a|ac|ad|b)\\)|a\\) old)|40\\(2\\)|43\\(2\\)|4[1-4])(?:,\\s?(?:2[34689]|27\\([12]\\)|30\\([12]\\)|3[1-4689]|35\\(1\\)\\([abcd]\\)|37\\(1\\)\\((?:(?:a|ac|ad|b)\\)|a\\) old)|40\\(2\\)|4[1-4]))*\"))"
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "FoiExemptionCode"
+        }
+      ],
+      "message": {
+        "format": "This field contains an invalid FOI Exemption Code, please refer to the list of valid FOI Exemption codes in the Help Guide"
+      },
+      "Emma Says": "Ideally we would be telling the user WHAT it is that they have input that is invalid."
     },
     "closure_type": {
       "default": "open_on_transfer",
       "enum": [
-        "closed_review",
-        "closed_for",
-        "normal_closure_before_foi",
-        "closed_until",
-        "closed_access_reviewed",
-        "reclosed_in",
-        "open_on_transfer",
+        "Closed",
+        "closed",
         "CLOSED",
+        "Open",
+        "open",
         "OPEN"
       ],
-      "tdrName": "ClosureType",
-      "csvSchema": "any(\"closed_review\",\"retained_until\",\"closed_for\",\"open_on_transfer\")"
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Closure status"
+        }
+      ],
+      "message": {
+        "format": "Closure Status must be 'Open' or 'Closed'"
+      },
+      "Emma Says": "I'm wondering about case here,and how this gets mapped back to what is stored in the db"
     },
     "closure_period": {
       "type": [
         "number",
         "null"
       ],
-      "tdrName": "ClosurePeriod",
-      "tdrDescription": "Number of years the record is closed from the closure start date"
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Closure Period"
+        }
+      ]
     },
     "closure_start_date": {
       "type": [
         "string",
         "null"
       ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrName": "ClosureStartDate",
-      "tdrDescription": "This has been defaulted to the last date modified. If this is not correct, amend the field below.",
-      "csvSchema": "if($closure_type/is(\"open_on_transfer\"),empty,xDateTime)"
+      "format": "date",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "ClosureStartDate"
+        }
+      ],
+      "message": {
+        "format": "Closure Start Date must be a valid Date"
+      },
+      "Emma Says": "I intend to remove this field in the longer term and default it to end_date"
     },
     "title_closed": {
       "type": "boolean",
-      "tdrName": "TitleClosed"
+      "alternateKeys" : [
+        {
+          "tdrFileHeader" : "Is the title sensitive for the public?"
+        }
+      ],
+      "Emma Says": "This will be a 'Yes' or 'No', but I would like to get rid of this in future. Until then it will need a relationship schema test"
     },
     "title_alternate": {
       "type": [
         "string",
         "null"
+      ],
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Add alternative title without the file extension"
+        }
       ],
       "tdrName": "TitleAlternate"
     },
@@ -260,46 +325,24 @@
         "string",
         "null"
       ],
-      "tdrDescription": null
-    },
-    "creating_body": {
-      "type": [
-        "string",
-        "null"
+      "maxLength": 8000,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Former Reference"
+        }
       ],
-      "tdrDescription": null
-    },
-    "original_filepath": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrName": "OriginalFilepath",
-      "tdrDescription": "The original filepath of a redacted file"
+      "Emma Says": "When we introduce retained records, we may need to add validation here"
     },
     "file_type": {
       "type": [
         "string",
         "null"
       ],
-      "tdrDescription": "States if the type is a file or folder",
-      "tdrName": "FileType"
-    },
-    "Server Checksum": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrName": "SHA256ServerSideChecksum",
-      "tdrDescription": null
-    },
-    "Checksum": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "tdrName": "SHA256ClientSideChecksum",
-      "tdrDescription": null
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "States if the type is a file or folder"
+        }
+      ]
     }
   }
 }
