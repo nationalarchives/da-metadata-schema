@@ -60,12 +60,8 @@
           },
           "closure_type": {
             "enum": [
-              "closed_review",
-              "closed_for",
-              "normal_closure_before_foi",
-              "closed_until",
-              "closed_access_reviewed",
-              "reclosed_in",
+              "Closed",
+              "closed",
               "CLOSED"
             ]
           },
