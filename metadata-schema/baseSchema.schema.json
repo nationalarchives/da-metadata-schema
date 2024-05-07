@@ -20,7 +20,7 @@
       "format": "uuid",
       "alternateKeys": [
         {
-          "tdrFileHeader": "FileReference"
+          "tdrFileHeader": "UUID"
         }
       ],
       "message": {
