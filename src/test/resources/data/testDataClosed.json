@@ -5,7 +5,7 @@
   "retention_type": null,
   "closure_start_date": "12/12/2001",
   "identifier":"file:///C:/a_transfer/content/interesting.doc",
-  "foi_exemption_code":["32", "35(1)(a)"],
+  "foi_exemption_code":["32", "35(1)(a)","999"],
   "date_created": "12/12/2001",
   "description_alternate": "my alternate"
 }
