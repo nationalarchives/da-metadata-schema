@@ -1,4 +1,4 @@
-package uk.gov.tna.tdr.metadata.schema.validator
+package uk.gov.tna.metadata.schema.validator
 
 import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
 import com.networknt.schema._
@@ -6,14 +6,13 @@ import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
 
 import java.io.{File, InputStream}
-import java.nio.file.{Files, Path}
+import java.nio.file.Files
 import java.util
-
 
 class SchemaDataTypeSpec extends AnyWordSpec {
 
   "schema validation" should {
-    "fail if no translation language when using relationshipSchema" in {
+    "fail if missing required property from relationship when using relationshipSchema" in {
       val schemaPath = "metadata-schema/relationshipSchema.schema.json"
       val dataPath = "/data/relationship.json"
       val schemaInputStream: InputStream = Files.newInputStream(new File(schemaPath).toPath)
@@ -22,11 +21,11 @@ class SchemaDataTypeSpec extends AnyWordSpec {
       val node = getJsonNodeFromStreamContent(dataInputStream)
 
       val errors: util.Set[ValidationMessage] = schema.validate(node.toPrettyString, InputFormat.JSON)
-
+      errors.size() shouldBe 2
       errors.iterator().next().getMessage shouldBe "$: required property 'file_name_translation_language' not found"
     }
 
-    "fail if no exemption code and document closed when using closureSchema " in {
+    "fail when document is closed and missing closure property when using closureSchema" in {
       val schemaPath = "metadata-schema/closureSchema.schema.json"
       val dataPath = "/data/testData.json"
       val schemaInputStream = Files.newInputStream(new File(schemaPath).toPath)
@@ -35,11 +34,11 @@ class SchemaDataTypeSpec extends AnyWordSpec {
       val node = getJsonNodeFromStreamContent(dataInputStream)
 
       val errors: util.Set[ValidationMessage] = schema.validate(node.toPrettyString, InputFormat.JSON)
-
-      errors.iterator().next().getMessage shouldBe "$.foi_exemption_code: must have at least 1 items but found 0"
+      
+      errors.iterator().next().getMessage shouldBe "$: required property 'description_closed' not found"
     }
 
-    "pass open document closed when using closureSchema " in {
+    "pass an open document when using closureSchema" in {
       val schemaPath = "metadata-schema/closureSchema.schema.json"
       val dataPath = "/data/testDataOpen.json"
       val schemaInputStream = Files.newInputStream(new File(schemaPath).toPath)

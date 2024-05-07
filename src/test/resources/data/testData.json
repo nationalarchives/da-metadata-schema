@@ -1,11 +1,11 @@
 {
   "UUID": "dd",
   "closure_type": "CLOSED",
-  "closure_period": 0,
+  "closure_period": 1,
   "retention_type": null,
   "closure_start_date": "12/12/2001",
-  "identifier":"file:///E:/DADRI_001/content/windsor.pdf",
-  "foi_exemption_code":[],
+  "identifier":"file:///C:/a_transfer/content/interesting.doc",
+  "foi_exemption_code":["32", "35(1)(a)"],
   "date_created": "12/12/2001",
   "description_alternate": "my alternate"
 }

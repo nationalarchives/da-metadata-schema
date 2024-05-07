@@ -216,41 +216,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": [
-          "23",
-          "24",
-          "26",
-          "27(1)",
-          "27(2)",
-          "28",
-          "29",
-          "30(2)",
-          "31",
-          "32",
-          "33",
-          "34",
-          "35(1)(a)",
-          "35(1)(b)",
-          "35(1)(c)",
-          "35(1)(d)",
-          "36",
-          "37(1)(a)",
-          "37(1)(aa)",
-          "37(1)(ac)",
-          "37(1)(ad)",
-          "37(1)(b)",
-          "38",
-          "39",
-          "40(2)",
-          "41",
-          "42",
-          "43",
-          "43(1)",
-          "43(2)",
-          "44",
-          "null",
-          null
-        ]
+        "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
       },
       "message": {
         "format": "This field contains an invalid FOI Exemption Code, please refer to the list of valid FOI Exemption codes in the Help Guide"
@@ -353,5 +319,3 @@
     }
   }
 }
-
-

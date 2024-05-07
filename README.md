@@ -1,4 +1,4 @@
-# DA Metadata JSON Schema
+# Digital Archiving Metadata JSON Schema
 
 This project provides the [JSON schemas](https://json-schema.org/) for defining [metadata fields](https://www.nationalarchives.gov.uk/information-management/manage-information/digital-records-transfer/what-are-born-digital-records/) and their requirements for The National Archives. It aims to standardize the structure of metadata across catalogues, facilitating interoperability and consistency in data representation.
 
@@ -76,12 +76,13 @@ Example data
 ```
 {
   "UUID": "f373d856-d4ee-4b41-ae89-d7327915c73e",
-  "file_path":"file:///E:/DADRI_001/content/windsor.pdf",
+  "file_path":"file:///C:/atransfer/content/interesting.pdf",
   "foi_exemption_code":[],
   "date_last_modified": "12/12/2001",
   "description": "description for catalogue"
 }
 ```
+
 ### Closure Schema
 The [closure schema](metadata-schema/closureSchema.schema.json) defines the schema for closure information. The schema enforces the presence of several fields and their values that are dependant upon other field values.  
 ```
@@ -149,6 +150,7 @@ Multiple if/then/else statements allowed
     * the closure_type must be one of closed_review, closed_for or CLOSED
     * ...
     * there must be values for closure_period, closure_start_date, description_closed, foi_exemption_asserted, foi_exemption_code 
+
 ### Relationship Schema
 
 This schema is used to enforce cross attribute relationships

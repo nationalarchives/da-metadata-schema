@@ -3,7 +3,7 @@ import sbt.url
 import sbtrelease.ReleaseStateTransformations._
 
 ThisBuild / organization := "uk.gov.nationalarchives"
-ThisBuild / organizationName := "National Archives"
+ThisBuild / organizationName := "The National Archives"
 
 scalaVersion := "3.4.0"
 version := version.value
@@ -46,7 +46,6 @@ releaseProcess := Seq[ReleaseStep](
   commitNextVersion,
   pushChanges
 )
-
 
 resolvers +=
   "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
