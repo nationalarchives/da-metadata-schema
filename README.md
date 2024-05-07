@@ -29,7 +29,6 @@ Three schemas are used to define the metadata
 ### Base Schema
 The [base schema](metadata-schema/baseSchema.schema.json) defines the supported properties names (`UUID`, `date_late_modified`) and value types.
 ```
-.....
 {
   "$id": "/schema/baseSchema",
   "type": "object",
@@ -39,7 +38,7 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the supported 
       "format": "uuid",
       "alternateKeys": [
         {
-          "tdrFileHeader": "FileReference"
+          "tdrFileHeader": "UUID"
         }
       ],
       "message": {
@@ -60,14 +59,14 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the supported 
     }
 .....
 ```
-Definition for a UUID
+Definition for a ```UUID```
 * UUID - field key 
 * type - the value must be a string
 * format - the string format must be a uuid
 * tdrFileHeader - the human-readable key 
 * message - the message used in error reporting when validating data
 
-Definition for date_last_modified
+Definition for ```date_last_modified```
 * date_last_modified field key
 * type - value can be a string or null
 * format - date - the string will be in the format dd/mm/yyyy or yyyy-mm-ddThh:mm:ss

@@ -65,20 +65,6 @@ class SchemaDataTypeSpec extends AnyWordSpec {
     factory.getSchema(schemaContent, config)
   }
 
-  def transformValue(value: String): Any = {
-
-    val valueMap = Map("Closed" -> "closed_for", "Open" -> "open_on_transfer", "No" -> "FALSE", "Yes" -> "true")
-
-    def convertToNull(value: String) = {
-      value match {
-        case "" => null
-        case _ => if (value.forall(Character.isDigit)) value.toInt else value
-      }
-    }
-
-    valueMap.getOrElse(value, convertToNull(value))
-  }
-
   protected def getJsonNodeFromStreamContent(content: InputStream): JsonNode = {
     val mapper = new ObjectMapper()
     mapper.readTree(content)
