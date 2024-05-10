@@ -2,92 +2,55 @@
   "$id": "/schema/baseSchema",
   "type": "object",
   "properties": {
-    "file_reference": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 6,
-      "message": {
-        "format": "File Reference is invalid"
-      },
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "FileReference"
-        }
-      ],
-      "Emma Says": "  We don't actually currently have this field in the download / upload. It is in the bag export but not currently available for users. It should be though, so we should add it in at some point, maybe not yet. This is a system generated field so we aren't expecting users to change this, but we could validate it anyway to gain confidence that mistakes havent been made. Not sure how we manage reporting to users. There is a standard structure to this that we should be able to use a Regex validate for - I'm not sure what it is, but this is why I have added pattern to the list. I think the first character is a Z"
-    },
     "UUID": {
       "type": "string",
       "format": "uuid",
       "alternateKeys": [
         {
-          "tdrFileHeader": "FileReference"
+          "tdrFileHeader": "UUID"
         }
       ],
       "message": {
-        "format": "UUID must be a valid UUID"
-      },
-      "Emma Says": "This is a system generated field, not sure what we should say back to users if this fails"
+        "format": "ERROR_UUID_1"
+      }
     },
     "file_path": {
-      "type": [
-        "string",
-        "null"
-      ],
+      "type": "string",
+      "minLength": 1,
+      "message": {
+        "format": "ERROR_FILE_PATH_1"
+      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Filepath"
         }
-      ],
-      "fileExistsError": "This file does not exist in the list of records transferred.",
-      "Emma Says": "There is a filepath and a filename in the upload file, they are both system generated but not sure what to do with these"
+      ]
     },
     "date_last_modified": {
       "type": "string",
       "format": "date",
+      "message": {
+        "format": "ERROR_DATE_LAST_MODIFIED_1"
+      },
       "alternateKeys": [
         {
-          "tdrFileHeader": "ClientSideFileLastModifiedDate"
+          "tdrFileHeader": "Date Last Modified"
         }
       ],
-      "message": {
-        "format": "Date last modified must be a valid date"
-      },
-      "Emma Says": "This is a system generated field, not sure what we should say back to users if this fails"
-    },
-    "file_size": {
-      "type": [
-        "number",
-        "null"
-      ],
-      "tdrName": "ClientSideFileSize",
-      "tdrDescription": null
-    },
-    "date_created": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrDescription": null,
-      "tdrName": "date_created"
-    },
-    "date_range": {
-      "type": "string"
+      "daDateLastModified": "DA last modified specifics"
     },
     "description": {
       "type": "string",
       "maxLength": 8000,
       "message": {
-        "format": "Description should be less than 8000 characters"
+        "format": "ERROR_DESCRIPTION_1"
       },
       "alternateKeys": [
         {
           "tdrFileHeader": "Description"
         }
       ],
-      "emptyWarning": "Description has not been provided, please provide a description.",
-      "Emma Says": "I also want to add a WARNING (not Error) if Description is NULL"
+      "daDescription": "WARNING_DESCRIPTION_1"
     },
     "end_date": {
       "type": [
@@ -96,88 +59,62 @@
       ],
       "format": "date",
       "message": {
-        "format": "Date of the Record must be a valid date."
+        "format": "ERROR_END_DATE_1"
       },
-      "lessThanTodayError": "Date of the Record must be earlier than today.",
-      "Emma says": "There might be more validation that we could put on end date - is there a range that would be acceptable? not earlier than today? pick up on defaults? eg. 1/1/1980)"
-    },
-    "file_name_language": {
-      "enum": [
-        "English",
-        "Welsh",
-        null
-      ],
       "alternateKeys": [
         {
-          "tdrFileHeader": "Language"
+          "tdrFileHeader": "Date of the Record"
         }
-      ]
+      ],
+      "daEndDate": "DA End date validation"
     },
     "file_name_translation": {
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 8000,
+      "message": {
+        "format": "ERROR_FILE_NAME_TRANSLATION_1"
+      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Translated title of record"
         }
       ]
     },
-    "file_name_translation_language": {
-      "type": "string",
-      "enum": [
-        "English",
-        "Welsh",
-        null
-      ]
-    },
     "file_name": {
-      "type": [
-        "string",
-        "null"
-      ],
+      "type": "string",
+      "minLength": 1,
+      "message": {
+        "format": "ERROR_FILE_NAME_1"
+      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Filename"
         }
-      ],
-      "Emma Says": "This is a system generated field, not sure what we should say back to users if this fails"
-    },
-    "held_by": {
-      "type": "string"
+      ]
     },
     "language": {
-      "type": "string",
-      "enum": [
-        "English",
-        "Welsh",
-        null
+      "type": [
+        "array",
+        "null"
       ],
+      "items": {
+        "type": "string",
+        "enum": [
+          "English",
+          "Welsh"
+        ]
+      },
+      "message": {
+        "format": "ERROR_LANGUAGE_1"
+      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Language"
         }
       ]
-    },
-    "legal_status": {
-      "type": "string",
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "LegalStatus"
-        }
-      ]
-    },
-    "parent_reference": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "ParentReference"
-        }
-      ]
-    },
-    "description_public": {
-      "type": "boolean"
     },
     "description_alternate": {
       "type": [
@@ -185,6 +122,9 @@
         "null"
       ],
       "maxLength": 8000,
+      "message": {
+        "format": "ERROR_DESCRIPTION_ALTERNATE_1"
+      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Alternative description"
@@ -192,13 +132,15 @@
       ]
     },
     "description_closed": {
-      "type": "boolean",
+      "type": [
+        "boolean",
+        "null"
+      ],
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the description sensitive for the public?"
         }
-      ],
-      "Emma Says": "This is inconsistent with the title_closed - they should probably be the same"
+      ]
     },
     "foi_exemption_asserted": {
       "type": [
@@ -212,86 +154,55 @@
         }
       ],
       "message": {
-        "format": "FOI decision asserted is an invalid date"
+        "format": "ERROR_FOI_EXEMPTION_ASSERTED_1"
       },
-      "Emma Says": "I also want to validate that this is greater than end_date - this needs to go in the relationship schema maybe? Or the closure schema?."
+      "daFOIExemptionAsserted": "DA FOI Exemption asserted specifics"
     },
     "foi_exemption_code": {
-      "type": "array",
+      "type": [
+        "array",
+        "null"
+      ],
       "items": {
         "type": "string",
-        "enum": [
-          "23",
-          "24",
-          "26",
-          "27(1)",
-          "27(2)",
-          "28",
-          "29",
-          "30(2)",
-          "31",
-          "32",
-          "33",
-          "34",
-          "35(1)(a)",
-          "35(1)(b)",
-          "35(1)(c)",
-          "35(1)(d)",
-          "36",
-          "37(1)(a)",
-          "37(1)(aa)",
-          "37(1)(ac)",
-          "37(1)(ad)",
-          "37(1)(b)",
-          "38",
-          "39",
-          "40(2)",
-          "41",
-          "42",
-          "43",
-          "43(1)",
-          "43(2)",
-          "44",
-          "null",
-          null
-        ]
+        "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
       },
       "message": {
-        "format": "This field contains an invalid FOI Exemption Code, please refer to the list of valid FOI Exemption codes in the Help Guide"
+        "format": "ERROR_FOI_EXEMPTION_CODE_1"
       },
       "alternateKeys": [
         {
-          "tdrFileHeader": "FoiExemptionCode"
+          "tdrFileHeader": "FOI Exemption Code"
         }
-      ],
-      "Emma Says": "Ideally we would be telling the user WHAT it is that they have input that is invalid."
+      ]
     },
     "closure_type": {
-      "enum": [
-        "Closed",
-        "closed",
-        "CLOSED",
-        "Open",
-        "open",
-        "OPEN"
-      ],
+      "type": "string",
+      "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
       "message": {
-        "format": "Closure Status must be 'Open' or 'Closed'"
+        "format": "ERROR_CLOSURE_TYPE_1'"
       },
       "alternateKeys": [
         {
-          "tdrFileHeader": "Closure status"
+          "tdrFileHeader": "Closure Status"
         }
-      ],
-      "Emma Says": "I'm wondering about case here,and how this gets mapped back to what is stored in the db"
+      ]
     },
     "closure_period": {
       "type": [
         "number",
         "null"
       ],
-      "tdrName": "ClosurePeriod",
-      "tdrFileHeader": "Closure Period"
+      "minimum": 1,
+      "maximum": 150,
+      "message": {
+        "format": "ERROR_CLOSURE_PERIOD_1"
+      },
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Closure Period"
+        }
+      ]
     },
     "closure_start_date": {
       "type": [
@@ -300,23 +211,28 @@
       ],
       "format": "date",
       "message": {
-        "format": "Closure Start Date must be a valid Date"
+        "format": "ERROR_CLOSURE_START_DATE_1"
       },
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure Start Date"
         }
       ],
-      "Emma Says": "I intend to remove this field in the longer term and default it to end_date"
+      "daClosureStartDate": "DA closure start date specifics"
     },
     "title_closed": {
-      "type": "boolean",
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "message": {
+        "format": "ERROR_TITLE_CLOSED_1"
+      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the title sensitive for the public?"
         }
-      ],
-      "Emma Says": "This will be a 'Yes' or 'No', but I would like to get rid of this in future. Until then it will need a relationship schema test"
+      ]
     },
     "title_alternate": {
       "type": [
@@ -324,6 +240,9 @@
         "null"
       ],
       "maxLength": 8000,
+      "message": {
+        "format": "ERROR_TITLE_ALTERNATE_1"
+      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Add alternative title without the file extension"
@@ -337,23 +256,11 @@
       ],
       "maxLength": 8000,
       "message": {
-        "format": "Description Former Reference should be less than 8000 characters"
+        "format": "ERROR_FORMER_REFERENCE_DEPARTMENT"
       },
       "alternateKeys": [
         {
           "tdrFileHeader": "Former Reference"
-        }
-      ],
-      "Emma Says": "When we introduce retained records, we may need to add validation here"
-    },
-    "file_type": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "States if the type is a file or folder"
         }
       ]
     }
