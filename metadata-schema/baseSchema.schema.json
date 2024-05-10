@@ -37,7 +37,6 @@
           "tdrFileHeader": "Date Last Modified"
         }
       ],
-      "daDateLastModified": "DA last modified specifics"
     },
     "description": {
       "type": "string",
@@ -66,7 +65,8 @@
           "tdrFileHeader": "Date of the Record"
         }
       ],
-      "daEndDate": "DA End date validation"
+      "daBeforeToday": "Validates that end date is earlier than today's date"
+      "daNotDefault": "Warning if end date is a specified default date"
     },
     "file_name_translation": {
       "type": [
@@ -156,7 +156,7 @@
       "message": {
         "format": "ERROR_FOI_EXEMPTION_ASSERTED_1"
       },
-      "daFOIExemptionAsserted": "DA FOI Exemption asserted specifics"
+      "daBeforeToday": "Validates that FOI Exemption Asserted Date is before today's date"
     },
     "foi_exemption_code": {
       "type": [
@@ -218,7 +218,6 @@
           "tdrFileHeader": "Closure Start Date"
         }
       ],
-      "daClosureStartDate": "DA closure start date specifics"
     },
     "title_closed": {
       "type": [
