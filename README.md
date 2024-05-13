@@ -1,6 +1,6 @@
-# DA Metadata JSON Schema
+# Digital Archiving Metadata JSON Schema
 
-This project provides the [JSON schemas](https://json-schema.org/) for defining [metadata fields](https://www.nationalarchives.gov.uk/information-management/manage-information/digital-records-transfer/what-are-born-digital-records/) and their requirements for The National Archives. It aims to standardize the structure of metadata across for catalogues, facilitating interoperability and consistency in data representation.
+This project provides the [JSON schemas](https://json-schema.org/) for defining [metadata fields](https://www.nationalarchives.gov.uk/information-management/manage-information/digital-records-transfer/what-are-born-digital-records/) and their requirements for The National Archives. It aims to standardize the structure of metadata across catalogues, facilitating interoperability and consistency in data representation.
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@ This project provides the [JSON schemas](https://json-schema.org/) for defining 
 
 ## Introduction
 
-Catalogues often contain diverse types of data, and consistent metadata structures are crucial for effective data management and searchability. This JSON schemas define a standardized format for describing metadata fields, their types, and any constraints or requirements associated with each field.
+Catalogues often contain diverse types of data, and consistent metadata structures are crucial for effective data management and searchability. This JSON schemas defines a standardized format for describing metadata fields, their types, and any constraints or requirements associated with each field.
 
 ## Features
 
@@ -27,52 +27,62 @@ Three schemas are used to define the metadata
 3. [relationship schema](metadata-schema/relationshipSchema.schema.json)
 
 ### Base Schema
-The [base schema](metadata-schema/baseSchema.schema.json) defines the supported fields (names) and value types.
-```angular2html
-.....
-"UUID": {
+The [base schema](metadata-schema/baseSchema.schema.json) defines the supported properties names (`UUID`, `date_late_modified`) and value types.
+```
+{
+  "$id": "/schema/baseSchema",
+  "type": "object",
+  "properties": {
+    "UUID": {
       "type": "string",
       "format": "uuid",
-      "tdrDescription": "ID value for the record",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "UUID"
+        }
+      ],
       "message": {
         "format": "uuid must be a valid UUID"
-      },
-      "tdrName": "UUID"
+      }
     },
- "date_last_modified": {
-     "type": [
-        "string",
-        "null"
-     ],
-     "pattern": "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-     "tdrName": "ClientSideFileLastModifiedDate"
- }
+    "date_last_modified": {
+      "type": "string",
+      "format": "date",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "ClientSideFileLastModifiedDate"
+        }
+      ],
+      "message": {
+        "format": "Date last modified must be a valid date"
+      },
+    }
 .....
 ```
-Definition for a UUID
+Definition for a ```UUID```
 * UUID - field key 
 * type - the value must be a string
 * format - the string format must be a uuid
-* tdrDescription - the human-readable key 
-* tdrName - alternate name for the key
+* tdrFileHeader - the human-readable key 
 * message - the message used in error reporting when validating data
 
-Definition for date_last_modified
+Definition for ```date_last_modified```
 * date_last_modified field key
 * type - value can be a string or null
-* pattern - the string will be in the format dd/mm/yyyy or yyyy-mm-ddThh:mm:ss
-* tdrName - alternate name used for key ClientSideFileLastModifiedDate
+* format - date - the string will be in the format dd/mm/yyyy or yyyy-mm-ddThh:mm:ss
+* tdrFileHeader - alternate name used for key ClientSideFileLastModifiedDate
 
 Example data
-```angular2html
+```
 {
   "UUID": "f373d856-d4ee-4b41-ae89-d7327915c73e",
-  "file_path":"file:///E:/DADRI_001/content/windsor.pdf",
+  "file_path":"file:///C:/atransfer/content/interesting.pdf",
   "foi_exemption_code":[],
   "date_last_modified": "12/12/2001",
   "description": "description for catalogue"
 }
 ```
+
 ### Closure Schema
 The [closure schema](metadata-schema/closureSchema.schema.json) defines the schema for closure information. The schema enforces the presence of several fields and their values that are dependant upon other field values.  
 ```
@@ -107,7 +117,9 @@ The [closure schema](metadata-schema/closureSchema.schema.json) defines the sche
           "properties": {
             "foi_exemption_asserted": {
               "type": "string",
-              "pattern": "^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?"
+              "format": "date"
+              "minLenght":"10"
+             
             },
             "closure_type": {
               "enum": [
@@ -138,6 +150,7 @@ Multiple if/then/else statements allowed
     * the closure_type must be one of closed_review, closed_for or CLOSED
     * ...
     * there must be values for closure_period, closure_start_date, description_closed, foi_exemption_asserted, foi_exemption_code 
+
 ### Relationship Schema
 
 This schema is used to enforce cross attribute relationships

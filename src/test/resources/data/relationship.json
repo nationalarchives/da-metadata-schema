@@ -4,10 +4,9 @@
   "closure_period": 0,
   "retention_type": null,
   "closure_start_date": "12/12/2001",
-  "identifier":"file:///E:/DADRI_001/content/windsor.pdf",
+  "identifier":"file:///E:/content/interesting.pdf",
   "foi_exemption_code":["23","35(1)(a)","27(1)"],
-  "description_public":"false",
+  "description_closed": true,
   "date_created": "12/12/2001",
-  "file_name_translation": "file name translation",
-  "description_alternate": "my alternate"
+  "file_name_translation": "file name translation"
 }
