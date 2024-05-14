@@ -9,18 +9,12 @@
         {
           "tdrFileHeader": "UUID"
         }
-      ],
-      "message": {
-        "format": "ERROR_UUID_1"
-      }
+      ]
     },
     "file_path": {
       "type": "string",
       "minLength": 1,
-      "message": {
-        "format": "ERROR_FILE_PATH_1"
-      },
-      "alternateKeys": [
+       "alternateKeys": [
         {
           "tdrFileHeader": "Filepath"
         }
@@ -29,27 +23,20 @@
     "date_last_modified": {
       "type": "string",
       "format": "date",
-      "message": {
-        "format": "ERROR_DATE_LAST_MODIFIED_1"
-      },
-      "alternateKeys": [
+       "alternateKeys": [
         {
           "tdrFileHeader": "Date Last Modified"
         }
-      ],
+      ]
     },
     "description": {
       "type": "string",
       "maxLength": 8000,
-      "message": {
-        "format": "ERROR_DESCRIPTION_1"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Description"
         }
-      ],
-      "daDescription": "WARNING_DESCRIPTION_1"
+      ]
     },
     "end_date": {
       "type": [
@@ -57,9 +44,6 @@
         "null"
       ],
       "format": "date",
-      "message": {
-        "format": "ERROR_END_DATE_1"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Date of the Record"
@@ -73,10 +57,7 @@
         "null"
       ],
       "maxLength": 8000,
-      "message": {
-        "format": "ERROR_FILE_NAME_TRANSLATION_1"
-      },
-      "alternateKeys": [
+       "alternateKeys": [
         {
           "tdrFileHeader": "Translated title of record"
         }
@@ -85,9 +66,6 @@
     "file_name": {
       "type": "string",
       "minLength": 1,
-      "message": {
-        "format": "ERROR_FILE_NAME_1"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Filename"
@@ -101,13 +79,7 @@
       ],
       "items": {
         "type": "string",
-        "enum": [
-          "English",
-          "Welsh"
-        ]
-      },
-      "message": {
-        "format": "ERROR_LANGUAGE_1"
+        "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/languages"
       },
       "alternateKeys": [
         {
@@ -121,9 +93,6 @@
         "null"
       ],
       "maxLength": 8000,
-      "message": {
-        "format": "ERROR_DESCRIPTION_ALTERNATE_1"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Alternative description"
@@ -152,9 +121,6 @@
           "tdrFileHeader": "FOI decision asserted"
         }
       ],
-      "message": {
-        "format": "ERROR_FOI_EXEMPTION_ASSERTED_1"
-      },
       "daBeforeToday": "Validates that FOI Exemption Asserted Date is before today's date"
     },
     "foi_exemption_code": {
@@ -166,9 +132,6 @@
         "type": "string",
         "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
       },
-      "message": {
-        "format": "ERROR_FOI_EXEMPTION_CODE_1"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "FOI Exemption Code"
@@ -178,9 +141,6 @@
     "closure_type": {
       "type": "string",
       "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
-      "message": {
-        "format": "ERROR_CLOSURE_TYPE_1'"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure Status"
@@ -194,9 +154,6 @@
       ],
       "minimum": 1,
       "maximum": 150,
-      "message": {
-        "format": "ERROR_CLOSURE_PERIOD_1"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure Period"
@@ -209,23 +166,17 @@
         "null"
       ],
       "format": "date",
-      "message": {
-        "format": "ERROR_CLOSURE_START_DATE_1"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure Start Date"
         }
-      ],
+      ]
     },
     "title_closed": {
       "type": [
         "boolean",
         "null"
       ],
-      "message": {
-        "format": "ERROR_TITLE_CLOSED_1"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the title sensitive for the public?"
@@ -238,9 +189,6 @@
         "null"
       ],
       "maxLength": 8000,
-      "message": {
-        "format": "ERROR_TITLE_ALTERNATE_1"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Add alternative title without the file extension"
@@ -253,9 +201,6 @@
         "null"
       ],
       "maxLength": 8000,
-      "message": {
-        "format": "ERROR_FORMER_REFERENCE_DEPARTMENT"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Former Reference"
@@ -264,5 +209,3 @@
     }
   }
 }
-
-
