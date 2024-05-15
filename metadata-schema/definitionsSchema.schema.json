@@ -45,7 +45,22 @@
         "EIR 12(5)(f)",
         "EIR 12(5)(g)"
       ]
+    },
+    "closure_types": {
+      "enum": [
+        "Closed",
+        "closed",
+        "CLOSED",
+        "Open",
+        "open",
+        "OPEN"
+      ]
+    },
+    "languages" : {
+      "enum": [
+        "English",
+        "Welsh"
+      ]
     }
   }
 }
-

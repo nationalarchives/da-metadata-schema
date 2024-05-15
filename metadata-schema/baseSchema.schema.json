@@ -2,19 +2,6 @@
   "$id": "/schema/baseSchema",
   "type": "object",
   "properties": {
-    "file_reference": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 6,
-      "message": {
-        "format": "File Reference is invalid"
-      },
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "FileReference"
-        }
-      ]
-    },
     "UUID": {
       "type": "string",
       "format": "uuid",
@@ -22,62 +9,29 @@
         {
           "tdrFileHeader": "UUID"
         }
-      ],
-      "message": {
-        "format": "UUID must be a valid UUID"
-      }
+      ]
     },
     "file_path": {
       "type": "string",
       "minLength": 1,
-      "message": {
-        "format": "Filepath must be provided"
-      },
-      "alternateKeys": [
+       "alternateKeys": [
         {
           "tdrFileHeader": "Filepath"
         }
-      ],
-      "fileExists": "This file does not exist in the list of records transferred."
+      ]
     },
     "date_last_modified": {
       "type": "string",
       "format": "date",
-      "alternateKeys": [
+       "alternateKeys": [
         {
-          "tdrFileHeader": "ClientSideFileLastModifiedDate"
+          "tdrFileHeader": "Date Last Modified"
         }
-      ],
-      "message": {
-        "format": "Date last modified must be a valid date"
-      }
-    },
-    "file_size": {
-      "type": [
-        "number",
-        "null"
-      ],
-      "tdrName": "ClientSideFileSize",
-      "tdrDescription": null
-    },
-    "date_created": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "pattern": "^$|^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-]\\d{4}$|\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
-      "tdrDescription": null,
-      "tdrName": "date_created"
-    },
-    "date_range": {
-      "type": "string"
+      ]
     },
     "description": {
       "type": "string",
       "maxLength": 8000,
-      "message": {
-        "format": "Description should be less than 8000 characters"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Description"
@@ -90,92 +44,48 @@
         "null"
       ],
       "format": "date",
-      "message": {
-        "format": "Date of the Record must be a valid date."
-      },
-      "lessThanToday": "Date of the Record must be earlier than today."
-    },
-    "file_name_language": {
-      "enum": [
-        "English",
-        "Welsh",
-        null
-      ],
       "alternateKeys": [
         {
-          "tdrFileHeader": "Language"
+          "tdrFileHeader": "Date of the Record"
         }
-      ]
+      ],
+      "daBeforeToday": "Validates that end date is earlier than today's date"
     },
     "file_name_translation": {
-      "type": "string",
-      "alternateKeys": [
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 8000,
+       "alternateKeys": [
         {
           "tdrFileHeader": "Translated title of record"
         }
       ]
     },
-    "file_name_translation_language": {
-      "type": "string",
-      "enum": [
-        "English",
-        "Welsh",
-        null
-      ]
-    },
     "file_name": {
-      "type": [
-        "string",
-        "null"
-      ],
+      "type": "string",
+      "minLength": 1,
       "alternateKeys": [
         {
           "tdrFileHeader": "Filename"
         }
       ]
     },
-    "held_by": {
-      "type": "string",
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "HeldBy"
-        }
-      ]
-    },
     "language": {
-      "type": "string",
-      "enum": [
-        "English",
-        "Welsh",
-        null
+      "type": [
+        "array",
+        "null"
       ],
+      "items": {
+        "type": "string",
+        "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/languages"
+      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Language"
         }
       ]
-    },
-    "legal_status": {
-      "type": "string",
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "LegalStatus"
-        }
-      ]
-    },
-    "parent_reference": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "ParentReference"
-        }
-      ]
-    },
-    "description_public": {
-      "type": "boolean"
     },
     "description_alternate": {
       "type": [
@@ -190,7 +100,10 @@
       ]
     },
     "description_closed": {
-      "type": "boolean",
+      "type": [
+        "boolean",
+        "null"
+      ],
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the description sensitive for the public?"
@@ -208,40 +121,29 @@
           "tdrFileHeader": "FOI decision asserted"
         }
       ],
-      "message": {
-        "format": "FOI decision asserted is an invalid date"
-      }
+      "daBeforeToday": "Validates that FOI Exemption Asserted Date is before today's date"
     },
     "foi_exemption_code": {
-      "type": "array",
+      "type": [
+        "array",
+        "null"
+      ],
       "items": {
         "type": "string",
         "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
       },
-      "message": {
-        "format": "This field contains an invalid FOI Exemption Code, please refer to the list of valid FOI Exemption codes in the Help Guide"
-      },
       "alternateKeys": [
         {
-          "tdrFileHeader": "FoiExemptionCode"
+          "tdrFileHeader": "FOI Exemption Code"
         }
       ]
     },
     "closure_type": {
-      "enum": [
-        "Closed",
-        "closed",
-        "CLOSED",
-        "Open",
-        "open",
-        "OPEN"
-      ],
-      "message": {
-        "format": "Closure Status must be 'Open' or 'Closed'"
-      },
+      "type": "string",
+      "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
       "alternateKeys": [
         {
-          "tdrFileHeader": "Closure status"
+          "tdrFileHeader": "Closure Status"
         }
       ]
     },
@@ -250,6 +152,8 @@
         "number",
         "null"
       ],
+      "minimum": 1,
+      "maximum": 150,
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure Period"
@@ -262,9 +166,6 @@
         "null"
       ],
       "format": "date",
-      "message": {
-        "format": "Closure Start Date must be a valid Date"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure Start Date"
@@ -272,7 +173,10 @@
       ]
     },
     "title_closed": {
-      "type": "boolean",
+      "type": [
+        "boolean",
+        "null"
+      ],
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the title sensitive for the public?"
@@ -297,23 +201,9 @@
         "null"
       ],
       "maxLength": 8000,
-      "message": {
-        "format": "Description Former Reference should be less than 8000 characters"
-      },
       "alternateKeys": [
         {
           "tdrFileHeader": "Former Reference"
-        }
-      ]
-    },
-    "file_type": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "States if the type is a file or folder"
         }
       ]
     }
