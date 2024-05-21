@@ -1,0 +1,38 @@
+name: Deploy Metadata Schema
+on:
+  push:
+    branches:
+      - main
+      - TDRD-213-add-deploy-github-workflow
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: 'Environment'
+        required: true
+        options:
+          - intg
+          - staging
+          - prod
+        default: 'intg'
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  deploy:
+    run-name: Deploying metadata schema to ${{ input.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.MANAGEMENT_ACCOUNT }}:role/TDRGithubActionsRoleMgmt
+          aws-region: eu-west-2
+          role-session-name: GitHubActionsRole
+      - name: Deploy schema
+        run: |
+          aws s3 cp metadata-schema s3://tdr-metadata-schema-${{ input.environment }}/metadata-schema --recursive
