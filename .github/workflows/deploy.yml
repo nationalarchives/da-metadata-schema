@@ -34,4 +34,4 @@ jobs:
           role-session-name: GitHubActionsRole
       - name: Deploy schema
         run: |
-          aws s3 cp metadata-schema s3://tdr-metadata-schema-${{ input.environment }}/metadata-schema --recursive
+          aws s3 cp metadata-schema s3://tdr-metadata-schema-${{ inputs.environment }}/metadata-schema --recursive
