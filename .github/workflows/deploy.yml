@@ -26,12 +26,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Configure AWS credentials from management account
-        uses: aws-actions/configure-aws-credentials@v1-node16
-        with:
-          role-to-assume: arn:aws:iam::${{ secrets.MANAGEMENT_ACCOUNT }}:role/TDRGithubActionsRoleMgmt
-          aws-region: eu-west-2
-          role-session-name: GitHubActionsRole
+      - id: role-name
+        run: |
+          import os
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as fh: 
+            print(f"role-name=TDRGithubActionsDeployLambda{'${{ inputs.environment }}'.title()}", file=fh)
+        shell: python
+          - name: Configure AWS credentials for Lambda
+            uses: aws-actions/configure-aws-credentials@v1-node16
+            with:
+              role-to-assume: arn:aws:iam::${{ secrets.ACCOUNT_NUMBER }}:role/${{ steps.role-name.outputs.role-name }}
+              aws-region: eu-west-2
+              role-session-name: ECRLogin
       - name: Deploy schema
         run: |
           aws s3 cp metadata-schema s3://tdr-metadata-schema-${{ inputs.environment }}/metadata-schema --recursive
