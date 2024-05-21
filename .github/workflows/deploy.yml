@@ -22,7 +22,6 @@ permissions:
 
 jobs:
   deploy:
-    run-name: Deploying metadata schema to ${{ input.environment }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
