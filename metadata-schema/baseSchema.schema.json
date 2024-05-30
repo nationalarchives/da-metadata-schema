@@ -79,7 +79,7 @@
       ],
       "items": {
         "type": "string",
-        "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/languages"
+        "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/languages"
       },
       "alternateKeys": [
         {
@@ -130,7 +130,7 @@
       ],
       "items": {
         "type": "string",
-        "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
+        "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
       },
       "alternateKeys": [
         {
@@ -140,7 +140,7 @@
     },
     "closure_type": {
       "type": "string",
-      "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
+      "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure status"

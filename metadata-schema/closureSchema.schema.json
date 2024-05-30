@@ -55,7 +55,7 @@
             "minItems": 1,
             "items": {
               "type": "string",
-              "$ref": "file:./metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
+              "$ref": "class:./metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
             }
           },
           "closure_type": {
