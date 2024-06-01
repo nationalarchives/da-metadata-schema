@@ -1,0 +1,211 @@
+{
+  "$id": "/schema/baseSchema",
+  "type": "object",
+  "properties": {
+    "UUID": {
+      "type": "string",
+      "format": "uuid",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "UUID"
+        }
+      ]
+    },
+    "file_path": {
+      "type": "string",
+      "minLength": 1,
+       "alternateKeys": [
+        {
+          "tdrFileHeader": "Filepath"
+        }
+      ]
+    },
+    "date_last_modified": {
+      "type": "string",
+      "format": "date",
+       "alternateKeys": [
+        {
+          "tdrFileHeader": "Date last modified"
+        }
+      ]
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 8000,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Description"
+        }
+      ]
+    },
+    "end_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Date of the record"
+        }
+      ],
+      "daBeforeToday": "Validates that end date is earlier than today's date"
+    },
+    "file_name_translation": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 8000,
+       "alternateKeys": [
+        {
+          "tdrFileHeader": "Translated title of record"
+        }
+      ]
+    },
+    "file_name": {
+      "type": "string",
+      "minLength": 1,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Filename"
+        }
+      ]
+    },
+    "language": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/languages"
+      },
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Language"
+        }
+      ]
+    },
+    "description_alternate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 8000,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Alternative description"
+        }
+      ]
+    },
+    "description_closed": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Is the description sensitive for the public?"
+        }
+      ]
+    },
+    "foi_exemption_asserted": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "FOI decision asserted"
+        }
+      ],
+      "daBeforeToday": "Validates that FOI Exemption Asserted Date is before today's date"
+    },
+    "foi_exemption_code": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
+      },
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "FOI exemption code"
+        }
+      ]
+    },
+    "closure_type": {
+      "type": "string",
+      "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Closure status"
+        }
+      ]
+    },
+    "closure_period": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 150,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Closure Period"
+        }
+      ]
+    },
+    "closure_start_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Closure Start Date"
+        }
+      ]
+    },
+    "title_closed": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Is the title sensitive for the public?"
+        }
+      ]
+    },
+    "title_alternate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 8000,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Add alternative title without the file extension"
+        }
+      ]
+    },
+    "former_reference_department": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 8000,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Former reference"
+        }
+      ]
+    }
+  }
+}
