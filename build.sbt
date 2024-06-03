@@ -24,7 +24,7 @@ developers := List(
   )
 )
 
-ThisBuild / description := "A library to validate input metadata for Transfer Digital Records"
+ThisBuild / description := "JSON Schema to describe The National Archives catalogue metadata"
 ThisBuild / licenses := List("MIT" -> new URL("https://choosealicense.com/licenses/mit/"))
 ThisBuild / homepage := Some(url("https://github.com/nationalarchives/da-metadata-schema"))
 
@@ -63,5 +63,5 @@ lazy val root = (project in file("."))
 
 lazy val copySchema = taskKey[Unit]("copySchema")
 copySchema := {
-  IO.copyDirectory(new File("metadata-schema"), new File(s"target/scala-${scalaVersion.value}/classes"))
+  IO.copyDirectory(new File("metadata-schema"), new File(s"target/scala-${scalaVersion.value}/classes/metadata-schema"))
 }

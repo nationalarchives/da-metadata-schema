@@ -1,0 +1,71 @@
+{
+  "$id": "/schema/relationship",
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "file_name_translation": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "file_name_translation_language": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "file_name_translation_language"
+        ]
+      }
+    },
+    {
+      "if": {
+        "not": {
+          "properties": {
+            "description_closed": {
+              "const": false
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "description_alternate"
+        ],
+        "properties": {
+          "description_alternate": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "not": {
+          "properties": {
+            "title_closed": {
+              "const": false
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "title_alternate"
+        ],
+        "properties": {
+          "title_alternate": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  ]
+}
