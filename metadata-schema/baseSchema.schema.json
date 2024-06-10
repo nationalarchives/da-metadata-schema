@@ -2,9 +2,18 @@
   "$id": "/schema/baseSchema",
   "type": "object",
   "properties": {
+    "client_side_checksum": {
+      "type": "string",
+      "propertyType": "System"
+    },
+    "file_size": {
+      "propertyType": "System",
+      "type": "number"
+    },
     "UUID": {
       "type": "string",
       "format": "uuid",
+      "propertyType": "System",
       "alternateKeys": [
         {
           "tdrFileHeader": "UUID"
@@ -13,6 +22,7 @@
     },
     "file_path": {
       "type": "string",
+      "propertyType": "System",
       "minLength": 1,
        "alternateKeys": [
         {
@@ -23,6 +33,7 @@
     "date_last_modified": {
       "type": "string",
       "format": "date",
+      "propertyType": "System",
        "alternateKeys": [
         {
           "tdrFileHeader": "Date last modified"
@@ -31,6 +42,7 @@
     },
     "description": {
       "type": "string",
+      "propertyType": "Supplied",
       "maxLength": 8000,
       "alternateKeys": [
         {
@@ -44,6 +56,7 @@
         "null"
       ],
       "format": "date",
+      "propertyType": "Supplied",
       "alternateKeys": [
         {
           "tdrFileHeader": "Date of the record"
@@ -56,6 +69,7 @@
         "string",
         "null"
       ],
+      "propertyType": "Supplied",
       "maxLength": 8000,
        "alternateKeys": [
         {
@@ -65,6 +79,7 @@
     },
     "file_name": {
       "type": "string",
+      "propertyType": "System",
       "minLength": 1,
       "alternateKeys": [
         {
@@ -77,6 +92,7 @@
         "array",
         "null"
       ],
+      "propertyType": "Supplied",
       "items": {
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/languages"
@@ -92,6 +108,7 @@
         "string",
         "null"
       ],
+      "propertyType": "Supplied",
       "maxLength": 8000,
       "alternateKeys": [
         {
@@ -104,6 +121,7 @@
         "boolean",
         "null"
       ],
+      "propertyType": "Supplied",
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the description sensitive for the public?"
@@ -116,6 +134,7 @@
         "null"
       ],
       "format": "date",
+      "propertyType": "Supplied",
       "alternateKeys": [
         {
           "tdrFileHeader": "FOI decision asserted"
@@ -128,6 +147,7 @@
         "array",
         "null"
       ],
+      "propertyType": "Supplied",
       "items": {
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
@@ -140,6 +160,7 @@
     },
     "closure_type": {
       "type": "string",
+      "propertyType": "Supplied",
       "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
       "alternateKeys": [
         {
@@ -152,6 +173,7 @@
         "number",
         "null"
       ],
+      "propertyType": "Supplied",
       "minimum": 1,
       "maximum": 150,
       "alternateKeys": [
@@ -166,6 +188,7 @@
         "null"
       ],
       "format": "date",
+      "propertyType": "Supplied",
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure Start Date"
@@ -177,6 +200,7 @@
         "boolean",
         "null"
       ],
+      "propertyType": "Supplied",
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the title sensitive for the public?"
@@ -188,6 +212,7 @@
         "string",
         "null"
       ],
+      "propertyType": "Supplied",
       "maxLength": 8000,
       "alternateKeys": [
         {
@@ -200,6 +225,7 @@
         "string",
         "null"
       ],
+      "propertyType": "Supplied",
       "maxLength": 8000,
       "alternateKeys": [
         {

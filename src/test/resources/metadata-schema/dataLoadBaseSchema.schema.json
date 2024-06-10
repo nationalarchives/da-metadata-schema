@@ -1,0 +1,18 @@
+{
+  "$id": "/schema/dataLoadBaseSchema",
+  "type": "object",
+  "properties": {
+    "date_last_modified": {      
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified"
+    },
+    "client_side_checksum": {
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum"      
+    },
+    "file_size": {
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_size"
+    },
+    "file_path": {      
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_path"
+    }
+  }
+}

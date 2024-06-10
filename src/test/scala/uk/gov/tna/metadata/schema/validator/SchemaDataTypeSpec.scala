@@ -54,6 +54,33 @@ class SchemaDataTypeSpec extends AnyWordSpec {
       errors.size() shouldBe 0
     }
 
+    "pass when all required properties present using dataLoadSharePointSchema" in {
+      val schemaPath = "metadata-schema/dataLoadSharePointSchema.schema.json"
+      val dataPath = "/data/sharepointDataLoad.json"
+      val schemaInputStream = Files.newInputStream(new File(schemaPath).toPath)
+      val schema = getJsonSchemaFromStreamContentV7(schemaInputStream)
+      val dataInputStream = getClass.getResourceAsStream(dataPath)
+      val node = getJsonNodeFromStreamContent(dataInputStream)
+
+      val errors: util.Set[ValidationMessage] = schema.validate(node.toPrettyString, InputFormat.JSON)
+
+      errors.size() shouldBe 0
+    }
+
+    "fail when missing required property using dataLoadSharePointSchema" in {
+      val schemaPath = "metadata-schema/dataLoadSharePointSchema.schema.json"
+      val dataPath = "/data/sharepointDataLoadMissingProperty.json"
+      val schemaInputStream = Files.newInputStream(new File(schemaPath).toPath)
+      val schema = getJsonSchemaFromStreamContentV7(schemaInputStream)
+      val dataInputStream = getClass.getResourceAsStream(dataPath)
+      val node = getJsonNodeFromStreamContent(dataInputStream)
+
+      val errors: util.Set[ValidationMessage] = schema.validate(node.toPrettyString, InputFormat.JSON)
+
+      errors.size() shouldBe 1
+      val errorsArray = errors.asScala.toArray
+      errorsArray(0).getMessage shouldBe "$: required property 'date_last_modified' not found"
+    }
   }
 
   def getJsonSchemaFromStreamContentV7(schemaContent: InputStream): JsonSchema = {
