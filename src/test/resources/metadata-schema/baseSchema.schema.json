@@ -149,7 +149,7 @@
     },
     "closure_period": {
       "type": [
-        "number",
+        "integer",
         "null"
       ],
       "minimum": 1,
