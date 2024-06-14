@@ -48,7 +48,7 @@
         "properties": {
           "foi_exemption_asserted": {
             "type": "string",
-           "format" : "date"
+            "format" : "date"
           },
           "foi_exemption_code": {
             "type": "array",
@@ -74,20 +74,10 @@
             "format" : "date"
           },
           "description_closed": {
-            "enum": [
-              "TRUE",
-              "true",
-              "FALSE",
-              "false"
-            ]
+            "type": "boolean"
           },
           "title_closed": {
-            "enum": [
-              "TRUE",
-              "true",
-              "FALSE",
-              "false"
-            ]
+            "type": "boolean"
           }
         },
         "required": [
