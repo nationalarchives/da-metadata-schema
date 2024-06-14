@@ -74,20 +74,10 @@
             "format" : "date"
           },
           "description_closed": {
-            "enum": [
-              "TRUE",
-              "true",
-              "FALSE",
-              "false"
-            ]
+            "type": "boolean"
           },
           "title_closed": {
-            "enum": [
-              "TRUE",
-              "true",
-              "FALSE",
-              "false"
-            ]
+            "type": "boolean"
           }
         },
         "required": [
