@@ -19,6 +19,14 @@ Catalogues often contain diverse types of data, and consistent metadata structur
 - **Validation**: Ensures that metadata entries adhere to a predefined structure and meet specified requirements, reducing errors and inconsistencies.
 - **Extensibility**: Easily extend the schema to accommodate additional metadata fields or custom requirements specific to different catalogues or use cases.
 
+## JSON Schema
+
+JSON Schema have [defined keywords](https://json-schema.org/understanding-json-schema/reference) used to define data.
+
+
+The National Archives use the defined keywords and extensions to domain specific requirements. These include
+- ```daBeforeToday ``` indicates a supplied date must be before now
+
 ## Schemas
 
 Three schemas are used to define the metadata
@@ -40,10 +48,7 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the supported 
         {
           "tdrFileHeader": "UUID"
         }
-      ],
-      "message": {
-        "format": "uuid must be a valid UUID"
-      }
+      ]
     },
     "date_last_modified": {
       "type": "string",
@@ -53,23 +58,38 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the supported 
           "tdrFileHeader": "ClientSideFileLastModifiedDate"
         }
       ],
-      "message": {
-        "format": "Date last modified must be a valid date"
-      },
-    }
-.....
+    },
+    "end_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Date of the record"
+        }
+      ],
+      "daBeforeToday": "Validates that end date is earlier than today's date"
+     }
+.....  
 ```
 Definition for a ```UUID```
 * UUID - field key 
 * type - the value must be a string
 * format - the string format must be a uuid
 * tdrFileHeader - the human-readable key 
-* message - the message used in error reporting when validating data
 
 Definition for ```date_last_modified```
 * date_last_modified field key
 * type - value can be a string or null
-* format - date - the string will be in the format dd/mm/yyyy or yyyy-mm-ddThh:mm:ss
+* format - date - the string will be in the format 2023-11-13 (YYYY-MM-DD)
+* tdrFileHeader - alternate name used for key ClientSideFileLastModifiedDate
+
+Definition for ```end_date```
+* end_date field key
+* type - value can be a string or null
+* format - date - the string will be in the format 2018-11-13
 * tdrFileHeader - alternate name used for key ClientSideFileLastModifiedDate
 
 Example data
@@ -78,7 +98,7 @@ Example data
   "UUID": "f373d856-d4ee-4b41-ae89-d7327915c73e",
   "file_path":"file:///C:/atransfer/content/interesting.pdf",
   "foi_exemption_code":[],
-  "date_last_modified": "12/12/2001",
+  "date_last_modified": "2001-12-03",
   "description": "description for catalogue"
 }
 ```
@@ -118,13 +138,11 @@ The [closure schema](metadata-schema/closureSchema.schema.json) defines the sche
             "foi_exemption_asserted": {
               "type": "string",
               "format": "date"
-              "minLenght":"10"
-             
             },
             "closure_type": {
               "enum": [
-                "closed_review",
-                "closed_for",
+                "Closed",
+                "closed",
                 "CLOSED"
             ],
             ......
