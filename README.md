@@ -11,7 +11,7 @@ This project provides the [JSON schemas](https://json-schema.org/) for defining 
 
 ## Introduction
 
-Catalogues often contain diverse types of data, and consistent metadata structures are crucial for effective data management and searchability. This JSON schemas defines a standardized format for describing metadata fields, their types, and any constraints or requirements associated with each field.
+Catalogues often contain diverse types of data, and consistent metadata structures are crucial for effective data management and searchability. This JSON schema defines a standardised format for describing metadata fields, their types, and any constraints or requirements associated with each field.
 
 ## Features
 
@@ -165,13 +165,13 @@ Multiple if/then/else statements allowed
     * ....
   * else
     * there must be a foi_exemption_asserted date
-    * the closure_type must be one of closed_review, closed_for or CLOSED
+    * the closure_type must be one of `closed_review`, `closed_for` or `CLOSED`
     * ...
-    * there must be values for closure_period, closure_start_date, description_closed, foi_exemption_asserted, foi_exemption_code 
+    * there must be values for `closure_period`, `closure_start_date`, `description_closed`, `foi_exemption_asserted`, and `foi_exemption_code`.
 
 ### Relationship Schema
 
-This schema is used to enforce cross attribute relationships
+This schema is used to enforce cross attribute relationships.
 
 ```json
  {
@@ -195,7 +195,7 @@ This schema is used to enforce cross attribute relationships
     }
 ```
 
-If there is a file_name_translation then there must be a file_name_translation 
+If there is a `file_name_translation` then there must be a `file_name_translation`.
 
 ## Usage
 
@@ -205,7 +205,7 @@ To use the JSON schema in your project, follow these steps:
 2. **Integration**: Integrate the `*schema.json` files into your project where metadata validation is required.
 3. **Validation**: Use JSON schema validation libraries in your preferred programming language to validate metadata objects against the provided schema.
 
-Example using scala and the [networknt json-schema-validator library](https://github.com/networknt/json-schema-validator): is shown in [SchemaDataTypeSpec.scala](src/test/scala/uk/gov/tna/tdr/metadata/schema/validator/SchemaDataTypeSpec.scala)
+An example using scala and the [networknt json-schema-validator library](https://github.com/networknt/json-schema-validator) is shown in [SchemaDataTypeSpec.scala](src/test/scala/uk/gov/tna/tdr/metadata/schema/validator/SchemaDataTypeSpec.scala).
 
 ```scala
       // load schema
