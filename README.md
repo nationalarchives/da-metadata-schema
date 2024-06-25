@@ -24,7 +24,7 @@ Catalogues often contain diverse types of data, and consistent metadata structur
 JSON Schema have [defined keywords](https://json-schema.org/understanding-json-schema/reference) used to define data.
 
 
-The National Archives use the defined keywords and extensions to domain specific requirements. These include
+The National Archives use the defined keywords and extensions for domain specific requirements. These include
 - ```daBeforeToday ``` indicates a supplied date must be before now
 
 ## Schemas
