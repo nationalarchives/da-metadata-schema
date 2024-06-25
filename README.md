@@ -25,7 +25,7 @@ JSON Schema have [defined keywords](https://json-schema.org/understanding-json-s
 
 
 The National Archives use the defined keywords and extensions for domain specific requirements. These include
-- ```daBeforeToday ``` indicates a supplied date must be before now
+- `daBeforeToday` indicates a supplied date must be before now
 
 ## Schemas
 
