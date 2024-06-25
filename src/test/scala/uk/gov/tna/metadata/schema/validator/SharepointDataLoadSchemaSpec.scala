@@ -39,7 +39,5 @@ class SharepointDataLoadSchemaSpec extends BaseSpec {
       val errorsArray = errors.asScala.toArray
       errorsArray(0).getMessage shouldBe "$: required property 'date_last_modified' not found"
     }
-
   }
-
 }
