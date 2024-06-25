@@ -6,7 +6,7 @@
       "if": {
         "properties": {
           "closure_type": {
-            "pattern": "open_on_transfer|OPEN"
+            "pattern": "open_on_transfer|Open"
           }
         }
       },
@@ -48,7 +48,7 @@
         "properties": {
           "foi_exemption_asserted": {
             "type": "string",
-           "format" : "date"
+            "format" : "date"
           },
           "foi_exemption_code": {
             "type": "array",
@@ -66,7 +66,7 @@
             ]
           },
           "closure_period": {
-            "type": "number",
+            "type": "integer",
             "minimum": 1
           },
           "closure_start_date": {
@@ -74,12 +74,7 @@
             "format" : "date"
           },
           "description_closed": {
-            "enum": [
-              "TRUE",
-              "true",
-              "FALSE",
-              "false"
-            ]
+            "type": "boolean"
           },
           "title_closed": {
             "type": "boolean"

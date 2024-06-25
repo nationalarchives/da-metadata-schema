@@ -170,7 +170,7 @@
     },
     "closure_period": {
       "type": [
-        "number",
+        "integer",
         "null"
       ],
       "propertyType": "Supplied",
