@@ -2,10 +2,21 @@
   "$id": "/schema/dataLoadSharePointSchema",
   "type": "object",
   "allOf": [
-    { "$ref": "classpath:/metadata-schema/dataLoadBaseSchema.schema.json#/properties" },
     { "properties": {
       "UUID": {
         "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/UUID"
+      },
+      "date_last_modified": {
+        "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified"
+      },
+      "client_side_checksum": {
+        "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum"
+      },
+      "file_size": {
+        "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_size"
+      },
+      "file_path": {
+        "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_path"
       }
     },
       "required": ["UUID", "date_last_modified", "client_side_checksum", "file_size", "file_path"]
