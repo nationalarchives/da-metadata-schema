@@ -11,13 +11,21 @@ This project provides the [JSON schemas](https://json-schema.org/) for defining 
 
 ## Introduction
 
-Catalogues often contain diverse types of data, and consistent metadata structures are crucial for effective data management and searchability. This JSON schemas defines a standardized format for describing metadata fields, their types, and any constraints or requirements associated with each field.
+Catalogues often contain diverse types of data, and consistent metadata structures are crucial for effective data management and searchability. This JSON schema defines a standardised format for describing metadata fields, their types, and any constraints or requirements associated with each field.
 
 ## Features
 
 - **Flexibility**: The schema supports a wide range of metadata fields commonly found in catalogues, including textual descriptions, numerical values, dates, and more.
 - **Validation**: Ensures that metadata entries adhere to a predefined structure and meet specified requirements, reducing errors and inconsistencies.
 - **Extensibility**: Easily extend the schema to accommodate additional metadata fields or custom requirements specific to different catalogues or use cases.
+
+## JSON Schema
+
+JSON Schema have [defined keywords](https://json-schema.org/understanding-json-schema/reference) used to define data.
+
+
+The National Archives use the defined keywords and extensions for domain specific requirements. These include
+- `daBeforeToday` indicates a supplied date must be before now
 
 ## Schemas
 
@@ -40,10 +48,7 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the supported 
         {
           "tdrFileHeader": "UUID"
         }
-      ],
-      "message": {
-        "format": "uuid must be a valid UUID"
-      }
+      ]
     },
     "date_last_modified": {
       "type": "string",
@@ -53,23 +58,38 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the supported 
           "tdrFileHeader": "ClientSideFileLastModifiedDate"
         }
       ],
-      "message": {
-        "format": "Date last modified must be a valid date"
-      },
-    }
-.....
+    },
+    "end_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "Date of the record"
+        }
+      ],
+      "daBeforeToday": "Validates that end date is earlier than today's date"
+     }
+.....  
 ```
 Definition for a ```UUID```
 * UUID - field key 
 * type - the value must be a string
 * format - the string format must be a uuid
 * tdrFileHeader - the human-readable key 
-* message - the message used in error reporting when validating data
 
 Definition for ```date_last_modified```
 * date_last_modified field key
 * type - value can be a string or null
-* format - date - the string will be in the format dd/mm/yyyy or yyyy-mm-ddThh:mm:ss
+* format - date - the string will be in the format 2023-11-13 (YYYY-MM-DD)
+* tdrFileHeader - alternate name used for key ClientSideFileLastModifiedDate
+
+Definition for ```end_date```
+* end_date field key
+* type - value can be a string or null
+* format - date - the string will be in the format 2018-11-13
 * tdrFileHeader - alternate name used for key ClientSideFileLastModifiedDate
 
 Example data
@@ -78,7 +98,7 @@ Example data
   "UUID": "f373d856-d4ee-4b41-ae89-d7327915c73e",
   "file_path":"file:///C:/atransfer/content/interesting.pdf",
   "foi_exemption_code":[],
-  "date_last_modified": "12/12/2001",
+  "date_last_modified": "2001-12-03",
   "description": "description for catalogue"
 }
 ```
@@ -118,13 +138,11 @@ The [closure schema](metadata-schema/closureSchema.schema.json) defines the sche
             "foi_exemption_asserted": {
               "type": "string",
               "format": "date"
-              "minLenght":"10"
-             
             },
             "closure_type": {
               "enum": [
-                "closed_review",
-                "closed_for",
+                "Closed",
+                "closed",
                 "CLOSED"
             ],
             ......
@@ -147,13 +165,13 @@ Multiple if/then/else statements allowed
     * ....
   * else
     * there must be a foi_exemption_asserted date
-    * the closure_type must be one of closed_review, closed_for or CLOSED
+    * the closure_type must be one of `closed_review`, `closed_for` or `CLOSED`
     * ...
-    * there must be values for closure_period, closure_start_date, description_closed, foi_exemption_asserted, foi_exemption_code 
+    * there must be values for `closure_period`, `closure_start_date`, `description_closed`, `foi_exemption_asserted`, and `foi_exemption_code`.
 
 ### Relationship Schema
 
-This schema is used to enforce cross attribute relationships
+This schema is used to enforce cross attribute relationships.
 
 ```json
  {
@@ -177,7 +195,7 @@ This schema is used to enforce cross attribute relationships
     }
 ```
 
-If there is a file_name_translation then there must be a file_name_translation 
+If there is a `file_name_translation` then there must be a `file_name_translation`.
 
 ## Usage
 
@@ -187,7 +205,7 @@ To use the JSON schema in your project, follow these steps:
 2. **Integration**: Integrate the `*schema.json` files into your project where metadata validation is required.
 3. **Validation**: Use JSON schema validation libraries in your preferred programming language to validate metadata objects against the provided schema.
 
-Example using scala and the [networknt json-schema-validator library](https://github.com/networknt/json-schema-validator): is shown in [SchemaDataTypeSpec.scala](src/test/scala/uk/gov/tna/tdr/metadata/schema/validator/SchemaDataTypeSpec.scala)
+An example using scala and the [networknt json-schema-validator library](https://github.com/networknt/json-schema-validator) is shown in [SchemaDataTypeSpec.scala](src/test/scala/uk/gov/tna/tdr/metadata/schema/validator/SchemaDataTypeSpec.scala).
 
 ```scala
       // load schema
