@@ -1,16 +1,15 @@
 package uk.gov.tna.metadata.schema.validator
 
-import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
-import com.networknt.schema._
-import org.scalatest.matchers.should.Matchers._
+import com.networknt.schema.*
+import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 
 import java.io.{File, InputStream}
 import java.nio.file.Files
 import java.util
-import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters.*
 
-class SchemaDataTypeSpec extends AnyWordSpec {
+class SchemaDataTypeSpec extends BaseSpec {
 
   "schema validation" should {
     "fail if missing required property from relationship when using relationshipSchema" in {
@@ -52,23 +51,6 @@ class SchemaDataTypeSpec extends AnyWordSpec {
       val errors: util.Set[ValidationMessage] = schema.validate(node.toPrettyString, InputFormat.JSON)
 
       errors.size() shouldBe 0
-    }
-
-  }
-
-  def getJsonSchemaFromStreamContentV7(schemaContent: InputStream): JsonSchema = {
-    val schemaIri = SchemaId.V7
-    val metaSchema = JsonMetaSchema.getV7
-
-    val factory = new JsonSchemaFactory.Builder().defaultMetaSchemaIri(schemaIri).metaSchema(metaSchema).build()
-    val config = new SchemaValidatorsConfig()
-    config.setFormatAssertionsEnabled(true)
-
-    factory.getSchema(schemaContent, config)
-  }
-
-  protected def getJsonNodeFromStreamContent(content: InputStream): JsonNode = {
-    val mapper = new ObjectMapper()
-    mapper.readTree(content)
+    }    
   }
 }
