@@ -34,7 +34,7 @@ Three schemas are used to define the metadata
 2. [closure schema](#closure-schema)
 3. [relationship schema](metadata-schema/relationshipSchema.schema.json)
 
-Additional schemas are used to define specific uses cases for metadata
+Additional schemas are used to define specific use cases for metadata
 * [data load SharePoint schema](metadata-schema/dataLoadSharePointSchema.schema.json)
 
 ### Base Schema

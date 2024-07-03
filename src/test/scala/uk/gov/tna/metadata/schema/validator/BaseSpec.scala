@@ -4,9 +4,18 @@ import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
 import com.networknt.schema.*
 import org.scalatest.wordspec.AnyWordSpec
 
-import java.io.InputStream
+import java.io.{File, InputStream}
+import java.nio.file.Files
 
 trait BaseSpec extends AnyWordSpec {
+
+  def createSchema(schemaPath: String, testDataPath: String): (JsonSchema, JsonNode) = {    
+    val schemaInputStream = Files.newInputStream(new File(schemaPath).toPath)
+    val schema = getJsonSchemaFromStreamContentV7(schemaInputStream)
+    val dataInputStream = getClass.getResourceAsStream(testDataPath)
+    val node = getJsonNodeFromStreamContent(dataInputStream)
+    (schema, node)
+  }
 
   def getJsonSchemaFromStreamContentV7(schemaContent: InputStream): JsonSchema = {
     val schemaIri = SchemaId.V7
@@ -23,5 +32,4 @@ trait BaseSpec extends AnyWordSpec {
     val mapper = new ObjectMapper()
     mapper.readTree(content)
   }
-
 }
