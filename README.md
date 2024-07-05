@@ -34,6 +34,9 @@ Three schemas are used to define the metadata
 2. [closure schema](#closure-schema)
 3. [relationship schema](metadata-schema/relationshipSchema.schema.json)
 
+Additional schemas are used to define specific use cases for metadata
+* [data load SharePoint schema](metadata-schema/dataLoadSharePointSchema.schema.json)
+
 ### Base Schema
 The [base schema](metadata-schema/baseSchema.schema.json) defines the supported properties names (`UUID`, `date_late_modified`) and value types.
 ```
@@ -196,6 +199,23 @@ This schema is used to enforce cross attribute relationships.
 ```
 
 If there is a `file_name_translation` then there must be a `file_name_translation`.
+
+### Data Load SharePoint Schema
+
+The [data load SharePoint schema](metadata-schema/dataLoadSharePointSchema.schema.json) defines what properties are permitted when loading metadata directly from SharePoint. 
+
+It is a sub-set of the [Base Schema](metadata-schema/baseSchema.schema.json) properties.
+
+Example data:
+```json
+{
+  "date_last_modified": "2001-12-12",
+  "client_side_checksum": "8b9118183f01b3df0fc5073feb68f0ecd5a7f85a88ed63ac7d0d242dc2aba2ea",
+  "file_size": 26,
+  "file_path": "a/filepath/filename1.docx",
+  "UUID": "b8b624e4-ec68-4e08-b5db-dfdc9ec84fea"
+}
+```
 
 ## Usage
 
