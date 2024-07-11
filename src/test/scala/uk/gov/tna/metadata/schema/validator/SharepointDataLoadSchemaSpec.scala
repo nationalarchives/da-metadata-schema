@@ -28,10 +28,10 @@ class SharepointDataLoadSchemaSpec extends BaseSpec {
 
       errors.size() shouldBe 1
       val errorsArray = errors.asScala.toArray
-      errorsArray(0).getMessage shouldBe "$: required property 'date_last_modified' not found"
+      errorsArray(0).getMessage shouldBe "$: required property 'ClientSideFileLastModifiedDate' not found"
     }
 
-    "fail when 'file_size' is less than 0" in {
+    "fail when 'ClientSideFileSize' is less than 0" in {
       val testDataPath = "/data/sharepointDataLoadInvalidFileSize.json"
       val schemaSetup = createSchema(schemaPath, testDataPath)
 
@@ -39,10 +39,10 @@ class SharepointDataLoadSchemaSpec extends BaseSpec {
 
       errors.size() shouldBe 1
       val errorsArray = errors.asScala.toArray
-      errorsArray(0).getMessage shouldBe "$.file_size: must have a minimum value of 0"
+      errorsArray(0).getMessage shouldBe "$.ClientSideFileSize: must have a minimum value of 0"
     }
 
-    "fail when 'file_path' is less than 1" in {
+    "fail when 'ClientSideOriginalFilepath' is less than 1" in {
 
       val testDataPath = "/data/sharepointDataLoadInvalidFilePath.json"
       val schemaSetup = createSchema(schemaPath, testDataPath)
@@ -51,7 +51,7 @@ class SharepointDataLoadSchemaSpec extends BaseSpec {
 
       errors.size() shouldBe 1
       val errorsArray = errors.asScala.toArray
-      errorsArray(0).getMessage shouldBe "$.file_path: must be at least 1 characters long"
+      errorsArray(0).getMessage shouldBe "$.ClientSideOriginalFilepath: must be at least 1 characters long"
     }
   }
 }

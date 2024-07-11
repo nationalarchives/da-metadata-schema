@@ -7,25 +7,25 @@
         "UUID": {
           "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/UUID"
         },
-        "date_last_modified": {
+        "ClientSideFileLastModifiedDate": {
           "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified"
         },
-        "client_side_checksum": {
+        "SHA256ClientSideChecksum": {
           "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum"
         },
-        "file_size": {
+        "ClientSideFileSize": {
           "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_size"
         },
-        "file_path": {
+        "ClientSideOriginalFilepath": {
           "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_path"
         }
       },
       "required": [
         "UUID",
-        "date_last_modified",
-        "client_side_checksum",
-        "file_size",
-        "file_path"
+        "ClientSideFileLastModifiedDate",
+        "SHA256ClientSideChecksum",
+        "ClientSideFileSize",
+        "ClientSideOriginalFilepath"
       ]
     }
   ]

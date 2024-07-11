@@ -4,12 +4,24 @@
   "properties": {
     "client_side_checksum": {
       "type": "string",
-      "propertyType": "System"
+      "propertyType": "System",
+      "minLength": 64,
+      "maximum": 64,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "SHA256ClientSideChecksum"
+        }
+      ]
     },
     "file_size": {
       "propertyType": "System",
-      "type": "number",
-      "minimum": 0
+      "type": "integer",
+      "minimum": 0,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "ClientSideFileSize"
+        }
+      ]
     },
     "UUID": {
       "type": "string",
@@ -27,7 +39,8 @@
       "minLength": 1,
        "alternateKeys": [
         {
-          "tdrFileHeader": "Filepath"
+          "tdrFileHeader": "Filepath",
+          "tdrDataLoadHeader": "ClientSideOriginalFilepath"
         }
       ]
     },
@@ -37,7 +50,8 @@
       "propertyType": "System",
        "alternateKeys": [
         {
-          "tdrFileHeader": "Date last modified"
+          "tdrFileHeader": "Date last modified",
+          "tdrDataLoadHeader": "ClientSideFileLastModifiedDate"
         }
       ]
     },
@@ -84,7 +98,8 @@
       "minLength": 1,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Filename"
+          "tdrFileHeader": "Filename",
+          "tdrDataLoadHeader": "Filename"
         }
       ]
     },
@@ -113,7 +128,8 @@
       "maxLength": 8000,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Alternative description"
+          "tdrFileHeader": "Alternative description",
+          "tdrDataLoadHeader": "DescriptionAlternate"
         }
       ]
     },
@@ -125,7 +141,8 @@
       "propertyType": "Supplied",
       "alternateKeys": [
         {
-          "tdrFileHeader": "Is the description sensitive for the public?"
+          "tdrFileHeader": "Is the description sensitive for the public?",
+          "tdrDataLoadHeader": "DescriptionClosed"
         }
       ]
     },
@@ -138,7 +155,8 @@
       "propertyType": "Supplied",
       "alternateKeys": [
         {
-          "tdrFileHeader": "FOI decision asserted"
+          "tdrFileHeader": "FOI decision asserted",
+          "tdrDataLoadHeader": "FoiExemptionAsserted"
         }
       ],
       "daBeforeToday": "Validates that FOI Exemption Asserted Date is before today's date"
@@ -155,7 +173,8 @@
       },
       "alternateKeys": [
         {
-          "tdrFileHeader": "FOI exemption code"
+          "tdrFileHeader": "FOI exemption code",
+          "tdrDataLoadHeader": "FoiExemptionCode"
         }
       ]
     },
@@ -165,7 +184,8 @@
       "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
       "alternateKeys": [
         {
-          "tdrFileHeader": "Closure status"
+          "tdrFileHeader": "Closure status",
+          "tdrDataLoadHeader": "ClosureType"
         }
       ]
     },
@@ -179,7 +199,8 @@
       "maximum": 150,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Closure Period"
+          "tdrFileHeader": "Closure Period",
+          "tdrDataLoadHeader": "ClosurePeriod"
         }
       ]
     },
@@ -192,7 +213,8 @@
       "propertyType": "Supplied",
       "alternateKeys": [
         {
-          "tdrFileHeader": "Closure Start Date"
+          "tdrFileHeader": "Closure Start Date",
+          "tdrDataLoadHeader": "ClosureStartDate"
         }
       ]
     },
@@ -204,7 +226,8 @@
       "propertyType": "Supplied",
       "alternateKeys": [
         {
-          "tdrFileHeader": "Is the title sensitive for the public?"
+          "tdrFileHeader": "Is the title sensitive for the public?",
+          "tdrDataLoadHeader": "ClosureType"
         }
       ]
     },
@@ -217,7 +240,8 @@
       "maxLength": 8000,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Add alternative title without the file extension"
+          "tdrFileHeader": "Add alternative title without the file extension",
+          "tdrDataLoadHeader": "TitleAlternate"
         }
       ]
     },
