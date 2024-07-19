@@ -241,3 +241,19 @@ An example using scala and the [networknt json-schema-validator library](https:/
       // validate data
       val errors: util.Set[ValidationMessage] = schema.validate(node.toPrettyString, InputFormat.JSON)
 ```
+
+## Local development
+
+To publish the schemas locally, run the following commands from the repository directory:
+
+```
+  $ sbt copySchema
+  $ sbt package publishLocal
+```
+
+Other sbt projects that have this project as a dependency can access the local snapshot version by changing the version number in their build.sbt or dependencies file, for example:
+  ```
+  ... other dependencies...
+  "uk.gov.nationalarchives" % "da-metadata-schema_3" % "[version number]-SNAPSHOT"
+  ... other dependences...
+```
