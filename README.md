@@ -7,6 +7,7 @@ This project provides the [JSON schemas](https://json-schema.org/) for defining 
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Schema](#schemas)
+4. [Validation Messages](#validation-messages)
 4. [Usage](#usage)
 
 ## Introduction
@@ -216,6 +217,15 @@ Example data:
   "UUID": "b8b624e4-ec68-4e08-b5db-dfdc9ec84fea"
 }
 ```
+## Validation Messages
+
+The [tdr-metadata-validation](https://github.com/nationalarchives/tdr-metadata-validation) produces errors with the following properties:
+* ```validationProcess```
+* ```property```
+* ```errorKey```
+
+For user friendly messages see [Validation-message.properties file](validation-messages/validation-messages.properties)  
+The format is {validationProcess}.{property}.{errorKey}={User friendly message}
 
 ## Usage
 
