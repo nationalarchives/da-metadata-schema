@@ -1,7 +1,7 @@
 {
   "$id": "/schema/dataLoadSharePointSchema",
-  "type": "object",    
-  "properties": {    
+  "type": "object",
+  "properties": {
     "Modified": {
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified"
     },
@@ -16,10 +16,9 @@
     }
   },
   "required": [
-    "UUID",
     "Modified",
     "SHA256ClientSideChecksum",
     "File_x0020_Size",
     "FileRef"
-  ]  
+  ]
 }
