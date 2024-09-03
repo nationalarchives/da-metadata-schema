@@ -8,11 +8,11 @@ This project provides the [JSON schemas](https://json-schema.org/) for defining 
 2. [Features](#features)
 3. [Schema](#schemas)
 4. [Validation Messages](#validation-messages)
-4. [Usage](#usage)
+5. [Usage](#usage)
 
 ## Introduction
 
-Catalogues often contain diverse types of data, and consistent metadata structures are crucial for effective data management and searchability. This JSON schema defines a standardised format for describing metadata fields, their types, and any constraints or requirements associated with each field.
+Catalogues often contain diverse types of data, and consistent metadata structures are crucial for effective data management and searching. This JSON schema defines a standardised format for describing metadata fields, their types, and any constraints or requirements associated with each field.
 
 ## Features
 
@@ -81,7 +81,7 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the supported 
 Definition for a ```UUID```
 * UUID - field key 
 * type - the value must be a string
-* format - the string format must be a uuid
+* format - the string format must be an uuid
 * tdrFileHeader - the human-readable key 
 
 Definition for ```date_last_modified```
@@ -235,7 +235,7 @@ To use the JSON schema in your project, follow these steps:
 2. **Integration**: Integrate the `*schema.json` files into your project where metadata validation is required.
 3. **Validation**: Use JSON schema validation libraries in your preferred programming language to validate metadata objects against the provided schema.
 
-An example using scala and the [networknt json-schema-validator library](https://github.com/networknt/json-schema-validator) is shown in [SchemaDataTypeSpec.scala](src/test/scala/uk/gov/tna/tdr/metadata/schema/validator/SchemaDataTypeSpec.scala).
+An example using scala and the [networknt json-schema-validator library](https://github.com/networknt/json-schema-validator) is shown in [BaseSpec.scala](src/test/scala/uk/gov/tna/metadata/schema/validator/BaseSpec.scala).
 
 ```scala
       // load schema
@@ -257,8 +257,8 @@ An example using scala and the [networknt json-schema-validator library](https:/
 To publish the schemas locally, run the following commands from the repository directory:
 
 ```
-  $ sbt copySchema
-  $ sbt package publishLocal
+  $ sbt copySchema copyValidationMessageProperties package publishLocal
+
 ```
 
 Other sbt projects that have this project as a dependency can access the local snapshot version by changing the version number in their build.sbt or dependencies file, for example:
