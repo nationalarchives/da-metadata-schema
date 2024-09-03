@@ -56,7 +56,10 @@
       ]
     },
     "description": {
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "propertyType": "Supplied",
       "maxLength": 8000,
       "alternateKeys": [
