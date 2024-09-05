@@ -37,6 +37,7 @@ releaseProcess := Seq[ReleaseStep](
   inquireVersions,
   runClean,
   releaseStepTask(copySchema),
+  releaseStepTask(copyValidationMessageProperties),
   runTest,
   setReleaseVersion,
   commitReleaseVersion,
@@ -64,4 +65,9 @@ lazy val root = (project in file("."))
 lazy val copySchema = taskKey[Unit]("copySchema")
 copySchema := {
   IO.copyDirectory(new File("metadata-schema"), new File(s"target/scala-${scalaVersion.value}/classes/metadata-schema"))
+}
+
+lazy val copyValidationMessageProperties = taskKey[Unit]("copyValidationMessageProperties")
+copyValidationMessageProperties := {
+  IO.copyDirectory(new File("validation-messages"), new File(s"target/scala-${scalaVersion.value}/classes/validation-messages"))
 }
