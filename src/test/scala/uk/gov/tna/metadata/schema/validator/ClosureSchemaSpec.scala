@@ -53,6 +53,22 @@ class ClosureSchemaSpec extends BaseSpec {
       errors.size shouldBe 0
     }
 
+    "fail when document is open and missing closure property when using closureSchemaOpen" in {
+      val schemaPath = "metadata-schema/closureSchemaOpen.schema.json"
+      val testDataPath = "/data/testDataOpenMissing.json"
+      val schemaSetup = createSchema(schemaPath, testDataPath)
+
+      val errors: util.Set[ValidationMessage] = schemaSetup._1.validate(schemaSetup._2.toPrettyString, InputFormat.JSON)
+      val errorsArray = errors.asScala.toArray
+      
+      errorsArray(0).getMessage shouldBe "$: required property 'closure_start_date' not found"
+      errorsArray(1).getMessage shouldBe "$: required property 'closure_period' not found"
+      errorsArray(2).getMessage shouldBe "$: required property 'foi_exemption_code' not found"
+      errorsArray(3).getMessage shouldBe "$: required property 'foi_exemption_asserted' not found"
+      errorsArray(4).getMessage shouldBe "$: required property 'title_alternate' not found"
+      errorsArray(5).getMessage shouldBe "$: required property 'description_closed' not found"
+    }
+
     "fail when document is open and provided closure property is invalid when using closureSchemaOpen" in {
       val schemaPath = "metadata-schema/closureSchemaOpen.schema.json"
       val testDataPath = "/data/testDataOpenInvalid.json"
