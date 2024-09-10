@@ -1,0 +1,10 @@
+{
+  "UUID": "dd",
+  "closure_type": "CLOSED",
+  "closure_period": 1,
+  "retention_type": null,
+  "closure_start_date": "2001-12-12",
+  "identifier":"file:///C:/a_transfer/content/interesting.doc",
+  "date_created": "2001-12-12",
+  "title_closed": true
+}
