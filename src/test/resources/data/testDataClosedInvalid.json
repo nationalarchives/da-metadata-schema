@@ -1,7 +1,7 @@
 {
   "UUID": "dd",
   "closure_type": "CLOSED",
-  "closure_period": "1",
+  "closure_period": -1,
   "retention_type": null,
   "closure_start_date": "InvalidDate",
   "identifier":"file:///C:/a_transfer/content/interesting.doc",

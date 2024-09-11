@@ -10,7 +10,8 @@
       "format": "date"
     },
     "closure_period": {
-      "type": "integer"
+      "type": "integer",
+      "minimum": 1
     },
     "foi_exemption_code": {
       "type": "array",
@@ -21,7 +22,8 @@
       }
     },
     "foi_exemption_asserted": {
-      "type": "string"
+      "type": "string",
+      "format": "date"
     },
     "title_closed": {
       "type": "boolean"

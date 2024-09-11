@@ -32,10 +32,11 @@ class ClosureSchemaSpec extends BaseSpec {
       val errorsArray = errors.asScala.toArray
 
       errorsArray(0).getMessage shouldBe "$.closure_start_date: does not match the date pattern must be a valid RFC 3339 full-date"
-      errorsArray(1).getMessage shouldBe "$.closure_period: string found, integer expected"
+      errorsArray(1).getMessage shouldBe "$.closure_period: must have a minimum value of 1"
       errorsArray(2).getMessage shouldBe "$.foi_exemption_code[2]: does not have a value in the enumeration [23, 24, 26, 27(1), 27(2), 28, 29, 30(1), 30(2), 31, 32, 33, 34, 35(1)(a), 35(1)(b), 35(1)(c), 35(1)(d), 36, 37(1)(a), 37(1)(aa), 37(1)(ac), 37(1)(ad), 37(1)(b), 38, 39, 40(2), 41, 42, 43, 43(1), 43(2), 44, EIRs 12(3) & 13, EIR 12(5)(a), EIR 12(5)(b), EIR 12(5)(c), EIR 12(5)(d), EIR 12(5)(e), EIR 12(5)(f), EIR 12(5)(g)]"
-      errorsArray(3).getMessage shouldBe "$.description_closed: string found, boolean expected"
-      errorsArray(4).getMessage shouldBe "$.title_alternate: integer found, string expected"
+      errorsArray(3).getMessage shouldBe "$.foi_exemption_asserted: does not match the date pattern must be a valid RFC 3339 full-date"
+      errorsArray(4).getMessage shouldBe "$.description_closed: string found, boolean expected"
+      errorsArray(5).getMessage shouldBe "$.title_alternate: integer found, string expected"
     }
 
     "succeed when document is closed and valid closure property is provided when using closureSchemaClosed" in {
