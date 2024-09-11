@@ -28,6 +28,12 @@
     },
     "description_closed": {
       "type": "boolean"
+    },
+    "title_alternate": {
+      "type": "string"
+    },
+    "description_alternate": {
+      "type": "string"
     }
   },
   "required": [
@@ -44,26 +50,22 @@
       "if": {
         "properties": {
           "title_closed": { "const": true }
-        }
+        },
+        "required": ["title_closed"]
       },
       "then": {
-        "required": ["title_alternate"],
-        "properties": {
-          "title_alternate": { "type": "string" }
-        }
+        "required": ["title_alternate"]
       }
     },
     {
       "if": {
         "properties": {
           "description_closed": { "const": true }
-        }
+        },
+        "required": ["description_closed"]
       },
       "then": {
-        "required": ["description_alternate"],
-        "properties": {
-          "description_alternate": { "type": "string" }
-        }
+        "required": ["description_alternate"]
       }
     }
   ]
