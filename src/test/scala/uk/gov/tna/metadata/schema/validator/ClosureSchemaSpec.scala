@@ -36,7 +36,7 @@ class ClosureSchemaSpec extends BaseSpec {
       errorsArray(2).getMessage shouldBe "$.foi_exemption_code[2]: does not have a value in the enumeration [23, 24, 26, 27(1), 27(2), 28, 29, 30(1), 30(2), 31, 32, 33, 34, 35(1)(a), 35(1)(b), 35(1)(c), 35(1)(d), 36, 37(1)(a), 37(1)(aa), 37(1)(ac), 37(1)(ad), 37(1)(b), 38, 39, 40(2), 41, 42, 43, 43(1), 43(2), 44, EIRs 12(3) & 13, EIR 12(5)(a), EIR 12(5)(b), EIR 12(5)(c), EIR 12(5)(d), EIR 12(5)(e), EIR 12(5)(f), EIR 12(5)(g)]"
       errorsArray(3).getMessage shouldBe "$.foi_exemption_asserted: does not match the date pattern must be a valid RFC 3339 full-date"
       errorsArray(4).getMessage shouldBe "$.description_closed: string found, boolean expected"
-      errorsArray(5).getMessage shouldBe "$.title_alternate: integer found, [string, null] expected"
+      errorsArray(5).getMessage shouldBe "$.title_alternate: integer found, string expected"
     }
 
     "succeed when document is closed and valid closure property is provided when using closureSchemaClosed" in {
@@ -83,8 +83,8 @@ class ClosureSchemaSpec extends BaseSpec {
       errorsArray(3).getMessage shouldBe "$.foi_exemption_asserted: string found, null expected"
       errorsArray(4).getMessage shouldBe "$.title_alternate: string found, null expected"
       errorsArray(5).getMessage shouldBe "$.description_alternate: string found, null expected"
-      errorsArray(6).getMessage shouldBe "$.title_closed: does not have a value in the enumeration [null, No]"
-      errorsArray(7).getMessage shouldBe "$.description_closed: does not have a value in the enumeration [null, No]"
+      errorsArray(6).getMessage shouldBe "$.title_closed: does not have a value in the enumeration [null, NO, No, no, false]"
+      errorsArray(7).getMessage shouldBe "$.description_closed: does not have a value in the enumeration [null, NO, No, no, false]"
     }
 
     "succeed when document is open and valid closure property is provided when using closureSchemaOpen" in {

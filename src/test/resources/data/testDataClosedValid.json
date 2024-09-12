@@ -8,7 +8,7 @@
   "foi_exemption_code":["23", "27(1)","EIR 12(5)(g)"],
   "date_created": "2001-12-12",
   "description_closed": false,
-  "description_alternate": "my alternate",
+  "description_alternate": null,
   "foi_exemption_asserted": "2001-12-12",
   "title_closed": true,
   "title_alternate": "alternative title"

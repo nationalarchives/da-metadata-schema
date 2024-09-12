@@ -1,44 +1,71 @@
 {
   "$id": "/schema/open-closure",
   "type": "object",
-  "properties": {
-    "closure_type": {
-      "enum": ["open_on_transfer", "Open", "open","OPEN"]
-    },
-    "closure_start_date": {
-      "type": "null"
-    },
-    "closure_period": {
-      "type": "null"
-    },
-    "foi_exemption_code": {
-      "type": "null"
-    },
-    "foi_exemption_asserted": {
-      "type": "null"
-    },
-    "title_alternate": {
-      "type": "null"
-    },
-    "description_alternate": {
-      "type": "null"
-    },
-    "title_closed": {
-      "enum": [null, "No"]
-    },
-    "description_closed": {
-      "enum": [null, "No"]
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "closure_type": {
+            "enum": [
+              "open_on_transfer",
+              "Open",
+              "open",
+              "OPEN"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "closure_start_date": {
+            "type": "null"
+          },
+          "closure_period": {
+            "type": "null"
+          },
+          "foi_exemption_code": {
+            "type": "null"
+          },
+          "foi_exemption_asserted": {
+            "type": "null"
+          },
+          "title_alternate": {
+            "type": "null"
+          },
+          "description_alternate": {
+            "type": "null"
+          },
+          "title_closed": {
+            "enum": [
+              null,
+              "NO",
+              "No",
+              "no",
+              false
+            ]
+          },
+          "description_closed": {
+            "enum": [
+              null,
+              "NO",
+              "No",
+              "no",
+              false
+            ]
+          }
+        },
+        "required": [
+          "closure_type",
+          "closure_start_date",
+          "closure_period",
+          "foi_exemption_code",
+          "foi_exemption_asserted",
+          "title_alternate",
+          "description_alternate",
+          "title_closed",
+          "description_closed"
+        ]
+      }
     }
-  },
-  "required": [
-    "closure_type",
-    "closure_start_date",
-    "closure_period",
-    "foi_exemption_code",
-    "foi_exemption_asserted",
-    "title_alternate",
-    "description_alternate",
-    "title_closed",
-    "description_closed"
   ]
 }
