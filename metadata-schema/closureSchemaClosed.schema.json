@@ -32,10 +32,10 @@
       "type": "boolean"
     },
     "title_alternate": {
-      "type": "string"
+      "type": ["string", "null"]
     },
     "description_alternate": {
-      "type": "string"
+      "type": ["string", "null"]
     }
   },
   "required": [
