@@ -7,6 +7,6 @@
   "foi_exemption_asserted": null,
   "title_alternate": null,
   "description_alternate": null,
-  "description_closed": "No",
-  "title_closed": null
+  "description_closed": false,
+  "title_closed": false
 }

@@ -7,7 +7,6 @@
         "properties": {
           "closure_type": {
             "enum": [
-              "open_on_transfer",
               "Open",
               "open",
               "OPEN"
@@ -36,35 +35,12 @@
             "type": "null"
           },
           "title_closed": {
-            "enum": [
-              null,
-              "NO",
-              "No",
-              "no",
-              false
-            ]
+            "type": "boolean"
           },
           "description_closed": {
-            "enum": [
-              null,
-              "NO",
-              "No",
-              "no",
-              false
-            ]
+            "type": "boolean"
           }
-        },
-        "required": [
-          "closure_type",
-          "closure_start_date",
-          "closure_period",
-          "foi_exemption_code",
-          "foi_exemption_asserted",
-          "title_alternate",
-          "description_alternate",
-          "title_closed",
-          "description_closed"
-        ]
+        }
       }
     }
   ]

@@ -13,24 +13,16 @@
       "then": {
         "properties": {
           "closure_start_date": {
-            "type": "string",
-            "format": "date"
+            "type": "string"
           },
           "closure_period": {
-            "type": "integer",
-            "minimum": 1
+            "type": "integer"
           },
           "foi_exemption_code": {
-            "type": "array",
-            "minItems": 1,
-            "items": {
-              "type": "string",
-              "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
-            }
+            "type": "array"
           },
           "foi_exemption_asserted": {
-            "type": "string",
-            "format": "date"
+            "type": "string"
           },
           "title_closed": {
             "type": "boolean"
@@ -39,22 +31,12 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "closure_type",
-          "closure_start_date",
-          "closure_period",
-          "foi_exemption_code",
-          "foi_exemption_asserted",
-          "title_closed",
-          "description_closed"
-        ],
         "allOf": [
           {
             "if": {
               "properties": {
                 "title_closed": { "const": true }
-              },
-              "required": ["title_closed"]
+              }
             },
             "then": {
               "required": ["title_alternate"],
@@ -69,8 +51,7 @@
             "if": {
               "properties": {
                 "description_closed": { "const": true }
-              },
-              "required": ["description_closed"]
+              }
             },
             "then": {
               "required": ["description_alternate"],
