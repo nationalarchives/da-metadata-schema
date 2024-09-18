@@ -8,5 +8,5 @@
   "title_alternate": "alternative title",
   "description_alternate": "alternative description",
   "description_closed": "false",
-  "title_closed": "true"
+  "title_closed": true
 }

@@ -35,10 +35,12 @@
             "type": "null"
           },
           "title_closed": {
-            "type": "boolean"
+            "type": ["boolean", "null"],
+            "enum": [false, null]
           },
           "description_closed": {
-            "type": "boolean"
+            "type": ["boolean", "null"],
+            "enum": [false, null]
           }
         }
       }

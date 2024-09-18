@@ -18,6 +18,8 @@ class ClosureSchemaSpec extends BaseSpec {
       val errorsArray = errors.asScala.toArray
 
       errorsArray(0).getMessage shouldBe "$: required property 'title_alternate' not found"
+      errorsArray(1).getMessage shouldBe "$: required property 'description_alternate' not found"
+      errorsArray(2).getMessage shouldBe "$: required property 'description_closed' not found"
     }
 
     "fail when document is closed and provided closure property is invalid when using closureSchemaClosed" in {
@@ -64,8 +66,8 @@ class ClosureSchemaSpec extends BaseSpec {
       errorsArray(3).getMessage shouldBe "$.foi_exemption_asserted: string found, null expected"
       errorsArray(4).getMessage shouldBe "$.title_alternate: string found, null expected"
       errorsArray(5).getMessage shouldBe "$.description_alternate: string found, null expected"
-      errorsArray(6).getMessage shouldBe "$.title_closed: string found, boolean expected"
-      errorsArray(7).getMessage shouldBe "$.description_closed: string found, boolean expected"
+      errorsArray(6).getMessage shouldBe "$.title_closed: does not have a value in the enumeration [false, null]"
+      errorsArray(7).getMessage shouldBe "$.description_closed: string found, [boolean, null] expected"
     }
 
     "succeed when document is open and valid closure property is provided when using closureSchemaOpen" in {

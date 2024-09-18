@@ -38,6 +38,7 @@
                 "title_closed": { "const": true }
               }
             },
+            "required": ["title_closed"],
             "then": {
               "required": ["title_alternate"],
               "properties": {
@@ -53,6 +54,7 @@
                 "description_closed": { "const": true }
               }
             },
+            "required": ["description_closed"],
             "then": {
               "required": ["description_alternate"],
               "properties": {
