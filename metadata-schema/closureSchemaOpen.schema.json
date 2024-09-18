@@ -1,0 +1,49 @@
+{
+  "$id": "/schema/open-closure",
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "closure_type": {
+            "enum": [
+              "Open",
+              "open",
+              "OPEN"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "closure_start_date": {
+            "type": "null"
+          },
+          "closure_period": {
+            "type": "null"
+          },
+          "foi_exemption_code": {
+            "type": "null"
+          },
+          "foi_exemption_asserted": {
+            "type": "null"
+          },
+          "title_alternate": {
+            "type": "null"
+          },
+          "description_alternate": {
+            "type": "null"
+          },
+          "title_closed": {
+            "type": ["boolean", "null"],
+            "enum": [false, null]
+          },
+          "description_closed": {
+            "type": ["boolean", "null"],
+            "enum": [false, null]
+          }
+        }
+      }
+    }
+  ]
+}
