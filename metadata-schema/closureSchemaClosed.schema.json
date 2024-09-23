@@ -6,7 +6,7 @@
       "if": {
         "properties": {
           "closure_type": {
-            "enum": ["Closed", "closed", "CLOSED"]
+            "enum": ["Closed"]
           }
         }
       },
