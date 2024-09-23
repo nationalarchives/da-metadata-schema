@@ -98,6 +98,7 @@
     "file_name": {
       "type": "string",
       "propertyType": "System",
+      "minLength": 1,
       "alternateKeys": [
         {
           "tdrFileHeader": "Filename",
