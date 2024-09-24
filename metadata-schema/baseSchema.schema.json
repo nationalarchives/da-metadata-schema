@@ -219,7 +219,8 @@
           "tdrFileHeader": "Closure Start Date",
           "tdrDataLoadHeader": "ClosureStartDate"
         }
-      ]
+      ],
+      "daBeforeToday": "Validates that Closure start date is earlier than today's date"
     },
     "title_closed": {
       "type": [
@@ -254,7 +255,7 @@
         "null"
       ],
       "propertyType": "Supplied",
-      "maxLength": 8000,
+      "maxLength": 255,
       "alternateKeys": [
         {
           "tdrFileHeader": "Former reference"

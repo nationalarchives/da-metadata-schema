@@ -49,11 +49,7 @@
     "closure_types": {
       "enum": [
         "Closed",
-        "closed",
-        "CLOSED",
-        "Open",
-        "open",
-        "OPEN"
+        "Open"
       ]
     },
     "languages" : {
