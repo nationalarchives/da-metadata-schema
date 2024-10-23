@@ -30,10 +30,11 @@ The National Archives use the defined keywords and extensions for domain specifi
 
 ## Schemas
 
-Three schemas are used to define the metadata
+Four schemas are used to define the metadata
 1. [base schema](#base-schema)
 2. [closure schema](#closure-schema)
 3. [relationship schema](metadata-schema/relationshipSchema.schema.json)
+4. [required schema](metadata-schema/requiredSchema.schema.json)
 
 Additional schemas are used to define specific use cases for metadata
 * [data load SharePoint schema](metadata-schema/dataLoadSharePointSchema.schema.json)
@@ -199,7 +200,10 @@ This schema is used to enforce cross attribute relationships.
     }
 ```
 
-If there is a `file_name_translation` then there must be a `file_name_translation`.
+If there is a `file_name_translation` then there must be a `file_name_translation_language`.
+
+### Required Schema
+This schema defines the required fields in a metadata file uploaded to TDR
 
 ### Data Load SharePoint Schema
 
