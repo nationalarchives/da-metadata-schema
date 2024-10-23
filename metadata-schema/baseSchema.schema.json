@@ -107,10 +107,7 @@
       ]
     },
     "language": {
-      "type": [
-        "array",
-        "null"
-      ],
+      "type": "array",
       "propertyType": "Supplied",
       "items": {
         "type": "string",
