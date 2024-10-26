@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/govuk-frontend@5.7.1/dist/govuk/govuk-frontend.min.css">
+    <title>Display JSON Properties in Table</title>
+  </head>
+<body>
+
+<h2 class="govuk-heading-l">Base schmea Alternate Names</h2>
+
+<!-- Dropdown menu for selecting column order -->
+<label for="columnOrder" class="govuk-label">Select Column Order:</label>
+<select id="columnOrder" class="govuk-select">
+    <option value="tdrFileHeader,property,type,tdrDataLoadHeader">tdrFileHeader, Property, Type, tdrDataLoadHeader</option>
+    <option value="property,tdrFileHeader,type,tdrDataLoadHeader">Property, tdrFileHeader, Type, tdrDataLoadHeader</option>
+    <option value="type,property,tdrDataLoadHeader,tdrFileHeader">Type, Property, tdrDataLoadHeader, tdrFileHeader</option
+    <option value="tdrFileHeader,tdrDataLoadHeader,property,type">tdrFileHeader, tdrDataLoadHeader, Property, Type</option>
+</select>
+
+<div id="table-container">
+    <!-- The table will be dynamically added here -->
+</div>
+
+<script>
+
+       
+
+fetch('../metadata-schema/baseSchema.schema.json')
+    .then(response => response.json())
+    .then(json => {
+        const properties = json.properties;
+
+        // Render table with default column order
+        renderTable(properties, document.getElementById('columnOrder').value);
+
+        // Event listener to detect changes in dropdown and re-render the table
+        document.getElementById('columnOrder').addEventListener('change', (event) => {
+            renderTable(properties, event.target.value);
+        });
+    })
+    .catch(error => console.error('Error fetching JSON data:', error));
+
+// Function to render table based on selected column order
+function renderTable(properties, order) {
+    const container = document.getElementById('table-container');
+    container.innerHTML = ''; // Clear any existing table
+
+    const table = document.createElement('table');
+    table.className = "govuk-table";
+    const headerRow = document.createElement('tr');
+    headerRow.className = "govuk-table__header";
+    // Split order into array for dynamic column arrangement
+    const headers = order.split(',');
+
+    // Create headers based on selected order
+    headers.forEach(headerText => {
+        const header = document.createElement('th');
+        header.textContent = capitalizeHeader(headerText);
+        headerRow.appendChild(header);
+    });
+    table.appendChild(headerRow);
+
+    // Populate rows with data in the selected order
+    for (const [propertyName, propertyData] of Object.entries(properties)) {
+        const row = document.createElement('tr');
+        row.className = "govuk-table__row";
+
+        // For each column in the selected order, add the appropriate cell content
+        headers.forEach(key => {
+            const cell = document.createElement('td');
+            cell.className = "govuk-table__cell";
+            if (key === "property") {
+                cell.textContent = propertyName;
+            } else if (key === "type") {
+                cell.textContent = propertyData.type || '';
+            } else if (key === "tdrFileHeader") {
+                const fileHeader = propertyData.alternateKeys?.find(altKey => altKey.tdrFileHeader);
+                cell.textContent = fileHeader ? fileHeader.tdrFileHeader : '';
+            } else if (key === "tdrDataLoadHeader") {
+                const dataLoadHeader = propertyData.alternateKeys?.find(altKey => altKey.tdrDataLoadHeader);
+                cell.textContent = dataLoadHeader ? dataLoadHeader.tdrDataLoadHeader : '';
+            }
+            
+            row.appendChild(cell);
+        });
+
+        // Append the row to the table
+        table.appendChild(row);
+    }
+
+    // Append the table to the container
+    container.appendChild(table);
+}
+
+// Helper function to capitalize header titles
+function capitalizeHeader(header) {
+    return header.charAt(0).toUpperCase() + header.slice(1);
+}
+</script>
+
+</body>
+</html>
