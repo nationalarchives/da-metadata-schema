@@ -63,6 +63,42 @@
                 }
               }
             }
+          },
+          {
+            "if": {
+              "properties": {
+                "description_alternate": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "then": {
+              "required": ["description_closed"],
+              "properties": {
+                "description_closed": {
+                  "const": true
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "title_alternate": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "then": {
+              "required": ["title_closed"],
+              "properties": {
+                "title_closed": {
+                  "const": true
+                }
+              }
+            }
           }
         ]
       }

@@ -134,10 +134,7 @@
       ]
     },
     "description_closed": {
-      "type": [
-        "boolean",
-        "null"
-      ],
+      "type": "boolean",
       "propertyType": "Supplied",
       "alternateKeys": [
         {
@@ -220,10 +217,7 @@
       "daBeforeToday": "Validates that Closure start date is earlier than today's date"
     },
     "title_closed": {
-      "type": [
-        "boolean",
-        "null"
-      ],
+      "type": "boolean",
       "propertyType": "Supplied",
       "alternateKeys": [
         {
