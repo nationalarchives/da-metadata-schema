@@ -53,5 +53,17 @@ class SharepointDataLoadSchemaSpec extends BaseSpec {
       val errorsArray = errors.asScala.toArray
       errorsArray(0).getMessage shouldBe "$.FileRef: must be at least 1 characters long"
     }
+
+    "fail when contains an invalid uuid" in {
+
+      val testDataPath = "/data/sharepointDataLoadInvalidUUID.json"
+      val schemaSetup = createSchema(schemaPath, testDataPath)
+
+      val errors: util.Set[ValidationMessage] = schemaSetup._1.validate(schemaSetup._2.toPrettyString, InputFormat.JSON)
+
+      errors.size() shouldBe 1
+      val errorsArray = errors.asScala.toArray
+      errorsArray(0).getMessage shouldBe "$.matchId: does not match the uuid pattern must be a valid RFC 4122 UUID"
+    }
   }
 }
