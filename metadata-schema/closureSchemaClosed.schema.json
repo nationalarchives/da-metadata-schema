@@ -6,7 +6,7 @@
       "if": {
         "properties": {
           "closure_type": {
-            "enum": ["Closed"]
+            "const": "Closed"
           }
         }
       },
@@ -74,7 +74,6 @@
               }
             },
             "then": {
-              "required": ["description_closed"],
               "properties": {
                 "description_closed": {
                   "const": true
@@ -92,7 +91,6 @@
               }
             },
             "then": {
-              "required": ["title_closed"],
               "properties": {
                 "title_closed": {
                   "const": true

@@ -6,9 +6,7 @@
       "if": {
         "properties": {
           "closure_type": {
-            "enum": [
-              "Open"
-            ]
+            "const": "Open"
           }
         }
       },
