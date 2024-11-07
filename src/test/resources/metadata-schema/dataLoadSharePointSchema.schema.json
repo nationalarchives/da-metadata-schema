@@ -1,32 +1,36 @@
 {
   "$id": "/schema/dataLoadSharePointSchema",
   "type": "object",
-  "allOf": [
-    {
-      "properties": {
-        "UUID": {
-          "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/UUID"
-        },
-        "ClientSideFileLastModifiedDate": {
-          "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified"
-        },
-        "SHA256ClientSideChecksum": {
-          "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum"
-        },
-        "ClientSideFileSize": {
-          "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_size"
-        },
-        "ClientSideOriginalFilepath": {
-          "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_path"
-        }
-      },
-      "required": [
-        "UUID",
-        "ClientSideFileLastModifiedDate",
-        "SHA256ClientSideChecksum",
-        "ClientSideFileSize",
-        "ClientSideOriginalFilepath"
-      ]
+  "properties": {
+    "matchId": {
+      "type": "string",
+      "format": "uuid",
+      "propertyType": "System"
+    },
+    "transferId": {
+      "type": "string",
+      "format": "uuid",
+      "propertyType": "System"
+    },
+    "Modified": {
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified"
+    },
+    "SHA256ClientSideChecksum": {
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum"
+    },
+    "File_x0020_Size": {
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_size"
+    },
+    "FileRef": {
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_path"
     }
+  },
+  "required": [
+    "matchId",
+    "transferId",
+    "Modified",
+    "SHA256ClientSideChecksum",
+    "File_x0020_Size",
+    "FileRef"
   ]
 }

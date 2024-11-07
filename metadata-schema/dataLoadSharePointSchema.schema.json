@@ -2,6 +2,16 @@
   "$id": "/schema/dataLoadSharePointSchema",
   "type": "object",
   "properties": {
+    "matchId": {
+      "type": "string",
+      "format": "uuid",
+      "propertyType": "System"
+    },
+    "transferId": {
+      "type": "string",
+      "format": "uuid",
+      "propertyType": "System"
+    },
     "Modified": {
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified"
     },
@@ -16,6 +26,8 @@
     }
   },
   "required": [
+    "matchId",
+    "transferId",
     "Modified",
     "SHA256ClientSideChecksum",
     "File_x0020_Size",
