@@ -29,7 +29,8 @@
       "propertyType": "System",
       "alternateKeys": [
         {
-          "tdrFileHeader": "UUID"
+          "tdrFileHeader": "UUID",
+          "tdrDataLoadHeader": "UUID"
         }
       ]
     },
@@ -64,7 +65,8 @@
       "maxLength": 8000,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Description"
+          "tdrFileHeader": "Description",
+          "tdrDataLoadHeader": "description"
         }
       ]
     },
@@ -77,7 +79,8 @@
       "propertyType": "Supplied",
       "alternateKeys": [
         {
-          "tdrFileHeader": "Date of the record"
+          "tdrFileHeader": "Date of the record",
+          "tdrDataLoadHeader": "end_date"
         }
       ],
       "daBeforeToday": "Validates that end date is earlier than today's date"
@@ -91,7 +94,8 @@
       "maxLength": 8000,
        "alternateKeys": [
         {
-          "tdrFileHeader": "Translated title of record"
+          "tdrFileHeader": "Translated title of record",
+          "tdrDataLoadHeader": "file_name_translation"
         }
       ]
     },
@@ -115,7 +119,8 @@
       },
       "alternateKeys": [
         {
-          "tdrFileHeader": "Language"
+          "tdrFileHeader": "Language",
+          "tdrDataLoadHeader": "Language"
         }
       ]
     },
@@ -134,10 +139,7 @@
       ]
     },
     "description_closed": {
-      "type": [
-        "boolean",
-        "null"
-      ],
+      "type": "boolean",
       "propertyType": "Supplied",
       "alternateKeys": [
         {
@@ -220,15 +222,12 @@
       "daBeforeToday": "Validates that Closure start date is earlier than today's date"
     },
     "title_closed": {
-      "type": [
-        "boolean",
-        "null"
-      ],
+      "type": "boolean",
       "propertyType": "Supplied",
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the title sensitive for the public?",
-          "tdrDataLoadHeader": "ClosureType"
+          "tdrDataLoadHeader": "TitleClosed"
         }
       ]
     },
@@ -255,7 +254,8 @@
       "maxLength": 255,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Former reference"
+          "tdrFileHeader": "Former reference",
+          "tdrDataLoadHeader": "former_reference_department"
         }
       ]
     }

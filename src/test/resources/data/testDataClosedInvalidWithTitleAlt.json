@@ -1,0 +1,15 @@
+{
+  "UUID": "dd",
+  "closure_type": "Closed",
+  "closure_period": 50,
+  "retention_type": null,
+  "closure_start_date": "2001-12-12",
+  "identifier":"file:///C:/a_transfer/content/interesting.doc",
+  "foi_exemption_code": ["23"],
+  "date_created": "2001-12-12",
+  "description_closed": false,
+  "description_alternate": "I added an alternate description, but I didn't close the description",
+  "foi_exemption_asserted": "2024-01-12",
+  "title_closed": false,
+  "title_alternate": "I added an alternate title, but I didn't close the title"
+}

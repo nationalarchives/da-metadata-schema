@@ -6,7 +6,7 @@
       "if": {
         "properties": {
           "closure_type": {
-            "enum": ["Closed"]
+            "const": "Closed"
           }
         }
       },
@@ -60,6 +60,40 @@
               "properties": {
                 "description_alternate": {
                   "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "description_alternate": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "description_closed": {
+                  "const": true
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "title_alternate": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "title_closed": {
+                  "const": true
                 }
               }
             }
