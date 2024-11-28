@@ -23,6 +23,9 @@
     },
     "FileRef": {
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_path"
+    },
+    "FileLeafRef": {
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name"
     }
   },
   "required": [
@@ -31,6 +34,7 @@
     "Modified",
     "SHA256ClientSideChecksum",
     "Length",
-    "FileRef"
+    "FileRef",
+    "FileLeafRef"
   ]
 }

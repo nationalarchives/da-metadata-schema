@@ -4,5 +4,6 @@
   "Modified": "2001-12-12",
   "SHA256ClientSideChecksum": "8b9118183f01b3df0fc5073feb68f0ecd5a7f85a88ed63ac7d0d242dc2aba2ea",
   "Length": -26,
-  "FileRef": "a/filepath/filename1.docx"
+  "FileRef": "a/filepath/filename1.docx",
+  "FileLeafRef": "filename1.docx"
 }
