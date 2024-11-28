@@ -31,7 +31,7 @@ class SharepointDataLoadSchemaSpec extends BaseSpec {
       errorsArray(0).getMessage shouldBe "$: required property 'Modified' not found"
     }
 
-    "fail when 'File_x0020_Size' is less than 0" in {
+    "fail when 'Length' is less than 0" in {
       val testDataPath = "/data/sharepointDataLoadInvalidFileSize.json"
       val schemaSetup = createSchema(schemaPath, testDataPath)
 
@@ -39,7 +39,7 @@ class SharepointDataLoadSchemaSpec extends BaseSpec {
 
       errors.size() shouldBe 1
       val errorsArray = errors.asScala.toArray
-      errorsArray(0).getMessage shouldBe "$.File_x0020_Size: must have a minimum value of 0"
+      errorsArray(0).getMessage shouldBe "$.Length: must have a minimum value of 0"
     }
 
     "fail when 'FileRef' is less than 1" in {
