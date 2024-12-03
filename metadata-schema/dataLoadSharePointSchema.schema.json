@@ -18,11 +18,14 @@
     "SHA256ClientSideChecksum": {
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum"
     },
-    "File_x0020_Size": {
+    "Length": {
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_size"
     },
     "FileRef": {
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_path"
+    },
+    "FileLeafRef": {
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name"
     }
   },
   "required": [
@@ -30,7 +33,8 @@
     "transferId",
     "Modified",
     "SHA256ClientSideChecksum",
-    "File_x0020_Size",
-    "FileRef"
+    "Length",
+    "FileRef",
+    "FileLeafRef"
   ]
 }
