@@ -25,7 +25,7 @@
 
        
 
-fetch('../metadata-schema/baseSchema.schema.json')
+fetch('https://raw.githubusercontent.com/nationalarchives/da-metadata-schema/main/metadata-schema/baseSchema.schema.json')
     .then(response => response.json())
     .then(json => {
         const properties = json.properties;
