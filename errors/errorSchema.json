@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "The schema for the error response from the validation process",
+  "properties": {
+    "consignmentId": {
+      "description": "The unique identifier of the consignment. Tha validation is of a metadata file that is related to this consignment",
+      "type": "string",
+      "format": "uuid"
+    },
+    "fileError": {
+      "description": "The type of error that completed validation of the file. Schema validation is the most common and indicates data validation errors",
+      "type": "string",
+      "enum": ["UTF_8", "INVALID_CSV", "DUPLICATE_HEADER", "SCHEMA_REQUIRED", "SCHEMA_VALIDATION", "VIRUS", "UNKNOWN", "NONE"]
+    },
+    "date": {
+      "description": "The date the validation was completed",
+      "type": "string",
+      "format": "date"
+    },
+    "validationErrors": {
+      "description": "The list of validation errors. The metadata file for TDR is a CSV file so there can be multiple ValidationErrors (each ValidationErrors is for one row in the CSV file)",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "assetId": {
+            "description": "The unique identifier of the asset (in TDR will probably be the file path) to allow matching back to the original data. The value will be the metadata file name if the error if for the file rather than its data",
+            "type": "string"
+          },
+          "errors": {
+            "description": "The list of errors for this asset's metadata. The data is a list of key value pairs with property name and value. There could zero/one or many errors associated with each value",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "validationProcess": {
+                  "description": "The process that failed validation (could be a specific schema)",
+                  "type": "string"
+                },
+                "property": {
+                  "description": "The property (key) that failed validation",
+                  "type": "string"
+                },
+                "errorKey": {
+                  "description": "The error key to indicate why it failed validation (for schema validation this is from the JsonSchema validator)",
+                  "type": "string"
+                },
+                "message": {
+                  "description": "The user friendly message for the error from the validation-message.properties file with key derived from {property}.{errorKey}",
+                  "type": "string"
+                }
+              },
+              "required": ["validationProcess", "property", "errorKey", "message"]
+            }
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": ["name", "value"]
+            }
+          }
+        },
+        "required": ["assetId", "errors", "data"]
+      }
+    }
+  },
+  "required": ["consignmentId", "date", "validationErrors"]
+}
