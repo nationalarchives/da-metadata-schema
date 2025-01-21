@@ -35,9 +35,11 @@ with extensions for domain specific requirements, including:
 
 ### Configuration schema
 Metadata standards are defined against specific field names. Each team may use alternate names for these fields but still require the same validation. The mapping is defined in `alternateKeys`.  
-CSV are the standard way to upload metadata to TDR. The CSV file headers are defined in `alternateKeys->stdrFileHeader`.  
-To load and validate the CSV file the `type` is used to define conversions form the CSV string to the type required for validation.
-* The [base schema](#base-schema) is used for the configurations
+CSV are the standard way to upload metadata to TDR.
+* CSV file headers are defined in `alternateKeys -> tdrFileHeader`.  
+* conversions from the CSV string to the `type` required for validation.
+
+The [base schema](#base-schema) is used for the configurations
 
 ### Validation schemas used to define the metadata
 
