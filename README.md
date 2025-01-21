@@ -35,7 +35,7 @@ with extensions for domain specific requirements, including:
 
 ### Configuration schema
 Metadata standards are defined against specific field names. Each team may use alternate names for these fields but still require the same validation. The mapping is defined in `alternateKeys`.  
-CSV are the standard way to upload metadata to TDR.
+CSV are the standard way to upload metadata to TDR and their value type needs to be evaluated.
 * CSV file headers are defined in `alternateKeys -> tdrFileHeader`.  
 * conversions from the CSV string to the `type` required for validation.
 
@@ -85,6 +85,7 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the metadata f
 
 ### Definitions Schema
 The [definitions schema](metadata-schema/definitionsSchema.schema.json) defines allowed values for fields (such as FOI exemption codes).
+
 ### Closure Schema Open
 The [closure schema open](metadata-schema/closureSchemaOpen.schema.json) defines the schema for ```Open``` records  
 * if closure_type is Open
