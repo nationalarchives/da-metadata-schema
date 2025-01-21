@@ -12,7 +12,6 @@ This project provides the [JSON schemas](https://json-schema.org/) for defining 
 
 ## Introduction
 
-Metadata is essential for describing digital records and ensuring their authenticity, integrity, and usability over time.  
 The National Archives (TNA) collects and preserves digital records from various sources, including government departments, courts and public enquiries. To manage these records effectively, TNA requires a consistent and structured approach to metadata creation and management.  
 While JSON is probably the most popular format for exchanging data, JSON Schema is the vocabulary that enables JSON data consistency, validity, and interoperability at scale.  
 This project provides a set of JSON schemas that define the structure and requirements of metadata fields used in TNA Digital Archiving. The base schema extends the JSON Schema specification to include custom keywords and properties specific to TNA Digital Archiving metadata requirements.
@@ -85,7 +84,7 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the metadata f
 * daBeforeToday - the date must be before today
 
 ### Definitions Schema
-
+The [definitions schema](metadata-schema/definitionsSchema.schema.json) defines allowed values for fields (such as FOI exemption codes).
 ### Closure Schema Open
 The [closure schema open](metadata-schema/closureSchemaOpen.schema.json) defines the schema for ```Open``` records  
 * if closure_type is Open
