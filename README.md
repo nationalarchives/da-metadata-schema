@@ -1,6 +1,6 @@
 # Digital Archiving Metadata JSON Schema
 
-This project provides the [JSON schemas](https://json-schema.org/) for defining [metadata fields](https://www.nationalarchives.gov.uk/information-management/manage-information/digital-records-transfer/what-are-born-digital-records/) and their requirements for The National Archives. It aims to standardize the structure of metadata across catalogues, facilitating interoperability and consistency in data representation.
+This project provides the [JSON schemas](https://json-schema.org/) for defining [metadata fields](https://www.nationalarchives.gov.uk/information-management/manage-information/digital-records-transfer/what-are-born-digital-records/) and their requirements for The National Archives. It aims to standardize the structure of metadata across teams/catalogues, facilitating interoperability and consistency in data representation.
 
 ## Table of Contents
 
@@ -12,7 +12,8 @@ This project provides the [JSON schemas](https://json-schema.org/) for defining 
 
 ## Introduction
 
-Metadata is essential for describing digital records and ensuring their authenticity, integrity, and usability over time. The National Archives (TNA) collects and preserves digital records from various sources, including government departments, public bodies, and private organisations. To manage these records effectively, TNA requires a consistent and structured approach to metadata creation and management.  
+Metadata is essential for describing digital records and ensuring their authenticity, integrity, and usability over time.  
+The National Archives (TNA) collects and preserves digital records from various sources, including government departments, courts and public enquiries. To manage these records effectively, TNA requires a consistent and structured approach to metadata creation and management.  
 While JSON is probably the most popular format for exchanging data, JSON Schema is the vocabulary that enables JSON data consistency, validity, and interoperability at scale.  
 This project provides a set of JSON schemas that define the structure and requirements of metadata fields used in TNA Digital Archiving. The base schema extends the JSON Schema specification to include custom keywords and properties specific to TNA Digital Archiving metadata requirements.
 
