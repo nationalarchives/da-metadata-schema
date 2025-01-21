@@ -27,8 +27,7 @@ This project provides a set of JSON schemas that define the structure and requir
 JSON Schema have [defined keywords](https://json-schema.org/understanding-json-schema/reference) used to define data.
 
 * The National Archives schema are based on the [JSON schema draft-07](https://json-schema.org/specification-links.html#draft-7) specification 
-with extensions for domain specific requirements.  
-These include
+with extensions for domain specific requirements, including:
 - `daBeforeToday` indicates a supplied date must be before now
 - `alternateKeys` allows for alternate names for metadata fields
 
