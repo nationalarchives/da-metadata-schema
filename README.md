@@ -51,10 +51,11 @@ These schemas are used by the [JSON schema validator](https://github.com/network
 5. [relationship schema](metadata-schema/relationshipSchema.schema.json)
 6. [required schema](metadata-schema/requiredSchema.schema.json)  
 
-### Additional schemas are used to define specific use cases for metadata
+
+#### Additional schemas are used to define specific use cases for metadata
 * [data load SharePoint schema](metadata-schema/dataLoadSharePointSchema.schema.json)
 
-### Base Schema
+#### Base Schema
 The [base schema](metadata-schema/baseSchema.schema.json) defines the metadata fields that are supported within Digital Archiving.
 * Example definition for `end_date`
 ```json
@@ -83,10 +84,10 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the metadata f
 * alternateKeys -> tdrFileHeader - Date of the record
 * daBeforeToday - the date must be before today
 
-### Definitions Schema
+#### Definitions Schema
 The [definitions schema](metadata-schema/definitionsSchema.schema.json) defines allowed values for fields (such as FOI exemption codes). These can then be referenced in other schemas.
 
-### Closure Schema Open
+#### Closure Schema Open
 The [closure schema open](metadata-schema/closureSchemaOpen.schema.json) defines the schema for `Open` records  
 * if closure_type is Open
   * Then
@@ -100,7 +101,7 @@ The [closure schema open](metadata-schema/closureSchemaOpen.schema.json) defines
     * title_closed is false
     * description_closed is false
 
-### Closure Schema Closed
+#### Closure Schema Closed
 The [closure schema closed](metadata-schema/closureSchemaClosed.schema.json) defines the schema for `Closed` records
 * if closure_type is Closed
   * Then the following fields are required
@@ -116,10 +117,9 @@ The [closure schema closed](metadata-schema/closureSchemaClosed.schema.json) def
   * If title_closed is true then title_alternate is required
   * If description_closed is true then description_alternate is required
 
-### Relationship Schema
+#### Relationship Schema
 
 This schema is used to enforce cross attribute relationships.
-
 ```json
  {
       "if": {
@@ -144,7 +144,7 @@ This schema is used to enforce cross attribute relationships.
 
 If there is a `file_name_translation` then there must be a `file_name_translation_language`.
 
-### Required Schema
+#### Required Schema
 The [required schema](metadata-schema/requiredSchema.schema.json) defines the required fields in a metadata file uploaded to TDR
 ```json
 {
@@ -167,7 +167,7 @@ The [required schema](metadata-schema/requiredSchema.schema.json) defines the re
 }
 ```
 
-### Data Load SharePoint Schema
+#### Data Load SharePoint Schema
 
 The [data load SharePoint schema](metadata-schema/dataLoadSharePointSchema.schema.json) defines what properties are permitted when loading metadata directly from SharePoint. 
 
