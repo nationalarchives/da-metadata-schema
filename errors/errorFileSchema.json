@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "description": "The schema for the error response from the validation process",
+  "description": "The schema for the error message response from the validation process",
   "properties": {
     "consignmentId": {
       "description": "The unique identifier of the consignment. Tha validation is of a metadata file that is related to this consignment",
@@ -39,7 +39,7 @@
                   "type": "string"
                 },
                 "property": {
-                  "description": "The property (key) that failed validation",
+                  "description": "The property (key) that failed validation. This will be the key provided by the consumer",
                   "type": "string"
                 },
                 "errorKey": {
@@ -47,15 +47,19 @@
                   "type": "string"
                 },
                 "message": {
-                  "description": "The user friendly message for the error from the validation-message.properties file with key derived from {property}.{errorKey}",
-                  "type": "string"
+                  "description": "The user friendly message for the error. In TDR derived from the validation-message.properties file with key derived from {validationProcess}.{property}.{errorKey}",
+                  "type": [
+                    "string",
+                    "null"
+                  ]
                 }
               },
-              "required": ["validationProcess", "property", "errorKey", "message"]
+              "required": ["validationProcess", "property", "errorKey"]
             }
           },
           "data": {
             "type": "array",
+            "description": "The data that failed validation. This is a list of key value pairs with property name and value",
             "items": {
               "type": "object",
               "properties": {

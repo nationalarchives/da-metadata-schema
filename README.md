@@ -30,55 +30,33 @@ The National Archives use the defined keywords and extensions for domain specifi
 
 ## Schemas
 
-Four schemas are used to define the metadata
-1. [base schema](#base-schema)
-2. [closure schema](#closure-schema)
-3. [relationship schema](metadata-schema/relationshipSchema.schema.json)
-4. [required schema](metadata-schema/requiredSchema.schema.json)
+### Error file schema
+The output of a metadata file validation should be a JSON file conforming to this schema.  
+* [error file schema](errors/errorFileSchema.json)
 
-Additional schemas are used to define specific use cases for metadata
+### Mapping configuration schema
+The base schema defines metadata fields that are allowed in TNA Digital Archiving. Different teams can use alternate names for the fields described in ```alternateKeys```  
+* [base schema](#base-schema)
+1. tdrFileHeader - the value used in the TDR metadata csv upload file 
+2. type - the type of the field. This is used to allow conversions between the CSV string value and the type for validation
+
+### Validation schemas used to define the metadata
+
+These schemas are used by the [JSON schema validator](https://github.com/networknt/json-schema-validator) to validate the metadata.
+1. [base schema](#base-schema)
+2. [closure schema open](#closure-schema-open)
+3. [closure schema closed](#closure-schema-open)
+4. [relationship schema](metadata-schema/relationshipSchema.schema.json)
+5. [required schema](metadata-schema/requiredSchema.schema.json)  
+
+The schema are based on the [JSON schema draft-07](https://json-schema.org/specification-links.html#draft-7) specification. TNA Digital Archiving have custom extensions.
+* daBeforeToday (type) - the date must be before today (The schema validator can be extended to support this)
+* alternateKeys - alternate names for the field key
+
+### Additional schemas are used to define specific use cases for metadata
 * [data load SharePoint schema](metadata-schema/dataLoadSharePointSchema.schema.json)
 
 ### Base Schema
-The [base schema](metadata-schema/baseSchema.schema.json) defines the supported properties names (`UUID`, `date_late_modified`) and value types.
-```
-{
-  "$id": "/schema/baseSchema",
-  "type": "object",
-  "properties": {
-    "UUID": {
-      "type": "string",
-      "format": "uuid",
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "UUID"
-        }
-      ]
-    },
-    "date_last_modified": {
-      "type": "string",
-      "format": "date",
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "ClientSideFileLastModifiedDate"
-        }
-      ],
-    },
-    "end_date": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "format": "date",
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "Date of the record"
-        }
-      ],
-      "daBeforeToday": "Validates that end date is earlier than today's date"
-     }
-.....  
-```
 Definition for a ```UUID```
 * UUID - field key 
 * type - the value must be a string
@@ -108,71 +86,20 @@ Example data
 }
 ```
 
-### Closure Schema
-The [closure schema](metadata-schema/closureSchema.schema.json) defines the schema for closure information. The schema enforces the presence of several fields and their values that are dependant upon other field values.  
-```
-"allOf": [
-    {
-      "if": {
-        "properties": {
-          "closure_type": {
-            "pattern": "open_on_transfer|OPEN"
-          }
-        }
-      },
-      "then": {
-        "properties": {
-          "closure_period": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "maximum": 0
-          },
-          "closure_start_date": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "maxLength": 0
-          },
-          ......
-        },
-        "else": {
-          "properties": {
-            "foi_exemption_asserted": {
-              "type": "string",
-              "format": "date"
-            },
-            "closure_type": {
-              "enum": [
-                "Closed",
-                "closed",
-                "CLOSED"
-            ],
-            ......
-           },
-         },
-         "required": [
-           "closure_period",
-           "closure_start_date",
-           "description_closed",
-           "foi_exemption_asserted",
-           "foi_exemption_code"
-        ]
-```
-
-Multiple if/then/else statements allowed
-* if closure_type OPEN
+### Closure Schema Open
+The [closure schema open](metadata-schema/closureSchemaOpen.schema.json) defines the schema for ```Open``` records  
+* if closure_type is Open
   * Then
-    * closure_period must not be set or 0
+    * no closure_period 
     * no closure_start_date
-    * ....
-  * else
-    * there must be a foi_exemption_asserted date
-    * the closure_type must be one of `closed_review`, `closed_for` or `CLOSED`
-    * ...
-    * there must be values for `closure_period`, `closure_start_date`, `description_closed`, `foi_exemption_asserted`, and `foi_exemption_code`.
+    * no description_closed
+    * no foi_exemption_asserted
+    * no foi_exemption_code
+    * no title_alternate
+    * no description_alternate
+    * title_closed is false
+    * description_closed is false
+    
 
 ### Relationship Schema
 
@@ -228,7 +155,7 @@ The [tdr-metadata-validation](https://github.com/nationalarchives/tdr-metadata-v
 * ```property```
 * ```errorKey```
 
-For user friendly messages see [Validation-message.properties file](validation-messages/validation-messages.properties)  
+For user-friendly messages see [Validation-message.properties file](validation-messages/validation-messages.properties)  
 The format is {validationProcess}.{property}.{errorKey}={User friendly message}
 
 ## Usage
