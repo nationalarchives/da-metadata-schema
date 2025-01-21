@@ -84,10 +84,10 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the metadata f
 * daBeforeToday - the date must be before today
 
 ### Definitions Schema
-The [definitions schema](metadata-schema/definitionsSchema.schema.json) defines allowed values for fields (such as FOI exemption codes).
+The [definitions schema](metadata-schema/definitionsSchema.schema.json) defines allowed values for fields (such as FOI exemption codes). These can then be referenced in other schemas.
 
 ### Closure Schema Open
-The [closure schema open](metadata-schema/closureSchemaOpen.schema.json) defines the schema for ```Open``` records  
+The [closure schema open](metadata-schema/closureSchemaOpen.schema.json) defines the schema for `Open` records  
 * if closure_type is Open
   * Then
     * no closure_period 
@@ -101,7 +101,7 @@ The [closure schema open](metadata-schema/closureSchemaOpen.schema.json) defines
     * description_closed is false
 
 ### Closure Schema Closed
-The [closure schema closed](metadata-schema/closureSchemaClosed.schema.json) defines the schema for ```Open``` records
+The [closure schema closed](metadata-schema/closureSchemaClosed.schema.json) defines the schema for `Closed` records
 * if closure_type is Closed
   * Then the following fields are required
     * closure_period
@@ -146,6 +146,26 @@ If there is a `file_name_translation` then there must be a `file_name_translatio
 
 ### Required Schema
 The [required schema](metadata-schema/requiredSchema.schema.json) defines the required fields in a metadata file uploaded to TDR
+```json
+{
+  "$id": "/schema/required",
+  "type": "object",
+  "required": [
+    "file_path",
+    "end_date",
+    "description",
+    "closure_type",
+    "closure_period",
+    "closure_start_date",
+    "description_closed",
+    "foi_exemption_asserted",
+    "foi_exemption_code",
+    "title_closed",
+    "title_alternate",
+    "description_alternate"
+  ]
+}
+```
 
 ### Data Load SharePoint Schema
 
