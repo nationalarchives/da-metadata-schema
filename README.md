@@ -186,7 +186,7 @@ Example data:
 
 ### Error file schema
 The output of a metadata file validation should be a JSON file conforming to the [error file schema](errors/errorFileSchema.json)  
-An example of an error file conforming to this schema. The property is the input key (TDR metadata file column header) 
+An example of an error file conforming to this schema.
 ```json
 {
   "consignmentId" : "5049c395-6124-40fd-bffa-3fe44223bbd0",
