@@ -4,7 +4,7 @@
   "description": "The schema for the error message response from the validation process",
   "properties": {
     "consignmentId": {
-      "description": "The unique identifier of the consignment. Tha validation is of a metadata file that is related to this consignment",
+      "description": "The unique identifier of the consignment. The validation is of a metadata file that is related to this consignment",
       "type": "string",
       "format": "uuid"
     },
