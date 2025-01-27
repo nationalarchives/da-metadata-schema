@@ -35,6 +35,7 @@
       ]
     },
     "file_path": {
+      "description": "The path to the file obtained from the client side.",
       "type": "string",
       "propertyType": "System",
       "minLength": 1,
@@ -46,6 +47,7 @@
       ]
     },
     "date_last_modified": {
+      "description": "The date the file was last modified",
       "type": "string",
       "format": "date",
       "propertyType": "System",
@@ -57,6 +59,7 @@
       ]
     },
     "description": {
+      "description": "The description of the record that will be displayed to the public",
       "type": [
         "string",
         "null"
@@ -71,6 +74,7 @@
       ]
     },
     "end_date": {
+      "description": "The date the record ends",
       "type": [
         "string",
         "null"
@@ -86,6 +90,7 @@
       "daBeforeToday": "Validates that end date is earlier than today's date"
     },
     "file_name_translation": {
+      "description": "The translated title of the record that will be displayed to the public",
       "type": [
         "string",
         "null"
@@ -100,6 +105,7 @@
       ]
     },
     "file_name": {
+      "description": "The name of the file obtained from the client side. Will be displayed to the public as the description if no description is provided",
       "type": "string",
       "propertyType": "System",
       "minLength": 1,
@@ -111,6 +117,7 @@
       ]
     },
     "language": {
+      "description": "The language of the record",
       "type": "array",
       "propertyType": "Supplied",
       "items": {
@@ -125,6 +132,7 @@
       ]
     },
     "description_alternate": {
+      "description": "The alternative description of the record that will be displayed to the public if the description is sensitive. This is only provided if the record is Closed",
       "type": [
         "string",
         "null"
@@ -139,6 +147,7 @@
       ]
     },
     "description_closed": {
+      "description": "Indicates if the description is sensitive",
       "type": "boolean",
       "propertyType": "Supplied",
       "alternateKeys": [
@@ -149,6 +158,7 @@
       ]
     },
     "foi_exemption_asserted": {
+      "description": "The date the FOI exemption was asserted",
       "type": [
         "string",
         "null"
@@ -164,6 +174,7 @@
       "daBeforeToday": "Validates that FOI Exemption Asserted Date is before today's date"
     },
     "foi_exemption_code": {
+      "description": "The FOI exemption code/s There can be multiple codes that will be separated by a '|' character in the CSV file. This is only provided if the record is Closed",
       "type": [
         "array",
         "null"
@@ -181,6 +192,7 @@
       ]
     },
     "closure_type": {
+      "description": "Is the record Open or Closed. This is a mandatory field",
       "type": "string",
       "propertyType": "Supplied",
       "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
@@ -192,6 +204,7 @@
       ]
     },
     "closure_period": {
+      "description": "The period the record is closed for in years (1-150). This is only provided if the record is Closed",
       "type": [
         "integer",
         "null"
@@ -207,6 +220,7 @@
       ]
     },
     "closure_start_date": {
+      "description": "The date the record is closed from. This is only provided if the record is Closed",
       "type": [
         "string",
         "null"
@@ -222,6 +236,7 @@
       "daBeforeToday": "Validates that Closure start date is earlier than today's date"
     },
     "title_closed": {
+      "description": "Indicates if the title is sensitive. This is only provided if the record is Closed",
       "type": "boolean",
       "propertyType": "Supplied",
       "alternateKeys": [
@@ -232,6 +247,7 @@
       ]
     },
     "title_alternate": {
+      "description": "The alternative title of the record that will be displayed to the public if the title is sensitive",
       "type": [
         "string",
         "null"
@@ -246,6 +262,7 @@
       ]
     },
     "former_reference_department": {
+      "description": "The former reference of the department",
       "type": [
         "string",
         "null"

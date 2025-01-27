@@ -25,7 +25,7 @@ developers := List(
 )
 
 ThisBuild / description := "JSON Schema to describe The National Archives catalogue metadata"
-ThisBuild / licenses := List("MIT" -> new URL("https://choosealicense.com/licenses/mit/"))
+ThisBuild / licenses := List("MIT" -> new java.net.URI("https://choosealicense.com/licenses/mit/").toURL)
 ThisBuild / homepage := Some(url("https://github.com/nationalarchives/da-metadata-schema"))
 
 useGpgPinentry := true
