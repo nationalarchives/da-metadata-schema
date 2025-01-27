@@ -9,7 +9,7 @@
       "format": "uuid"
     },
     "fileError": {
-      "description": "The validation failure that stopped furthur validations. File validations are sequential and if one fails the validation process will stop (If a file is not a CSV it is not possible to validate the data). Schema validation is the most common and indicates data validation errors",
+      "description": "The validation failure that stopped further validations. File validations are sequential and if one fails the validation process will stop (If a file is not a CSV it is not possible to validate the data). Schema validation is the most common and indicates data validation errors",
       "type": "string",
       "enum": ["UTF_8", "INVALID_CSV", "DUPLICATE_HEADER", "SCHEMA_REQUIRED", "SCHEMA_VALIDATION", "VIRUS", "UNKNOWN", "NONE"]
     },
