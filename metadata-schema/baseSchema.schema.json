@@ -35,7 +35,7 @@
       ]
     },
     "file_path": {
-      "description": "The path to the file obtained during data upload",
+      "description": "The path to the file obtained from the client side.",
       "type": "string",
       "propertyType": "System",
       "minLength": 1,
@@ -105,7 +105,7 @@
       ]
     },
     "file_name": {
-      "description": "The name of the file obtained during data upload. Will be displayed to the public as the description if no description is provided",
+      "description": "The name of the file obtained from the client side. Will be displayed to the public as the description if no description is provided",
       "type": "string",
       "propertyType": "System",
       "minLength": 1,

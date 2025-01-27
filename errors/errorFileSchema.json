@@ -4,12 +4,12 @@
   "description": "The schema for the error message response from the validation process",
   "properties": {
     "consignmentId": {
-      "description": "The unique identifier of the consignment. Tha validation is of a metadata file that is related to this consignment",
+      "description": "The unique identifier of the consignment. The validation is of a metadata file that is related to this consignment",
       "type": "string",
       "format": "uuid"
     },
     "fileError": {
-      "description": "The type of error that completed validation of the file. Schema validation is the most common and indicates data validation errors",
+      "description": "The validation failure that stopped furthur validations. File validations are sequential and if one fails the validation process will stop (If a file is not a CSV it is not possible to validate the data). Schema validation is the most common and indicates data validation errors",
       "type": "string",
       "enum": ["UTF_8", "INVALID_CSV", "DUPLICATE_HEADER", "SCHEMA_REQUIRED", "SCHEMA_VALIDATION", "VIRUS", "UNKNOWN", "NONE"]
     },
@@ -25,7 +25,7 @@
         "type": "object",
         "properties": {
           "assetId": {
-            "description": "The unique identifier of the asset (in TDR will probably be the file path) to allow matching back to the original data. The value will be the metadata file name if the error if for the file rather than its data",
+            "description": "The unique identifier of the asset (in TDR will probably be the file path in the CSV row) to allow matching back to the original data.",
             "type": "string"
           },
           "errors": {

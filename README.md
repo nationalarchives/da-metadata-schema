@@ -12,8 +12,10 @@ This project provides the [JSON schemas](https://json-schema.org/) for defining 
 
 ## Introduction
 
-The National Archives (TNA) collects and preserves digital records from various sources, including government departments, courts and public enquiries. To manage these records effectively, TNA requires a consistent and structured approach to metadata creation and management.  
-While JSON is probably the most popular format for exchanging data, JSON Schema is the vocabulary that enables JSON data consistency, validity, and interoperability at scale.  
+The National Archives (TNA) collects and preserves digital records from various sources, including government departments, courts and public enquiries. To manage these records effectively, TNA requires a consistent and structured approach to metadata creation and management.
+
+While JSON is probably the most popular format for exchanging data, JSON Schema is the vocabulary that enables JSON data consistency, validity, and interoperability at scale.
+
 This project provides a set of JSON schemas that define the structure and requirements of metadata fields used in TNA Digital Archiving. The schema are designed to conform to the JSON Schema specification, extended to include custom keywords and properties specific to TNA Digital Archiving metadata requirements.
 
 ## Features
@@ -80,7 +82,7 @@ The [base schema](metadata-schema/baseSchema.schema.json) defines the metadata f
 ```
 * end_date field key
 * type - value can be a string or null (undefined)
-* format - date - the string will be in the format 2018-11-13 (This date format is specific for TRD)
+* format - date - the string will be in the format 2018-11-13 (This date format is specific for TDR)
 * alternateKeys -> tdrFileHeader - Date of the record  (The column header in the TDR metadata file)
 * daBeforeToday - the date must be before today
 
@@ -217,7 +219,7 @@ An example of an error file conforming to this schema.
 * `consignmentId` is the unique identifier for the consignment
 * `date` is the date the error file was created
 * `fileError` is the type of error. SCHEMA_VALIDATION indicates a schema validation error
-* `assetId` for TDR is the file path as this should be unique and the error can be tracked back to the original
+* `assetId` for TDR is the file path as this should be unique within the consignment and the error can be tracked back to the original
 * `validationProcess` indicates the schema used for validation that produced the error
 * `errorKey` is the keyword returned from the Json Schema validation. 'type' indicated null and not a String
 * `property` is the input key (TDR metadata file column header)
