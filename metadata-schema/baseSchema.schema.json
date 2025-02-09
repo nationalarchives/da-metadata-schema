@@ -44,7 +44,15 @@
           "tdrFileHeader": "Filepath",
           "tdrDataLoadHeader": "ClientSideOriginalFilepath"
         }
-      ]
+      ],
+       "customValidations" [
+        {
+          "validationProcess":"tdrMetadata",
+          "custonValidation" [
+            "fileExists"
+          ]
+        }
+      ],
     },
     "date_last_modified": {
       "description": "The date the file was last modified",
@@ -85,6 +93,14 @@
         {
           "tdrFileHeader": "Date of the record",
           "tdrDataLoadHeader": "end_date"
+        }
+      ],
+      "customValidations" [
+        {
+          "validationProcess":"tdrMetadata",
+          "custonValidation" [
+            "beforeToday"
+          ]
         }
       ],
       "daBeforeToday": "Validates that end date is earlier than today's date"
