@@ -45,10 +45,10 @@
           "tdrDataLoadHeader": "ClientSideOriginalFilepath"
         }
       ],
-       "customValidations" [
+       "domainValidations" [
         {
           "validationProcess":"tdrMetadata",
-          "custonValidation" [
+          "domainValidation" [
             "fileExists"
           ]
         }
