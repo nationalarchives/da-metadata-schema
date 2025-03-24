@@ -15,10 +15,9 @@ class RelationshipSchemaSpec extends BaseSpec {
       val schemaSetup = createSchema(schemaPath, testDataPath)
 
       val errors: util.Set[ValidationMessage] = schemaSetup._1.validate(schemaSetup._2.toPrettyString, InputFormat.JSON)
-      assert(errors.size == 2)
+      assert(errors.size == 1)
       val errorsList = errors.asScala.toList
-      assert(errorsList.head.getMessage == "$: required property 'file_name_translation_language' not found")
-      assert(errorsList(1).getMessage == "$: required property 'description' not found")
+      assert(errorsList.head.getMessage == "$: required property 'description' not found")
     }
   }
 }
