@@ -22,6 +22,27 @@
           "file_name_translation_language"
         ]
       }
+    },
+    {
+      "if": {
+        "properties": {
+          "description_alternate": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "description"
+        ]
+      }
     }
   ]
 }
