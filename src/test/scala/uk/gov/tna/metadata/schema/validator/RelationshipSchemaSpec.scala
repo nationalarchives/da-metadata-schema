@@ -5,6 +5,7 @@ import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 
 import java.util
+import scala.jdk.CollectionConverters.*
 
 class RelationshipSchemaSpec extends BaseSpec {
   "relationship schema validation" should {
@@ -14,8 +15,9 @@ class RelationshipSchemaSpec extends BaseSpec {
       val schemaSetup = createSchema(schemaPath, testDataPath)
 
       val errors: util.Set[ValidationMessage] = schemaSetup._1.validate(schemaSetup._2.toPrettyString, InputFormat.JSON)
-      errors.size() shouldBe 1
-      errors.iterator().next().getMessage shouldBe "$: required property 'file_name_translation_language' not found"
+      assert(errors.size == 1)
+      val errorsList = errors.asScala.toList
+      assert(errorsList.head.getMessage == "$: required property 'description' not found")
     }
   }
 }

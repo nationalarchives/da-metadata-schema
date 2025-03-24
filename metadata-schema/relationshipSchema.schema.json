@@ -5,7 +5,7 @@
     {
       "if": {
         "properties": {
-          "file_name_translation": {
+          "description_alternate": {
             "type": "string",
             "minLength": 1
           }
@@ -13,13 +13,13 @@
       },
       "then": {
         "properties": {
-          "file_name_translation_language": {
+          "description": {
             "type": "string",
             "minLength": 1
           }
         },
         "required": [
-          "file_name_translation_language"
+          "description"
         ]
       }
     }
