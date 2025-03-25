@@ -97,6 +97,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 8000,
+      "pattern": "^[^\\r\\n]*$",
        "alternateKeys": [
         {
           "tdrFileHeader": "Translated title of record",
@@ -254,6 +255,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 8000,
+      "pattern": "^[^\\r\\n]*$",
       "alternateKeys": [
         {
           "tdrFileHeader": "Add alternative title without the file extension",
@@ -269,6 +271,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 255,
+      "pattern": "^[^\\r\\n]*$",
       "alternateKeys": [
         {
           "tdrFileHeader": "Former reference",
