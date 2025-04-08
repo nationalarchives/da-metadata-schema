@@ -234,7 +234,8 @@
           "tdrDataLoadHeader": "ClosureStartDate"
         }
       ],
-      "daBeforeToday": "Validates that Closure start date is earlier than today's date"
+      "daBeforeToday": "Validates that Closure start date is earlier than today's date",
+      "matchEndDateOrDateLastModified": "Must match end_date or its year's Dec 31 if end_date exists; otherwise must match date_last_modified or its year's Dec 31"
     },
     "title_closed": {
       "description": "Indicates if the title is sensitive. This is only provided if the record is Closed",
