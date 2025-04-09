@@ -7,6 +7,7 @@
       "propertyType": "System",
       "minLength": 64,
       "maximum": 64,
+      "expectedTDRHeader": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "SHA256ClientSideChecksum"
@@ -17,6 +18,7 @@
       "propertyType": "System",
       "type": "integer",
       "minimum": 0,
+      "expectedTDRHeader": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "ClientSideFileSize"
@@ -27,6 +29,7 @@
       "type": "string",
       "format": "uuid",
       "propertyType": "System",
+      "expectedTDRHeader": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "UUID",
@@ -38,8 +41,9 @@
       "description": "The path to the file obtained from the client side.",
       "type": "string",
       "propertyType": "System",
+      "expectedTDRHeader": true,
       "minLength": 1,
-       "alternateKeys": [
+      "alternateKeys": [
         {
           "tdrFileHeader": "Filepath",
           "tdrDataLoadHeader": "ClientSideOriginalFilepath"
@@ -51,7 +55,8 @@
       "type": "string",
       "format": "date",
       "propertyType": "System",
-       "alternateKeys": [
+      "expectedTDRHeader": true,
+      "alternateKeys": [
         {
           "tdrFileHeader": "Date last modified",
           "tdrDataLoadHeader": "ClientSideFileLastModifiedDate"
@@ -66,6 +71,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 8000,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Description",
@@ -81,6 +87,7 @@
       ],
       "format": "date",
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Date of the record",
@@ -97,6 +104,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 8000,
+      "expectedTDRHeader": true,
       "pattern": "^[^\\r\\n]*$",
        "alternateKeys": [
         {
@@ -110,6 +118,7 @@
       "type": "string",
       "propertyType": "System",
       "minLength": 1,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Filename",
@@ -121,6 +130,7 @@
       "description": "The language of the record",
       "type": "array",
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "items": {
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/languages"
@@ -140,6 +150,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 8000,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Alternative description",
@@ -151,6 +162,7 @@
       "description": "Indicates if the description is sensitive",
       "type": "boolean",
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the description sensitive for the public?",
@@ -166,6 +178,7 @@
       ],
       "format": "date",
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "FOI decision asserted",
@@ -181,6 +194,7 @@
         "null"
       ],
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "items": {
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
@@ -196,6 +210,7 @@
       "description": "Is the record Open or Closed. This is a mandatory field",
       "type": "string",
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
       "alternateKeys": [
         {
@@ -213,6 +228,7 @@
       "propertyType": "Supplied",
       "minimum": 1,
       "maximum": 150,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure Period",
@@ -228,6 +244,7 @@
       ],
       "format": "date",
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure Start Date",
@@ -241,6 +258,7 @@
       "description": "Indicates if the title is sensitive. This is only provided if the record is Closed",
       "type": "boolean",
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the title sensitive for the public?",
@@ -256,6 +274,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 8000,
+      "expectedTDRHeader": true,
       "pattern": "^[^\\r\\n]*$",
       "alternateKeys": [
         {
@@ -272,6 +291,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 255,
+      "expectedTDRHeader": true,
       "pattern": "^[^\\r\\n]*$",
       "alternateKeys": [
         {

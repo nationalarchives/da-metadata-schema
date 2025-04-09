@@ -7,6 +7,7 @@
       "propertyType": "System",
       "minLength": 64,
       "maximum": 64,
+      "expectedTDRHeader": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "SHA256ClientSideChecksum"
@@ -17,6 +18,7 @@
       "propertyType": "System",
       "type": "integer",
       "minimum": 0,
+      "expectedTDRHeader": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "ClientSideFileSize"
@@ -27,6 +29,7 @@
       "type": "string",
       "format": "uuid",
       "propertyType": "System",
+      "expectedTDRHeader": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "UUID"
@@ -37,6 +40,7 @@
       "type": "string",
       "propertyType": "System",
       "minLength": 1,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Filepath",
@@ -48,6 +52,7 @@
       "type": "string",
       "format": "date",
       "propertyType": "System",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Date last modified",
@@ -59,6 +64,7 @@
       "type": "string",
       "propertyType": "Supplied",
       "maxLength": 8000,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Description"
@@ -72,6 +78,7 @@
       ],
       "format": "date",
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Date of the record"
@@ -86,6 +93,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 8000,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Translated title of record"
@@ -96,6 +104,7 @@
       "type": "string",
       "propertyType": "System",
       "minLength": 1,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Filename",
@@ -113,6 +122,7 @@
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/languages"
       },
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Language"
@@ -126,6 +136,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 8000,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Alternative description",
@@ -139,6 +150,7 @@
         "null"
       ],
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the description sensitive for the public?",
@@ -153,6 +165,7 @@
       ],
       "format": "date",
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "FOI decision asserted",
@@ -171,6 +184,7 @@
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
       },
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "FOI exemption code",
@@ -182,6 +196,7 @@
       "type": "string",
       "propertyType": "Supplied",
       "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure status",
@@ -197,6 +212,7 @@
       "propertyType": "Supplied",
       "minimum": 1,
       "maximum": 150,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure Period",
@@ -211,6 +227,7 @@
       ],
       "format": "date",
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Closure Start Date",
@@ -224,6 +241,7 @@
         "null"
       ],
       "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Is the title sensitive for the public?",
@@ -238,6 +256,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 8000,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Add alternative title without the file extension",
@@ -252,6 +271,7 @@
       ],
       "propertyType": "Supplied",
       "maxLength": 8000,
+      "expectedTDRHeader": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "Former reference"
