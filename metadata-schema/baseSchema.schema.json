@@ -45,7 +45,7 @@
       "minLength": 1,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Filepath",
+          "tdrFileHeader": "filepath",
           "tdrDataLoadHeader": "ClientSideOriginalFilepath"
         }
       ]
@@ -58,7 +58,7 @@
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Date last modified",
+          "tdrFileHeader": "date last modified",
           "tdrDataLoadHeader": "ClientSideFileLastModifiedDate"
         }
       ]
@@ -74,7 +74,7 @@
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Description",
+          "tdrFileHeader": "description",
           "tdrDataLoadHeader": "description"
         }
       ]
@@ -90,7 +90,7 @@
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Date of the record",
+          "tdrFileHeader": "date of the record",
           "tdrDataLoadHeader": "end_date"
         }
       ],
@@ -108,7 +108,7 @@
       "pattern": "^[^\\r\\n]*$",
        "alternateKeys": [
         {
-          "tdrFileHeader": "Translated title of record",
+          "tdrFileHeader": "translated filename",
           "tdrDataLoadHeader": "file_name_translation"
         }
       ]
@@ -121,7 +121,7 @@
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Filename",
+          "tdrFileHeader": "filename",
           "tdrDataLoadHeader": "Filename"
         }
       ]
@@ -137,7 +137,7 @@
       },
       "alternateKeys": [
         {
-          "tdrFileHeader": "Language",
+          "tdrFileHeader": "language",
           "tdrDataLoadHeader": "Language"
         }
       ]
@@ -153,7 +153,7 @@
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Alternative description",
+          "tdrFileHeader": "alternative description",
           "tdrDataLoadHeader": "DescriptionAlternate"
         }
       ]
@@ -165,7 +165,7 @@
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Is the description sensitive for the public?",
+          "tdrFileHeader": "is description closed",
           "tdrDataLoadHeader": "DescriptionClosed"
         }
       ]
@@ -181,14 +181,14 @@
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "FOI decision asserted",
+          "tdrFileHeader": "foi schedule date",
           "tdrDataLoadHeader": "FoiExemptionAsserted"
         }
       ],
       "daBeforeToday": "Validates that FOI Exemption Asserted Date is before today's date"
     },
     "foi_exemption_code": {
-      "description": "The FOI exemption code/s There can be multiple codes that will be separated by a '|' character in the CSV file. This is only provided if the record is Closed",
+      "description": "The foi exemption code/s There can be multiple codes that will be separated by a '|' character in the CSV file. This is only provided if the record is Closed",
       "type": [
         "array",
         "null"
@@ -201,7 +201,7 @@
       },
       "alternateKeys": [
         {
-          "tdrFileHeader": "FOI exemption code",
+          "tdrFileHeader": "foi exemption code",
           "tdrDataLoadHeader": "FoiExemptionCode"
         }
       ]
@@ -214,7 +214,7 @@
       "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
       "alternateKeys": [
         {
-          "tdrFileHeader": "Closure status",
+          "tdrFileHeader": "closure status",
           "tdrDataLoadHeader": "ClosureType"
         }
       ]
@@ -231,7 +231,7 @@
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Closure Period",
+          "tdrFileHeader": "closure period",
           "tdrDataLoadHeader": "ClosurePeriod"
         }
       ]
@@ -247,11 +247,11 @@
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Closure Start Date",
+          "tdrFileHeader": "closure start date",
           "tdrDataLoadHeader": "ClosureStartDate"
         }
       ],
-      "daBeforeToday": "Validates that Closure start date is earlier than today's date",
+      "daBeforeToday": "Validates that closure start date is earlier than today's date",
       "matchEndDateOrDateLastModified": "Must match end_date or its year's Dec 31 if end_date exists; otherwise must match date_last_modified or its year's Dec 31"
     },
     "title_closed": {
@@ -261,7 +261,7 @@
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "Is the title sensitive for the public?",
+          "tdrFileHeader": "is filename closed?",
           "tdrDataLoadHeader": "TitleClosed"
         }
       ]
@@ -278,7 +278,7 @@
       "pattern": "^[^\\r\\n]*$",
       "alternateKeys": [
         {
-          "tdrFileHeader": "Add alternative title without the file extension",
+          "tdrFileHeader": "alternate filename",
           "tdrDataLoadHeader": "TitleAlternate"
         }
       ]
@@ -295,7 +295,7 @@
       "pattern": "^[^\\r\\n]*$",
       "alternateKeys": [
         {
-          "tdrFileHeader": "Former reference",
+          "tdrFileHeader": "former reference",
           "tdrDataLoadHeader": "former_reference_department"
         }
       ]
