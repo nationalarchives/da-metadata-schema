@@ -1,0 +1,121 @@
+[
+  {
+    "property": "file_path",
+    "details": "This is the file path/folder structure extracted upon upload, do not modify",
+    "format": "Do not modify",
+    "tdrRequirement": "Mandatory",
+    "example": "N/A"
+  },
+  {
+    "property": "file_name",
+    "details": "This is the file name extracted upon upload, do not modify",
+    "format": "Do not modify",
+    "tdrRequirement": "Mandatory",
+    "example": "N/A"
+  },
+  {
+    "property": "date_last_modified",
+    "details": "This is the date last modified extracted upon upload, do not modify",
+    "format": "Do not modify",
+    "tdrRequirement": "Mandatory",
+    "example": "N/A"
+  },
+  {
+    "property": "end_date",
+    "details": "If the date last modified is not meaningful, please provide a meaningful date",
+    "format": "YYYY-MM-DD",
+    "tdrRequirement": "Optional",
+    "example": "2020-03-01"
+  },
+  {
+    "property": "description",
+    "details": "Provide a description which gives more context/meaning to the record, especially if the filename is not descriptive enough. Please do check these for spelling and grammer.",
+    "format": "Text, max 8000 characters",
+    "tdrRequirement": "Recommended",
+    "example": "Draft business case for a Learning Resource Centre"
+  },
+  {
+    "property": "former_reference_department",
+    "details": "Provide any reference which may have been used during the life of the record (it must not contain any line breaks). If you have multiple former references, these should be separated by semi-colons.",
+    "format": "Text, max 255 characters",
+    "tdrRequirement": "Optional",
+    "example": "CRDA/12"
+  },
+  {
+    "property": "closure_type",
+    "details": "Closed records must have been approved by the Advisory Council. Only the words 'Open' or 'Closed' will be accepted. This is case sensitive and variations on these words will not be accepted.",
+    "format": "Open or Closed, default: Open",
+    "tdrRequirement": "Mandatory for closed record",
+    "example": "Closed"
+  },
+  {
+    "property": "closure_start_date",
+    "details": "Closed record: Must match date of the record (if provided) else date last modified, must also align to date provided on closure application.",
+    "format": "YYYY-MM-DD",
+    "tdrRequirement": "Mandatory for closed record",
+    "example": "2020-03-01"
+  },
+  {
+    "property": "closure_period",
+    "details": "Closed record: Provide the number of years that the record will remain closed",
+    "format": "Number (1-150)",
+    "tdrRequirement": "Mandatory for closed record",
+    "example": 20
+  },
+  {
+    "property": "foi_exemption_code",
+    "details": "Closed record: Provide the FOI exemption codes used to justify closure for the record, as approved by the Advisory Council This should be the same as the code(s) on the closure schedule for the record.",
+    "format": "Semi-colon separated list (with no spaces)",
+    "tdrRequirement": "Mandatory for closed record",
+    "example": "27(1);33"
+  },
+  {
+    "property": "foi_exemption_asserted",
+    "details": "Closed record: This date must match the one found on the closure schedule. It can be found on the bottom right hand corner of each page",
+    "format": "YYYY-MM-DD",
+    "tdrRequirement": "Mandatory for closed record",
+    "example": "2020-03-01"
+  },
+  {
+    "property": "title_closed",
+    "details": "Closed record: Yes means the filename should also be closed.",
+    "format": "Yes or No, default: No",
+    "tdrRequirement": "Mandatory for closed record",
+    "example": "Yes"
+  },
+  {
+    "property": "title_alternate",
+    "details": "Closed record: If the filename of this record is closed, please provide an alternate filename (without the file extension) to be displayed on Discovery while the record is closed.",
+    "format": "Text, max",
+    "tdrRequirement": "Mandatory if filename is closed",
+    "example": "filename1"
+  },
+  {
+    "property": "description_closed",
+    "details": "Closed record: Yes means the description should also be closed.",
+    "format": "Yes or No, default: No",
+    "tdrRequirement": "Mandatory for closed record",
+    "example": "Yes"
+  },
+  {
+    "property": "description_alternate",
+    "details": "Closed record: If the description of this record is closed, please provide an alternate description to be displayed on Discovery while the record is closed.",
+    "format": "Text, max 8000 characters",
+    "tdrRequirement": "Mandatory if description is closed",
+    "example": "This is an alternative description"
+  },
+  {
+    "property": "language",
+    "details": "Indicate if the record is in English, Welsh or both (English;Welsh). This is case sensitive and variations on these words will not be accepted. If you have records in other languages, please contact your digital transfer advisor",
+    "format": "Semi-colon separated list (with no spaces)\ndefault: English",
+    "tdrRequirement": "Mandatory",
+    "example": "English;Welsh"
+  },
+  {
+    "property": "file_name_translation",
+    "details": "Provide a translation of the title (without the file extension)",
+    "format": "Text, max 8000 characters",
+    "tdrRequirement": "Optional",
+    "example": "filenameEnglish"
+  }
+]
