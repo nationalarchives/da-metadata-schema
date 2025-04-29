@@ -261,7 +261,7 @@
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "is filename closed?",
+          "tdrFileHeader": "is filename closed",
           "tdrDataLoadHeader": "TitleClosed"
         }
       ]
