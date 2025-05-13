@@ -31,7 +31,7 @@ class ClosureSchemaSpec extends BaseSpec {
       val errorsArray = errors.asScala.toArray
 
       errorsArray(0).getMessage shouldBe "$.closure_start_date: integer found, string expected"
-      errorsArray(1).getMessage shouldBe "$.closure_period: string found, integer expected"
+      errorsArray(1).getMessage shouldBe "$.closure_period: string found, array expected"
       errorsArray(2).getMessage shouldBe "$.foi_exemption_code: string found, array expected"
       errorsArray(3).getMessage shouldBe "$.foi_exemption_asserted: integer found, string expected"
       errorsArray(4).getMessage shouldBe "$.description_closed: string found, boolean expected"
@@ -74,7 +74,7 @@ class ClosureSchemaSpec extends BaseSpec {
       val errorsArray = errors.asScala.toArray
 
       errorsArray(0).getMessage shouldBe "$.closure_start_date: string found, null expected"
-      errorsArray(1).getMessage shouldBe "$.closure_period: integer found, null expected"
+      errorsArray(1).getMessage shouldBe "$.closure_period: array found, null expected"
       errorsArray(2).getMessage shouldBe "$.foi_exemption_code: array found, null expected"
       errorsArray(3).getMessage shouldBe "$.foi_exemption_asserted: string found, null expected"
       errorsArray(4).getMessage shouldBe "$.title_alternate: string found, null expected"
