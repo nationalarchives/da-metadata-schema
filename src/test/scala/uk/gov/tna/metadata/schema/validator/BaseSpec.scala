@@ -9,14 +9,20 @@ import java.nio.file.Files
 
 trait BaseSpec extends AnyWordSpec {
 
-  def createSchema(schemaPath: String, testDataPath: String): (JsonSchema, JsonNode) = {    
+  def createTheSchema(schemaPath: String): JsonSchema = {    
+    val schemaInputStream = Files.newInputStream(new File(schemaPath).toPath)
+    val schema = getJsonSchemaFromStreamContentV7(schemaInputStream)
+    schema
+  }
+
+  def createSchema(schemaPath: String, testDataPath: String): (JsonSchema, JsonNode) = {
     val schemaInputStream = Files.newInputStream(new File(schemaPath).toPath)
     val schema = getJsonSchemaFromStreamContentV7(schemaInputStream)
     val dataInputStream = getClass.getResourceAsStream(testDataPath)
     val node = getJsonNodeFromStreamContent(dataInputStream)
     (schema, node)
   }
-
+  
   def getJsonSchemaFromStreamContentV7(schemaContent: InputStream): JsonSchema = {
     val schemaIri = SchemaId.V7
     val metaSchema = JsonMetaSchema.getV7
