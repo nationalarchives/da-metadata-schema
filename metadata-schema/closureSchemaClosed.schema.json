@@ -17,6 +17,9 @@
           },
           "closure_period": {
             "type": "array",
+            "items": {
+              "type": "integer"
+            },
             "minItems": 1
           },
           "foi_exemption_code": {
