@@ -16,7 +16,7 @@
             "type": "string"
           },
           "closure_period": {
-            "type": "integer"
+            "type": "array"
           },
           "foi_exemption_code": {
             "type": "array"

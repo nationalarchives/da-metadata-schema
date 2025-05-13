@@ -220,14 +220,16 @@
       ]
     },
     "closure_period": {
-      "description": "The period the record is closed for in years (1-150). This is only provided if the record is Closed",
+      "description": "A list of the number (1->150) of years closure for each foi exemption code, in corresponding order. This is only provided if the record is Closed",
       "type": [
-        "integer",
+        "array",
         "null"
       ],
-      "propertyType": "Supplied",
-      "minimum": 1,
-      "maximum": 150,
+      "items": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 150
+      },
       "expectedTDRHeader": true,
       "alternateKeys": [
         {
