@@ -16,10 +16,12 @@
             "type": "string"
           },
           "closure_period": {
-            "type": "array"
+            "type": "array",
+            "minItems": 1
           },
           "foi_exemption_code": {
-            "type": "array"
+            "type": "array",
+            "minItems": 1
           },
           "foi_exemption_asserted": {
             "type": "string"
