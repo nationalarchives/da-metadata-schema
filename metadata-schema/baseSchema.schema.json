@@ -220,7 +220,7 @@
       ]
     },
     "closure_period": {
-      "description": "A list of the number (1->150) of years closure for each foi exemption code, in corresponding order. This is only provided if the record is Closed",
+      "description": "A list of the number (1-150) of years closure for each foi exemption code, in corresponding order. This is only provided if the record is Closed",
       "type": [
         "array",
         "null"
