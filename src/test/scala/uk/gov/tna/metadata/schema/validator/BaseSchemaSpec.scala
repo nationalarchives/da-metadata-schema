@@ -37,6 +37,16 @@ class BaseSchemaSpec extends BaseSpec {
 
       errorsArray.head.getMessage shouldBe "$.closure_period[1]: must have a maximum value of 150"
     }
+
+    "pass with valid list of periods" in {
+      val schemaPath = "metadata-schema/baseSchema.schema.json"
+      val testDataPath = "/data/testDataClosurePeriod.json"
+      val modifiedData = loadAndModifyTestData(testDataPath, "\"CLOSURE_PERIOD\"", "[1,150]")
+      val schemaSetup = createTheSchema(schemaPath)
+
+      val errors: util.Set[ValidationMessage] = schemaSetup.validate(modifiedData, InputFormat.JSON)
+      errors.size() shouldBe 0
+    }
   }
 
   private def loadAndModifyTestData(testDataPath: String, replace: String, replacement: String): String = {
