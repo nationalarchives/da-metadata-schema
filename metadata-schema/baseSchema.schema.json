@@ -99,7 +99,7 @@
     "closure_type": {
       "description": "Is the record Open or Closed. This is a mandatory field",
       "type": "string",
-      "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
+      "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types"
     },
     "closure_period": {
       "description": "A list of the number (1-150) of years closure for each foi exemption code, in corresponding order. This is only provided if the record is Closed",
@@ -143,7 +143,7 @@
         "null"
       ],
       "maxLength": 255,
-      "pattern": "^[^\\r\\n]*$",
+      "pattern": "^[^\\r\\n]*$"
     }
   }
 }
