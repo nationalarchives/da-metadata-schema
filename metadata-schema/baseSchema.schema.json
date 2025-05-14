@@ -4,64 +4,26 @@
   "properties": {
     "client_side_checksum": {
       "type": "string",
-      "propertyType": "System",
       "minLength": 64,
-      "maximum": 64,
-      "expectedTDRHeader": false,
-      "alternateKeys": [
-        {
-          "tdrDataLoadHeader": "SHA256ClientSideChecksum"
-        }
-      ]
+      "maximum": 64
     },
     "file_size": {
-      "propertyType": "System",
       "type": "integer",
-      "minimum": 0,
-      "expectedTDRHeader": false,
-      "alternateKeys": [
-        {
-          "tdrDataLoadHeader": "ClientSideFileSize"
-        }
-      ]
+      "minimum": 0
     },
     "UUID": {
       "type": "string",
-      "format": "uuid",
-      "propertyType": "System",
-      "expectedTDRHeader": false,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "UUID",
-          "tdrDataLoadHeader": "UUID"
-        }
-      ]
+      "format": "uuid"
     },
     "file_path": {
       "description": "The path to the file obtained from the client side.",
       "type": "string",
-      "propertyType": "System",
-      "expectedTDRHeader": true,
-      "minLength": 1,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "filepath",
-          "tdrDataLoadHeader": "ClientSideOriginalFilepath"
-        }
-      ]
+      "minLength": 1
     },
     "date_last_modified": {
       "description": "The date the file was last modified",
       "type": "string",
-      "format": "date",
-      "propertyType": "System",
-      "expectedTDRHeader": true,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "date last modified",
-          "tdrDataLoadHeader": "ClientSideFileLastModifiedDate"
-        }
-      ]
+      "format": "date"
     },
     "description": {
       "description": "The description of the record that will be displayed to the public",
@@ -69,15 +31,7 @@
         "string",
         "null"
       ],
-      "propertyType": "Supplied",
-      "maxLength": 8000,
-      "expectedTDRHeader": true,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "description",
-          "tdrDataLoadHeader": "description"
-        }
-      ]
+      "maxLength": 8000
     },
     "end_date": {
       "description": "The date the record ends",
@@ -86,14 +40,6 @@
         "null"
       ],
       "format": "date",
-      "propertyType": "Supplied",
-      "expectedTDRHeader": true,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "date of the record",
-          "tdrDataLoadHeader": "end_date"
-        }
-      ],
       "daBeforeToday": "Validates that end date is earlier than today's date"
     },
     "file_name_translation": {
@@ -102,45 +48,21 @@
         "string",
         "null"
       ],
-      "propertyType": "Supplied",
       "maxLength": 8000,
-      "expectedTDRHeader": true,
-      "pattern": "^[^\\r\\n]*$",
-       "alternateKeys": [
-        {
-          "tdrFileHeader": "translated filename",
-          "tdrDataLoadHeader": "file_name_translation"
-        }
-      ]
+      "pattern": "^[^\\r\\n]*$"
     },
     "file_name": {
       "description": "The name of the file obtained from the client side. Will be displayed to the public as the description if no description is provided",
       "type": "string",
-      "propertyType": "System",
-      "minLength": 1,
-      "expectedTDRHeader": true,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "filename",
-          "tdrDataLoadHeader": "Filename"
-        }
-      ]
+      "minLength": 1
     },
     "language": {
       "description": "The language of the record",
       "type": "array",
-      "propertyType": "Supplied",
-      "expectedTDRHeader": true,
       "items": {
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/languages"
-      },
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "language",
-          "tdrDataLoadHeader": "Language"
-        }
-      ]
+      }
     },
     "description_alternate": {
       "description": "The alternative description of the record that will be displayed to the public if the description is sensitive. This is only provided if the record is Closed",
@@ -148,27 +70,11 @@
         "string",
         "null"
       ],
-      "propertyType": "Supplied",
-      "maxLength": 8000,
-      "expectedTDRHeader": true,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "alternate description",
-          "tdrDataLoadHeader": "DescriptionAlternate"
-        }
-      ]
+      "maxLength": 8000
     },
     "description_closed": {
       "description": "Indicates if the description is sensitive",
-      "type": "boolean",
-      "propertyType": "Supplied",
-      "expectedTDRHeader": true,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "is description closed",
-          "tdrDataLoadHeader": "DescriptionClosed"
-        }
-      ]
+      "type": "boolean"
     },
     "foi_exemption_asserted": {
       "description": "The date the FOI exemption was asserted",
@@ -177,14 +83,6 @@
         "null"
       ],
       "format": "date",
-      "propertyType": "Supplied",
-      "expectedTDRHeader": true,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "foi schedule date",
-          "tdrDataLoadHeader": "FoiExemptionAsserted"
-        }
-      ],
       "daBeforeToday": "Validates that FOI Exemption Asserted Date is before today's date"
     },
     "foi_exemption_code": {
@@ -193,31 +91,15 @@
         "array",
         "null"
       ],
-      "propertyType": "Supplied",
-      "expectedTDRHeader": true,
       "items": {
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/foi_codes"
-      },
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "foi exemption code",
-          "tdrDataLoadHeader": "FoiExemptionCode"
-        }
-      ]
+      }
     },
     "closure_type": {
       "description": "Is the record Open or Closed. This is a mandatory field",
       "type": "string",
-      "propertyType": "Supplied",
-      "expectedTDRHeader": true,
       "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types",
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "closure status",
-          "tdrDataLoadHeader": "ClosureType"
-        }
-      ]
     },
     "closure_period": {
       "description": "A list of the number (1-150) of years closure for each foi exemption code, in corresponding order. This is only provided if the record is Closed",
@@ -229,14 +111,7 @@
         "type": "integer",
         "minimum": 1,
         "maximum": 150
-      },
-      "expectedTDRHeader": true,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "closure period",
-          "tdrDataLoadHeader": "ClosurePeriod"
-        }
-      ]
+      }
     },
     "closure_start_date": {
       "description": "The date the record is closed from. This is only provided if the record is Closed",
@@ -245,28 +120,12 @@
         "null"
       ],
       "format": "date",
-      "propertyType": "Supplied",
-      "expectedTDRHeader": true,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "closure start date",
-          "tdrDataLoadHeader": "ClosureStartDate"
-        }
-      ],
       "daBeforeToday": "Validates that closure start date is earlier than today's date",
       "matchEndDateOrDateLastModified": "Must match end_date or its year's Dec 31 if end_date exists; otherwise must match date_last_modified or its year's Dec 31"
     },
     "title_closed": {
       "description": "Indicates if the title is sensitive. This is only provided if the record is Closed",
-      "type": "boolean",
-      "propertyType": "Supplied",
-      "expectedTDRHeader": true,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "is filename closed",
-          "tdrDataLoadHeader": "TitleClosed"
-        }
-      ]
+      "type": "boolean"
     },
     "title_alternate": {
       "description": "The alternative title of the record that will be displayed to the public if the title is sensitive",
@@ -274,16 +133,8 @@
         "string",
         "null"
       ],
-      "propertyType": "Supplied",
       "maxLength": 8000,
-      "expectedTDRHeader": true,
-      "pattern": "^[^\\r\\n]*$",
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "alternate filename",
-          "tdrDataLoadHeader": "TitleAlternate"
-        }
-      ]
+      "pattern": "^[^\\r\\n]*$"
     },
     "former_reference_department": {
       "description": "The former reference of the department",
@@ -291,16 +142,8 @@
         "string",
         "null"
       ],
-      "propertyType": "Supplied",
       "maxLength": 255,
-      "expectedTDRHeader": true,
       "pattern": "^[^\\r\\n]*$",
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "former reference",
-          "tdrDataLoadHeader": "former_reference_department"
-        }
-      ]
     }
   }
 }
