@@ -1,4 +1,4 @@
-import sbt.*
+import sbt._
 
 object Dependencies {
   lazy val commonsLang3 = "org.apache.commons" % "commons-lang3" % "3.15.0"

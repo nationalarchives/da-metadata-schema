@@ -1,7 +1,7 @@
 package uk.gov.tna.metadata.schema.validator
 
 import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
-import com.networknt.schema.*
+import com.networknt.schema._
 import org.scalatest.wordspec.AnyWordSpec
 
 import java.io.{File, InputStream}

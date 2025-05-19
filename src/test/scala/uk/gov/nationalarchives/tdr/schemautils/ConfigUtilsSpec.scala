@@ -1,6 +1,6 @@
 package uk.gov.nationalarchives.tdr.schemautils
 
-import org.scalatest.matchers.should.Matchers.*
+import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
 
 class ConfigUtilsSpec extends AnyWordSpec {

@@ -3,7 +3,7 @@ package uk.gov.nationalarchives.tdr.schemautils
 import scala.io.Source
 import cats.data.Reader
 import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
-import io.circe.generic.auto.*
+import io.circe.generic.auto._
 import io.circe.jawn.decode
 import ujson.Value.Value
 
