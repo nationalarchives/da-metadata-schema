@@ -21,6 +21,8 @@ class ConfigUtilsSpec extends AnyWordSpec {
       val metadataConfiguration = ConfigUtils.loadConfiguration
       metadataConfiguration.propertyToOutputMapper("tdrFileHeader")("former_reference_department") shouldBe "former reference"
       metadataConfiguration.propertyToOutputMapper("tdrDataLoadHeader")("date_last_modified") shouldBe "ClientSideFileLastModifiedDate"
+      metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("date_last_modified") shouldBe "true"
+      metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("client_side_checksum") shouldBe "false"
       metadataConfiguration.propertyToOutputMapper("blah")("blahBlah") shouldBe "blahBlah"
     }
   }

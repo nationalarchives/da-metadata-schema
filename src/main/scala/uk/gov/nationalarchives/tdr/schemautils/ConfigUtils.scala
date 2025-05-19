@@ -57,14 +57,11 @@ object ConfigUtils {
     */
   def inputToPropertyMapper(configurationParameters: ConfigParameters): String => String => String = {
 
-    val configItems = configurationParameters.baseConfig
-      .getOrElse(Config(List.empty[ConfigItem]))
-      .configItems
-      .map(p => (p.key, p.alternateKeys.head.tdrFileHeader, p.alternateKeys.head.tdrDataLoadHeader))
+    val configItems = getConfigItems(configurationParameters)
     val mapped =
       Map(
         "tdrFileHeader" -> configItems.filter(_._2.nonEmpty).map(p => p._2.get -> p._1).toMap,
-        "tdrDataLoadHeader" -> configItems.filter(_._3.nonEmpty).map(p => p._3 -> p._1).toMap
+        "tdrDataLoadHeader" -> configItems.filter(_._3.nonEmpty).map(p => p._3 -> p._1).toMap,
       )
     domain => key => mapped.get(domain).flatMap(_.get(key)).getOrElse(key)
   }
@@ -86,14 +83,12 @@ object ConfigUtils {
     */
   def propertyToOutputMapper(configurationParameters: ConfigParameters): String => String => String = {
 
-    val configItems = configurationParameters.baseConfig
-      .getOrElse(Config(List.empty[ConfigItem]))
-      .configItems
-      .map(p => (p.key, p.alternateKeys.head.tdrFileHeader, p.alternateKeys.head.tdrDataLoadHeader))
+    val configItems = getConfigItems(configurationParameters)
     val mapped =
       Map(
         "tdrFileHeader" -> configItems.filter(_._2.nonEmpty).map(p => p._1 -> p._2.get).toMap,
-        "tdrDataLoadHeader" -> configItems.filter(_._3.nonEmpty).map(p => p._1 -> p._3).toMap
+        "tdrDataLoadHeader" -> configItems.filter(_._3.nonEmpty).map(p => p._1 -> p._3).toMap,
+        "expectedTDRHeader" -> configItems.map(p => p._1 -> p._4.toString).toMap
       )
     domain => propertyName => mapped.get(domain).flatMap(_.get(propertyName)).getOrElse(propertyName)
   }
@@ -147,6 +142,13 @@ object ConfigUtils {
 
     }
     domain => propertyTypeMap.getOrElse(domain, "")
+  }
+
+  private def getConfigItems(configurationParameters: ConfigParameters) = {
+    configurationParameters.baseConfig
+      .getOrElse(Config(List.empty[ConfigItem]))
+      .configItems
+      .map(p => (p.key, p.alternateKeys.head.tdrFileHeader, p.alternateKeys.head.tdrDataLoadHeader, p.expectedTDRHeader))
   }
 
   private def loadBaseSchema: Value = {
