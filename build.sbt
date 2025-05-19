@@ -1,6 +1,6 @@
 import Dependencies.*
 import sbt.url
-import sbtrelease.ReleaseStateTransformations._
+import sbtrelease.ReleaseStateTransformations.*
 
 ThisBuild / organization := "uk.gov.nationalarchives"
 ThisBuild / organizationName := "The National Archives"
@@ -58,13 +58,18 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       commonsLang3,
       scalaTest % Test,
-      jsonSchemaValidator
+      jsonSchemaValidator,
+      circeCore,
+      circeGeneric,
+      circeParser,
+      ujson
     )
   )
 
 lazy val copySchema = taskKey[Unit]("copySchema")
 copySchema := {
   IO.copyDirectory(new File("metadata-schema"), new File(s"target/scala-${scalaVersion.value}/classes/metadata-schema"))
+  IO.copyDirectory(new File("config-schema"), new File(s"target/scala-${scalaVersion.value}/classes/config-schema"))
 }
 
 lazy val copyValidationMessageProperties = taskKey[Unit]("copyValidationMessageProperties")
