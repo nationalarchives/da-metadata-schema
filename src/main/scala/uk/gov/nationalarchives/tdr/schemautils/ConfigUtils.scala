@@ -36,7 +36,8 @@ object ConfigUtils {
       propertyToAltHeaderMapper <- Reader(propertyToOutputMapper)
       downloadFileOutputs <- Reader(getDownloadFilesOutputs)
       propertyType <- Reader(getPropertyType)
-    } yield MetadataConfiguration(altHeaderToPropertyMapper, propertyToAltHeaderMapper, downloadFileOutputs, propertyType)
+      getPropertiesByPropertyType <- Reader(getPropertiesByPropertyType)
+    } yield MetadataConfiguration(altHeaderToPropertyMapper, propertyToAltHeaderMapper, downloadFileOutputs, propertyType, getPropertiesByPropertyType)
     csvConfigurationReader.run(configParameters)
   }
 
@@ -144,6 +145,13 @@ object ConfigUtils {
     domain => propertyTypeMap.getOrElse(domain, "")
   }
 
+  private def getPropertiesByPropertyType(configurationParameters: ConfigParameters): String => List[String] = {
+    val configItems = configurationParameters.baseConfig
+      .getOrElse(Config(List.empty[ConfigItem]))
+      .configItems
+    propertyType => configItems.filter(_.propertyType == propertyType).map(_.key)
+  }
+
   private def getConfigItems(configurationParameters: ConfigParameters) = {
     configurationParameters.baseConfig
       .getOrElse(Config(List.empty[ConfigItem]))
@@ -172,8 +180,9 @@ object ConfigUtils {
       inputToPropertyMapper: String => String => String,
       propertyToOutputMapper: String => String => String,
       downloadFileDisplayProperties: String => List[DownloadFileDisplayProperty],
-      getPropertyType: String => String
-  )
+      getPropertyType: String => String,
+      getPropertiesByPropertyType: String => List[String]
+    )
 
   case class ConfigParameters(baseSchema: Value, baseConfig: Either[io.circe.Error, Config])
 

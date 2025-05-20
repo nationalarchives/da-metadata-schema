@@ -36,6 +36,14 @@ class ConfigUtilsSpec extends AnyWordSpec {
     }
   }
 
+  "ConfigUtils should load configuration and provide a getMetadataProperties method that" should {
+    "give the list of properties which has given property type" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      metadataConfiguration.getPropertiesByPropertyType("System") shouldBe List("file_path", "file_name", "date_last_modified", "client_side_checksum", "file_size", "UUID")
+      metadataConfiguration.getPropertiesByPropertyType("unknown") shouldBe List()
+    }
+  }
+
   "ConfigUtils should load configuration and provide a downloadProperties method that" should {
     "give the downloadProperties config for a specified download" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
