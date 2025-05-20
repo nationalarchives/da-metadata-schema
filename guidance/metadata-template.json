@@ -29,7 +29,7 @@
   },
   {
     "property": "description",
-    "details": "Provide a description which gives more context/meaning to the record, especially if the filename is not descriptive enough. Please do check these for spelling and grammer.",
+    "details": "Provide a description which gives more context/meaning to the record, especially if the filename is not descriptive enough. Please do check these for spelling and grammar.",
     "format": "Text, max 8000 characters",
     "tdrRequirement": "Recommended",
     "example": "Draft business case for a Learning Resource Centre"

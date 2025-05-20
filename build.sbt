@@ -38,6 +38,7 @@ releaseProcess := Seq[ReleaseStep](
   runClean,
   releaseStepTask(copySchema),
   releaseStepTask(copyValidationMessageProperties),
+  releaseStepTask(copyGuidanceProperties),
   runTest,
   setReleaseVersion,
   commitReleaseVersion,
@@ -75,4 +76,9 @@ copySchema := {
 lazy val copyValidationMessageProperties = taskKey[Unit]("copyValidationMessageProperties")
 copyValidationMessageProperties := {
   IO.copyDirectory(new File("validation-messages"), new File(s"target/scala-${scalaVersion.value}/classes/validation-messages"))
+}
+
+lazy val copyGuidanceProperties = taskKey[Unit]("copyGuidanceProperties")
+copyGuidanceProperties := {
+  IO.copyDirectory(new File("guidance"), new File(s"target/scala-${scalaVersion.value}/classes/guidance"))
 }
