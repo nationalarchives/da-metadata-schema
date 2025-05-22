@@ -1,0 +1,363 @@
+{
+  "$id": "/schema/config",
+  "type": "object",
+  "configItems": [
+    {
+      "key": "file_path",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_path",
+      "propertyType": "System",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "filepath",
+          "tdrDataLoadHeader": "ClientSideOriginalFilepath"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 1,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "file_name",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name",
+      "propertyType": "System",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "filename",
+          "tdrDataLoadHeader": "Filename"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 2,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "date_last_modified",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified",
+      "propertyType": "System",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "date last modified",
+          "tdrDataLoadHeader": "ClientSideFileLastModifiedDate"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 3,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "end_date",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/end_date",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "date of the record",
+          "tdrDataLoadHeader": "end_date"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 4,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "description",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/description",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "description",
+          "tdrDataLoadHeader": "description"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 5,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "former_reference_department",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/former_reference_department",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "former reference",
+          "tdrDataLoadHeader": "former_reference_department"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 6,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "closure_type",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/closure_type",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "closure status",
+          "tdrDataLoadHeader": "ClosureType"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 7,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "closure_start_date",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/closure_start_date",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "closure start date",
+          "tdrDataLoadHeader": "ClosureStartDate"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 8,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "closure_period",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/closure_period",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "closure period",
+          "tdrDataLoadHeader": "ClosurePeriod"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 9,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "foi_exemption_code",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/foi_exemption_code",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "foi exemption code",
+          "tdrDataLoadHeader": "FoiExemptionCode"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 10,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "foi_exemption_asserted",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/foi_exemption_asserted",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "foi schedule date",
+          "tdrDataLoadHeader": "FoiExemptionAsserted"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 11,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "title_closed",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/title_closed",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "is filename closed",
+          "tdrDataLoadHeader": "TitleClosed"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 12,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "description_closed",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/description_closed",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "is description closed",
+          "tdrDataLoadHeader": "DescriptionClosed"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 14,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "description_alternate",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/description_alternate",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "alternate description",
+          "tdrDataLoadHeader": "DescriptionAlternate"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 15,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "title_alternate",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/title_alternate",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "alternate filename",
+          "tdrDataLoadHeader": "TitleAlternate"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 13,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "language",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/language",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "language",
+          "tdrDataLoadHeader": "Language"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 16,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "file_name_translation",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name_translation",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "translated filename",
+          "tdrDataLoadHeader": "file_name_translation"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 17,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "client_side_checksum",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum",
+      "propertyType": "System",
+      "expectedTDRHeader": false,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "SHA256ClientSideChecksum"
+        }
+      ]
+    },
+    {
+      "key": "file_size",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_size",
+      "propertyType": "System",
+      "expectedTDRHeader": false,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "ClientSideFileSize"
+        }
+      ]
+    },
+    {
+      "key": "UUID",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/UUID",
+      "propertyType": "System",
+      "expectedTDRHeader": false,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "UUID",
+          "tdrDataLoadHeader": "UUID"
+        }
+      ]
+    }
+  ]
+}

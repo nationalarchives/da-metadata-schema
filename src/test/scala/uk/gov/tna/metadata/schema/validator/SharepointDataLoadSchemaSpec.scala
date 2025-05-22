@@ -1,11 +1,10 @@
 package uk.gov.tna.metadata.schema.validator
 
 import com.networknt.schema.{InputFormat, ValidationMessage}
-import org.scalatest.matchers.should.Matchers.*
-import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers._
 
 import java.util
-import scala.jdk.CollectionConverters.*
+import scala.jdk.CollectionConverters._
 
 class SharepointDataLoadSchemaSpec extends BaseSpec {
   val schemaPath = "metadata-schema/dataLoadSharePointSchema.schema.json"

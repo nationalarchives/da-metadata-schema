@@ -1,11 +1,11 @@
-import Dependencies.*
+import Dependencies._
 import sbt.url
 import sbtrelease.ReleaseStateTransformations._
 
 ThisBuild / organization := "uk.gov.nationalarchives"
 ThisBuild / organizationName := "The National Archives"
 
-scalaVersion := "3.4.0"
+scalaVersion := "2.13.16"
 version := version.value
 
 ThisBuild / scmInfo := Some(
@@ -27,6 +27,7 @@ developers := List(
 ThisBuild / description := "JSON Schema to describe The National Archives catalogue metadata"
 ThisBuild / licenses := List("MIT" -> new java.net.URI("https://choosealicense.com/licenses/mit/").toURL)
 ThisBuild / homepage := Some(url("https://github.com/nationalarchives/da-metadata-schema"))
+crossTarget := target.value / s"scala-${scalaVersion.value}"
 
 useGpgPinentry := true
 publishTo := sonatypePublishToBundle.value
@@ -58,13 +59,18 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       commonsLang3,
       scalaTest % Test,
-      jsonSchemaValidator
+      jsonSchemaValidator,
+      circeCore,
+      circeGeneric,
+      circeParser,
+      ujson
     )
   )
 
 lazy val copySchema = taskKey[Unit]("copySchema")
 copySchema := {
   IO.copyDirectory(new File("metadata-schema"), new File(s"target/scala-${scalaVersion.value}/classes/metadata-schema"))
+  IO.copyDirectory(new File("config-schema"), new File(s"target/scala-${scalaVersion.value}/classes/config-schema"))
 }
 
 lazy val copyValidationMessageProperties = taskKey[Unit]("copyValidationMessageProperties")

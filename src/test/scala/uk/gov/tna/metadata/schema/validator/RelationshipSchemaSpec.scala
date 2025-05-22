@@ -1,11 +1,10 @@
 package uk.gov.tna.metadata.schema.validator
 
-import com.networknt.schema.*
-import org.scalatest.matchers.should.Matchers.*
-import org.scalatest.wordspec.AnyWordSpec
+import com.networknt.schema._
+import org.scalatest.matchers.should.Matchers._
 
 import java.util
-import scala.jdk.CollectionConverters.*
+import scala.jdk.CollectionConverters._
 
 class RelationshipSchemaSpec extends BaseSpec {
   "relationship schema validation" should {
