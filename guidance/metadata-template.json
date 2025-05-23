@@ -57,10 +57,10 @@
   },
   {
     "property": "closure_period",
-    "details": "Closed record: Provide the number of years that the record will remain closed",
-    "format": "Number (1-150)",
+    "details": "Closed record: Provide a list of the number of years closure for each foi exemption code, in corresponding order",
+    "format": "Semi-colon separated list of numbers between 1 and 150",
     "tdrRequirement": "Mandatory for closed record",
-    "example": 20
+    "example": "40;80"
   },
   {
     "property": "foi_exemption_code",
