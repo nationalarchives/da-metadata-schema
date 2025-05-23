@@ -1,13 +1,11 @@
 package uk.gov.tna.metadata.schema.validator
 
 import com.networknt.schema.{InputFormat, ValidationMessage}
-import org.scalatest.matchers.should.Matchers.*
-import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers._
 
-import java.io.InputStream
 import java.util
 import scala.io.Source
-import scala.jdk.CollectionConverters.*
+import scala.jdk.CollectionConverters._
 import scala.util.Using
 
 class BaseSchemaSpec extends BaseSpec {

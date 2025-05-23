@@ -1,6 +1,6 @@
 package uk.gov.nationalarchives.tdr.schemautils
 
-import org.scalatest.matchers.should.Matchers.*
+import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
 
 class ConfigUtilsSpec extends AnyWordSpec {
@@ -33,6 +33,14 @@ class ConfigUtilsSpec extends AnyWordSpec {
       metadataConfiguration.getPropertyType("file_path") shouldBe "string"
       metadataConfiguration.getPropertyType("end_date") shouldBe "date"
       metadataConfiguration.getPropertyType("end_dates") shouldBe ""
+    }
+  }
+
+  "ConfigUtils should load configuration and provide a getMetadataProperties method that" should {
+    "give the list of properties which has given property type" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      metadataConfiguration.getPropertiesByPropertyType("System") shouldBe List("file_path", "file_name", "date_last_modified", "client_side_checksum", "file_size", "UUID")
+      metadataConfiguration.getPropertiesByPropertyType("unknown") shouldBe List()
     }
   }
 
