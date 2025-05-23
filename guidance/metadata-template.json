@@ -29,7 +29,7 @@
   },
   {
     "property": "description",
-    "details": "Provide a description which gives more context/meaning to the record, especially if the filename is not descriptive enough. Please do check these for spelling and grammer.",
+    "details": "Provide a description which gives more context/meaning to the record, especially if the filename is not descriptive enough. Please do check these for spelling and grammar.",
     "format": "Text, max 8000 characters",
     "tdrRequirement": "Recommended",
     "example": "Draft business case for a Learning Resource Centre"
@@ -57,10 +57,10 @@
   },
   {
     "property": "closure_period",
-    "details": "Closed record: Provide the number of years that the record will remain closed",
-    "format": "Number (1-150)",
+    "details": "Closed record: Provide a list of the number of years closure for each foi exemption code, in corresponding order",
+    "format": "Semi-colon separated list of numbers between 1 and 150",
     "tdrRequirement": "Mandatory for closed record",
-    "example": 20
+    "example": "40;80"
   },
   {
     "property": "foi_exemption_code",
