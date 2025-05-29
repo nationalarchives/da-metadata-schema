@@ -58,7 +58,7 @@
   {
     "property": "closure_period",
     "details": "Closed record: Provide a list of the number of years closure for each foi exemption code, in corresponding order",
-    "format": "Semi-colon separated list of numbers between 1 and 150",
+    "format": "Semi-colon separated list of numbers between 1 and 150 (with no spaces)",
     "tdrRequirement": "Mandatory for closed record",
     "example": "40;80"
   },
@@ -86,7 +86,7 @@
   {
     "property": "title_alternate",
     "details": "Closed record: If the filename of this record is closed, please provide an alternate filename (without the file extension) to be displayed on Discovery while the record is closed.",
-    "format": "Text, max",
+    "format": "Text, max 8000 characters",
     "tdrRequirement": "Mandatory if filename is closed",
     "example": "filename1"
   },
