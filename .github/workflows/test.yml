@@ -10,7 +10,7 @@ jobs:
     runs-on:  ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      - uses: sbt/setup-sbt@69a46ab4acd4316aa16e68d91a9249a98d7e78d5
+      - uses: sbt/setup-sbt@6c68d2fe8dfbc0a0534d70101baa2e0420e1a506
       - uses: nationalarchives/tdr-github-actions/.github/actions/run-git-secrets@main
       - uses: nationalarchives/tdr-github-actions/.github/actions/slack-send@main
         if: failure()
