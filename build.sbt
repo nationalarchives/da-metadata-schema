@@ -30,7 +30,11 @@ ThisBuild / homepage := Some(url("https://github.com/nationalarchives/da-metadat
 crossTarget := target.value / s"scala-${scalaVersion.value}"
 
 useGpgPinentry := true
-publishTo := sonatypePublishToBundle.value
+publishTo := {
+  val centralSnapshots = "https://central.sonatype.com/repository/maven-snapshots/"
+  if (isSnapshot.value) Some("central-snapshots" at centralSnapshots)
+  else localStaging.value
+}
 publishMavenStyle := true
 
 releaseProcess := Seq[ReleaseStep](
@@ -45,14 +49,11 @@ releaseProcess := Seq[ReleaseStep](
   commitReleaseVersion,
   tagRelease,
   releaseStepCommand("publishSigned"),
-  releaseStepCommand("sonatypeBundleRelease"),
+  releaseStepCommand("sonaRelease"),
   setNextVersion,
   commitNextVersion,
   pushChanges
 )
-
-resolvers +=
-  "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
 lazy val root = (project in file("."))
   .settings(
