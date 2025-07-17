@@ -265,7 +265,7 @@ An example using scala and the [networknt json-schema-validator library](https:/
 To publish the schemas locally, run the following commands from the repository directory:
 
 ```
-  $ sbt copySchema copyValidationMessageProperties package publishLocal
+  $ sbt copySchema copyValidationMessageProperties copyGuidanceProperties package publishLocal
 
 ```
 

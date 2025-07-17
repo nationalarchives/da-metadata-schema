@@ -48,7 +48,7 @@
         "string",
         "null"
       ],
-      "maxLength": 8000,
+      "maxLength": 255,
       "pattern": "^[^\\r\\n]*$"
     },
     "file_name": {
@@ -133,7 +133,7 @@
         "string",
         "null"
       ],
-      "maxLength": 8000,
+      "maxLength": 255,
       "pattern": "^[^\\r\\n]*$"
     },
     "former_reference_department": {

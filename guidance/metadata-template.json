@@ -86,7 +86,7 @@
   {
     "property": "title_alternate",
     "details": "Closed record: If the filename of this record is closed, please provide an alternate filename (without the file extension) to be displayed on Discovery while the record is closed.",
-    "format": "Text, max 8000 characters",
+    "format": "Text, max 255 characters",
     "tdrRequirement": "Mandatory if filename is closed",
     "example": "filename1"
   },
@@ -114,7 +114,7 @@
   {
     "property": "file_name_translation",
     "details": "Provide a translation of the title (without the file extension)",
-    "format": "Text, max 8000 characters",
+    "format": "Text, max 255 characters",
     "tdrRequirement": "Optional",
     "example": "filenameEnglish"
   }
