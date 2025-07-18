@@ -56,6 +56,12 @@
         "English",
         "Welsh"
       ]
+    },
+    "copyrights": {
+      "enum": [
+        "Crown Copyright",
+        "Third Party"
+      ]
     }
   }
 }

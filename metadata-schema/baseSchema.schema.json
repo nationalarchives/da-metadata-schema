@@ -144,6 +144,14 @@
       ],
       "maxLength": 255,
       "pattern": "^[^\\r\\n]*$"
+    },
+    "rights_copyright": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/copyrights"
+      }
     }
   }
 }
