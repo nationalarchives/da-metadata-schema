@@ -360,17 +360,6 @@
       ]
     },
     {
-      "key": "matchId",
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/matchId",
-      "propertyType": "System",
-      "expectedTDRHeader": false,
-      "alternateKeys": [
-        {
-          "tdrDataLoadHeader": "MatchId"
-        }
-      ]
-    },
-    {
       "key": "rights_copyright",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/rights_copyright",
       "propertyType": "Supplied",
