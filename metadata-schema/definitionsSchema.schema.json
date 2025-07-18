@@ -59,7 +59,7 @@
     },
     "copyrights": {
       "enum": [
-        "Crown Copyright",
+        "Crown copyright",
         "Third Party"
       ]
     }
