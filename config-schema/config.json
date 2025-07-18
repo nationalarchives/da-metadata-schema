@@ -358,6 +358,25 @@
           "tdrDataLoadHeader": "UUID"
         }
       ]
+    },
+    {
+      "key": "rights_copyright",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/rights_copyright",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "copyright",
+          "tdrDataLoadHeader": "RightsCopyright"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 18,
+          "editable": true
+        }
+      ]
     }
   ]
 }
