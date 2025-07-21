@@ -152,6 +152,13 @@
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/copyrights"
       }
+    },
+    "restrictions_on_use": {
+      "description": "Can be used to include specific information about copyright conditions",
+      "type": [
+        "string",
+        "null"
+      ]
     }
   }
 }

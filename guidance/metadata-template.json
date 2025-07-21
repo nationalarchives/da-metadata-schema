@@ -124,5 +124,12 @@
     "format": "Semi-colon separated list (with no spaces) Default: ‘Crown copyright’",
     "tdrRequirement": "Mandatory",
     "example": "Crown copyright;Third Party"
+  },
+  {
+    "property": "restrictions_on_use",
+    "details": "Can be used to include specific information about copyright conditions. Specific copyright holders should be in a list separated by semi-colons. Contact your digital transfer advisor for guidance if required.",
+    "format": "Text, max 500 characters.",
+    "tdrRequirement": "Optional",
+    "example": "may include BBC; ITV; SKY"
   }
 ]

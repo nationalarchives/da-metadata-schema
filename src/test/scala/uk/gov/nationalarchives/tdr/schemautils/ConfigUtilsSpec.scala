@@ -47,7 +47,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a downloadProperties method that" should {
     "give the downloadProperties config for a specified download" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 18
+      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 19
       metadataConfiguration.downloadFileDisplayProperties("UnknownClientTemplate").length shouldBe 0
     }
 
@@ -57,6 +57,33 @@ class ConfigUtilsSpec extends AnyWordSpec {
       outputs.head.key shouldBe "file_path"
       outputs.head.columnIndex shouldBe 1
       outputs.head.editable shouldBe false
+    }
+
+    "return the correct DownloadFilesOutput for rights copyright" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      val outputs = metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate")
+      val rightsCopyrightDownloadDisplay = outputs.find(property => property.key == "rights_copyright")
+      rightsCopyrightDownloadDisplay match {
+        case Some(property) =>
+          property.key shouldBe "rights_copyright"
+          property.columnIndex shouldBe 18
+          property.editable shouldBe true
+          property.defaultValue shouldBe Some("Crown copyright")
+        case None => fail("Expected rights_copyright to be present in the download properties")
+      }
+    }
+
+    "return no default for file_path" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      val outputs = metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate")
+      val rightsCopyrightDownloadDisplay = outputs.find(property => property.key == "file_path")
+      rightsCopyrightDownloadDisplay match {
+        case Some(property) =>
+          property.key shouldBe "file_path"
+          property.editable shouldBe false
+          property.defaultValue shouldBe None
+        case None => fail("Expected file_path to be present in the download properties")
+      }
     }
 
     "return an empty list for an invalid domain" in {

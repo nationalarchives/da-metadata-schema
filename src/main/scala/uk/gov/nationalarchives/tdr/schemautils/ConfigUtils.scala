@@ -111,7 +111,7 @@ object ConfigUtils {
       .getOrElse(Config(List.empty[ConfigItem]))
       .configItems
       .filter(_.downloadFilesOutputs.nonEmpty)
-      .flatMap(item => item.downloadFilesOutputs.get.map(output => (output.domain, DownloadFileDisplayProperty(item.key, output.columnIndex, output.editable))))
+      .flatMap(item => item.downloadFilesOutputs.get.map(output => (output.domain, DownloadFileDisplayProperty(item.key, output.columnIndex, output.editable, output.defaultValue))))
       .groupBy(_._1)
       .view
       .mapValues(_.map(_._2))
@@ -186,7 +186,7 @@ object ConfigUtils {
 
   case class ConfigParameters(baseSchema: Value, baseConfig: Either[io.circe.Error, Config])
 
-  case class DownloadFilesOutput(domain: String, columnIndex: Int, editable: Boolean)
+  case class DownloadFilesOutput(domain: String, columnIndex: Int, editable: Boolean, defaultValue: Option[String] = None)
 
   case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String)
 
@@ -194,6 +194,6 @@ object ConfigUtils {
 
   case class Config(configItems: List[ConfigItem])
 
-  case class DownloadFileDisplayProperty(key: String, columnIndex: Int, editable: Boolean)
+  case class DownloadFileDisplayProperty(key: String, columnIndex: Int, editable: Boolean, defaultValue: Option[String] = None)
 
 }

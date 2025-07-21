@@ -374,6 +374,26 @@
         {
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 18,
+          "editable": true,
+          "defaultValue": "Crown copyright"
+        }
+      ]
+    },
+    {
+      "key": "restrictions_on_use",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/restrictions_on_use",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "restrictions on use",
+          "tdrDataLoadHeader": "RestrictionsOnUse"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 19,
           "editable": true
         }
       ]
