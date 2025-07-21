@@ -13,6 +13,7 @@
     "foi_exemption_code",
     "title_closed",
     "title_alternate",
-    "description_alternate"
+    "description_alternate",
+    "rights_copyright"
   ]
 }

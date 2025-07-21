@@ -158,7 +158,8 @@
       "type": [
         "string",
         "null"
-      ]
+      ],
+      "maxLength": 500
     }
   }
 }
