@@ -26,6 +26,8 @@ object ConfigUtils {
     *   - Mapping property names to alternate headers.
     *   - Getting required columns for metadata downloads.
     *   - Getting property types.
+    *   - Getting properties by property type.
+    *   - Getting default values for properties.
     *
     * @return
     *   A `MetadataConfiguration` object containing the configuration mappings and functions.
@@ -37,7 +39,15 @@ object ConfigUtils {
       downloadFileOutputs <- Reader(getDownloadFilesOutputs)
       propertyType <- Reader(getPropertyType)
       getPropertiesByPropertyType <- Reader(getPropertiesByPropertyType)
-    } yield MetadataConfiguration(altHeaderToPropertyMapper, propertyToAltHeaderMapper, downloadFileOutputs, propertyType, getPropertiesByPropertyType)
+      defaultValue <- Reader(getDefaultValue)
+    } yield MetadataConfiguration(
+      altHeaderToPropertyMapper,
+      propertyToAltHeaderMapper,
+      downloadFileOutputs,
+      propertyType,
+      getPropertiesByPropertyType,
+      defaultValue
+    )
     csvConfigurationReader.run(configParameters)
   }
 
@@ -111,7 +121,7 @@ object ConfigUtils {
       .getOrElse(Config(List.empty[ConfigItem]))
       .configItems
       .filter(_.downloadFilesOutputs.nonEmpty)
-      .flatMap(item => item.downloadFilesOutputs.get.map(output => (output.domain, DownloadFileDisplayProperty(item.key, output.columnIndex, output.editable, output.defaultValue))))
+      .flatMap(item => item.downloadFilesOutputs.get.map(output => (output.domain, DownloadFileDisplayProperty(item.key, output.columnIndex, output.editable))))
       .groupBy(_._1)
       .view
       .mapValues(_.map(_._2))
@@ -152,6 +162,28 @@ object ConfigUtils {
     propertyType => configItems.filter(_.propertyType == propertyType).map(_.key)
   }
 
+  /** Retrieves the default value for a given property key based on the configuration parameters.
+    *
+    * @param configurationParameters
+    *   The configuration parameters containing the config data.
+    * @return
+    *   A function that takes a key as a parameter and returns its default value if one exists.
+    * @example
+    *   - val configParams = ConfigParameters(baseSchema, baseConfig)
+    *   - val getDefault = getDefaultValue(configParams)
+    *   - getDefault("rights_copyright") // Returns: "Crown copyright"
+    */
+  private def getDefaultValue(configurationParameters: ConfigParameters): String => String = {
+    val defaultValueMap = configurationParameters.baseConfig
+      .getOrElse(Config(List.empty[ConfigItem]))
+      .configItems
+      .filter(_.defaultValue.isDefined)
+      .map(item => (item.key, item.defaultValue.get))
+      .toMap
+
+    key => defaultValueMap.getOrElse(key, "")
+  }
+
   private def getConfigItems(configurationParameters: ConfigParameters) = {
     configurationParameters.baseConfig
       .getOrElse(Config(List.empty[ConfigItem]))
@@ -181,19 +213,20 @@ object ConfigUtils {
       propertyToOutputMapper: String => String => String,
       downloadFileDisplayProperties: String => List[DownloadFileDisplayProperty],
       getPropertyType: String => String,
-      getPropertiesByPropertyType: String => List[String]
+      getPropertiesByPropertyType: String => List[String],
+      getDefaultValue: String => String
     )
 
   case class ConfigParameters(baseSchema: Value, baseConfig: Either[io.circe.Error, Config])
 
-  case class DownloadFilesOutput(domain: String, columnIndex: Int, editable: Boolean, defaultValue: Option[String] = None)
+  case class DownloadFilesOutput(domain: String, columnIndex: Int, editable: Boolean)
 
   case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String)
 
-  case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]])
+  case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]], defaultValue: Option[String] = None)
 
   case class Config(configItems: List[ConfigItem])
 
-  case class DownloadFileDisplayProperty(key: String, columnIndex: Int, editable: Boolean, defaultValue: Option[String] = None)
+  case class DownloadFileDisplayProperty(key: String, columnIndex: Int, editable: Boolean)
 
 }

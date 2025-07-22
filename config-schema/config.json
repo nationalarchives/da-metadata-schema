@@ -121,6 +121,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/closure_type",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "Open",
       "alternateKeys": [
         {
           "tdrFileHeader": "closure status",
@@ -216,6 +217,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/title_closed",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "false",
       "alternateKeys": [
         {
           "tdrFileHeader": "is filename closed",
@@ -235,6 +237,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/description_closed",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "false",
       "alternateKeys": [
         {
           "tdrFileHeader": "is description closed",
@@ -292,6 +295,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/language",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "English",
       "alternateKeys": [
         {
           "tdrFileHeader": "language",
@@ -364,6 +368,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/rights_copyright",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "Crown copyright",
       "alternateKeys": [
         {
           "tdrFileHeader": "copyright",
@@ -374,8 +379,7 @@
         {
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 18,
-          "editable": true,
-          "defaultValue": "Crown copyright"
+          "editable": true
         }
       ]
     },
