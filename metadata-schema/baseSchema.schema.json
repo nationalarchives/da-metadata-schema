@@ -144,6 +144,42 @@
       ],
       "maxLength": 255,
       "pattern": "^[^\\r\\n]*$"
+    },
+    "file_reference": {
+      "description": "Human readable reference for the file",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "file_type": {
+      "description": "Whether type is a file or folder",
+      "type": "string",
+      "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/file_types"
+    },
+    "parent_reference": {
+      "description": "Human readable reference for the file's parent folder",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "original_identifier": {
+      "description": "The original filepath of a redacted file",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "legal_status": {
+      "description": "The legal status of the file",
+      "type": "string",
+      "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/legal_statuses"
+    },
+    "held_by": {
+      "description": "Who holds the digital copy",
+      "type": "string",
+      "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/held_by"
     }
   }
 }
