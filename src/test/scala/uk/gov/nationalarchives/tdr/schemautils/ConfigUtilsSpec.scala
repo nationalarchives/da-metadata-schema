@@ -21,8 +21,12 @@ class ConfigUtilsSpec extends AnyWordSpec {
       val metadataConfiguration = ConfigUtils.loadConfiguration
       metadataConfiguration.propertyToOutputMapper("tdrFileHeader")("former_reference_department") shouldBe "former reference"
       metadataConfiguration.propertyToOutputMapper("tdrDataLoadHeader")("date_last_modified") shouldBe "ClientSideFileLastModifiedDate"
+      metadataConfiguration.propertyToOutputMapper("tdrBagitExportHeader")("file_path") shouldBe "clientside_original_filepath"
+      metadataConfiguration.propertyToOutputMapper("tdrBagitExportHeader")("file_name") shouldBe "file_name"
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("date_last_modified") shouldBe "true"
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("client_side_checksum") shouldBe "false"
+      metadataConfiguration.propertyToOutputMapper("allowExport")("client_side_checksum") shouldBe "false"
+      metadataConfiguration.propertyToOutputMapper("allowExport")("file_path") shouldBe "true"
       metadataConfiguration.propertyToOutputMapper("blah")("blahBlah") shouldBe "blahBlah"
     }
   }
@@ -39,7 +43,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a getMetadataProperties method that" should {
     "give the list of properties which has given property type" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.getPropertiesByPropertyType("System") shouldBe List("file_path", "file_name", "date_last_modified", "client_side_checksum", "file_size", "UUID")
+      metadataConfiguration.getPropertiesByPropertyType("System") shouldBe List("file_path", "file_name", "date_last_modified", "client_side_checksum", "file_size", "UUID", "file_reference", "original_identifier", "parent_reference", "file_type")
       metadataConfiguration.getPropertiesByPropertyType("unknown") shouldBe List()
     }
   }
@@ -47,7 +51,8 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a downloadProperties method that" should {
     "give the downloadProperties config for a specified download" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 17
+      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 19
+      metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 27
       metadataConfiguration.downloadFileDisplayProperties("UnknownClientTemplate").length shouldBe 0
     }
 

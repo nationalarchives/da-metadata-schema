@@ -7,16 +7,23 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_path",
       "propertyType": "System",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "filepath",
-          "tdrDataLoadHeader": "ClientSideOriginalFilepath"
+          "tdrDataLoadHeader": "ClientSideOriginalFilepath",
+          "tdrBagitExportHeader": "clientside_original_filepath"
         }
       ],
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 1,
+          "editable": false
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 5,
           "editable": false
         }
       ]
@@ -26,6 +33,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name",
       "propertyType": "System",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "filename",
@@ -37,6 +45,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 2,
           "editable": false
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 2,
+          "editable": false
         }
       ]
     },
@@ -45,6 +58,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified",
       "propertyType": "System",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "date last modified",
@@ -56,6 +70,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 3,
           "editable": false
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 9,
+          "editable": false
         }
       ]
     },
@@ -64,6 +83,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/end_date",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "date of the record",
@@ -75,6 +95,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 4,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 21,
+          "editable": false
         }
       ]
     },
@@ -83,6 +108,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/description",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "description",
@@ -94,6 +120,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 5,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 16,
+          "editable": false
         }
       ]
     },
@@ -102,6 +133,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/former_reference_department",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "former reference",
@@ -113,6 +145,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 6,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 25,
+          "editable": false
         }
       ]
     },
@@ -121,6 +158,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/closure_type",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "closure status",
@@ -132,6 +170,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 7,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 10,
+          "editable": false
         }
       ]
     },
@@ -140,6 +183,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/closure_start_date",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "closure start date",
@@ -151,6 +195,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 8,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 11,
+          "editable": false
         }
       ]
     },
@@ -159,6 +208,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/closure_period",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "closure period",
@@ -170,6 +220,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 9,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 12,
+          "editable": false
         }
       ]
     },
@@ -178,6 +233,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/foi_exemption_code",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "foi exemption code",
@@ -189,6 +245,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 10,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 13,
+          "editable": false
         }
       ]
     },
@@ -197,6 +258,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/foi_exemption_asserted",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "foi schedule date",
@@ -208,6 +270,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 11,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 14,
+          "editable": false
         }
       ]
     },
@@ -216,6 +283,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/title_closed",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "is filename closed",
@@ -227,6 +295,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 12,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 15,
+          "editable": false
         }
       ]
     },
@@ -235,6 +308,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/description_closed",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "is description closed",
@@ -246,6 +320,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 14,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 18,
+          "editable": false
         }
       ]
     },
@@ -254,6 +333,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/description_alternate",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "alternate description",
@@ -265,6 +345,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 15,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 19,
+          "editable": false
         }
       ]
     },
@@ -273,6 +358,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/title_alternate",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "alternate filename",
@@ -284,6 +370,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 13,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 16,
+          "editable": false
         }
       ]
     },
@@ -292,6 +383,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/language",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "language",
@@ -303,6 +395,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 16,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 20,
+          "editable": false
         }
       ]
     },
@@ -311,6 +408,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name_translation",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "translated filename",
@@ -322,6 +420,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 17,
           "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 22,
+          "editable": false
         }
       ]
     },
@@ -330,6 +433,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum",
       "propertyType": "System",
       "expectedTDRHeader": false,
+      "allowExport": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "SHA256ClientSideChecksum"
@@ -341,9 +445,17 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_size",
       "propertyType": "System",
       "expectedTDRHeader": false,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "ClientSideFileSize"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 4,
+          "editable": false
         }
       ]
     },
@@ -352,10 +464,182 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/UUID",
       "propertyType": "System",
       "expectedTDRHeader": false,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "UUID",
           "tdrDataLoadHeader": "UUID"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 26,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "rights_copyright",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/rights_copyright",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "copyright",
+          "tdrDataLoadHeader": "RightsCopyright"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 18,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 6,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "restrictions_on_use",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/restrictions_on_use",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "allowExport": false,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "restrictions on use",
+          "tdrDataLoadHeader": "RestrictionsOnUse"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 19,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 27,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "file_reference",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_reference",
+      "propertyType": "System",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "FileReference"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 1,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "original_identifier",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/original_identifier",
+      "propertyType": "System",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "OriginalFilepath"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 23,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "parent_reference",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/parent_reference",
+      "propertyType": "System",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "ParentReference"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 24,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "file_type",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_type",
+      "propertyType": "System",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "FileType"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 3,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "legal_status",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/legal_status",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "LegalStatus"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 3,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "held_by",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/held_by",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "HeldBy"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 8,
+          "editable": false
         }
       ]
     }
