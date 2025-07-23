@@ -407,10 +407,13 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/held_by",
       "propertyType": "Supplied",
       "defaultValue": "The National Archives, Kew",
+      "expectedTDRHeader": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "HeldBy"
         }
+      ],
+      "downloadFilesOutputs": [
       ]
     }
   ]
