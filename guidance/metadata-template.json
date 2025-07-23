@@ -120,10 +120,10 @@
   },
   {
     "property": "rights_copyright",
-    "details": "Indicate the copyright holder for this record is ‘Crown copyright’, ‘Third Party’ or both ‘Crown copyright;Third Party’.",
+    "details": "Indicate the copyright holder for this record is ‘Crown copyright’, ‘Third party’ or both ‘Crown copyright;Third party’.",
     "format": "Semi-colon separated list (with no spaces) Default: ‘Crown copyright’",
     "tdrRequirement": "Mandatory",
-    "example": "Crown copyright;Third Party"
+    "example": "Crown copyright;Third party"
   },
   {
     "property": "restrictions_on_use",
