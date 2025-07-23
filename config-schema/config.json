@@ -121,6 +121,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/closure_type",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "Open",
       "alternateKeys": [
         {
           "tdrFileHeader": "closure status",
@@ -216,6 +217,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/title_closed",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "false",
       "alternateKeys": [
         {
           "tdrFileHeader": "is filename closed",
@@ -235,6 +237,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/description_closed",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "false",
       "alternateKeys": [
         {
           "tdrFileHeader": "is description closed",
@@ -292,6 +295,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/language",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "English",
       "alternateKeys": [
         {
           "tdrFileHeader": "language",
@@ -357,6 +361,59 @@
           "tdrFileHeader": "UUID",
           "tdrDataLoadHeader": "UUID"
         }
+      ]
+    },
+    {
+      "key": "rights_copyright",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/rights_copyright",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "defaultValue": "Crown copyright",
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "copyright",
+          "tdrDataLoadHeader": "RightsCopyright"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 18,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "restrictions_on_use",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/restrictions_on_use",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "restrictions on use",
+          "tdrDataLoadHeader": "RestrictionsOnUse"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 19,
+          "editable": true
+        }
+      ]
+    },
+    {
+      "key": "held_by",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/held_by",
+      "propertyType": "Supplied",
+      "defaultValue": "The National Archives, Kew",
+      "expectedTDRHeader": false,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "HeldBy"
+        }
+      ],
+      "downloadFilesOutputs": [
       ]
     }
   ]

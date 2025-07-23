@@ -74,6 +74,12 @@
       "enum": [
         "The National Archives, Kew"
       ]
+    },
+    "copyrights": {
+      "enum": [
+        "Crown copyright",
+        "Third party"
+      ]
     }
   }
 }
