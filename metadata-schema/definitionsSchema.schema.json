@@ -57,6 +57,24 @@
         "Welsh"
       ]
     },
+    "file_types": {
+      "enum": [
+        "File",
+        "Folder"
+      ]
+    },
+    "legal_statuses": {
+      "enum": [
+        "Public Record(s)",
+        "Not Public Record(s)",
+        "Welsh Public Record(s)"
+      ]
+    },
+    "held_by": {
+      "enum": [
+        "The National Archives, Kew"
+      ]
+    },
     "copyrights": {
       "enum": [
         "Crown copyright",
