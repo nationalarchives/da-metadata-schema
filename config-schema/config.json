@@ -123,7 +123,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 16,
+          "columnIndex": 17,
           "editable": false
         }
       ]
@@ -556,7 +556,8 @@
       "allowExport": true,
       "alternateKeys": [
         {
-          "tdrDataLoadHeader": "OriginalFilepath"
+          "tdrDataLoadHeader": "OriginalFilepath",
+          "tdrBagitExportHeader": "original_filepath"
         }
       ],
       "downloadFilesOutputs": [
@@ -619,7 +620,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 3,
+          "columnIndex": 7,
           "editable": false
         }
       ]
