@@ -1,28 +1,28 @@
 [
   {
     "property": "file_path",
-    "details": "This is the file path/folder structure extracted upon upload, do not modify",
+    "details": "This is the file path/folder structure extracted upon upload, do not modify.",
     "format": "Do not modify",
     "tdrRequirement": "Mandatory",
     "example": "N/A"
   },
   {
     "property": "file_name",
-    "details": "This is the file name extracted upon upload, do not modify",
+    "details": "This is the file name extracted upon upload, do not modify.",
     "format": "Do not modify",
     "tdrRequirement": "Mandatory",
     "example": "N/A"
   },
   {
     "property": "date_last_modified",
-    "details": "This is the date last modified extracted upon upload, do not modify",
+    "details": "This is the date last modified extracted upon upload, do not modify.",
     "format": "Do not modify",
     "tdrRequirement": "Mandatory",
     "example": "N/A"
   },
   {
     "property": "end_date",
-    "details": "If the date last modified is not meaningful, please provide a meaningful date",
+    "details": "If the date last modified is not meaningful, please provide a meaningful date.",
     "format": "YYYY-MM-DD",
     "tdrRequirement": "Optional",
     "example": "2020-03-01"
@@ -57,7 +57,7 @@
   },
   {
     "property": "closure_period",
-    "details": "Closed record: Provide a list of the number of years closure for each foi exemption code, in corresponding order",
+    "details": "Closed record: Provide a list of the number of years closure for each foi exemption code, in corresponding order.",
     "format": "Semi-colon separated list of numbers between 1 and 150 (with no spaces)",
     "tdrRequirement": "Mandatory for closed record",
     "example": "40;80"
@@ -71,7 +71,7 @@
   },
   {
     "property": "foi_exemption_asserted",
-    "details": "Closed record: This date must match the one found on the closure schedule. It can be found on the bottom right hand corner of each page",
+    "details": "Closed record: This date must match the one found on the closure schedule. It can be found on the bottom right hand corner of each page.",
     "format": "YYYY-MM-DD",
     "tdrRequirement": "Mandatory for closed record",
     "example": "2020-03-01"
@@ -106,7 +106,7 @@
   },
   {
     "property": "language",
-    "details": "Indicate if the record is in English, Welsh or both (English;Welsh). This is case sensitive and variations on these words will not be accepted. If you have records in other languages, please contact your digital transfer advisor",
+    "details": "Indicate if the record is in English, Welsh or both (English;Welsh). This is case sensitive and variations on these words will not be accepted. If you have records in other languages, please contact your digital transfer advisor.",
     "format": "Semi-colon separated list (with no spaces)\ndefault: English",
     "tdrRequirement": "Mandatory",
     "example": "English;Welsh"
@@ -117,5 +117,19 @@
     "format": "Text, max 255 characters",
     "tdrRequirement": "Optional",
     "example": "filenameEnglish"
+  },
+  {
+    "property": "rights_copyright",
+    "details": "Indicate the copyright holder for this record is ‘Crown copyright’, ‘Third party’ or both ‘Crown copyright;Third party’.",
+    "format": "Semi-colon separated list (with no spaces) Default: ‘Crown copyright’",
+    "tdrRequirement": "Mandatory",
+    "example": "Crown copyright;Third party"
+  },
+  {
+    "property": "restrictions_on_use",
+    "details": "Can be used to include specific information about copyright conditions. Specific copyright holders should be in a list separated by semi-colons. Contact your digital transfer advisor for guidance if required.",
+    "format": "Text, max 500 characters.",
+    "tdrRequirement": "Optional",
+    "example": "may include BBC; ITV; SKY"
   }
 ]

@@ -158,6 +158,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/closure_type",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "Open",
       "allowExport": true,
       "alternateKeys": [
         {
@@ -283,6 +284,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/title_closed",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "false",
       "allowExport": true,
       "alternateKeys": [
         {
@@ -308,6 +310,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/description_closed",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "false",
       "allowExport": true,
       "alternateKeys": [
         {
@@ -383,6 +386,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/language",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "English",
       "allowExport": true,
       "alternateKeys": [
         {
@@ -484,6 +488,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/rights_copyright",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
+      "defaultValue": "Crown copyright",
       "allowExport": true,
       "alternateKeys": [
         {
@@ -525,6 +530,26 @@
         {
           "domain": "BagitExportTemplate",
           "columnIndex": 27,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "held_by",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/held_by",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "defaultValue": "The National Archives, Kew",
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "HeldBy"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 8,
           "editable": false
         }
       ]
@@ -621,25 +646,6 @@
         {
           "domain": "BagitExportTemplate",
           "columnIndex": 7,
-          "editable": false
-        }
-      ]
-    },
-    {
-      "key": "held_by",
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/held_by",
-      "propertyType": "Supplied",
-      "expectedTDRHeader": false,
-      "allowExport": true,
-      "alternateKeys": [
-        {
-          "tdrDataLoadHeader": "HeldBy"
-        }
-      ],
-      "downloadFilesOutputs": [
-        {
-          "domain": "BagitExportTemplate",
-          "columnIndex": 8,
           "editable": false
         }
       ]

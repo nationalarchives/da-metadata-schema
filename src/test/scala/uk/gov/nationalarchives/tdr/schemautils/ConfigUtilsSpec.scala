@@ -64,9 +64,51 @@ class ConfigUtilsSpec extends AnyWordSpec {
       outputs.head.editable shouldBe false
     }
 
+    "return the correct DownloadFilesOutput for rights copyright" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      val outputs = metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate")
+      val rightsCopyrightDownloadDisplay = outputs.find(property => property.key == "rights_copyright")
+      rightsCopyrightDownloadDisplay match {
+        case Some(property) =>
+          property.key shouldBe "rights_copyright"
+          property.columnIndex shouldBe 18
+          property.editable shouldBe true
+        case None => fail("Expected rights_copyright to be present in the download properties")
+      }
+    }
+
+    "return no default for file_path" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      val outputs = metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate")
+      val filePathProperty = outputs.find(property => property.key == "file_path")
+      filePathProperty match {
+        case Some(property) =>
+          property.key shouldBe "file_path"
+          property.editable shouldBe false
+        case None => fail("Expected file_path to be present in the download properties")
+      }
+    }
+
     "return an empty list for an invalid domain" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
       metadataConfiguration.downloadFileDisplayProperties("InvalidDomain") shouldBe empty
+    }
+  }
+
+  "ConfigUtils should load configuration and provide a getDefaultValue method that" should {
+    "return the default value for a property with a default value" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      metadataConfiguration.getDefaultValue("rights_copyright") shouldBe "Crown copyright"
+    }
+
+    "return an empty string for a property without a default value" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      metadataConfiguration.getDefaultValue("file_path") shouldBe ""
+    }
+
+    "return an empty string for a non-existent property" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      metadataConfiguration.getDefaultValue("non_existent_property") shouldBe ""
     }
   }
 
