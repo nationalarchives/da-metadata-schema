@@ -22,6 +22,11 @@
           "editable": false
         },
         {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 1,
+          "editable": false
+        },
+        {
           "domain": "BagitExportTemplate",
           "columnIndex": 5,
           "editable": false
@@ -43,6 +48,11 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
+          "columnIndex": 2,
+          "editable": false
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
           "columnIndex": 2,
           "editable": false
         },
@@ -72,6 +82,11 @@
           "editable": false
         },
         {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 3,
+          "editable": false
+        },
+        {
           "domain": "BagitExportTemplate",
           "columnIndex": 9,
           "editable": false
@@ -93,6 +108,11 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
+          "columnIndex": 4,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
           "columnIndex": 4,
           "editable": true
         },
@@ -122,6 +142,11 @@
           "editable": true
         },
         {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 5,
+          "editable": true
+        },
+        {
           "domain": "BagitExportTemplate",
           "columnIndex": 17,
           "editable": false
@@ -143,6 +168,11 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
+          "columnIndex": 6,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
           "columnIndex": 6,
           "editable": true
         },
@@ -173,6 +203,11 @@
           "editable": true
         },
         {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 7,
+          "editable": true
+        },
+        {
           "domain": "BagitExportTemplate",
           "columnIndex": 10,
           "editable": false
@@ -194,6 +229,11 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
+          "columnIndex": 8,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
           "columnIndex": 8,
           "editable": true
         },
@@ -223,6 +263,11 @@
           "editable": true
         },
         {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 9,
+          "editable": true
+        },
+        {
           "domain": "BagitExportTemplate",
           "columnIndex": 12,
           "editable": false
@@ -248,6 +293,11 @@
           "editable": true
         },
         {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 10,
+          "editable": true
+        },
+        {
           "domain": "BagitExportTemplate",
           "columnIndex": 13,
           "editable": false
@@ -269,6 +319,11 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
+          "columnIndex": 11,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
           "columnIndex": 11,
           "editable": true
         },
@@ -299,6 +354,11 @@
           "editable": true
         },
         {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 12,
+          "editable": true
+        },
+        {
           "domain": "BagitExportTemplate",
           "columnIndex": 15,
           "editable": false
@@ -321,6 +381,11 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
+          "columnIndex": 14,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
           "columnIndex": 14,
           "editable": true
         },
@@ -350,6 +415,11 @@
           "editable": true
         },
         {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 15,
+          "editable": true
+        },
+        {
           "domain": "BagitExportTemplate",
           "columnIndex": 19,
           "editable": false
@@ -371,6 +441,11 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
+          "columnIndex": 13,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
           "columnIndex": 13,
           "editable": true
         },
@@ -401,6 +476,11 @@
           "editable": true
         },
         {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 16,
+          "editable": true
+        },
+        {
           "domain": "BagitExportTemplate",
           "columnIndex": 20,
           "editable": false
@@ -422,6 +502,11 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
+          "columnIndex": 17,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
           "columnIndex": 17,
           "editable": true
         },
@@ -503,6 +588,11 @@
           "editable": true
         },
         {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 18,
+          "editable": false
+        },
+        {
           "domain": "BagitExportTemplate",
           "columnIndex": 6,
           "editable": false
@@ -526,6 +616,11 @@
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 19,
           "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 19,
+          "editable": false
         },
         {
           "domain": "BagitExportTemplate",
@@ -646,6 +741,26 @@
         {
           "domain": "BagitExportTemplate",
           "columnIndex": 7,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "client_side_checksum",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum",
+      "propertyType": "System",
+      "expectedTDRHeader": false,
+      "allowExport": false,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "checksum",
+          "tdrDataLoadHeader": "SHA256ClientSideChecksum"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 20,
           "editable": false
         }
       ]
