@@ -43,7 +43,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a getMetadataProperties method that" should {
     "give the list of properties which has given property type" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.getPropertiesByPropertyType("System") shouldBe List("file_path", "file_name", "date_last_modified", "client_side_checksum", "file_size", "UUID", "file_reference", "original_identifier", "parent_reference", "file_type")
+      metadataConfiguration.getPropertiesByPropertyType("System") shouldBe List("file_path", "file_name", "date_last_modified", "client_side_checksum", "file_size", "UUID", "rights_copyright", "file_reference", "original_identifier", "parent_reference", "file_type")
       metadataConfiguration.getPropertiesByPropertyType("unknown") shouldBe List()
     }
   }
@@ -51,7 +51,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a downloadProperties method that" should {
     "give the downloadProperties config for a specified download" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 19
+      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 18
       metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 27
       metadataConfiguration.downloadFileDisplayProperties("UnknownClientTemplate").length shouldBe 0
     }
@@ -72,7 +72,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
         case Some(property) =>
           property.key shouldBe "rights_copyright"
           property.columnIndex shouldBe 18
-          property.editable shouldBe true
+          property.editable shouldBe false
         case None => fail("Expected rights_copyright to be present in the download properties")
       }
     }

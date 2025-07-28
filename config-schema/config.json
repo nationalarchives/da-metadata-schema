@@ -486,7 +486,7 @@
     {
       "key": "rights_copyright",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/rights_copyright",
-      "propertyType": "Supplied",
+      "propertyType": "System",
       "expectedTDRHeader": true,
       "defaultValue": "Crown copyright",
       "allowExport": true,
@@ -500,7 +500,7 @@
         {
           "domain": "MetadataDownloadTemplate",
           "columnIndex": 18,
-          "editable": true
+          "editable": false
         },
         {
           "domain": "BagitExportTemplate",
@@ -513,7 +513,7 @@
       "key": "restrictions_on_use",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/restrictions_on_use",
       "propertyType": "Supplied",
-      "expectedTDRHeader": true,
+      "expectedTDRHeader": false,
       "allowExport": false,
       "alternateKeys": [
         {
@@ -522,11 +522,6 @@
         }
       ],
       "downloadFilesOutputs": [
-        {
-          "domain": "MetadataDownloadTemplate",
-          "columnIndex": 19,
-          "editable": true
-        },
         {
           "domain": "BagitExportTemplate",
           "columnIndex": 27,
