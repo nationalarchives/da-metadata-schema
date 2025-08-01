@@ -518,18 +518,6 @@
       ]
     },
     {
-      "key": "client_side_checksum",
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum",
-      "propertyType": "System",
-      "expectedTDRHeader": false,
-      "allowExport": false,
-      "alternateKeys": [
-        {
-          "tdrDataLoadHeader": "SHA256ClientSideChecksum"
-        }
-      ]
-    },
-    {
       "key": "file_size",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_size",
       "propertyType": "System",
