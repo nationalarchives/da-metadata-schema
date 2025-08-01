@@ -131,5 +131,12 @@
     "format": "Text, max 500 characters.",
     "tdrRequirement": "Optional",
     "example": "may include BBC; ITV; SKY"
+  },
+  {
+    "property": "related_material",
+    "details": "Required to support a transfer of digital records for which paper copies of some records have already been transferred.",
+    "format": "Text, max 255 characters.",
+    "tdrRequirement": "Optional",
+    "example": "related material reference"
   }
 ]
