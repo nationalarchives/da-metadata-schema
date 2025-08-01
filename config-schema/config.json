@@ -760,7 +760,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/related_material",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": true,
+      "allowExport": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "related material",
