@@ -31,6 +31,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       case class BaseSchemaReferences(configItems: List[BaseSchemaRef])
       val data = mapper.readTree(nodeSchema.get).toPrettyString
       val items = decode[BaseSchemaReferences](data).getOrElse(BaseSchemaReferences(List.empty[BaseSchemaRef]))
+      items.configItems.size shouldNot equal(0)
       items.configItems.foreach(
         i => i.$ref should equal(s"$baseSchemaPathPropertiesPath/${i.key}"))
     }
