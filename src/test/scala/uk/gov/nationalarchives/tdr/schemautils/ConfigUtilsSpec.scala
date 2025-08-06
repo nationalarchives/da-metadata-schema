@@ -20,7 +20,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       .getOrElse(Config(List.empty[ConfigItem])).configItems.map(_.key)
 
     "contain the correct number of properties" in {
-      propertyKeys.size should equal(29)
+      propertyKeys.size should equal(30)
     }
 
     "not contain duplicate properties" in {
@@ -84,7 +84,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       metadataConfiguration.getPropertiesByPropertyType("Supplied") shouldBe
         List("end_date", "description", "former_reference_department", "closure_type", "closure_start_date", "closure_period",
           "foi_exemption_code", "foi_exemption_asserted", "title_closed", "description_closed", "description_alternate", "title_alternate",
-          "language", "file_name_translation", "restrictions_on_use", "held_by", "legal_status")
+          "language", "file_name_translation", "restrictions_on_use", "held_by", "legal_status", "related_material")
       metadataConfiguration.getPropertiesByPropertyType("unknown") shouldBe List()
     }
   }
