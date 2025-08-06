@@ -197,6 +197,14 @@
       ],
       "maxLength": 500
     },
+    "related_material": {
+      "description": "Required to support a transfer of digital records for which paper copies of some records have already been transferred.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 255
+    },
     "sever_side_checksum": {
       "description": "Checksum generated on copy of file uploaded to TDR, used for file integrity check",
       "type": "string",

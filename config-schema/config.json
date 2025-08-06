@@ -744,6 +744,36 @@
       ]
     },
     {
+      "key": "related_material",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/related_material",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": false,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "related material",
+          "tdrDataLoadHeader": "RelatedMaterial"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 19,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 21,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 28,
+          "editable": false
+        }
+      ]
+    },
+    {
       "key": "server_side_checksum",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/server_side_checksum",
       "propertyType": "System",
