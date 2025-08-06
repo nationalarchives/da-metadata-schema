@@ -772,6 +772,19 @@
           "editable": false
         }
       ]
+    },
+    {
+      "key": "server_side_checksum",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/server_side_checksum",
+      "propertyType": "System",
+      "expectedTDRHeader": false,
+      "allowExport": false,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "SHA256ServerSideChecksum"
+        }
+      ],
+      "downloadFilesOutputs": []
     }
   ]
 }

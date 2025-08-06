@@ -12,8 +12,6 @@ import scala.util.Using
 
 object ConfigUtils {
 
-  val ARRAY_SPLIT_CHAR = ";"
-
   private val BASE_SCHEMA: String = "/metadata-schema/baseSchema.schema.json"
   private val CONFIG_SCHEMA: String = "config-schema/config.json"
 

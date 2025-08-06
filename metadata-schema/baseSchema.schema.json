@@ -204,6 +204,12 @@
         "null"
       ],
       "maxLength": 255
+    },
+    "server_side_checksum": {
+      "description": "Checksum generated on copy of file uploaded to TDR, used for file integrity check",
+      "type": "string",
+      "minLength": 64,
+      "maximum": 64
     }
   }
 }
