@@ -196,6 +196,14 @@
         "null"
       ],
       "maxLength": 500
+    },
+    "related_material": {
+      "description": "Required to support a transfer of digital records for which paper copies of some records have already been transferred.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 255
     }
   }
 }
