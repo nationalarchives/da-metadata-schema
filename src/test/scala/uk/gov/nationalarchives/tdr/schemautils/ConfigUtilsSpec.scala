@@ -15,11 +15,15 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "config.json" should {
     val nodeSchema = Using(Source.fromResource("config-schema/config.json"))(_.mkString)
     val mapper = new ObjectMapper()
+    val configData = mapper.readTree(nodeSchema.get).toPrettyString
+    val propertyKeys = decode[Config](configData)
+      .getOrElse(Config(List.empty[ConfigItem])).configItems.map(_.key)
+
+    "contain the correct number of properties" in {
+      propertyKeys.size should equal(29)
+    }
 
     "not contain duplicate properties" in {
-      val data = mapper.readTree(nodeSchema.get).toPrettyString
-      val propertyKeys = decode[Config](data)
-        .getOrElse(Config(List.empty[ConfigItem])).configItems.map(_.key)
       val numberOfProperties = propertyKeys.size
       numberOfProperties shouldNot equal(0)
       numberOfProperties should equal(propertyKeys.toSet.size)
@@ -29,8 +33,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       val baseSchemaPathPropertiesPath = "classpath:/metadata-schema/baseSchema.schema.json#/properties"
       case class BaseSchemaRef(key: String, $ref: String)
       case class BaseSchemaReferences(configItems: List[BaseSchemaRef])
-      val data = mapper.readTree(nodeSchema.get).toPrettyString
-      val items = decode[BaseSchemaReferences](data).getOrElse(BaseSchemaReferences(List.empty[BaseSchemaRef]))
+      val items = decode[BaseSchemaReferences](configData).getOrElse(BaseSchemaReferences(List.empty[BaseSchemaRef]))
       items.configItems.size shouldNot equal(0)
       items.configItems.foreach(
         i => i.$ref should equal(s"$baseSchemaPathPropertiesPath/${i.key}"))
