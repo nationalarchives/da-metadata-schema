@@ -182,6 +182,14 @@ object ConfigUtils {
     key => defaultValueMap.getOrElse(key, "")
   }
 
+  /** Retrieves a map of properties to default values
+   *
+   * @param configurationParameters
+   *   The configuration parameters containing the config data.
+   * @return
+   *   mapping of between all properties with a default value and the default value itself
+   * 
+   */
   private def getPropertiesToDefaultValueMap(configurationParameters: ConfigParameters): Map[String, String] = {
     configurationParameters.baseConfig
       .getOrElse(Config(List.empty[ConfigItem]))
