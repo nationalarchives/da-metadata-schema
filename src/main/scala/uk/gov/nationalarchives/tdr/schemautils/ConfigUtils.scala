@@ -38,13 +38,15 @@ object ConfigUtils {
       propertyType <- Reader(getPropertyType)
       getPropertiesByPropertyType <- Reader(getPropertiesByPropertyType)
       defaultValue <- Reader(getDefaultValue)
+      propertyToDefaultValueMap <- Reader(getPropertiesToDefaultValueMap)
     } yield MetadataConfiguration(
       altHeaderToPropertyMapper,
       propertyToAltHeaderMapper,
       downloadFileOutputs,
       propertyType,
       getPropertiesByPropertyType,
-      defaultValue
+      defaultValue,
+      propertyToDefaultValueMap
     )
     csvConfigurationReader.run(configParameters)
   }
@@ -175,14 +177,18 @@ object ConfigUtils {
     *   - getDefault("rights_copyright") // Returns: "Crown copyright"
     */
   private def getDefaultValue(configurationParameters: ConfigParameters): String => String = {
-    val defaultValueMap = configurationParameters.baseConfig
+    val defaultValueMap = getPropertiesToDefaultValueMap(configurationParameters)
+
+    key => defaultValueMap.getOrElse(key, "")
+  }
+
+  private def getPropertiesToDefaultValueMap(configurationParameters: ConfigParameters): Map[String, String] = {
+    configurationParameters.baseConfig
       .getOrElse(Config(List.empty[ConfigItem]))
       .configItems
       .filter(_.defaultValue.isDefined)
       .map(item => (item.key, item.defaultValue.get))
       .toMap
-
-    key => defaultValueMap.getOrElse(key, "")
   }
 
   private def getConfigItems(configurationParameters: ConfigParameters) = {
@@ -215,7 +221,8 @@ object ConfigUtils {
       downloadFileDisplayProperties: String => List[DownloadFileDisplayProperty],
       getPropertyType: String => String,
       getPropertiesByPropertyType: String => List[String],
-      getDefaultValue: String => String
+      getDefaultValue: String => String,
+      getPropertiesWithDefaultValue: Map[String, String]
     )
 
   case class ConfigParameters(baseSchema: Value, baseConfig: Either[io.circe.Error, Config])
