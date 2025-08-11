@@ -53,7 +53,23 @@
     },
     "languages" : {
       "enum": [
+        "Arabic",
+        "Bengali",
+        "Chinese",
         "English",
+        "German",
+        "Gujarati",
+        "Hindi",
+        "Irish Gaelic",
+        "Italian",
+        "Polish",
+        "Punjabi",
+        "Russian",
+        "Scottish Gaelic",
+        "Somali",
+        "Ulster Scots",
+        "Urdu",
+        "Vietnamese",
         "Welsh"
       ]
     },
