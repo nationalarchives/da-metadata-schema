@@ -12,6 +12,8 @@ import scala.util.Using
 
 object ConfigUtils {
 
+  val ARRAY_SPLIT_CHAR = ";"
+
   private val BASE_SCHEMA: String = "/metadata-schema/baseSchema.schema.json"
   private val CONFIG_SCHEMA: String = "config-schema/config.json"
 
@@ -188,7 +190,7 @@ object ConfigUtils {
    *   The configuration parameters containing the config data.
    * @return
    *   mapping of between all properties with a default value and the default value itself
-   * 
+   *
    */
   private def getPropertiesToDefaultValueMap(configurationParameters: ConfigParameters): Map[String, String] = {
     configurationParameters.baseConfig

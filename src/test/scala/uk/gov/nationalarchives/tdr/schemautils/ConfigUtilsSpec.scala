@@ -40,6 +40,12 @@ class ConfigUtilsSpec extends AnyWordSpec {
     }
   }
 
+  "ConfigUtils" should {
+    "return semi-colon as 'ARRAY_SPLIT_CHAR'" in {
+      ConfigUtils.ARRAY_SPLIT_CHAR shouldBe ";"
+    }
+  }
+
   "ConfigUtils should load configuration and provide an inputToPropertyMapper method that" should {
     "give the base Schema property for a domain key" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
@@ -156,13 +162,14 @@ class ConfigUtilsSpec extends AnyWordSpec {
 
   "ConfigUtils should load configuration and provide a getPropertiesWithDefaultValue method that" should {
     "return a mapping of properties with a default value set" in {
-      val expectedPropertiesWithDefaultValue = List("closure_type", "language", "description_closed", "title_closed", "rights_copyright", "held_by")
+      val expectedPropertiesWithDefaultValue = List("closure_type", "language", "legal_status", "description_closed", "title_closed", "rights_copyright", "held_by")
       val metadataConfiguration = ConfigUtils.loadConfiguration
       val mapping = metadataConfiguration.getPropertiesWithDefaultValue
-      mapping.size shouldBe 6
+      mapping.size shouldBe 7
       mapping.keys.toList shouldBe expectedPropertiesWithDefaultValue
       mapping("closure_type") shouldBe "Open"
       mapping("language") shouldBe "English"
+      mapping("legal_status") shouldBe "Public Record(s)"
       mapping("description_closed") shouldBe "false"
       mapping("title_closed") shouldBe "false"
       mapping("rights_copyright") shouldBe "Crown copyright"
