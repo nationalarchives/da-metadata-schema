@@ -12,6 +12,8 @@ import scala.util.Using
 
 object ConfigUtils {
 
+  val ARRAY_SPLIT_CHAR = ";"
+
   private val BASE_SCHEMA: String = "/metadata-schema/baseSchema.schema.json"
   private val CONFIG_SCHEMA: String = "config-schema/config.json"
 
@@ -38,13 +40,15 @@ object ConfigUtils {
       propertyType <- Reader(getPropertyType)
       getPropertiesByPropertyType <- Reader(getPropertiesByPropertyType)
       defaultValue <- Reader(getDefaultValue)
+      propertyToDefaultValueMap <- Reader(getPropertiesToDefaultValueMap)
     } yield MetadataConfiguration(
       altHeaderToPropertyMapper,
       propertyToAltHeaderMapper,
       downloadFileOutputs,
       propertyType,
       getPropertiesByPropertyType,
-      defaultValue
+      defaultValue,
+      propertyToDefaultValueMap
     )
     csvConfigurationReader.run(configParameters)
   }
@@ -175,14 +179,26 @@ object ConfigUtils {
     *   - getDefault("rights_copyright") // Returns: "Crown copyright"
     */
   private def getDefaultValue(configurationParameters: ConfigParameters): String => String = {
-    val defaultValueMap = configurationParameters.baseConfig
+    val defaultValueMap = getPropertiesToDefaultValueMap(configurationParameters)
+
+    key => defaultValueMap.getOrElse(key, "")
+  }
+
+  /** Retrieves a map of properties to default values
+   *
+   * @param configurationParameters
+   *   The configuration parameters containing the config data.
+   * @return
+   *   mapping of between all properties with a default value and the default value itself
+   *
+   */
+  private def getPropertiesToDefaultValueMap(configurationParameters: ConfigParameters): Map[String, String] = {
+    configurationParameters.baseConfig
       .getOrElse(Config(List.empty[ConfigItem]))
       .configItems
       .filter(_.defaultValue.isDefined)
       .map(item => (item.key, item.defaultValue.get))
       .toMap
-
-    key => defaultValueMap.getOrElse(key, "")
   }
 
   private def getConfigItems(configurationParameters: ConfigParameters) = {
@@ -215,7 +231,8 @@ object ConfigUtils {
       downloadFileDisplayProperties: String => List[DownloadFileDisplayProperty],
       getPropertyType: String => String,
       getPropertiesByPropertyType: String => List[String],
-      getDefaultValue: String => String
+      getDefaultValue: String => String,
+      getPropertiesWithDefaultValue: Map[String, String]
     )
 
   case class ConfigParameters(baseSchema: Value, baseConfig: Either[io.circe.Error, Config])
