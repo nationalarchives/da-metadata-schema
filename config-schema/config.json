@@ -756,7 +756,13 @@
           "tdrDataLoadHeader": "RelatedMaterial"
         }
       ],
-      "downloadFilesOutputs": []
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 28,
+          "editable": false
+        }
+      ]
     },
     {
       "key": "server_side_checksum",
