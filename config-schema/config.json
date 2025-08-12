@@ -758,16 +758,6 @@
       ],
       "downloadFilesOutputs": [
         {
-          "domain": "MetadataDownloadTemplate",
-          "columnIndex": 19,
-          "editable": true
-        },
-        {
-          "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 21,
-          "editable": true
-        },
-        {
           "domain": "BagitExportTemplate",
           "columnIndex": 28,
           "editable": false
