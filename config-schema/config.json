@@ -748,7 +748,7 @@
       "key": "related_material",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/related_material",
       "propertyType": "Supplied",
-      "expectedTDRHeader": false,
+      "expectedTDRHeader": true,
       "allowExport": true,
       "alternateKeys": [
         {
