@@ -124,5 +124,12 @@
     "format": "Semi-colon separated list (with no spaces) Default: ‘Crown copyright’",
     "tdrRequirement": "Mandatory",
     "example": "Crown copyright;Third party"
+  },
+  {
+    "property": "related_material",
+    "details": "Provide any reference to records already included in the TNA catalogue. If you have multiple references, these should be separated by semi-colons.",
+    "format": "Text, max 255 characters.",
+    "tdrRequirement": "Optional",
+    "example": "DL 10/71;EE 500/32"
   }
 ]

@@ -749,7 +749,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/related_material",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": false,
+      "allowExport": true,
       "alternateKeys": [
         {
           "tdrFileHeader": "related material",
@@ -757,6 +757,16 @@
         }
       ],
       "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 19,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 21,
+          "editable": true
+        },
         {
           "domain": "BagitExportTemplate",
           "columnIndex": 28,
