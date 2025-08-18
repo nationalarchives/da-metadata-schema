@@ -12,7 +12,8 @@
         {
           "tdrFileHeader": "filepath",
           "tdrDataLoadHeader": "ClientSideOriginalFilepath",
-          "tdrBagitExportHeader": "clientside_original_filepath"
+          "tdrBagitExportHeader": "clientside_original_filepath",
+          "sharePointTag": "FileRef"
         }
       ],
       "downloadFilesOutputs": [
@@ -42,7 +43,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "filename",
-          "tdrDataLoadHeader": "Filename"
+          "tdrDataLoadHeader": "Filename",
+          "sharePointTag": "FileLeafRef"
         }
       ],
       "downloadFilesOutputs": [
@@ -72,7 +74,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "date last modified",
-          "tdrDataLoadHeader": "ClientSideFileLastModifiedDate"
+          "tdrDataLoadHeader": "ClientSideFileLastModifiedDate",
+          "sharePointTag": "Modified"
         }
       ],
       "downloadFilesOutputs": [
@@ -525,7 +528,8 @@
       "allowExport": true,
       "alternateKeys": [
         {
-          "tdrDataLoadHeader": "ClientSideFileSize"
+          "tdrDataLoadHeader": "ClientSideFileSize",
+          "sharePointTag": "Length"
         }
       ],
       "downloadFilesOutputs": [
