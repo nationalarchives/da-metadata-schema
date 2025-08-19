@@ -74,7 +74,7 @@ class SharepointDataLoadSchemaSpec extends BaseSpec {
 
       errors.size() shouldBe 1
       val errorsArray = errors.asScala.toArray
-      errorsArray(0).getMessage shouldBe "$.matchId: does not match the uuid pattern must be a valid RFC 4122 UUID"
+      errorsArray(0).getMessage shouldBe "$.transferId: does not match the uuid pattern must be a valid RFC 4122 UUID"
     }
   }
 }
