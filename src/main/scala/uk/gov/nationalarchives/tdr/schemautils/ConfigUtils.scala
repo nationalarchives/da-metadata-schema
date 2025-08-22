@@ -75,7 +75,8 @@ object ConfigUtils {
       Map(
         "tdrFileHeader" -> configItems.filter(_._2.nonEmpty).map(p => p._2.get -> p._1).toMap,
         "tdrDataLoadHeader" -> configItems.filter(_._3.nonEmpty).map(p => p._3 -> p._1).toMap,
-        "tdrBagitExportHeader" -> configItems.filter(_._4.nonEmpty).map(p => p._4.get -> p._1).toMap
+        "tdrBagitExportHeader" -> configItems.filter(_._4.nonEmpty).map(p => p._4.get -> p._1).toMap,
+        "sharePointTag" -> configItems.filter(_._5.nonEmpty).map(p => p._5.get -> p._1).toMap
       )
     domain => key => mapped.get(domain).flatMap(_.get(key)).getOrElse(key)
   }
@@ -103,7 +104,8 @@ object ConfigUtils {
         "tdrFileHeader" -> configItems.filter(_._2.nonEmpty).map(p => p._1 -> p._2.get).toMap,
         "tdrDataLoadHeader" -> configItems.filter(_._3.nonEmpty).map(p => p._1 -> p._3).toMap,
         "tdrBagitExportHeader" -> configItems.filter(_._4.nonEmpty).map(p => p._1 -> p._4.get).toMap,
-        "expectedTDRHeader" -> configItems.map(p => p._1 -> p._5.toString).toMap,
+        "sharePointTag" -> configItems.filter(_._5.nonEmpty).map(p => p._1 -> p._5.get).toMap,
+        "expectedTDRHeader" -> configItems.map(p => p._1 -> p._6.toString).toMap,
         "allowExport" -> configItems.map(p => p._1 -> p._6.toString).toMap
       )
     domain => propertyName => mapped.get(domain).flatMap(_.get(propertyName)).getOrElse(propertyName)
@@ -205,7 +207,9 @@ object ConfigUtils {
     configurationParameters.baseConfig
       .getOrElse(Config(List.empty[ConfigItem]))
       .configItems
-      .map(p => (p.key, p.alternateKeys.head.tdrFileHeader, p.alternateKeys.head.tdrDataLoadHeader, p.alternateKeys.head.tdrBagitExportHeader, p.expectedTDRHeader, p.allowExport))
+      .map(p => (
+        p.key, p.alternateKeys.head.tdrFileHeader, p.alternateKeys.head.tdrDataLoadHeader, p.alternateKeys.head.tdrBagitExportHeader,
+        p.alternateKeys.head.sharePointTag, p.expectedTDRHeader, p.allowExport))
   }
 
   private def loadBaseSchema: Value = {
@@ -239,7 +243,7 @@ object ConfigUtils {
 
   case class DownloadFilesOutput(domain: String, columnIndex: Int, editable: Boolean)
 
-  case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String])
+  case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String], sharePointTag: Option[String])
 
   case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]], defaultValue: Option[String] = None)
 

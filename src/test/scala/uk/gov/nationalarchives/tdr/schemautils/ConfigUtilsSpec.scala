@@ -64,6 +64,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       metadataConfiguration.propertyToOutputMapper("tdrDataLoadHeader")("date_last_modified") shouldBe "ClientSideFileLastModifiedDate"
       metadataConfiguration.propertyToOutputMapper("tdrBagitExportHeader")("file_path") shouldBe "clientside_original_filepath"
       metadataConfiguration.propertyToOutputMapper("tdrBagitExportHeader")("file_name") shouldBe "file_name"
+      metadataConfiguration.propertyToOutputMapper("sharePointTag")("date_last_modified") shouldBe "Modified"
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("date_last_modified") shouldBe "true"
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("client_side_checksum") shouldBe "false"
       metadataConfiguration.propertyToOutputMapper("allowExport")("client_side_checksum") shouldBe "false"
