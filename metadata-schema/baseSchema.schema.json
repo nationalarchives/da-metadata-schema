@@ -210,6 +210,58 @@
       "type": "string",
       "minLength": 64,
       "maximum": 64
+    },
+    "judgment_type": {
+      "description": "Judgment transfer only - whether the file is a judgment or a press summary",
+      "type": "string",
+      "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/judgment_types"
+    },
+    "judgment_update": {
+      "description": "Judgment transfer only - whether the file is an update to a previous judgment",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "judgment_update_type": {
+      "description": "Judgment transfer only - type of update to a previous judgment",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/judgment_update_types"
+      }
+    },
+    "judgment_update_details": {
+      "description": "Judgment transfer only - details of the update to a previous judgment",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 1000
+    },
+    "judgment_neutral_citation": {
+      "description": "Judgment transfer only - whether the file is an update to a previous judgment",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 100,
+      "minLength": 10
+    },
+    "judgment_no_neutral_citation": {
+      "description": "Judgment transfer only - whether the file has no neutral citation",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "judgment_reference": {
+      "description": "Judgment transfer only - the reference of the judgment",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 500
     }
   }
 }

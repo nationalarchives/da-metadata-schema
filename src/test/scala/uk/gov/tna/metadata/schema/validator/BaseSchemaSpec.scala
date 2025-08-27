@@ -46,16 +46,4 @@ class BaseSchemaSpec extends BaseSpec {
       errors.size() shouldBe 0
     }
   }
-
-  private def loadAndModifyTestData(testDataPath: String, replace: String, replacement: String): String = {
-    Option(getClass.getResourceAsStream(testDataPath)) match {
-      case Some(inputStream) =>
-        Using.resource(inputStream) { stream =>
-          val jsonString = Source.fromInputStream(stream).mkString
-          jsonString.replace(replace, replacement)
-        }
-      case None =>
-        throw new IllegalArgumentException(s"Resource not found: $testDataPath")
-    }
-  }
 }
