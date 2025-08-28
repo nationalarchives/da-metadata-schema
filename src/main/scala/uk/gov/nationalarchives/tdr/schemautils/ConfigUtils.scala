@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
 import io.circe.generic.auto._
 import io.circe.jawn.decode
 import ujson.Value.Value
+import io.circe.Decoder
+import io.circe.generic.extras.Configuration
+import io.circe.generic.extras.semiauto._
 
 import java.io.InputStream
 import scala.util.Using
@@ -212,7 +215,7 @@ object ConfigUtils {
         (
           p.key,
           alternateKeysOpt.flatMap(_.tdrFileHeader),
-          alternateKeysOpt.map(_.tdrDataLoadHeader).getOrElse(p.key),
+          alternateKeysOpt.map(_.tdrDataLoadHeader).getOrElse(""),
           alternateKeysOpt.flatMap(_.tdrBagitExportHeader),
           alternateKeysOpt.flatMap(_.sharePointTag),
           p.expectedTDRHeader,
@@ -254,7 +257,10 @@ object ConfigUtils {
 
   case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String], sharePointTag: Option[String])
 
-  case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]], defaultValue: Option[String] = None, judgmentOnly: Boolean = false)
+  case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]], defaultValue: Option[String] = None, judgmentOnly: Option[Boolean] = Option(false))
+
+  private implicit val circeConfig: Configuration = Configuration.default.withDefaults
+  implicit val configItemDecoder: Decoder[ConfigItem] = deriveConfiguredDecoder[ConfigItem]
 
   case class Config(configItems: List[ConfigItem])
 
