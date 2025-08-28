@@ -799,11 +799,34 @@
       "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "JudgmentType"
+        }
       ],
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
           "columnIndex": 29,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "judgment_update",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_update",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "judgmentOnly": true,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "JudgmentUpdate"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 30,
           "editable": false
         }
       ]
@@ -816,11 +839,14 @@
       "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "JudgmentUpdateType"
+        }
       ],
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 30,
+          "columnIndex": 31,
           "editable": false
         }
       ]
@@ -833,11 +859,14 @@
       "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "JudgmentUpdateDetails"
+        }
       ],
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 31,
+          "columnIndex": 32,
           "editable": false
         }
       ]
@@ -850,11 +879,14 @@
       "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "JudgmentNeutralCitation"
+        }
       ],
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 32,
+          "columnIndex": 33,
           "editable": false
         }
       ]
@@ -867,11 +899,14 @@
       "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "JudgmentNoNeutralCitation"
+        }
       ],
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 33,
+          "columnIndex": 34,
           "editable": false
         }
       ]
@@ -884,11 +919,14 @@
       "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "JudgmentReference"
+        }
       ],
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 34,
+          "columnIndex": 37,
           "editable": false
         }
       ]
