@@ -254,7 +254,7 @@ object ConfigUtils {
 
   case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String], sharePointTag: Option[String])
 
-  case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]], defaultValue: Option[String] = None)
+  case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]], defaultValue: Option[String] = None, judgmentOnly: Boolean = false)
 
   case class Config(configItems: List[ConfigItem])
 
