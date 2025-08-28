@@ -790,6 +790,108 @@
         }
       ],
       "downloadFilesOutputs": []
+    },
+    {
+      "key": "judgment_type",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_type",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "judgmentOnly": true,
+      "alternateKeys": [
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 29,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "judgment_update_type",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_update_type",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "judgmentOnly": true,
+      "alternateKeys": [
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 30,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "judgment_update_details",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_update_details",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "judgmentOnly": true,
+      "alternateKeys": [
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 31,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "judgment_neutral_citation",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_neutral_citation",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "judgmentOnly": true,
+      "alternateKeys": [
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 32,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "judgment_no_neutral_citation",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_no_neutral_citation",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "judgmentOnly": true,
+      "alternateKeys": [
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 33,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "judgment_reference",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_reference",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "judgmentOnly": true,
+      "alternateKeys": [
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 34,
+          "editable": false
+        }
+      ]
     }
   ]
 }
