@@ -20,7 +20,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       .getOrElse(Config(List.empty[ConfigItem])).configItems.map(_.key)
 
     "contain the correct number of properties" in {
-      propertyKeys.size should equal(30)
+      propertyKeys.size should equal(36)
     }
 
     "not contain duplicate properties" in {
@@ -91,7 +91,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       metadataConfiguration.getPropertiesByPropertyType("Supplied") shouldBe
         List("end_date", "description", "former_reference_department", "closure_type", "closure_start_date", "closure_period",
           "foi_exemption_code", "foi_exemption_asserted", "title_closed", "description_closed", "description_alternate", "title_alternate",
-          "language", "file_name_translation", "restrictions_on_use", "held_by", "legal_status", "related_material")
+          "language", "file_name_translation", "restrictions_on_use", "held_by", "legal_status", "related_material","judgment_type", "judgment_update_type", "judgment_update_details", "judgment_neutral_citation", "judgment_no_neutral_citation", "judgment_reference")
       metadataConfiguration.getPropertiesByPropertyType("unknown") shouldBe List()
     }
   }
@@ -100,7 +100,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
     "give the downloadProperties config for a specified download" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
       metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 19
-      metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 28
+      metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 34
       metadataConfiguration.downloadFileDisplayProperties("MetadataReviewDetailTemplate").length shouldBe 20
       metadataConfiguration.downloadFileDisplayProperties("UnknownClientTemplate").length shouldBe 0
     }

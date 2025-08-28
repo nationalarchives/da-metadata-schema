@@ -8,6 +8,7 @@
       "propertyType": "System",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "filepath",
@@ -40,6 +41,7 @@
       "propertyType": "System",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "filename",
@@ -71,6 +73,7 @@
       "propertyType": "System",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "date last modified",
@@ -102,6 +105,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "date of the record",
@@ -132,6 +136,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "description",
@@ -162,6 +167,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "former reference",
@@ -193,6 +199,7 @@
       "expectedTDRHeader": true,
       "defaultValue": "Open",
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "closure status",
@@ -223,6 +230,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "closure start date",
@@ -253,6 +261,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "closure period",
@@ -283,6 +292,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "foi exemption code",
@@ -313,6 +323,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "foi schedule date",
@@ -344,6 +355,7 @@
       "expectedTDRHeader": true,
       "defaultValue": "false",
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "is filename closed",
@@ -375,6 +387,7 @@
       "expectedTDRHeader": true,
       "defaultValue": "false",
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "is description closed",
@@ -405,6 +418,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "alternate description",
@@ -435,6 +449,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "alternate filename",
@@ -466,6 +481,7 @@
       "expectedTDRHeader": true,
       "defaultValue": "English",
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "language",
@@ -496,6 +512,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "translated filename",
@@ -526,6 +543,7 @@
       "propertyType": "System",
       "expectedTDRHeader": false,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "ClientSideFileSize",
@@ -546,6 +564,7 @@
       "propertyType": "System",
       "expectedTDRHeader": false,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "UUID",
@@ -567,6 +586,7 @@
       "expectedTDRHeader": true,
       "defaultValue": "Crown copyright",
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "copyright",
@@ -597,6 +617,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
       "allowExport": false,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "restrictions on use",
@@ -618,6 +639,7 @@
       "expectedTDRHeader": false,
       "defaultValue": "The National Archives, Kew",
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "HeldBy"
@@ -637,6 +659,7 @@
       "propertyType": "System",
       "expectedTDRHeader": false,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "FileReference"
@@ -656,6 +679,7 @@
       "propertyType": "System",
       "expectedTDRHeader": false,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "OriginalFilepath",
@@ -676,6 +700,7 @@
       "propertyType": "System",
       "expectedTDRHeader": false,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "ParentReference"
@@ -695,6 +720,7 @@
       "propertyType": "System",
       "expectedTDRHeader": false,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "FileType"
@@ -715,6 +741,7 @@
       "expectedTDRHeader": false,
       "defaultValue": "Public Record(s)",
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "LegalStatus"
@@ -734,6 +761,7 @@
       "propertyType": "System",
       "expectedTDRHeader": false,
       "allowExport": false,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "checksum",
@@ -754,6 +782,7 @@
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrFileHeader": "related material",
@@ -784,6 +813,7 @@
       "propertyType": "System",
       "expectedTDRHeader": false,
       "allowExport": false,
+      "judgmentOnly": false,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "SHA256ServerSideChecksum"

@@ -207,9 +207,18 @@ object ConfigUtils {
     configurationParameters.baseConfig
       .getOrElse(Config(List.empty[ConfigItem]))
       .configItems
-      .map(p => (
-        p.key, p.alternateKeys.head.tdrFileHeader, p.alternateKeys.head.tdrDataLoadHeader, p.alternateKeys.head.tdrBagitExportHeader,
-        p.alternateKeys.head.sharePointTag, p.expectedTDRHeader, p.allowExport))
+      .map(p => {
+        val alternateKeysOpt = p.alternateKeys.headOption
+        (
+          p.key,
+          alternateKeysOpt.flatMap(_.tdrFileHeader),
+          alternateKeysOpt.map(_.tdrDataLoadHeader).getOrElse(p.key),
+          alternateKeysOpt.flatMap(_.tdrBagitExportHeader),
+          alternateKeysOpt.flatMap(_.sharePointTag),
+          p.expectedTDRHeader,
+          p.allowExport
+        )
+      })
   }
 
   private def loadBaseSchema: Value = {
