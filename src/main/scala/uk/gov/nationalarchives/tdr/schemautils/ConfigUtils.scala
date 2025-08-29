@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
 import io.circe.generic.auto._
 import io.circe.jawn.decode
 import ujson.Value.Value
+import io.circe.Decoder
+import io.circe.generic.extras.Configuration
+import io.circe.generic.extras.semiauto._
 
 import java.io.InputStream
 import scala.util.Using
@@ -207,9 +210,18 @@ object ConfigUtils {
     configurationParameters.baseConfig
       .getOrElse(Config(List.empty[ConfigItem]))
       .configItems
-      .map(p => (
-        p.key, p.alternateKeys.head.tdrFileHeader, p.alternateKeys.head.tdrDataLoadHeader, p.alternateKeys.head.tdrBagitExportHeader,
-        p.alternateKeys.head.sharePointTag, p.expectedTDRHeader, p.allowExport))
+      .map(p => {
+        val alternateKeysOpt = p.alternateKeys.headOption
+        (
+          p.key,
+          alternateKeysOpt.flatMap(_.tdrFileHeader),
+          alternateKeysOpt.map(_.tdrDataLoadHeader).getOrElse(""),
+          alternateKeysOpt.flatMap(_.tdrBagitExportHeader),
+          alternateKeysOpt.flatMap(_.sharePointTag),
+          p.expectedTDRHeader,
+          p.allowExport
+        )
+      })
   }
 
   private def loadBaseSchema: Value = {
@@ -245,7 +257,10 @@ object ConfigUtils {
 
   case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String], sharePointTag: Option[String])
 
-  case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]], defaultValue: Option[String] = None)
+  case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]], defaultValue: Option[String] = None, judgmentOnly: Option[Boolean] = Option(false))
+
+  private implicit val circeConfig: Configuration = Configuration.default.withDefaults
+  implicit val configItemDecoder: Decoder[ConfigItem] = deriveConfiguredDecoder[ConfigItem]
 
   case class Config(configItems: List[ConfigItem])
 
