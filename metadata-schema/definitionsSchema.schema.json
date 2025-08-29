@@ -96,6 +96,21 @@
         "Crown copyright",
         "Third party"
       ]
+    },
+    "judgment_types": {
+      "enum": [
+        "judgment",
+        "press_summary"
+      ]
+    },
+    "judgment_update_types": {
+      "enum": [
+        "Typo",
+        "Formatting",
+        "Amendment to NCN",
+        "Other",
+        "Anonymisation/redaction"
+      ]
     }
   }
 }
