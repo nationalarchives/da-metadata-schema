@@ -79,7 +79,8 @@ object ConfigUtils {
         "tdrFileHeader" -> configItems.filter(_._2.nonEmpty).map(p => p._2.get -> p._1).toMap,
         "tdrDataLoadHeader" -> configItems.filter(_._3.nonEmpty).map(p => p._3 -> p._1).toMap,
         "tdrBagitExportHeader" -> configItems.filter(_._4.nonEmpty).map(p => p._4.get -> p._1).toMap,
-        "sharePointTag" -> configItems.filter(_._5.nonEmpty).map(p => p._5.get -> p._1).toMap
+        "sharePointTag" -> configItems.filter(_._5.nonEmpty).map(p => p._5.get -> p._1).toMap,
+        "clientSideDataInput" -> configItems.filter(_._6.nonEmpty).map(p => p._6.get -> p._1).toMap
       )
     domain => key => mapped.get(domain).flatMap(_.get(key)).getOrElse(key)
   }
@@ -108,8 +109,9 @@ object ConfigUtils {
         "tdrDataLoadHeader" -> configItems.filter(_._3.nonEmpty).map(p => p._1 -> p._3).toMap,
         "tdrBagitExportHeader" -> configItems.filter(_._4.nonEmpty).map(p => p._1 -> p._4.get).toMap,
         "sharePointTag" -> configItems.filter(_._5.nonEmpty).map(p => p._1 -> p._5.get).toMap,
-        "expectedTDRHeader" -> configItems.map(p => p._1 -> p._6.toString).toMap,
-        "allowExport" -> configItems.map(p => p._1 -> p._6.toString).toMap
+        "clientSideDataInput" -> configItems.filter(_._6.nonEmpty).map(p => p._1 -> p._6.get).toMap,
+        "expectedTDRHeader" -> configItems.map(p => p._1 -> p._7.toString).toMap,
+        "allowExport" -> configItems.map(p => p._1 -> p._8.toString).toMap
       )
     domain => propertyName => mapped.get(domain).flatMap(_.get(propertyName)).getOrElse(propertyName)
   }
@@ -218,6 +220,7 @@ object ConfigUtils {
           alternateKeysOpt.map(_.tdrDataLoadHeader).getOrElse(""),
           alternateKeysOpt.flatMap(_.tdrBagitExportHeader),
           alternateKeysOpt.flatMap(_.sharePointTag),
+          alternateKeysOpt.flatMap(_.clientSideDataInput),
           p.expectedTDRHeader,
           p.allowExport
         )
@@ -255,7 +258,9 @@ object ConfigUtils {
 
   case class DownloadFilesOutput(domain: String, columnIndex: Int, editable: Boolean)
 
-  case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String], sharePointTag: Option[String])
+  case class AlternateKeys(
+                            tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String],
+                            sharePointTag: Option[String], clientSideDataInput: Option[String])
 
   case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]], defaultValue: Option[String] = None, judgmentOnly: Option[Boolean] = Option(false))
 
