@@ -1,0 +1,7 @@
+{
+  "$id": "/schema/requiredJudgment",
+  "type": "object",
+  "required": [
+    "judgment_type"
+  ]
+}

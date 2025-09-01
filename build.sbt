@@ -64,9 +64,22 @@ lazy val root = (project in file("."))
       jsonSchemaValidator,
       circeCore,
       circeGeneric,
+      circeGenericExtras,
       circeParser,
       ujson
-    )
+    ),
+    Test / resourceGenerators += Def.task {
+      val base = baseDirectory.value
+      val out = (Test / resourceManaged).value
+      val dirs = Seq("metadata-schema", "config-schema", "validation-messages", "guidance")
+      val copied = dirs.flatMap { d =>
+        val src = base / d
+        val dest = out / d
+        IO.copyDirectory(src, dest)
+        (dest ** "*").get
+      }
+      copied
+    }.taskValue
   )
 
 lazy val copySchema = taskKey[Unit]("copySchema")
