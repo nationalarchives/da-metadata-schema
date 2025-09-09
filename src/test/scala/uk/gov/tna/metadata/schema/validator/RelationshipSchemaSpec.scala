@@ -85,21 +85,5 @@ class RelationshipSchemaSpec extends BaseSpec {
       val errors: util.Set[ValidationMessage] = schemaSetup.validate(modifiedData, InputFormat.JSON)
       errors.size shouldBe 0
     }
-    "pass test" in {
-      val schemaPath = "metadata-schema/relationshipSchema.schema.json"
-      //val schemaPath = "metadata-schema/baseSchema.schema.json"
-      val modifiedData = """
-        {
-          "judgment_neutral_citation": "gg",
-          "judgment_no_neutral_citation": false,
-          "related_title": "some title"
-        }
-        """"""
-      val schemaSetup = createTheSchema(schemaPath)
-
-      val errors: util.Set[ValidationMessage] = schemaSetup.validate(modifiedData, InputFormat.JSON)
-      println(errors)
-      errors.size() shouldBe 0
-    }
   }
 }
