@@ -99,7 +99,7 @@
         "properties": {
           "judgment_neutral_citation": {
             "type": "string",
-            "minLength": 1
+            "minLength": 0
           }
         },
         "required": ["judgment_neutral_citation"]
