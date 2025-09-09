@@ -21,3 +21,4 @@ pull_request_rules:
         name: default
 merge_queue:
   max_parallel_checks: 1
+  
