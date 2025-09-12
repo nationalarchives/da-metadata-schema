@@ -92,7 +92,6 @@ lazy val root = (project in file("."))
         }
         val sb = new StringBuilder
         sb.append("package uk.gov.nationalarchives.tdr.schema.generated\n")
-        sb.append("// Contains only property name constants. Generated via ujson parsing.\n")
         sb.append("object BaseSchema {\n")
         sb.append(constantsBuilder.toString)
         sb.append("}\n")
