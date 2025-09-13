@@ -54,6 +54,8 @@ class ConfigUtilsSpec extends AnyWordSpec {
       tdrFileHeaderMapper("alternate filename") shouldBe "title_alternate"
       metadataConfiguration.inputToPropertyMapper("tdrDataLoadHeader")("former_reference_department") shouldBe "former_reference_department"
       metadataConfiguration.inputToPropertyMapper("tdrDataLoadHeader")("DescriptionClosed") shouldBe "description_closed"
+      metadataConfiguration.inputToPropertyMapper("sharePointTag")("Length") shouldBe "file_size"
+      metadataConfiguration.inputToPropertyMapper("clientSideDataInput")("fileSize") shouldBe "file_size"
     }
   }
 
@@ -65,6 +67,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       metadataConfiguration.propertyToOutputMapper("tdrBagitExportHeader")("file_path") shouldBe "clientside_original_filepath"
       metadataConfiguration.propertyToOutputMapper("tdrBagitExportHeader")("file_name") shouldBe "file_name"
       metadataConfiguration.propertyToOutputMapper("sharePointTag")("date_last_modified") shouldBe "Modified"
+      metadataConfiguration.propertyToOutputMapper("clientSideDataInput")("file_size") shouldBe "fileSize"
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("date_last_modified") shouldBe "true"
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("client_side_checksum") shouldBe "false"
       metadataConfiguration.propertyToOutputMapper("allowExport")("client_side_checksum") shouldBe "false"

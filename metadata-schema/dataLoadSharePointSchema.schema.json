@@ -4,27 +4,34 @@
   "properties": {
     "matchId": {
       "type": "string",
-      "propertyType": "System"
+      "propertyType": "System",
+      "description": "Identifier for the file being uploaded to TDR."
     },
     "transferId": {
       "type": "string",
       "format": "uuid",
-      "propertyType": "System"
+      "propertyType": "System",
+      "description": "Unique identifier for the TDR transfer."
     },
     "Modified": {
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified"
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified",
+      "description": "The date the file was last modified"
     },
     "SHA256ClientSideChecksum": {
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum"
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/client_side_checksum",
+      "description": "Checksum generated before file uploaded to TDR, used for file integrity check."
     },
     "Length": {
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_size"
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_size",
+      "description": "Size of the uploaded file in bytes."
     },
     "FileRef": {
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_path"
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_path",
+      "description": "The path to the file obtained from the client side."
     },
     "FileLeafRef": {
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name"
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name",
+      "description": "The name of the file obtained from SharePoint. Will be displayed to the public as the description if no description is provided."
     }
   },
   "required": [
