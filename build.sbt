@@ -68,42 +68,6 @@ lazy val root = (project in file("."))
       circeParser,
       ujsonLib
     ),
-    // Source generator: produce only the BaseSchema object with property name constants
-    Compile / sourceGenerators += Def.task {
-      import scala.io.Source
-      import scala.util.Using
-      import ujson.*
-      val log = streams.value.log
-      val schemaFile = baseDirectory.value / "metadata-schema" / "baseSchema.schema.json"
-      if (!schemaFile.exists()) {
-        log.warn(s"Schema file not found: $schemaFile")
-        Seq.empty[File]
-      } else {
-        val jsonStr = Using(Source.fromFile(schemaFile)(scala.io.Codec.UTF8))(_.mkString).get
-        val parsed = ujson.read(jsonStr)
-        val propNames: Seq[String] = parsed.obj.get("properties") match {
-          case Some(obj: ujson.Obj) => obj.value.keys.toSeq.sorted
-          case _ => Seq.empty
-        }
-        val constantsBuilder = new StringBuilder
-        propNames.foreach { n =>
-          val safe = n.replaceAll("[^A-Za-z0-9_]", "_")
-          constantsBuilder.append("  val ").append(safe).append(": String = \"").append(n).append("\"\n")
-        }
-        val sb = new StringBuilder
-        sb.append("package uk.gov.nationalarchives.tdr.schema.generated\n")
-        sb.append("object BaseSchema {\n")
-        sb.append(constantsBuilder.toString)
-        sb.append("}\n")
-        val code = sb.toString
-        val outDir = (Compile / sourceManaged).value / "generated"
-        outDir.mkdirs()
-        val outFile = outDir / "BaseSchema.scala"
-        IO.write(outFile, code)
-        log.info(s"Generated ${outFile.getAbsolutePath} with ${propNames.size} property constants.")
-        Seq(outFile)
-      }
-    }.taskValue,
     Test / resourceGenerators += Def.task {
       val base = baseDirectory.value
       val out = (Test / resourceManaged).value
