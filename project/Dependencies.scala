@@ -9,6 +9,5 @@ object Dependencies {
   lazy val circeGeneric = "io.circe" %% "circe-generic" % "0.14.14"
   lazy val circeGenericExtras = "io.circe" %% "circe-generic-extras" % "0.14.4"
   lazy val circeParser = "io.circe" %% "circe-parser" % "0.14.14"
-  lazy val ujson = "com.lihaoyi" % "ujson_native0.5_2.13" % "4.2.1"
-
+  lazy val ujsonLib = "com.lihaoyi" %% "ujson" % "4.2.1"
 }
