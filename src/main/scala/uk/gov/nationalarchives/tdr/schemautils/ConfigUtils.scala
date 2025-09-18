@@ -76,10 +76,11 @@ object ConfigUtils {
     val configItems = getConfigItems(configurationParameters)
     val mapped =
       Map(
-        "tdrFileHeader" -> configItems.filter(_._2.nonEmpty).map(p => p._2.get -> p._1).toMap,
-        "tdrDataLoadHeader" -> configItems.filter(_._3.nonEmpty).map(p => p._3 -> p._1).toMap,
-        "tdrBagitExportHeader" -> configItems.filter(_._4.nonEmpty).map(p => p._4.get -> p._1).toMap,
-        "sharePointTag" -> configItems.filter(_._5.nonEmpty).map(p => p._5.get -> p._1).toMap
+        // domain value -> property key
+        "tdrFileHeader" -> configItems.flatMap(cv => cv.tdrFileHeader.map(h => h -> cv.key)).toMap,
+        "tdrDataLoadHeader" -> configItems.filter(_.tdrDataLoadHeader.nonEmpty).map(cv => cv.tdrDataLoadHeader -> cv.key).toMap,
+        "tdrBagitExportHeader" -> configItems.flatMap(cv => cv.tdrBagitExportHeader.map(h => h -> cv.key)).toMap,
+        "sharePointTag" -> configItems.flatMap(cv => cv.sharePointTag.map(h => h -> cv.key)).toMap
       )
     domain => key => mapped.get(domain).flatMap(_.get(key)).getOrElse(key)
   }
@@ -104,12 +105,14 @@ object ConfigUtils {
     val configItems = getConfigItems(configurationParameters)
     val mapped =
       Map(
-        "tdrFileHeader" -> configItems.filter(_._2.nonEmpty).map(p => p._1 -> p._2.get).toMap,
-        "tdrDataLoadHeader" -> configItems.filter(_._3.nonEmpty).map(p => p._1 -> p._3).toMap,
-        "tdrBagitExportHeader" -> configItems.filter(_._4.nonEmpty).map(p => p._1 -> p._4.get).toMap,
-        "sharePointTag" -> configItems.filter(_._5.nonEmpty).map(p => p._1 -> p._5.get).toMap,
-        "expectedTDRHeader" -> configItems.map(p => p._1 -> p._6.toString).toMap,
-        "allowExport" -> configItems.map(p => p._1 -> p._6.toString).toMap
+        // property key -> domain value
+        "tdrFileHeader" -> configItems.flatMap(cv => cv.tdrFileHeader.map(h => cv.key -> h)).toMap,
+        "tdrDataLoadHeader" -> configItems.filter(_.tdrDataLoadHeader.nonEmpty).map(cv => cv.key -> cv.tdrDataLoadHeader).toMap,
+        "tdrBagitExportHeader" -> configItems.flatMap(cv => cv.tdrBagitExportHeader.map(h => cv.key -> h)).toMap,
+        "sharePointTag" -> configItems.flatMap(cv => cv.sharePointTag.map(h => cv.key -> h)).toMap,
+        "expectedTDRHeader" -> configItems.map(cv => cv.key -> cv.expectedTDRHeader.toString).toMap,
+        "allowExport" -> configItems.map(cv => cv.key -> cv.allowExport.toString).toMap,
+        "fclExport" -> configItems.flatMap(cv => cv.fclExport.map(h => cv.key -> h)).toMap
       )
     domain => propertyName => mapped.get(domain).flatMap(_.get(propertyName)).getOrElse(propertyName)
   }
@@ -206,20 +209,32 @@ object ConfigUtils {
       .toMap
   }
 
-  private def getConfigItems(configurationParameters: ConfigParameters) = {
+  case class ConfigValues(
+      key: String,
+      tdrFileHeader: Option[String],
+      tdrDataLoadHeader: String,
+      tdrBagitExportHeader: Option[String],
+      sharePointTag: Option[String],
+      expectedTDRHeader: Boolean,
+      allowExport: Boolean,
+      fclExport: Option[String] = None
+    )
+
+  private def getConfigItems(configurationParameters: ConfigParameters): Seq[ConfigValues] = {
     configurationParameters.baseConfig
       .getOrElse(Config(List.empty[ConfigItem]))
       .configItems
-      .map(p => {
-        val alternateKeysOpt = p.alternateKeys.headOption
-        (
-          p.key,
-          alternateKeysOpt.flatMap(_.tdrFileHeader),
-          alternateKeysOpt.map(_.tdrDataLoadHeader).getOrElse(""),
-          alternateKeysOpt.flatMap(_.tdrBagitExportHeader),
-          alternateKeysOpt.flatMap(_.sharePointTag),
-          p.expectedTDRHeader,
-          p.allowExport
+      .map(configVal => {
+        val alternateKeysOpt = configVal.alternateKeys.headOption
+        ConfigValues(
+          key = configVal.key,
+          tdrFileHeader = alternateKeysOpt.flatMap(_.tdrFileHeader),
+          tdrDataLoadHeader = alternateKeysOpt.map(_.tdrDataLoadHeader).getOrElse(""),
+          tdrBagitExportHeader = alternateKeysOpt.flatMap(_.tdrBagitExportHeader),
+          sharePointTag = alternateKeysOpt.flatMap(_.sharePointTag),
+          expectedTDRHeader = configVal.expectedTDRHeader,
+          allowExport = configVal.allowExport,
+          fclExport = alternateKeysOpt.flatMap(_.fclExport)
         )
       })
   }
@@ -255,7 +270,7 @@ object ConfigUtils {
 
   case class DownloadFilesOutput(domain: String, columnIndex: Int, editable: Boolean)
 
-  case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String], sharePointTag: Option[String])
+  case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String], sharePointTag: Option[String], fclExport: Option[String] = None)
 
   case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]], defaultValue: Option[String] = None, judgmentOnly: Option[Boolean] = Option(false))
 
