@@ -109,7 +109,7 @@ object ConfigUtils {
         "tdrBagitExportHeader" -> configItems.filter(_._4.nonEmpty).map(p => p._1 -> p._4.get).toMap,
         "sharePointTag" -> configItems.filter(_._5.nonEmpty).map(p => p._1 -> p._5.get).toMap,
         "expectedTDRHeader" -> configItems.map(p => p._1 -> p._6.toString).toMap,
-        "allowExport" -> configItems.map(p => p._1 -> p._6.toString).toMap
+        "allowExport" -> configItems.map(p => p._1 -> p._7.toString).toMap
       )
     domain => propertyName => mapped.get(domain).flatMap(_.get(propertyName)).getOrElse(propertyName)
   }
