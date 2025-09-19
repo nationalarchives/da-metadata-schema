@@ -549,7 +549,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "UUID",
-          "tdrDataLoadHeader": "UUID"
+          "tdrDataLoadHeader": "UUID",
+          "fclExport": "UUID"
         }
       ],
       "downloadFilesOutputs": [
@@ -639,7 +640,8 @@
       "allowExport": true,
       "alternateKeys": [
         {
-          "tdrDataLoadHeader": "FileReference"
+          "tdrDataLoadHeader": "FileReference",
+          "fclExport": "File-Reference"
         }
       ],
       "downloadFilesOutputs": [
@@ -800,7 +802,8 @@
       "judgmentOnly": true,
       "alternateKeys": [
         {
-          "tdrDataLoadHeader": "JudgmentType"
+          "tdrDataLoadHeader": "JudgmentType",
+          "fclExport": "Judgment-Type"
         }
       ],
       "downloadFilesOutputs": [
@@ -820,7 +823,8 @@
       "judgmentOnly": true,
       "alternateKeys": [
         {
-          "tdrDataLoadHeader": "JudgmentUpdate"
+          "tdrDataLoadHeader": "JudgmentUpdate",
+          "fclExport": "Judgment-Update"
         }
       ],
       "downloadFilesOutputs": [
@@ -840,7 +844,8 @@
       "judgmentOnly": true,
       "alternateKeys": [
         {
-          "tdrDataLoadHeader": "JudgmentUpdateType"
+          "tdrDataLoadHeader": "JudgmentUpdateType",
+          "fclExport": "Judgment-Update-Type"
         }
       ],
       "downloadFilesOutputs": [
@@ -860,7 +865,8 @@
       "judgmentOnly": true,
       "alternateKeys": [
         {
-          "tdrDataLoadHeader": "JudgmentUpdateDetails"
+          "tdrDataLoadHeader": "JudgmentUpdateDetails",
+          "fclExport": "Judgment-Update-Details"
         }
       ],
       "downloadFilesOutputs": [
@@ -880,7 +886,8 @@
       "judgmentOnly": true,
       "alternateKeys": [
         {
-          "tdrDataLoadHeader": "JudgmentNeutralCitation"
+          "tdrDataLoadHeader": "JudgmentNeutralCitation",
+          "fclExport": "Judgment-Neutral-Citation"
         }
       ],
       "downloadFilesOutputs": [
@@ -900,7 +907,8 @@
       "judgmentOnly": true,
       "alternateKeys": [
         {
-          "tdrDataLoadHeader": "JudgmentNoNeutralCitation"
+          "tdrDataLoadHeader": "JudgmentNoNeutralCitation",
+          "fclExport": "Judgment-No-Neutral-Citation"
         }
       ],
       "downloadFilesOutputs": [
@@ -920,7 +928,8 @@
       "judgmentOnly": true,
       "alternateKeys": [
         {
-          "tdrDataLoadHeader": "JudgmentReference"
+          "tdrDataLoadHeader": "JudgmentReference",
+          "fclExport": "Judgment-Reference"
         }
       ],
       "downloadFilesOutputs": [
