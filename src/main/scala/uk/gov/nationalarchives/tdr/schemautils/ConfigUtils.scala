@@ -105,7 +105,6 @@ object ConfigUtils {
     val configItems = getConfigItems(configurationParameters)
     val mapped =
       Map(
-        // property key -> domain value
         "tdrFileHeader" -> configItems.flatMap(cv => cv.tdrFileHeader.map(h => cv.key -> h)).toMap,
         "tdrDataLoadHeader" -> configItems.filter(_.tdrDataLoadHeader.nonEmpty).map(cv => cv.key -> cv.tdrDataLoadHeader).toMap,
         "tdrBagitExportHeader" -> configItems.flatMap(cv => cv.tdrBagitExportHeader.map(h => cv.key -> h)).toMap,

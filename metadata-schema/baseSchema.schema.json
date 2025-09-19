@@ -225,7 +225,10 @@
     },
     "judgment_update_type": {
       "description": "Judgment transfer only - type of update to a previous judgment",
-      "type": "array",
+      "type": [
+        "array",
+        "null"
+      ],
       "items": {
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/judgment_update_types"
