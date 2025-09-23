@@ -798,12 +798,13 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_type",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": true,
+      "allowExport": false,
       "judgmentOnly": true,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "JudgmentType",
-          "fclExport": "Judgment-Type"
+          "fclExport": "Judgment-Type",
+          "tdrBagitExportHeader": "judgment_type"
         }
       ],
       "downloadFilesOutputs": [
@@ -819,13 +820,13 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_update",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": true,
+      "allowExport": false,
       "judgmentOnly": true,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "JudgmentUpdate",
-          "fclExport": "Judgment-Update"
-        }
+          "fclExport": "Judgment-Update",
+          "tdrBagitExportHeader": "judgment_update"}
       ],
       "downloadFilesOutputs": [
         {
@@ -840,12 +841,13 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_update_type",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": true,
+      "allowExport": false,
       "judgmentOnly": true,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "JudgmentUpdateType",
-          "fclExport": "Judgment-Update-Type"
+          "fclExport": "Judgment-Update-Type",
+          "tdrBagitExportHeader": "judgment_update_type"
         }
       ],
       "downloadFilesOutputs": [
@@ -861,12 +863,13 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_update_details",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": true,
+      "allowExport": false,
       "judgmentOnly": true,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "JudgmentUpdateDetails",
-          "fclExport": "Judgment-Update-Details"
+          "fclExport": "Judgment-Update-Details",
+          "tdrBagitExportHeader": "judgment_update_details"
         }
       ],
       "downloadFilesOutputs": [
@@ -882,12 +885,13 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_neutral_citation",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": true,
+      "allowExport": false,
       "judgmentOnly": true,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "JudgmentNeutralCitation",
-          "fclExport": "Judgment-Neutral-Citation"
+          "fclExport": "Judgment-Neutral-Citation",
+          "tdrBagitExportHeader": "judgment_neutral_citation"
         }
       ],
       "downloadFilesOutputs": [
@@ -903,12 +907,13 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_no_neutral_citation",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": true,
+      "allowExport": false,
       "judgmentOnly": true,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "JudgmentNoNeutralCitation",
-          "fclExport": "Judgment-No-Neutral-Citation"
+          "fclExport": "Judgment-No-Neutral-Citation",
+          "tdrBagitExportHeader": "judgment_no_neutral_citation"
         }
       ],
       "downloadFilesOutputs": [
@@ -924,12 +929,13 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_reference",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": true,
+      "allowExport": false,
       "judgmentOnly": true,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "JudgmentReference",
-          "fclExport": "Judgment-Reference"
+          "fclExport": "Judgment-Reference",
+          "tdrBagitExportHeader": "judgment_reference"
         }
       ],
       "downloadFilesOutputs": [
