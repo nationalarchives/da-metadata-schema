@@ -826,7 +826,8 @@
         {
           "tdrDataLoadHeader": "JudgmentUpdate",
           "fclExport": "Judgment-Update",
-          "tdrBagitExportHeader": "judgment_update"}
+          "tdrBagitExportHeader": "judgment_update"
+        }
       ],
       "downloadFilesOutputs": [
         {
