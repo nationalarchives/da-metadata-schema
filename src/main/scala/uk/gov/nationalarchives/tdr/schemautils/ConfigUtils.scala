@@ -110,7 +110,8 @@ object ConfigUtils {
         "sharePointTag" -> configItems.flatMap(cv => cv.sharePointTag.map(h => cv.key -> h)).toMap,
         "expectedTDRHeader" -> configItems.map(cv => cv.key -> cv.expectedTDRHeader.toString).toMap,
         "allowExport" -> configItems.map(cv => cv.key -> cv.allowExport.toString).toMap,
-        "fclExport" -> configItems.flatMap(cv => cv.fclExport.map(h => cv.key -> h)).toMap
+        "fclExport" -> configItems.flatMap(cv => cv.fclExport.map(h => cv.key -> h)).toMap,
+        "judgmentOnly" -> configItems.map(cv => cv.key -> cv.judgmentOnly.toString).toMap
       )
     domain => propertyName => mapped.get(domain).flatMap(_.get(propertyName)).getOrElse(propertyName)
   }
@@ -215,6 +216,7 @@ object ConfigUtils {
       sharePointTag: Option[String],
       expectedTDRHeader: Boolean,
       allowExport: Boolean,
+      judgmentOnly: Boolean,
       fclExport: Option[String] = None
     )
 
@@ -232,6 +234,7 @@ object ConfigUtils {
           sharePointTag = alternateKeysOpt.flatMap(_.sharePointTag),
           expectedTDRHeader = configVal.expectedTDRHeader,
           allowExport = configVal.allowExport,
+          judgmentOnly = configVal.judgmentOnly.contains(true),
           fclExport = alternateKeysOpt.flatMap(_.fclExport)
         )
       })
