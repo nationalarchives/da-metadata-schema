@@ -607,12 +607,12 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 19,
+          "columnIndex": 20,
           "editable": true
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 19,
+          "columnIndex": 21,
           "editable": true
         },
         {
