@@ -87,12 +87,12 @@ class ConfigUtilsSpec extends AnyWordSpec {
     "give the list of properties which has given property type" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
       metadataConfiguration.getPropertiesByPropertyType("System") shouldBe
-        List("file_path", "file_name", "date_last_modified", "file_size", "UUID", "rights_copyright", "file_reference",
+        List("file_path", "file_name", "date_last_modified", "file_size", "UUID", "file_reference",
           "original_identifier", "parent_reference", "file_type", "client_side_checksum", "server_side_checksum")
       metadataConfiguration.getPropertiesByPropertyType("Supplied") shouldBe
         List("end_date", "description", "former_reference_department", "closure_type", "closure_start_date", "closure_period",
           "foi_exemption_code", "foi_exemption_asserted", "title_closed", "description_closed", "description_alternate", "title_alternate",
-          "language", "file_name_translation", "restrictions_on_use", "held_by", "legal_status", "related_material","judgment_type", "judgment_update", "judgment_update_type", "judgment_update_details", "judgment_neutral_citation", "judgment_no_neutral_citation", "judgment_reference")
+          "language", "file_name_translation", "rights_copyright", "restrictions_on_use", "held_by", "legal_status", "related_material","judgment_type", "judgment_update", "judgment_update_type", "judgment_update_details", "judgment_neutral_citation", "judgment_no_neutral_citation", "judgment_reference")
       metadataConfiguration.getPropertiesByPropertyType("unknown") shouldBe List()
     }
   }
@@ -100,9 +100,9 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a downloadProperties method that" should {
     "give the downloadProperties config for a specified download" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 19
+      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 20
       metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 35
-      metadataConfiguration.downloadFileDisplayProperties("MetadataReviewDetailTemplate").length shouldBe 20
+      metadataConfiguration.downloadFileDisplayProperties("MetadataReviewDetailTemplate").length shouldBe 21
       metadataConfiguration.downloadFileDisplayProperties("UnknownClientTemplate").length shouldBe 0
     }
 
@@ -122,7 +122,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
         case Some(property) =>
           property.key shouldBe "rights_copyright"
           property.columnIndex shouldBe 18
-          property.editable shouldBe false
+          property.editable shouldBe true
         case None => fail("Expected rights_copyright to be present in the download properties")
       }
     }
