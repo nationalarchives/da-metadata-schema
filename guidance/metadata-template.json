@@ -123,7 +123,7 @@
     "details": "Indicate the copyright holder for this record is ‘Crown copyright’, ‘Third party’ or both ‘Crown copyright;Third party’.",
     "format": "Semi-colon separated list (with no spaces) Default: ‘Crown copyright’",
     "tdrRequirement": "Mandatory",
-    "example": "‘Crown copyright;Third party’ will be shown on Discovery as ‘Restrictions on Use: Copyright: Crown Copyright ; Third party"
+    "example": "Crown copyright;Third party"
   },
   {
     "property": "related_material",
@@ -131,12 +131,5 @@
     "format": "Text, max 255 characters.",
     "tdrRequirement": "Optional",
     "example": "DL 10/71;EE 500/32"
-  },
-  {
-    "property": "restrictions_on_use",
-    "details": "Contact your digital transfer advisor for guidance.",
-    "format": "Text, max 500 characters",
-    "tdrRequirement": "Optional",
-    "example": ""
   }
 ]
