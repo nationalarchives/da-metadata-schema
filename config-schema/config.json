@@ -973,17 +973,17 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 5,
+          "columnIndex": 21,
           "editable": true
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 5,
+          "columnIndex": 22,
           "editable": true
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 29,
+          "columnIndex": 38,
           "editable": false
         }
       ]
