@@ -262,17 +262,17 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 9,
+          "columnIndex": 21,
           "editable": true
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 9,
+          "columnIndex": 22,
           "editable": true
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 12,
+          "columnIndex": 38,
           "editable": false
         }
       ]
@@ -953,6 +953,37 @@
         {
           "domain": "BagitExportTemplate",
           "columnIndex": 37,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "evidence_provided_by",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/evidence_provided_by",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "EvidenceProvidedBy",
+          "tdrFileHeader": "evidence provided by",
+          "tdrBagitExportHeader": "evidence_provided_by"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 5,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 5,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 29,
           "editable": false
         }
       ]
