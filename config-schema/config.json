@@ -808,7 +808,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_type",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": false,
+      "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
         {
@@ -830,7 +830,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_update",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": false,
+      "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
         {
@@ -852,7 +852,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_update_type",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": false,
+      "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
         {
@@ -874,7 +874,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_update_details",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": false,
+      "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
         {
@@ -896,7 +896,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_neutral_citation",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": false,
+      "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
         {
@@ -918,7 +918,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_no_neutral_citation",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": false,
+      "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
         {
@@ -940,7 +940,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/judgment_reference",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "allowExport": false,
+      "allowExport": true,
       "judgmentOnly": true,
       "alternateKeys": [
         {
