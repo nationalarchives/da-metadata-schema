@@ -262,17 +262,17 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 21,
+          "columnIndex": 9,
           "editable": true
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 22,
+          "columnIndex": 9,
           "editable": true
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 38,
+          "columnIndex": 12,
           "editable": false
         }
       ]
