@@ -138,5 +138,12 @@
     "format": "Text, max 500 characters",
     "tdrRequirement": "Optional",
     "example": ""
+  },
+  {
+    "property": "evidence_provided_by",
+    "details": "Indicate the organisation or individual that provided evidence. Will be appended to Description as a new line when shown on Discovery.",
+    "format": "Text, max 255 characters",
+    "tdrRequirement": "Optional",
+    "example": "'Economics Division’ will be shown on Discovery as ‘Evidence provided by: Economics Division'"
   }
 ]
