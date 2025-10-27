@@ -651,13 +651,19 @@
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "FileReference",
-          "fclExport": "File-Reference"
+          "fclExport": "File-Reference",
+          "tdrFileHeader": "reference"
         }
       ],
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
           "columnIndex": 1,
+          "editable": false
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 22,
           "editable": false
         }
       ]
