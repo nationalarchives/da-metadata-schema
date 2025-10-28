@@ -25,6 +25,11 @@
     },
     "FileLeafRef": {
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name"
+    },
+    "File_x0020_Type": {
+      "type": "string",
+      "propertyType": "System",
+      "minLength": 1
     }
   },
   "required": [
@@ -34,6 +39,7 @@
     "SHA256ClientSideChecksum",
     "Length",
     "FileRef",
-    "FileLeafRef"
+    "FileLeafRef",
+    "File_x0020_Type"
   ]
 }
