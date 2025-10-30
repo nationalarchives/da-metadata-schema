@@ -267,7 +267,7 @@
       "maxLength": 500
     },
     "evidence_provided_by": {
-      "description": "Standard field in many enquiries from Relativity system",
+      "description": "Common field in enquiries",
       "type": [
         "string",
         "null"
