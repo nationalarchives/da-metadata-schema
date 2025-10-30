@@ -265,6 +265,15 @@
         "null"
       ],
       "maxLength": 500
+    },
+    "evidence_provided_by": {
+      "description": "Common field in enquiries",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 255,
+      "pattern": "^[^\\r\\n]*$"
     }
   }
 }
