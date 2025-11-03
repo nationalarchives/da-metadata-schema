@@ -65,6 +65,8 @@ class ConfigUtilsSpec extends AnyWordSpec {
       metadataConfiguration.propertyToOutputMapper("tdrBagitExportHeader")("file_path") shouldBe "clientside_original_filepath"
       metadataConfiguration.propertyToOutputMapper("tdrBagitExportHeader")("file_name") shouldBe "file_name"
       metadataConfiguration.propertyToOutputMapper("sharePointTag")("date_last_modified") shouldBe "Modified"
+      metadataConfiguration.propertyToOutputMapper("droidHeader")("client_side_checksum") shouldBe "SHA256_HASH"
+      metadataConfiguration.propertyToOutputMapper("droidHeader")("UUID") shouldBe "UUID"
       metadataConfiguration.propertyToOutputMapper("fclExport")("judgment_type") shouldBe "Judgment-Type"
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("date_last_modified") shouldBe "true"
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("client_side_checksum") shouldBe "false"

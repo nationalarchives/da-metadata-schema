@@ -79,7 +79,8 @@ object ConfigUtils {
         "tdrFileHeader" -> configItems.flatMap(cv => cv.tdrFileHeader.map(h => h -> cv.key)).toMap,
         "tdrDataLoadHeader" -> configItems.filter(_.tdrDataLoadHeader.nonEmpty).map(cv => cv.tdrDataLoadHeader -> cv.key).toMap,
         "tdrBagitExportHeader" -> configItems.flatMap(cv => cv.tdrBagitExportHeader.map(h => h -> cv.key)).toMap,
-        "sharePointTag" -> configItems.flatMap(cv => cv.sharePointTag.map(h => h -> cv.key)).toMap
+        "sharePointTag" -> configItems.flatMap(cv => cv.sharePointTag.map(h => h -> cv.key)).toMap,
+        "droidHeader" -> configItems.flatMap(cv => cv.droidHeader.map(h => h -> cv.key)).toMap
       )
     domain => key => mapped.get(domain).flatMap(_.get(key)).getOrElse(key)
   }
@@ -108,6 +109,7 @@ object ConfigUtils {
         "tdrDataLoadHeader" -> configItems.filter(_.tdrDataLoadHeader.nonEmpty).map(cv => cv.key -> cv.tdrDataLoadHeader).toMap,
         "tdrBagitExportHeader" -> configItems.flatMap(cv => cv.tdrBagitExportHeader.map(h => cv.key -> h)).toMap,
         "sharePointTag" -> configItems.flatMap(cv => cv.sharePointTag.map(h => cv.key -> h)).toMap,
+        "droidHeader" -> configItems.flatMap(cv => cv.droidHeader.map(h => cv.key -> h)).toMap,
         "expectedTDRHeader" -> configItems.map(cv => cv.key -> cv.expectedTDRHeader.toString).toMap,
         "allowExport" -> configItems.map(cv => cv.key -> cv.allowExport.toString).toMap,
         "fclExport" -> configItems.flatMap(cv => cv.fclExport.map(h => cv.key -> h)).toMap,
@@ -214,6 +216,7 @@ object ConfigUtils {
       tdrDataLoadHeader: String,
       tdrBagitExportHeader: Option[String],
       sharePointTag: Option[String],
+      droidHeader: Option[String],
       expectedTDRHeader: Boolean,
       allowExport: Boolean,
       judgmentOnly: Boolean,
@@ -232,6 +235,7 @@ object ConfigUtils {
           tdrDataLoadHeader = alternateKeysOpt.map(_.tdrDataLoadHeader).getOrElse(""),
           tdrBagitExportHeader = alternateKeysOpt.flatMap(_.tdrBagitExportHeader),
           sharePointTag = alternateKeysOpt.flatMap(_.sharePointTag),
+          droidHeader = alternateKeysOpt.flatMap(_.droidHeader),
           expectedTDRHeader = configVal.expectedTDRHeader,
           allowExport = configVal.allowExport,
           judgmentOnly = configVal.judgmentOnly.contains(true),
@@ -271,7 +275,7 @@ object ConfigUtils {
 
   case class DownloadFilesOutput(domain: String, columnIndex: Int, editable: Boolean)
 
-  case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String], sharePointTag: Option[String], fclExport: Option[String] = None)
+  case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String], sharePointTag: Option[String], fclExport: Option[String] = None, droidHeader: Option[String] = None)
 
   case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean, alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]], defaultValue: Option[String] = None, judgmentOnly: Option[Boolean] = Option(false))
 
