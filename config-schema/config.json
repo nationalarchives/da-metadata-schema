@@ -759,7 +759,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "checksum",
-          "tdrDataLoadHeader": "SHA256ClientSideChecksum",
+          "tdrDataLoadHeader": "SHA256ClientSideChecksum",          
+          "sharePointTag": "sha256ClientSideChecksum",
           "droidHeader": "SHA256_HASH"
         }
       ],
