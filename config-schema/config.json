@@ -13,7 +13,8 @@
           "tdrFileHeader": "filepath",
           "tdrDataLoadHeader": "ClientSideOriginalFilepath",
           "tdrBagitExportHeader": "clientside_original_filepath",
-          "sharePointTag": "FileRef"
+          "sharePointTag": "FileRef",
+          "droidHeader": "FILE_PATH"
         }
       ],
       "downloadFilesOutputs": [
@@ -44,7 +45,8 @@
         {
           "tdrFileHeader": "filename",
           "tdrDataLoadHeader": "Filename",
-          "sharePointTag": "FileLeafRef"
+          "sharePointTag": "FileLeafRef",
+          "droidHeader": "NAME"
         }
       ],
       "downloadFilesOutputs": [
@@ -75,7 +77,8 @@
         {
           "tdrFileHeader": "date last modified",
           "tdrDataLoadHeader": "ClientSideFileLastModifiedDate",
-          "sharePointTag": "Modified"
+          "sharePointTag": "Modified",
+          "droidHeader": "LAST_MODIFIED"
         }
       ],
       "downloadFilesOutputs": [
@@ -529,7 +532,8 @@
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "ClientSideFileSize",
-          "sharePointTag": "Length"
+          "sharePointTag": "Length",
+          "droidHeader": "SIZE"
         }
       ],
       "downloadFilesOutputs": [
@@ -755,8 +759,9 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "checksum",
-          "tdrDataLoadHeader": "SHA256ClientSideChecksum",
-          "sharePointTag": "sha256ClientSideChecksum"
+          "tdrDataLoadHeader": "SHA256ClientSideChecksum",          
+          "sharePointTag": "sha256ClientSideChecksum",
+          "droidHeader": "SHA256_HASH"
         }
       ],
       "downloadFilesOutputs": [
