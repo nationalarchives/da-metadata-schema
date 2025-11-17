@@ -999,6 +999,84 @@
           "editable": false
         }
       ]
+    },
+    {
+      "key": "date_created",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_created",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": false,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "date_created"
+        }
+      ],
+      "downloadFilesOutputs": []
+    },
+    {
+      "key": "date_range",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_range",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": false,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "date_range"
+        }
+      ],
+      "downloadFilesOutputs": []
+    },
+    {
+      "key": "file_name_translation_language",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name_translation_language",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": false,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "file_name_translation_language"
+        }
+      ],
+      "downloadFilesOutputs": []
+    },
+    {
+      "key": "start_date",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/start_date",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": false,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "start_date"
+        }
+      ],
+      "downloadFilesOutputs": []
+    },
+    {
+      "key": "creating_body",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/creating_body",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": false,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "creating_body"
+        }
+      ],
+      "downloadFilesOutputs": []
+    },
+    {
+      "key": "file_name_language",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name_language",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": false,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "file_name_language"
+        }
+      ],
+      "downloadFilesOutputs": []
     }
   ]
 }
