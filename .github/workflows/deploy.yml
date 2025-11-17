@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   deploy:
-    uses: nationalarchives/tdr-github-actions/.github/workflows/sbt_release.yml@77d3f5c03ca72725da44436301b496b29fd5fbda
+    uses: nationalarchives/tdr-github-actions/.github/workflows/sbt_release.yml@5d4fee21ed08f053613a7706e28623c0adc0f5f4
     with:
       library-name: "Metadata validation"
     secrets:
