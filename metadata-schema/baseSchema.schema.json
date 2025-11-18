@@ -42,6 +42,50 @@
       "format": "date",
       "daBeforeToday": "Validates that end date is earlier than today's date"
     },
+    "date_created": {
+      "description": "The date the record was created",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "date_range": {
+      "description": "The date range of the record",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "start_date": {
+      "description": "The date the record starts",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "creating_body": {
+      "description": "The creating body of the record",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "file_name_language": {
+      "description": "The language of the original title of the record",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "file_name_translation_language": {
+      "description": "The language of the translated title of the record",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "file_name_translation": {
       "description": "The translated title of the record that will be displayed to the public",
       "type": [
