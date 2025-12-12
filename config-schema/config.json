@@ -15,7 +15,7 @@
           "tdrBagitExportHeader": "clientside_original_filepath",
           "sharePointTag": "FileRef",
           "droidHeader": "FILE_PATH",
-          "networkDriveHeader": "path"
+          "networkDriveHeader": "originalPath"
         }
       ],
       "downloadFilesOutputs": [
@@ -538,7 +538,7 @@
           "tdrDataLoadHeader": "ClientSideFileSize",
           "sharePointTag": "Length",
           "droidHeader": "SIZE",
-          "networkDriveHeader": "size"
+          "networkDriveHeader": "fileSize"
         }
       ],
       "downloadFilesOutputs": [
