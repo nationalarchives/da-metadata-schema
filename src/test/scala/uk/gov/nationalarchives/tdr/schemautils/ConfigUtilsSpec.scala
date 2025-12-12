@@ -69,6 +69,8 @@ class ConfigUtilsSpec extends AnyWordSpec {
       metadataConfiguration.propertyToOutputMapper("droidHeader")("UUID") shouldBe "UUID"
       metadataConfiguration.propertyToOutputMapper("hardDriveHeader")("client_side_checksum") shouldBe "checksum"
       metadataConfiguration.propertyToOutputMapper("hardDriveHeader")("date_last_modified") shouldBe "date_last_modified"
+      metadataConfiguration.propertyToOutputMapper("networkDriveHeader")("client_side_checksum") shouldBe "checksum"
+      metadataConfiguration.propertyToOutputMapper("networkDriveHeader")("file_name") shouldBe "file_name"
       metadataConfiguration.propertyToOutputMapper("fclExport")("judgment_type") shouldBe "Judgment-Type"
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("date_last_modified") shouldBe "true"
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("client_side_checksum") shouldBe "false"
