@@ -14,7 +14,8 @@
           "tdrDataLoadHeader": "ClientSideOriginalFilepath",
           "tdrBagitExportHeader": "clientside_original_filepath",
           "sharePointTag": "FileRef",
-          "droidHeader": "FILE_PATH"
+          "droidHeader": "FILE_PATH",
+          "networkDriveHeader": "path"
         }
       ],
       "downloadFilesOutputs": [
@@ -78,7 +79,8 @@
           "tdrFileHeader": "date last modified",
           "tdrDataLoadHeader": "ClientSideFileLastModifiedDate",
           "sharePointTag": "Modified",
-          "droidHeader": "LAST_MODIFIED"
+          "droidHeader": "LAST_MODIFIED",
+          "networkDriveHeader": "lastModified"
         }
       ],
       "downloadFilesOutputs": [
@@ -535,7 +537,8 @@
         {
           "tdrDataLoadHeader": "ClientSideFileSize",
           "sharePointTag": "Length",
-          "droidHeader": "SIZE"
+          "droidHeader": "SIZE",
+          "networkDriveHeader": "size"
         }
       ],
       "downloadFilesOutputs": [
@@ -765,7 +768,8 @@
           "tdrDataLoadHeader": "SHA256ClientSideChecksum",          
           "sharePointTag": "sha256ClientSideChecksum",
           "droidHeader": "SHA256_HASH",
-          "hardDriveHeader": "checksum"
+          "hardDriveHeader": "checksum",
+          "networkDriveHeader": "checksum"
         }
       ],
       "downloadFilesOutputs": [

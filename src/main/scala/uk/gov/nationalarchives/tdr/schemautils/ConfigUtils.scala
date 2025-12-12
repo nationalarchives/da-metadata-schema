@@ -81,7 +81,8 @@ object ConfigUtils {
         "tdrBagitExportHeader" -> configItems.flatMap(cv => cv.tdrBagitExportHeader.map(h => h -> cv.key)).toMap,
         "sharePointTag" -> configItems.flatMap(cv => cv.sharePointTag.map(h => h -> cv.key)).toMap,
         "droidHeader" -> configItems.flatMap(cv => cv.droidHeader.map(h => h -> cv.key)).toMap,
-        "hardDriveHeader" -> configItems.flatMap(cv => cv.hardDriveHeader.map(h => h -> cv.key)).toMap
+        "hardDriveHeader" -> configItems.flatMap(cv => cv.hardDriveHeader.map(h => h -> cv.key)).toMap,
+        "networkDriveHeader" -> configItems.flatMap(cv => cv.networkDriveHeader.map(h => h -> cv.key)).toMap
       )
     domain => key => mapped.get(domain).flatMap(_.get(key)).getOrElse(key)
   }
@@ -112,6 +113,7 @@ object ConfigUtils {
         "sharePointTag" -> configItems.flatMap(cv => cv.sharePointTag.map(h => cv.key -> h)).toMap,
         "droidHeader" -> configItems.flatMap(cv => cv.droidHeader.map(h => cv.key -> h)).toMap,
         "hardDriveHeader" -> configItems.flatMap(cv => cv.hardDriveHeader.map(h => cv.key -> h)).toMap,
+        "networkDriveHeader" -> configItems.flatMap(cv => cv.networkDriveHeader.map(h => cv.key -> h)).toMap,
         "expectedTDRHeader" -> configItems.map(cv => cv.key -> cv.expectedTDRHeader.toString).toMap,
         "allowExport" -> configItems.map(cv => cv.key -> cv.allowExport.toString).toMap,
         "fclExport" -> configItems.flatMap(cv => cv.fclExport.map(h => cv.key -> h)).toMap,
@@ -220,6 +222,7 @@ object ConfigUtils {
       sharePointTag: Option[String],
       droidHeader: Option[String],
       hardDriveHeader: Option[String],
+      networkDriveHeader: Option[String],
       expectedTDRHeader: Boolean,
       allowExport: Boolean,
       judgmentOnly: Boolean,
@@ -240,6 +243,7 @@ object ConfigUtils {
           sharePointTag = alternateKeysOpt.flatMap(_.sharePointTag),
           droidHeader = alternateKeysOpt.flatMap(_.droidHeader),
           hardDriveHeader = alternateKeysOpt.flatMap(_.hardDriveHeader),
+          networkDriveHeader = alternateKeysOpt.flatMap(_.networkDriveHeader),
           expectedTDRHeader = configVal.expectedTDRHeader,
           allowExport = configVal.allowExport,
           judgmentOnly = configVal.judgmentOnly.contains(true),
@@ -281,7 +285,7 @@ object ConfigUtils {
 
   case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String],
                            sharePointTag: Option[String], fclExport: Option[String] = None, droidHeader: Option[String] = None,
-                           hardDriveHeader: Option[String] = None)
+                           hardDriveHeader: Option[String] = None, networkDriveHeader: Option[String] = None)
 
   case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean,
                         alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]],
