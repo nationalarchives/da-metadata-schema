@@ -86,6 +86,7 @@ lazy val copySchema = taskKey[Unit]("copySchema")
 copySchema := {
   IO.copyDirectory(new File("metadata-schema"), new File(s"target/scala-${scalaVersion.value}/classes/metadata-schema"))
   IO.copyDirectory(new File("config-schema"), new File(s"target/scala-${scalaVersion.value}/classes/config-schema"))
+  IO.copyDirectory(new File("puids"), new File(s"target/scala-${scalaVersion.value}/classes/puids"))
 }
 
 lazy val copyValidationMessageProperties = taskKey[Unit]("copyValidationMessageProperties")

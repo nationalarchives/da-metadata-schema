@@ -1,0 +1,17 @@
+[
+  {
+    "puid": "fmt/412",
+    "puidDescription": "Microsoft Word for Windows",
+    "consignmentType": "judgment"
+  },
+  {
+    "puid": "fmt/1827",
+    "puidDescription": "DOCX Strict OOXML Document",
+    "consignmentType": "judgment"
+  },
+  {
+    "puid": "fmt/189",
+    "puidDescription": "Microsoft Office Open XML",
+    "consignmentType": "judgment"
+  }
+]
