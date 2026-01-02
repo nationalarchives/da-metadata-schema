@@ -1,0 +1,452 @@
+[
+  {
+    "puid": "fmt/494",
+    "puidDescription": "Microsoft Office Encrypted Document",
+    "reason": "PasswordProtected",
+    "active": true
+  },
+  {
+    "puid": "fmt/754",
+    "puidDescription": "Microsoft Word Document",
+    "reason": "PasswordProtected",
+    "active": true
+  },
+  {
+    "puid": "fmt/755",
+    "puidDescription": "Microsoft Word Document Template",
+    "reason": "PasswordProtected",
+    "active": true
+  },
+  {
+    "puid": "fmt/289",
+    "puidDescription": "WARC Web ARChive file format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/329",
+    "puidDescription": "Shell Archive Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/508",
+    "puidDescription": "Quarter Inch Cartridge Host Interchange Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/600",
+    "puidDescription": "eXtensible ARchive format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/610",
+    "puidDescription": "ARJ File Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/613",
+    "puidDescription": "RAR Archive",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/614",
+    "puidDescription": "Windows Imaging Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/625",
+    "puidDescription": "Apple Disk Copy Image",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/626",
+    "puidDescription": "LHA File Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/639",
+    "puidDescription": "Stuffit Archive File",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/656",
+    "puidDescription": "KryoFlux",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/726",
+    "puidDescription": "Virtual Disk Image",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/842",
+    "puidDescription": "AccessData Custom Content Image",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/843",
+    "puidDescription": "AccessData Custom Content Image (Encrypted)",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/844",
+    "puidDescription": "Advanced Forensic Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/850",
+    "puidDescription": "NuFile Exchange Archival Library",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/866",
+    "puidDescription": "Apple Safari Webarchive",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/887",
+    "puidDescription": "SafeGuard Encrypted Virtual Disk",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1070",
+    "puidDescription": "Preferred Executable Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1071",
+    "puidDescription": "Apple Disk Image",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1087",
+    "puidDescription": "FAT Disk Image",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1095",
+    "puidDescription": "PEA Archive Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1096",
+    "puidDescription": "FreeArc Archive Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1097",
+    "puidDescription": "ZPAQ Archive Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1098",
+    "puidDescription": "XZ File Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1100",
+    "puidDescription": "yEnc Encoded File",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1102",
+    "puidDescription": "Uuencoded File",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1105",
+    "puidDescription": "Hierarchical File System",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1190",
+    "puidDescription": "Adobe SWC Package",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1242",
+    "puidDescription": "ZFO (Form) File",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1243",
+    "puidDescription": "ZFO (Message) File",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1244",
+    "puidDescription": "ZFO (Sent Message)",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1245",
+    "puidDescription": "ZFO (Proof of Delivery) File",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1251",
+    "puidDescription": "Electronically Certified Document (EDOC)",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1252",
+    "puidDescription": "Raw Flux Image",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1281",
+    "puidDescription": "WARC 1.1",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1340",
+    "puidDescription": "BDOC 1",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1341",
+    "puidDescription": "ASICS",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1355",
+    "puidDescription": "WARC 1.0",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1361",
+    "puidDescription": "Amiga Disk File",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/1399",
+    "puidDescription": "DiskDoubler.",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/157",
+    "puidDescription": "Interchange File",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/219",
+    "puidDescription": "Alexa Archive File",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/263",
+    "puidDescription": "ZIP Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/265",
+    "puidDescription": "Tape Archive Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/266",
+    "puidDescription": "GZIP Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/267",
+    "puidDescription": "BZIP Compressed Archive",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/268",
+    "puidDescription": "BZIP2 Compressed Archive",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/269",
+    "puidDescription": "ZOO Compressed Archive",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/412",
+    "puidDescription": "Java Archive Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/416",
+    "puidDescription": "BinHex Binary Text",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/429",
+    "puidDescription": "MHTML",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "nonJudgmentFormat",
+    "puidDescription": "No specific identifier for non judgment",
+    "reason": "NonJudgmentFormat",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/409",
+    "puidDescription": "MS-DOS Executable",
+    "reason": "Executable",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/410",
+    "puidDescription": "Windows New Executable",
+    "reason": "Executable",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/411",
+    "puidDescription": "Windows Portable Executable",
+    "reason": "Executable",
+    "active": true
+  },
+  {
+    "puid": "fmt/899",
+    "puidDescription": "Windows Portable Executable 32 bit",
+    "reason": "Executable",
+    "active": true
+  },
+  {
+    "puid": "fmt/900",
+    "puidDescription": "Windows Portable Executable 64 bit",
+    "reason": "Executable",
+    "active": true
+  },
+  {
+    "puid": "fmt/682",
+    "puidDescription": "Thumbs DB file",
+    "reason": "SystemFile",
+    "active": true
+  },
+  {
+    "puid": "zeroByteFile",
+    "puidDescription": "Identifier for empty file not in PRONOM",
+    "reason": "ZeroByteFile",
+    "active": true
+  },
+  {
+    "puid": "",
+    "puidDescription": "Unidentified file",
+    "reason": "Unidentified",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/454",
+    "puidDescription": "Microsoft Internet Shortcut",
+    "reason": "Shortcut",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/428",
+    "puidDescription": "Microsoft Windows Shortcut",
+    "reason": "Shortcut",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/45",
+    "puidDescription": "Microsoft Word Document Template",
+    "reason": "Template",
+    "active": true
+  },
+  {
+    "puid": "fmt/941",
+    "puidDescription": "Back Up File",
+    "reason": "Backup",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/426",
+    "puidDescription": "License file",
+    "reason": "LicenseContainsRegistrationInformation",
+    "active": true
+  },
+  {
+    "puid": "fmt/111",
+    "puidDescription": "OLE2 Compound Document Format",
+    "reason": "Zip",
+    "active": true
+  },
+  {
+    "puid": "fmt/394",
+    "puidDescription": "DS_Store File (MAC)",
+    "reason": "OperatingSystemMac",
+    "active": true
+  },
+  {
+    "puid": "fmt/473",
+    "puidDescription": "Microsoft Office Owner File",
+    "reason": "OperatingSystemMac",
+    "active": true
+  },
+  {
+    "puid": "fmt/503",
+    "puidDescription": "AppleDouble Resource Fork",
+    "reason": "OperatingSystemMac",
+    "active": true
+  },
+  {
+    "puid": "fmt/1672",
+    "puidDescription": "Linux/i386 Binary Executable File ZMAGIC",
+    "reason": "Executable",
+    "active": true
+  },
+  {
+    "puid": "x-fmt/421",
+    "puidDescription": "Text Configuration file",
+    "reason": "DesktopIni ",
+    "active": true
+  }
+]
