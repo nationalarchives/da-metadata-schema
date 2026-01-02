@@ -66,7 +66,8 @@ lazy val root = (project in file("."))
       circeGeneric,
       circeGenericExtras,
       circeParser,
-      ujsonLib
+      ujsonLib,
+      configLib
     ),
     Test / resourceGenerators += Def.task {
       val base = baseDirectory.value

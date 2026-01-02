@@ -1,17 +1,19 @@
 package uk.gov.nationalarchives.tdr.schemautils
 
-import scala.io.Source
 import cats.data.Reader
 import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
-import io.circe.generic.auto._
-import io.circe.jawn.decode
-import ujson.Value.Value
+import com.typesafe.config
+import com.typesafe.config.ConfigFactory
 import io.circe.Decoder
+import io.circe.generic.auto._
 import io.circe.generic.extras.Configuration
 import io.circe.generic.extras.semiauto._
+import io.circe.jawn.decode
+import ujson.Value.Value
 
 import java.io.InputStream
-import scala.util.Using
+import scala.io.Source
+import scala.util.{Try, Using}
 
 object ConfigUtils {
 
@@ -19,8 +21,9 @@ object ConfigUtils {
 
   private val BASE_SCHEMA: String = "/metadata-schema/baseSchema.schema.json"
   private val CONFIG_SCHEMA: String = "config-schema/config.json"
+  private lazy val env = sys.env.getOrElse("ENVIRONMENT", "intg")
 
-  private lazy val configParameters: ConfigParameters = ConfigParameters(loadBaseSchema, loadConfigFile)
+  private lazy val configParameters: ConfigParameters = ConfigParameters(loadBaseSchema, loadConfigFile, ConfigFactory.load(s"application-$env.conf"))
 
   /** Loads the configuration files and returns a `MetadataConfiguration` object.
     *
@@ -105,6 +108,7 @@ object ConfigUtils {
   def propertyToOutputMapper(configurationParameters: ConfigParameters): String => String => String = {
 
     val configItems = getConfigItems(configurationParameters)
+    val appConfig = configurationParameters.appConfig
     val mapped =
       Map(
         "tdrFileHeader" -> configItems.flatMap(cv => cv.tdrFileHeader.map(h => cv.key -> h)).toMap,
@@ -115,11 +119,15 @@ object ConfigUtils {
         "hardDriveHeader" -> configItems.flatMap(cv => cv.hardDriveHeader.map(h => cv.key -> h)).toMap,
         "networkDriveHeader" -> configItems.flatMap(cv => cv.networkDriveHeader.map(h => cv.key -> h)).toMap,
         "expectedTDRHeader" -> configItems.map(cv => cv.key -> cv.expectedTDRHeader.toString).toMap,
-        "allowExport" -> configItems.map(cv => cv.key -> cv.allowExport.toString).toMap,
+        "allowExport" -> configItems.map(cv => cv.key -> getExportValue(cv, appConfig)).toMap,
         "fclExport" -> configItems.flatMap(cv => cv.fclExport.map(h => cv.key -> h)).toMap,
         "judgmentOnly" -> configItems.map(cv => cv.key -> cv.judgmentOnly.toString).toMap
       )
     domain => propertyName => mapped.get(domain).flatMap(_.get(propertyName)).getOrElse(propertyName)
+  }
+
+  private def getExportValue(cv: ConfigValues, appConfig: config.Config): String = {
+    Try(appConfig.getString(s"release.${cv.key}")).getOrElse(cv.allowExport.toString)
   }
 
   /** This method takes configuration parameters and returns a function that retrieves the required columns for a given domain metadata download. It uses the configuration file to
@@ -279,7 +287,7 @@ object ConfigUtils {
       getPropertiesWithDefaultValue: Map[String, String]
     )
 
-  case class ConfigParameters(baseSchema: Value, baseConfig: Either[io.circe.Error, Config])
+  case class ConfigParameters(baseSchema: Value, baseConfig: Either[io.circe.Error, Config], appConfig: config.Config)
 
   case class DownloadFilesOutput(domain: String, columnIndex: Int, editable: Boolean)
 

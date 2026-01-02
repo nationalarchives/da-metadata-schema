@@ -75,7 +75,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("date_last_modified") shouldBe "true"
       metadataConfiguration.propertyToOutputMapper("expectedTDRHeader")("client_side_checksum") shouldBe "false"
       metadataConfiguration.propertyToOutputMapper("allowExport")("client_side_checksum") shouldBe "false"
-      metadataConfiguration.propertyToOutputMapper("allowExport")("file_path") shouldBe "true"
+      metadataConfiguration.propertyToOutputMapper("allowExport")("legal_status") shouldBe "true"
       metadataConfiguration.propertyToOutputMapper("blah")("blahBlah") shouldBe "blahBlah"
     }
   }
