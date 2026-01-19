@@ -11,6 +11,15 @@
       "format": "uuid",
       "propertyType": "System"
     },
+    "userId": {
+      "type": "string",
+      "format": "uuid",
+      "propertyType": "System"
+    },
+    "source": {
+      "type": "string",
+      "propertyType": "System"
+    },
     "Modified": {
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/date_last_modified"
     },
@@ -35,6 +44,8 @@
   "required": [
     "matchId",
     "transferId",
+    "userId",
+    "source",
     "Modified",
     "SHA256ClientSideChecksum",
     "Length",
