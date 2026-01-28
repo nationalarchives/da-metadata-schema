@@ -8,5 +8,6 @@
   "Length": 26,
   "FileRef": "a/filepath/filename1.docx",
   "FileLeafRef": "filename1.docx",
-  "File_x0020_Type": "docx"
+  "File_x0020_Type": "docx",
+  "TimeCreated": "2001-12-12"
 }
