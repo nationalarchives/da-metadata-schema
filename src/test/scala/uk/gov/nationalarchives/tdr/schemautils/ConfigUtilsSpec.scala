@@ -209,7 +209,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       originalEnv.foreach(sys.props("ENVIRONMENT") = _)
     }
 
-    "construct environment-specific filename for simple file without leading slash" in {
+    "return original filename for simple file without leading slash when env file does not exist" in {
       withEnvironment("dev") {
         val resourceName = "config.json"
         val result = ConfigUtils.mapToEnvironmentFile(resourceName)
@@ -218,7 +218,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       }
     }
 
-    "construct environment-specific filename for simple file with leading slash" in {
+    "return original filename for simple file with leading slash when env file does not exist" in {
       withEnvironment("dev") {
         val resourceName = "/config.json"
         val result = ConfigUtils.mapToEnvironmentFile(resourceName)

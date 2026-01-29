@@ -298,28 +298,54 @@ object ConfigUtils {
 
   case class DownloadFileDisplayProperty(key: String, columnIndex: Int, editable: Boolean)
 
+  /** Maps a resource filename to an environment-specific version if available.
+    *
+    * This method checks for an ENVIRONMENT variable (first in sys.props for testing,
+    * then in sys.env for production) and transforms the resource filename by prepending
+    * the environment prefix to the filename component.
+    *
+    * For example, with ENVIRONMENT=dev:
+    * - "config.json" → "dev-config.json" (if exists)
+    * - "config-schema/config.json" → "config-schema/dev-config.json" (if exists)
+    * - "/metadata-schema/baseSchema.schema.json" → "/metadata-schema/dev-baseSchema.schema.json" (if exists)
+    *
+    * If the environment-specific file doesn't exist as a resource, the original filename is returned.
+    * Leading slashes are preserved in the result when present in the input.
+    *
+    * @param resourceName The resource filename to map (e.g., "config.json", "/metadata-schema/baseSchema.schema.json")
+    * @return The environment-specific filename if it exists, otherwise the original filename
+    */
   def mapToEnvironmentFile(resourceName: String): String = {
     import java.nio.file.Paths
 
-    val environment = sys.env.get("ENVIRONMENT").orElse(sys.props.get("ENVIRONMENT"))
+    if (resourceName.isEmpty || resourceName.endsWith("/")) {
+      return resourceName
+    }
+
+    val environment = sys.props.get("ENVIRONMENT").orElse(sys.env.get("ENVIRONMENT"))
 
     environment match {
-      case Some(env) =>
+      case Some(env) if env.nonEmpty =>
         val startsWithSlash = resourceName.startsWith("/")
         val cleanResourceName = if (startsWithSlash) resourceName.substring(1) else resourceName
 
         val path = Paths.get(cleanResourceName)
-        val fileName = path.getFileName.toString
+        val fileName = path.getFileName
+        if (fileName == null) {
+          return resourceName
+        }
+
+        val fileNameStr = fileName.toString
         val parent = Option(path.getParent).map(_.toString).getOrElse("")
 
-        val envFileName = s"$env-$fileName"
+        val envFileName = s"$env-$fileNameStr"
         val envSpecificName = if (parent.nonEmpty) s"$parent/$envFileName" else envFileName
 
         Option(getClass.getResource(s"/$envSpecificName")) match {
           case Some(_) => if (startsWithSlash) s"/$envSpecificName" else envSpecificName
           case None => resourceName
         }
-      case None => resourceName
+      case _ => resourceName
     }
   }
 
