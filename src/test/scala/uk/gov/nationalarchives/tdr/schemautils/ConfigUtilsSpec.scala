@@ -12,6 +12,17 @@ import scala.util.Using
 
 class ConfigUtilsSpec extends AnyWordSpec {
 
+  private def withEnvironment[T](env: String)(block: => T): T = {
+    val originalEnv = sys.props.get("ENVIRONMENT")
+    sys.props("ENVIRONMENT") = env
+    val result = block
+    originalEnv match {
+      case Some(value) => sys.props("ENVIRONMENT") = value
+      case None => sys.props.remove("ENVIRONMENT")
+    }
+    result
+  }
+
   "config.json" should {
     val nodeSchema = Using(Source.fromResource("config-schema/config.json"))(_.mkString)
     val mapper = new ObjectMapper()
@@ -184,6 +195,287 @@ class ConfigUtilsSpec extends AnyWordSpec {
       mapping("title_closed") shouldBe "false"
       mapping("rights_copyright") shouldBe "Crown copyright"
       mapping("held_by") shouldBe "The National Archives, Kew"
+    }
+  }
+
+  "mapToEnvironmentFile" should {
+    "return original filename when no ENVIRONMENT variable is set" in {
+      val originalEnv = sys.props.get("ENVIRONMENT")
+      sys.props.remove("ENVIRONMENT")
+      
+      val result = ConfigUtils.mapToEnvironmentFile("config.json")
+      result shouldBe "config.json"
+      
+      originalEnv.foreach(sys.props("ENVIRONMENT") = _)
+    }
+
+    "construct environment-specific filename for simple file without leading slash" in {
+      withEnvironment("dev") {
+        val resourceName = "config.json"
+        val result = ConfigUtils.mapToEnvironmentFile(resourceName)
+
+        result shouldBe resourceName
+      }
+    }
+
+    "construct environment-specific filename for simple file with leading slash" in {
+      withEnvironment("dev") {
+        val resourceName = "/config.json"
+        val result = ConfigUtils.mapToEnvironmentFile(resourceName)
+
+        result shouldBe resourceName
+      }
+    }
+
+    "return environment-specific filename when it exists" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/test.json")
+        result shouldBe "test-config/dev-test.json"
+      }
+    }
+
+    "return original filename when environment-specific file does not exist" in {
+      withEnvironment("prod") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/test.json")
+        result shouldBe "test-config/test.json"
+      }
+    }
+
+    "handle nested paths correctly" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/config/test.json")
+        result shouldBe "test-config/config/dev-test.json"
+      }
+    }
+
+    "preserve leading slash when environment-specific file exists" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("/test-config/test.json")
+        result shouldBe "/test-config/dev-test.json"
+      }
+    }
+
+    "preserve leading slash when environment-specific file does not exist" in {
+      withEnvironment("prod") {
+        val result = ConfigUtils.mapToEnvironmentFile("/test-config/test.json")
+        result shouldBe "/test-config/test.json"
+      }
+    }
+
+    "handle files with multiple dots in filename" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("/metadata-schema/baseSchema.schema.json")
+        result shouldBe "/metadata-schema/baseSchema.schema.json"
+      }
+    }
+
+    "transform filename by prepending environment prefix" in {
+      withEnvironment("int") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/test.json")
+        result shouldBe "test-config/test.json"
+      }
+    }
+
+    "work with different environment values" in {
+      withEnvironment("staging") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/test.json")
+        result shouldBe "test-config/test.json"
+      }
+    }
+
+    "handle empty paths correctly" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("")
+        result shouldBe ""
+      }
+    }
+
+    "handle single filename without directory" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test.json")
+        result shouldBe "test.json"
+      }
+    }
+
+    "handle paths with only directory and no file" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/")
+        result shouldBe "test-config/"
+      }
+    }
+
+    "work with CONFIG_SCHEMA constant" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("config-schema/config.json")
+        result shouldBe "config-schema/config.json"
+      }
+    }
+
+    "work with BASE_SCHEMA constant pattern" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("/metadata-schema/baseSchema.schema.json")
+        result shouldBe "/metadata-schema/baseSchema.schema.json"
+      }
+    }
+
+    "handle deeply nested paths" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("a/b/c/d/test.json")
+        result shouldBe "a/b/c/d/test.json"
+      }
+    }
+
+    "return original when environment is empty string" in {
+      withEnvironment("") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/test.json")
+        result shouldBe "test-config/test.json"
+      }
+    }
+
+    "handle files without extension" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/README")
+        result shouldBe "test-config/README"
+      }
+    }
+
+    "handle hidden files" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/.hidden")
+        result shouldBe "test-config/.hidden"
+      }
+    }
+
+    "handle files with only extension" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile(".gitignore")
+        result shouldBe ".gitignore"
+      }
+    }
+
+    "not add environment prefix twice if already present" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/dev-test.json")
+        result shouldBe "test-config/dev-test.json"
+      }
+    }
+
+    "handle paths with spaces" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test config/test.json")
+        result shouldBe "test config/test.json"
+      }
+    }
+
+    "handle paths with special characters" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config_v2/test.json")
+        result shouldBe "test-config_v2/test.json"
+      }
+    }
+
+    "be case sensitive for environment variable" in {
+      withEnvironment("Dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/test.json")
+        result shouldBe "test-config/test.json"
+      }
+    }
+
+    "handle relative paths with dot notation" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("./test-config/test.json")
+        result shouldBe "./test-config/dev-test.json"
+      }
+    }
+
+    "handle relative paths with parent directory notation" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("../test-config/test.json")
+        result shouldBe "../test-config/test.json"
+      }
+    }
+
+    "handle Windows-style paths" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config\\test.json")
+        result shouldBe "test-config\\test.json"
+      }
+    }
+
+    "handle files with numeric names" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/123.json")
+        result shouldBe "test-config/123.json"
+      }
+    }
+
+    "handle files with hyphens and underscores" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/my_test-file.json")
+        result shouldBe "test-config/my_test-file.json"
+      }
+    }
+
+    "work correctly with different environment names" in {
+      List("dev", "prod", "int", "staging", "qa", "test").foreach { env =>
+        withEnvironment(env) {
+          val result = ConfigUtils.mapToEnvironmentFile("test-config/test.json")
+          if (env == "dev") {
+            result shouldBe "test-config/dev-test.json"
+          } else {
+            result shouldBe "test-config/test.json"
+          }
+        }
+      }
+    }
+
+    "handle very long filenames" in {
+      withEnvironment("dev") {
+        val longName = "a" * 200 + ".json"
+        val result = ConfigUtils.mapToEnvironmentFile(s"test-config/$longName")
+        result shouldBe s"test-config/$longName"
+      }
+    }
+
+    "handle files with UTF-8 characters" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/tëst.json")
+        result shouldBe "test-config/tëst.json"
+      }
+    }
+
+    "handle paths with consecutive slashes" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config//test.json")
+        result shouldBe "test-config/dev-test.json"
+      }
+    }
+
+    "handle files with query parameters in name" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/test.json?v=1")
+        result shouldBe "test-config/test.json?v=1"
+      }
+    }
+
+    "handle files with fragment identifiers" in {
+      withEnvironment("dev") {
+        val result = ConfigUtils.mapToEnvironmentFile("test-config/test.json#section")
+        result shouldBe "test-config/test.json#section"
+      }
+    }
+
+    "check sys.props before sys.env" in {
+      val originalEnv = sys.props.get("ENVIRONMENT")
+      sys.props("ENVIRONMENT") = "dev"
+      
+      val result = ConfigUtils.mapToEnvironmentFile("test-config/test.json")
+      result shouldBe "test-config/dev-test.json"
+      
+      originalEnv match {
+        case Some(value) => sys.props("ENVIRONMENT") = value
+        case None => sys.props.remove("ENVIRONMENT")
+      }
     }
   }
 }

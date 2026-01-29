@@ -298,4 +298,29 @@ object ConfigUtils {
 
   case class DownloadFileDisplayProperty(key: String, columnIndex: Int, editable: Boolean)
 
+  def mapToEnvironmentFile(resourceName: String): String = {
+    import java.nio.file.Paths
+
+    val environment = sys.env.get("ENVIRONMENT").orElse(sys.props.get("ENVIRONMENT"))
+
+    environment match {
+      case Some(env) =>
+        val startsWithSlash = resourceName.startsWith("/")
+        val cleanResourceName = if (startsWithSlash) resourceName.substring(1) else resourceName
+
+        val path = Paths.get(cleanResourceName)
+        val fileName = path.getFileName.toString
+        val parent = Option(path.getParent).map(_.toString).getOrElse("")
+
+        val envFileName = s"$env-$fileName"
+        val envSpecificName = if (parent.nonEmpty) s"$parent/$envFileName" else envFileName
+
+        Option(getClass.getResource(s"/$envSpecificName")) match {
+          case Some(_) => if (startsWithSlash) s"/$envSpecificName" else envSpecificName
+          case None => resourceName
+        }
+      case None => resourceName
+    }
+  }
+
 }
