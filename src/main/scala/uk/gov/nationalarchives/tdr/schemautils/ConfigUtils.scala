@@ -302,20 +302,25 @@ object ConfigUtils {
 
     val environment = sys.env.get("ENVIRONMENT").orElse(sys.props.get("ENVIRONMENT"))
 
+    // Normalize the resource name to handle both with and without leading slash
+    val normalizedResourceName = if (resourceName.startsWith("/")) resourceName.substring(1) else resourceName
+    val hadLeadingSlash = resourceName.startsWith("/")
+
     environment match {
       case Some(env) =>
-        val path = Paths.get(resourceName)
+        val path = Paths.get(normalizedResourceName)
         val fileName = path.getFileName.toString
-        val envSpecificName = resourceName.replace(fileName, s"$env-$fileName")
+        val envSpecificName = normalizedResourceName.replace(fileName, s"$env-$fileName")
 
         Try(Source.fromResource(envSpecificName)).toOption match {
           case Some(source) =>
             source.close()
-            envSpecificName
+            if (hadLeadingSlash) s"/$envSpecificName" else envSpecificName
           case None =>
-            resourceName
+            if (hadLeadingSlash) s"/$normalizedResourceName" else normalizedResourceName
         }
-      case None => resourceName
+      case None =>
+        if (hadLeadingSlash) s"/$normalizedResourceName" else normalizedResourceName
     }
   }
 
