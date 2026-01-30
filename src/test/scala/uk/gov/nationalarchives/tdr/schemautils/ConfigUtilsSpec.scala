@@ -186,4 +186,87 @@ class ConfigUtilsSpec extends AnyWordSpec {
       mapping("held_by") shouldBe "The National Archives, Kew"
     }
   }
+
+  "mapToEnvironmentFile" should {
+
+    "return original resource name when environment-specific file does not exist" in {
+      val testCases = List(
+        "config.json",
+        "config-schema/config.json",
+        "metadata-schema/baseSchema.schema.json",
+        "metadata/metadata-schema/baseSchema.schema.json",
+        "test.json",
+        "/config.json",
+        "/config-schema/config.json",
+        "/metadata-schema/baseSchema.schema.json"
+      )
+
+      testCases.foreach { resourceName =>
+        val result = withEnvironment("dev") {
+          ConfigUtils.mapToEnvironmentFile(resourceName)
+        }
+        result shouldBe resourceName
+      }
+    }
+
+    "return environment-specific file when it exists" in {
+      val resourceName = "test-config/config/test.json"
+
+      val result = withEnvironment("dev") {
+        ConfigUtils.mapToEnvironmentFile(resourceName)
+      }
+
+      val path = java.nio.file.Paths.get(resourceName)
+      val fileName = path.getFileName.toString
+      val expectedResult = resourceName.replace(fileName, s"dev-$fileName")
+
+      result shouldBe expectedResult
+    }
+
+    "return environment-specific file with leading slash when it exists" in {
+      val resourceName = "/test-config/config/test.json"
+
+      val result = withEnvironment("dev") {
+        ConfigUtils.mapToEnvironmentFile(resourceName)
+      }
+
+      val path = java.nio.file.Paths.get(resourceName.substring(1))
+      val fileName = path.getFileName.toString
+      val expectedResult = resourceName.replace(fileName, s"dev-$fileName")
+
+      result shouldBe expectedResult
+    }
+
+    "return original file when environment-specific file does not exist" in {
+      val resourceName = "test-config/config/test.json"
+
+      val result = withEnvironment("prod") {
+        ConfigUtils.mapToEnvironmentFile(resourceName)
+      }
+
+      result shouldBe resourceName
+    }
+
+    "return original file with leading slash when environment-specific file does not exist" in {
+      val resourceName = "/test-config/config/test.json"
+
+      val result = withEnvironment("prod") {
+        ConfigUtils.mapToEnvironmentFile(resourceName)
+      }
+
+      result shouldBe resourceName
+    }
+  }
+
+  private def withEnvironment[T](env: String)(block: => T): T = {
+    val originalEnv = sys.props.get("ENVIRONMENT")
+    sys.props("ENVIRONMENT") = env
+    val result = block
+    originalEnv match {
+      case Some(value) => sys.props("ENVIRONMENT") = value
+      case None => sys.props.remove("ENVIRONMENT")
+    }
+    result
+  }
+
 }
