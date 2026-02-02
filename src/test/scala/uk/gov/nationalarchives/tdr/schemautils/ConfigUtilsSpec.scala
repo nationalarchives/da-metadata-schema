@@ -202,7 +202,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       )
 
       testCases.foreach { case (input, expected) =>
-        val result = ConfigUtils.mapToMetadataEnvironmentFile(input, Some("dev"))
+        val result = ConfigUtils.mapToMetadataEnvironmentFile(input, Some("dev-"))
         result shouldBe expected
       }
     }
@@ -214,7 +214,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       )
 
       testCases.foreach { case (input, expected) =>
-        val result = ConfigUtils.mapToMetadataEnvironmentFile(input, Some("dev"))
+        val result = ConfigUtils.mapToMetadataEnvironmentFile(input, Some("dev-"))
         result shouldBe expected
       }
     }

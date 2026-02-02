@@ -306,7 +306,7 @@ object ConfigUtils {
       case Some(value) =>
         val path = Paths.get(cleanResourceName)
         val fileName = path.getFileName.toString
-        val envSpecificName = cleanResourceName.replace(fileName, s"$value-$fileName")
+        val envSpecificName = cleanResourceName.replace(fileName, s"$value$fileName")
 
         Try(Source.fromResource(envSpecificName)).toOption match {
           case Some(source) =>
