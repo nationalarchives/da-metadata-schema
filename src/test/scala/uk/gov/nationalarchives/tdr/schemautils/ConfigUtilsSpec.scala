@@ -12,16 +12,6 @@ import scala.util.Using
 
 class ConfigUtilsSpec extends AnyWordSpec {
 
-  private def withEnvironment[T](env: String)(block: => T): T = {
-    val originalEnv = sys.props.get("ENVIRONMENT")
-    sys.props("ENVIRONMENT") = env
-    val result = block
-    originalEnv match {
-      case Some(value) => sys.props("ENVIRONMENT") = value
-      case None => sys.props.remove("ENVIRONMENT")
-    }
-    result
-  }
 
   "config.json" should {
     val nodeSchema = Using(Source.fromResource("config-schema/config.json"))(_.mkString)
@@ -202,41 +192,36 @@ class ConfigUtilsSpec extends AnyWordSpec {
 
     "return original resource name when environment-specific file does not exist" in {
       val testCases = List(
-        "config.json",
-        "config-schema/config.json",
-        "metadata-schema/baseSchema.schema.json",
-        "metadata/metadata-schema/baseSchema.schema.json",
-        "test.json"
+        ("config.json", "config.json"),
+        ("config-schema/config.json", "config-schema/config.json"),
+        ("metadata-schema/baseSchema.schema.json", "metadata-schema/baseSchema.schema.json"),
+        ("metadata/metadata-schema/baseSchema.schema.json", "metadata/metadata-schema/baseSchema.schema.json"),
+        ("test.json", "test.json"),
+        ("/config-schema/config.json", "/config-schema/config.json"),
+        ("/metadata-schema/baseSchema.schema.json", "/metadata-schema/baseSchema.schema.json")
       )
 
-      testCases.foreach { resourceName =>
-        val result = withEnvironment("dev") {
-          ConfigUtils.mapToEnvironmentFile(resourceName)
-        }
-        result shouldBe resourceName
+      testCases.foreach { case (input, expected) =>
+        val result = ConfigUtils.mapToEnvironmentFile(input, Some("dev"))
+        result shouldBe expected
       }
     }
 
     "return environment-specific file when it exists" in {
-      val resourceName = "test-config/config/test.json"
+      val testCases = List(
+        ("test-config/config/test.json", "test-config/config/dev-test.json"),
+        ("/test-config/config/test.json", "/test-config/config/dev-test.json")
+      )
 
-      val result = withEnvironment("dev") {
-        ConfigUtils.mapToEnvironmentFile(resourceName)
+      testCases.foreach { case (input, expected) =>
+        val result = ConfigUtils.mapToEnvironmentFile(input, Some("dev"))
+        result shouldBe expected
       }
-
-      val path = java.nio.file.Paths.get(resourceName)
-      val fileName = path.getFileName.toString
-      val expectedResult = resourceName.replace(fileName, s"dev-$fileName")
-
-      result shouldBe expectedResult
     }
 
     "return original file when environment-specific file does not exist" in {
       val resourceName = "test-config/config/test.json"
-
-      val result = withEnvironment("prod") {
-        ConfigUtils.mapToEnvironmentFile(resourceName)
-      }
+      val result = ConfigUtils.mapToEnvironmentFile(resourceName, Some("prod"))
 
       result shouldBe resourceName
     }

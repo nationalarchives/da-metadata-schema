@@ -9,6 +9,7 @@ import ujson.Value.Value
 import io.circe.Decoder
 import io.circe.generic.extras.Configuration
 import io.circe.generic.extras.semiauto._
+import java.nio.file.Paths
 
 import scala.util.{Try, Using}
 
@@ -297,25 +298,24 @@ object ConfigUtils {
 
   case class DownloadFileDisplayProperty(key: String, columnIndex: Int, editable: Boolean)
 
-  def mapToEnvironmentFile(resourceName: String): String = {
-    import java.nio.file.Paths
-
-    val environment = sys.env.get("ENVIRONMENT").orElse(sys.props.get("ENVIRONMENT"))
+  def mapToEnvironmentFile(resourceName: String, environment: Option[String] = sys.env.get("METADATA")): String = {
+    val startsWithSlash = resourceName.startsWith("/")
+    val cleanResourceName = if (startsWithSlash) resourceName.substring(1) else resourceName
 
     environment match {
       case Some(env) =>
-        val path = Paths.get(resourceName)
+        val path = Paths.get(cleanResourceName)
         val fileName = path.getFileName.toString
-        val envSpecificName = resourceName.replace(fileName, s"$env-$fileName")
+        val envSpecificName = cleanResourceName.replace(fileName, s"$env-$fileName")
 
         Try(Source.fromResource(envSpecificName)).toOption match {
           case Some(source) =>
             source.close()
-            envSpecificName
+            if (startsWithSlash) s"/$envSpecificName" else envSpecificName
           case None =>
-            resourceName
+            if (startsWithSlash) s"/$cleanResourceName" else cleanResourceName
         }
-      case None => resourceName
+      case None => if (startsWithSlash) s"/$cleanResourceName" else cleanResourceName
     }
   }
 
