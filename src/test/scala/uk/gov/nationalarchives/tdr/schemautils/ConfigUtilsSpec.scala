@@ -12,6 +12,7 @@ import scala.util.Using
 
 class ConfigUtilsSpec extends AnyWordSpec {
 
+
   "config.json" should {
     val nodeSchema = Using(Source.fromResource("config-schema/config.json"))(_.mkString)
     val mapper = new ObjectMapper()
@@ -184,6 +185,45 @@ class ConfigUtilsSpec extends AnyWordSpec {
       mapping("title_closed") shouldBe "false"
       mapping("rights_copyright") shouldBe "Crown copyright"
       mapping("held_by") shouldBe "The National Archives, Kew"
+    }
+  }
+
+  "mapToMetadataEnvironmentFile" should {
+
+    "return original resource name when environment-specific file does not exist" in {
+      val testCases = List(
+        ("config.json", "config.json"),
+        ("config-schema/config.json", "config-schema/config.json"),
+        ("metadata-schema/baseSchema.schema.json", "metadata-schema/baseSchema.schema.json"),
+        ("metadata/metadata-schema/baseSchema.schema.json", "metadata/metadata-schema/baseSchema.schema.json"),
+        ("test.json", "test.json"),
+        ("/config-schema/config.json", "/config-schema/config.json"),
+        ("/metadata-schema/baseSchema.schema.json", "/metadata-schema/baseSchema.schema.json")
+      )
+
+      testCases.foreach { case (input, expected) =>
+        val result = ConfigUtils.mapToMetadataEnvironmentFile(input, Some("dev-"))
+        result shouldBe expected
+      }
+    }
+
+    "return environment-specific file when it exists" in {
+      val testCases = List(
+        ("test-config/config/test.json", "test-config/config/dev-test.json"),
+        ("/test-config/config/test.json", "/test-config/config/dev-test.json")
+      )
+
+      testCases.foreach { case (input, expected) =>
+        val result = ConfigUtils.mapToMetadataEnvironmentFile(input, Some("dev-"))
+        result shouldBe expected
+      }
+    }
+
+    "return original file when environment-specific file does not exist" in {
+      val resourceName = "test-config/config/test.json"
+      val result = ConfigUtils.mapToMetadataEnvironmentFile(resourceName, Some("prod"))
+
+      result shouldBe resourceName
     }
   }
 }

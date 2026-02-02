@@ -2,22 +2,22 @@ package uk.gov.nationalarchives.tdr.schemautils
 
 import scala.io.Source
 import cats.data.Reader
-import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
+import com.fasterxml.jackson.databind.ObjectMapper
 import io.circe.generic.auto._
 import io.circe.jawn.decode
 import ujson.Value.Value
 import io.circe.Decoder
 import io.circe.generic.extras.Configuration
 import io.circe.generic.extras.semiauto._
+import java.nio.file.Paths
 
-import java.io.InputStream
-import scala.util.Using
+import scala.util.{Try, Using}
 
 object ConfigUtils {
 
   val ARRAY_SPLIT_CHAR = ";"
 
-  private val BASE_SCHEMA: String = "/metadata-schema/baseSchema.schema.json"
+  private val BASE_SCHEMA: String = "metadata-schema/baseSchema.schema.json"
   private val CONFIG_SCHEMA: String = "config-schema/config.json"
 
   private lazy val configParameters: ConfigParameters = ConfigParameters(loadBaseSchema, loadConfigFile)
@@ -214,7 +214,7 @@ object ConfigUtils {
       .toMap
   }
 
-  case class ConfigValues(
+  private case class ConfigValues(
       key: String,
       tdrFileHeader: Option[String],
       tdrDataLoadHeader: String,
@@ -252,20 +252,20 @@ object ConfigUtils {
       })
   }
 
-  private def loadBaseSchema: Value = {
-    val nodeSchema: JsonNode = getJsonNodeFromStreamContent(getClass.getResourceAsStream(BASE_SCHEMA))
-    ujson.read(nodeSchema.toPrettyString)
+  private def loadJsonResource(resourcePath: String): String = {
+    val resourceFileName = mapToMetadataEnvironmentFile(resourcePath)
+    val nodeSchema = Using(Source.fromResource(resourceFileName))(_.mkString)
+    val mapper = new ObjectMapper()
+    mapper.readTree(nodeSchema.get).toPrettyString
   }
 
-  private def getJsonNodeFromStreamContent(content: InputStream): JsonNode = {
-    val mapper = new ObjectMapper()
-    mapper.readTree(content)
+  private def loadBaseSchema: Value = {
+    val data = loadJsonResource(BASE_SCHEMA)
+    ujson.read(data)
   }
 
   private def loadConfigFile: Either[io.circe.Error, Config] = {
-    val nodeSchema = Using(Source.fromResource(CONFIG_SCHEMA))(_.mkString)
-    val mapper = new ObjectMapper()
-    val data = mapper.readTree(nodeSchema.get).toPrettyString
+    val data = loadJsonResource(CONFIG_SCHEMA)
     decode[Config](data)
   }
 
@@ -297,5 +297,26 @@ object ConfigUtils {
   case class Config(configItems: List[ConfigItem])
 
   case class DownloadFileDisplayProperty(key: String, columnIndex: Int, editable: Boolean)
+
+  def mapToMetadataEnvironmentFile(resourceName: String, metadataEnvironmentValue: Option[String] = sys.env.get("METADATA")): String = {
+    val startsWithSlash = resourceName.startsWith("/")
+    val cleanResourceName = if (startsWithSlash) resourceName.substring(1) else resourceName
+
+    metadataEnvironmentValue match {
+      case Some(value) =>
+        val path = Paths.get(cleanResourceName)
+        val fileName = path.getFileName.toString
+        val envSpecificName = cleanResourceName.replace(fileName, s"$value$fileName")
+
+        Try(Source.fromResource(envSpecificName)).toOption match {
+          case Some(source) =>
+            source.close()
+            if (startsWithSlash) s"/$envSpecificName" else envSpecificName
+          case None =>
+            if (startsWithSlash) s"/$cleanResourceName" else cleanResourceName
+        }
+      case None => if (startsWithSlash) s"/$cleanResourceName" else cleanResourceName
+    }
+  }
 
 }
