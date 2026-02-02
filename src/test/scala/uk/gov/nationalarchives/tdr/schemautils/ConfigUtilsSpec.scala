@@ -188,7 +188,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
     }
   }
 
-  "mapToEnvironmentFile" should {
+  "mapToMetadataEnvironmentFile" should {
 
     "return original resource name when environment-specific file does not exist" in {
       val testCases = List(
@@ -202,7 +202,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       )
 
       testCases.foreach { case (input, expected) =>
-        val result = ConfigUtils.mapToEnvironmentFile(input, Some("dev"))
+        val result = ConfigUtils.mapToMetadataEnvironmentFile(input, Some("dev"))
         result shouldBe expected
       }
     }
@@ -214,14 +214,14 @@ class ConfigUtilsSpec extends AnyWordSpec {
       )
 
       testCases.foreach { case (input, expected) =>
-        val result = ConfigUtils.mapToEnvironmentFile(input, Some("dev"))
+        val result = ConfigUtils.mapToMetadataEnvironmentFile(input, Some("dev"))
         result shouldBe expected
       }
     }
 
     "return original file when environment-specific file does not exist" in {
       val resourceName = "test-config/config/test.json"
-      val result = ConfigUtils.mapToEnvironmentFile(resourceName, Some("prod"))
+      val result = ConfigUtils.mapToMetadataEnvironmentFile(resourceName, Some("prod"))
 
       result shouldBe resourceName
     }

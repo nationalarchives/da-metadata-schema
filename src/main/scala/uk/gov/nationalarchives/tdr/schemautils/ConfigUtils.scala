@@ -253,7 +253,7 @@ object ConfigUtils {
   }
 
   private def loadJsonResource(resourcePath: String): String = {
-    val resourceFileName = mapToEnvironmentFile(resourcePath)
+    val resourceFileName = mapToMetadataEnvironmentFile(resourcePath)
     val nodeSchema = Using(Source.fromResource(resourceFileName))(_.mkString)
     val mapper = new ObjectMapper()
     mapper.readTree(nodeSchema.get).toPrettyString
@@ -298,15 +298,15 @@ object ConfigUtils {
 
   case class DownloadFileDisplayProperty(key: String, columnIndex: Int, editable: Boolean)
 
-  def mapToEnvironmentFile(resourceName: String, environment: Option[String] = sys.env.get("METADATA")): String = {
+  def mapToMetadataEnvironmentFile(resourceName: String, metadataEnvironmentValue: Option[String] = sys.env.get("METADATA")): String = {
     val startsWithSlash = resourceName.startsWith("/")
     val cleanResourceName = if (startsWithSlash) resourceName.substring(1) else resourceName
 
-    environment match {
-      case Some(env) =>
+    metadataEnvironmentValue match {
+      case Some(value) =>
         val path = Paths.get(cleanResourceName)
         val fileName = path.getFileName.toString
-        val envSpecificName = cleanResourceName.replace(fileName, s"$env-$fileName")
+        val envSpecificName = cleanResourceName.replace(fileName, s"$value-$fileName")
 
         Try(Source.fromResource(envSpecificName)).toOption match {
           case Some(source) =>
