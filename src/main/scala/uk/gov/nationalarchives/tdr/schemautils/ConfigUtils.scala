@@ -298,7 +298,7 @@ object ConfigUtils {
 
   case class DownloadFileDisplayProperty(key: String, columnIndex: Int, editable: Boolean)
 
-  def mapToMetadataEnvironmentFile(resourceName: String, metadataEnvironmentValue: Option[String] = sys.env.get("METADATA")): String = {
+  def mapToMetadataEnvironmentFile(resourceName: String, metadataEnvironmentValue: Option[String] = sys.env.get("METADATA_VERSION_OVERRIDE")): String = {
     val startsWithSlash = resourceName.startsWith("/")
     val cleanResourceName = if (startsWithSlash) resourceName.substring(1) else resourceName
 
