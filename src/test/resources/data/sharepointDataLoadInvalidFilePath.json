@@ -8,6 +8,7 @@
   "Length": 26,
   "FileRef": "",
   "FileLeafRef": "filename1.docx",
-  "File_x0020_Type": "docx",
-  "TimeCreated": "2001-12-12"
+  "TimeCreated": "2001-12-12",
+  "SiteName": "Site Display Name",
+  "LibraryName": "Library Display Name"
 }
