@@ -741,7 +741,6 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/legal_status",
       "propertyType": "Supplied",
       "expectedTDRHeader": false,
-      "defaultValue": "Public Record(s)",
       "allowExport": true,
       "alternateKeys": [
         {
