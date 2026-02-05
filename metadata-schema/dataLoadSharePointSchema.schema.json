@@ -47,9 +47,6 @@
     "LibraryName": {
       "type": "string",
       "propertyType": "System"
-    },
-    "closure status": {
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/closure_type"
     }
   },
   "required": [
@@ -64,7 +61,6 @@
     "FileLeafRef",
     "TimeCreated",
     "SiteName",
-    "LibraryName",
-    "closure status"
+    "LibraryName"
   ]
 }
