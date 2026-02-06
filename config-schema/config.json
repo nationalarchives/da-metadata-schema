@@ -110,7 +110,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "date of the record",
-          "tdrDataLoadHeader": "end_date"
+          "tdrDataLoadHeader": "end_date",
+          "sharePointTag": "date_x0020_of_x0020_the_x0020_record"
         }
       ],
       "downloadFilesOutputs": [
@@ -170,7 +171,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "former reference",
-          "tdrDataLoadHeader": "former_reference_department"
+          "tdrDataLoadHeader": "former_reference_department",
+          "sharePointTag": "former_x0020_reference"
         }
       ],
       "downloadFilesOutputs": [
@@ -201,7 +203,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "closure status",
-          "tdrDataLoadHeader": "ClosureType"
+          "tdrDataLoadHeader": "ClosureType",
+          "sharePointTag": "closure_x0020_status"
         }
       ],
       "downloadFilesOutputs": [
@@ -231,7 +234,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "closure start date",
-          "tdrDataLoadHeader": "ClosureStartDate"
+          "tdrDataLoadHeader": "ClosureStartDate",
+          "sharePointTag": "closure_x0020_start_x0020_date"
         }
       ],
       "downloadFilesOutputs": [
@@ -261,7 +265,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "closure period",
-          "tdrDataLoadHeader": "ClosurePeriod"
+          "tdrDataLoadHeader": "ClosurePeriod",
+          "sharePointTag": "closure_x0020_period"
         }
       ],
       "downloadFilesOutputs": [
@@ -291,7 +296,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "foi exemption code",
-          "tdrDataLoadHeader": "FoiExemptionCode"
+          "tdrDataLoadHeader": "FoiExemptionCode",
+          "sharePointTag": "foi_x0020_exemption_x0020_code"
         }
       ],
       "downloadFilesOutputs": [
@@ -321,7 +327,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "foi schedule date",
-          "tdrDataLoadHeader": "FoiExemptionAsserted"
+          "tdrDataLoadHeader": "FoiExemptionAsserted",
+          "sharePointTag": "foi_x0020_schedule_x0020_date"
         }
       ],
       "downloadFilesOutputs": [
@@ -353,7 +360,8 @@
         {
           "tdrFileHeader": "is filename closed",
           "tdrDataLoadHeader": "TitleClosed",
-          "hardDriveHeader": "title_public"
+          "hardDriveHeader": "title_public",
+          "sharePointTag": "is_x0020_filename_x0020_closed"
         }
       ],
       "downloadFilesOutputs": [
@@ -385,7 +393,8 @@
         {
           "tdrFileHeader": "is description closed",
           "tdrDataLoadHeader": "DescriptionClosed",
-          "hardDriveHeader": "description_public"
+          "hardDriveHeader": "description_public",
+          "sharePointTag": "is_x0020_description_x0020_closed"
         }
       ],
       "downloadFilesOutputs": [
@@ -415,7 +424,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "alternate description",
-          "tdrDataLoadHeader": "DescriptionAlternate"
+          "tdrDataLoadHeader": "DescriptionAlternate",
+          "sharePointTag": "alternate_x0020_description"
         }
       ],
       "downloadFilesOutputs": [
@@ -445,7 +455,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "alternate filename",
-          "tdrDataLoadHeader": "TitleAlternate"
+          "tdrDataLoadHeader": "TitleAlternate",
+          "sharePointTag": "alternate_x0020_filename"
         }
       ],
       "downloadFilesOutputs": [
@@ -506,7 +517,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "translated filename",
-          "tdrDataLoadHeader": "file_name_translation"
+          "tdrDataLoadHeader": "file_name_translation",
+          "sharePointTag": "translated_x0020_filename"
         }
       ],
       "downloadFilesOutputs": [
@@ -580,7 +592,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "copyright",
-          "tdrDataLoadHeader": "RightsCopyright"
+          "tdrDataLoadHeader": "RightsCopyright",
+          "sharePointTag": "copyright"
         }
       ],
       "downloadFilesOutputs": [
@@ -610,7 +623,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "restrictions on use",
-          "tdrDataLoadHeader": "RestrictionsOnUse"
+          "tdrDataLoadHeader": "RestrictionsOnUse",
+          "sharePointTag": "restrictions_x0020_on_x0020_use"
         }
       ],
       "downloadFilesOutputs": [
@@ -789,7 +803,8 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "related material",
-          "tdrDataLoadHeader": "RelatedMaterial"
+          "tdrDataLoadHeader": "RelatedMaterial",
+          "sharePointTag": "related_x0020_material"
         }
       ],
       "downloadFilesOutputs": [
@@ -987,7 +1002,8 @@
         {
           "tdrDataLoadHeader": "EvidenceProvidedBy",
           "tdrFileHeader": "evidence provided by",
-          "tdrBagitExportHeader": "evidence_provided_by"
+          "tdrBagitExportHeader": "evidence_provided_by",
+          "sharePointTag": "evidence_x0020_provided_x0020_by"
         }
       ],
       "downloadFilesOutputs": [
