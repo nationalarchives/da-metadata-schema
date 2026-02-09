@@ -1095,7 +1095,7 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "note",
-          "tdrDataLoadHeader": "note"
+          "tdrDataLoadHeader": "Note"
         }
       ],
       "downloadFilesOutputs": [
