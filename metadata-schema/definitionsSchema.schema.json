@@ -94,11 +94,7 @@
     "copyrights": {
       "enum": [
         "Crown copyright",
-        "Third party",
-        "Crown",
-        "UK Parliament",
-        "Open Parliament Licence",
-        "Unknown"
+        "Third party"
       ]
     },
     "judgment_types": {
