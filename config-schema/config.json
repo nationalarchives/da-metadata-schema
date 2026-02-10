@@ -587,7 +587,7 @@
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/rights_copyright",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
-      "defaultValue": "Crown copyright",
+      "defaultValue": "Crown",
       "allowExport": true,
       "alternateKeys": [
         {
