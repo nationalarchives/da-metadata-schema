@@ -1101,36 +1101,6 @@
         }
       ],
       "downloadFilesOutputs": []
-    },
-    {
-      "key": "note",
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/note",
-      "propertyType": "Supplied",
-      "expectedTDRHeader": true,
-      "allowExport": true,
-      "alternateKeys": [
-        {
-          "tdrFileHeader": "note",
-          "tdrDataLoadHeader": "Note"
-        }
-      ],
-      "downloadFilesOutputs": [
-        {
-          "domain": "MetadataDownloadTemplate",
-          "columnIndex": 22,
-          "editable": true
-        },
-        {
-          "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 24,
-          "editable": true
-        },
-        {
-          "domain": "BagitExportTemplate",
-          "columnIndex": 39,
-          "editable": false
-        }
-      ]
     }
   ]
 }
