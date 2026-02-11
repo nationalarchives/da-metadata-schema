@@ -318,15 +318,6 @@
       ],
       "maxLength": 255,
       "pattern": "^[^\\r\\n]*$"
-    },
-    "note": {
-      "description": "Specialised information that does not fit in any other field",
-      "type": [
-        "string",
-        "null"
-      ],
-      "maxLength": 1000,
-      "pattern": "^[^\\r\\n]*$"
     }
   }
 }
