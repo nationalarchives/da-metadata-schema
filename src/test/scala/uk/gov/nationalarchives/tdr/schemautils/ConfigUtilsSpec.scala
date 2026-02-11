@@ -14,14 +14,14 @@ class ConfigUtilsSpec extends AnyWordSpec {
 
 
   "config.json" should {
-    val nodeSchema = Using(Source.fromResource("config-schema/config.json"))(_.mkString)
+    val nodeSchema = Using(Source.fromResource(ConfigUtils.mapToMetadataEnvironmentFile("config-schema/config.json")))(_.mkString)
     val mapper = new ObjectMapper()
     val configData = mapper.readTree(nodeSchema.get).toPrettyString
     val propertyKeys = decode[Config](configData)
       .getOrElse(Config(List.empty[ConfigItem])).configItems.map(_.key)
 
     "contain the correct number of properties" in {
-      propertyKeys.size should equal(44)
+      propertyKeys.size should equal(45)
     }
 
     "not contain duplicate properties" in {

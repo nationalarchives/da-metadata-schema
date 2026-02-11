@@ -145,5 +145,12 @@
     "format": "Text, max 255 characters",
     "tdrRequirement": "Optional",
     "example": "'Economics Division’ will be shown on Discovery as ‘Evidence provided by: Economics Division'"
+  },
+  {
+    "property": "note",
+    "details": "Use this field to add specialised information that does not fit in any other field. Check with your Digital Transfer Adviser to make sure this field is the right place for the information.",
+    "format": "Text, max 1000 characters",
+    "tdrRequirement": "Optional",
+    "example": "Date derived from system metadata; actual date of the record is unknown."
   }
 ]
