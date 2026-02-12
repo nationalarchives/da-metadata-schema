@@ -615,6 +615,36 @@
       ]
     },
     {
+      "key": "copyright_details",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/note",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "copyright details",
+          "tdrDataLoadHeader": "CopyrightDetails"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 19,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 19,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 40,
+          "editable": false
+        }
+      ]
+    },
+    {
       "key": "restrictions_on_use",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/restrictions_on_use",
       "propertyType": "Supplied",
@@ -630,12 +660,12 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 20,
+          "columnIndex": 21,
           "editable": true
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 20,
+          "columnIndex": 21,
           "editable": true
         },
         {
@@ -789,7 +819,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 19,
+          "columnIndex": 20,
           "editable": false
         }
       ]
@@ -810,12 +840,12 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 19,
+          "columnIndex": 20,
           "editable": true
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 21,
+          "columnIndex": 22,
           "editable": true
         },
         {
@@ -1117,12 +1147,12 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 22,
+          "columnIndex": 23,
           "editable": true
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 24,
+          "columnIndex": 25,
           "editable": true
         },
         {

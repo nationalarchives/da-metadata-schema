@@ -152,5 +152,12 @@
     "format": "Text, max 1000 characters",
     "tdrRequirement": "Optional",
     "example": "Date derived from system metadata; actual date of the record is unknown."
+  },
+  {
+    "property": "copyright_details",
+    "details": "List specific copyright holders separated by semi-colons, or provide pre-agreed specific wording. Will be published on Discovery as ‘Restrictions on Use’.",
+    "format": "Text, max 255 characters",
+    "tdrRequirement": "Optional",
+    "example": "BBC; ITV; Joe Bloggs"
   }
 ]
