@@ -231,6 +231,15 @@
       "items": {
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/copyrights"
+      },
+      "if": {
+        "contains": {
+          "const": "Unknown"
+        }
+      },
+      "then": {
+        "minItems": 1,
+        "maxItems": 1
       }
     },
     "restrictions_on_use": {

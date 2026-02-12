@@ -157,7 +157,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a getDefaultValue method that" should {
     "return the default value for a property with a default value" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.getDefaultValue("rights_copyright") shouldBe "Crown copyright"
+      metadataConfiguration.getDefaultValue("rights_copyright") shouldBe "Crown"
     }
 
     "return an empty string for a property without a default value" in {
@@ -183,7 +183,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       mapping("legal_status") shouldBe "Public Record(s)"
       mapping("description_closed") shouldBe "false"
       mapping("title_closed") shouldBe "false"
-      mapping("rights_copyright") shouldBe "Crown copyright"
+      mapping("rights_copyright") shouldBe "Crown"
       mapping("held_by") shouldBe "The National Archives, Kew"
     }
   }
