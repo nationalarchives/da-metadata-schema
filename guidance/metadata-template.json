@@ -120,10 +120,10 @@
   },
   {
     "property": "rights_copyright",
-    "details": "Indicate the copyright holder for this record is ‘Crown copyright’, ‘Third party’ or both ‘Crown copyright;Third party’.",
+    "details": "Indicate the copyright holder for this record is ‘Crown’, ‘Third party’, ‘UK Parliament’ or ‘Open Parliament License’.",
     "format": "Semi-colon separated list (with no spaces) Default: ‘Crown copyright’",
     "tdrRequirement": "Mandatory",
-    "example": "‘Crown copyright;Third party’ will be shown on Discovery as ‘Restrictions on Use: Copyright: Crown Copyright ; Third party"
+    "example": "‘Crown;Third party;UK Parliament’ will be shown on Discovery as ‘Restrictions on Use: Copyright: Crown; Third party; UK Parliament"
   },
   {
     "property": "related_material",
