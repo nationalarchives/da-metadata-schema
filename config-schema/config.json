@@ -616,7 +616,7 @@
     },
     {
       "key": "copyright_details",
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/note",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/copyright_details",
       "propertyType": "Supplied",
       "expectedTDRHeader": true,
       "allowExport": true,
