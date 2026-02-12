@@ -334,7 +334,17 @@
         "string",
         "null"
       ],
-      "maxLength": 1000
+      "maxLength": 1000,
+      "pattern": "^[^\\r\\n]*$"
+    },
+    "copyright_details": {
+      "description": "List specific copyright holders separated by semi-colons, or provide pre-agreed specific wording. Will be published on Discovery as ‘Restrictions on Use’.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 255,
+      "pattern": "^[^\\r\\n]*$"
     }
   }
 }

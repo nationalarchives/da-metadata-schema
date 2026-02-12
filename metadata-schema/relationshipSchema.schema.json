@@ -104,6 +104,24 @@
         },
         "required": ["judgment_neutral_citation"]
       }
+    },
+    {
+      "if": {
+        "properties": {
+          "rights_copyright": {
+            "const": "Unknown"
+          }
+        },
+        "required": ["rights_copyright"]
+      },
+      "then": {
+        "properties": {
+          "copyright_details": {
+            "type": "null"
+          }
+        },
+        "required": ["copyright_details"]
+      }
     }
   ]
 }
