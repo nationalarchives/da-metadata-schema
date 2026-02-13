@@ -231,6 +231,15 @@
       "items": {
         "type": "string",
         "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/copyrights"
+      },
+      "if": {
+        "contains": {
+          "const": "Unknown"
+        }
+      },
+      "then": {
+        "minItems": 1,
+        "maxItems": 1
       }
     },
     "restrictions_on_use": {
@@ -326,6 +335,15 @@
         "null"
       ],
       "maxLength": 1000,
+      "pattern": "^[^\\r\\n]*$"
+    },
+    "copyright_details": {
+      "description": "List specific copyright holders separated by semi-colons, or provide pre-agreed specific wording. Will be published on Discovery as ‘Restrictions on Use’.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 255,
       "pattern": "^[^\\r\\n]*$"
     }
   }

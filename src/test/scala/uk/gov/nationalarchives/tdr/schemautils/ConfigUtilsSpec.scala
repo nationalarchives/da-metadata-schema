@@ -21,7 +21,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       .getOrElse(Config(List.empty[ConfigItem])).configItems.map(_.key)
 
     "contain the correct number of properties" in {
-      propertyKeys.size should equal(45)
+      propertyKeys.size should equal(46)
     }
 
     "not contain duplicate properties" in {
@@ -99,7 +99,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       metadataConfiguration.getPropertiesByPropertyType("Supplied") shouldBe
         List("end_date", "description", "former_reference_department", "closure_type", "closure_start_date", "closure_period",
           "foi_exemption_code", "foi_exemption_asserted", "title_closed", "description_closed", "description_alternate", "title_alternate",
-          "language", "file_name_translation", "rights_copyright", "restrictions_on_use", "held_by", "legal_status",
+          "language", "file_name_translation", "rights_copyright", "copyright_details", "restrictions_on_use", "held_by", "legal_status",
           "related_material","judgment_type", "judgment_update", "judgment_update_type", "judgment_update_details", "judgment_neutral_citation", "judgment_no_neutral_citation", "judgment_reference", "evidence_provided_by",
           "date_created", "date_range", "file_name_translation_language", "start_date", "creating_body", "file_name_language", "note")
       metadataConfiguration.getPropertiesByPropertyType("unknown") shouldBe List()
@@ -109,9 +109,9 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a downloadProperties method that" should {
     "give the downloadProperties config for a specified download" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 22
-      metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 37
-      metadataConfiguration.downloadFileDisplayProperties("MetadataReviewDetailTemplate").length shouldBe 24
+      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 23
+      metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 38
+      metadataConfiguration.downloadFileDisplayProperties("MetadataReviewDetailTemplate").length shouldBe 25
       metadataConfiguration.downloadFileDisplayProperties("UnknownClientTemplate").length shouldBe 0
     }
 
@@ -157,7 +157,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a getDefaultValue method that" should {
     "return the default value for a property with a default value" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.getDefaultValue("rights_copyright") shouldBe "Crown copyright"
+      metadataConfiguration.getDefaultValue("rights_copyright") shouldBe "Crown"
     }
 
     "return an empty string for a property without a default value" in {
@@ -183,7 +183,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       mapping("legal_status") shouldBe "Public Record(s)"
       mapping("description_closed") shouldBe "false"
       mapping("title_closed") shouldBe "false"
-      mapping("rights_copyright") shouldBe "Crown copyright"
+      mapping("rights_copyright") shouldBe "Crown"
       mapping("held_by") shouldBe "The National Archives, Kew"
     }
   }
