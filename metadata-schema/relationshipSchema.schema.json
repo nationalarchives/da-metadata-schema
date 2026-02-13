@@ -109,7 +109,10 @@
       "if": {
         "properties": {
           "rights_copyright": {
-            "const": "Unknown"
+            "type": "array",
+            "contains": {
+              "const": "Unknown"
+            }
           }
         },
         "required": ["rights_copyright"]
