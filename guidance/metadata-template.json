@@ -126,6 +126,13 @@
     "example": "‘Crown;Third party;UK Parliament’ will be shown on Discovery as ‘Restrictions on Use: Copyright: Crown; Third party; UK Parliament"
   },
   {
+    "property": "copyright_details",
+    "details": "List specific copyright holders separated by semi-colons, or provide pre-agreed specific wording. Will be published on Discovery as ‘Restrictions on Use’.",
+    "format": "Text, max 255 characters",
+    "tdrRequirement": "Optional",
+    "example": "BBC; ITV; Joe Bloggs"
+  },
+  {
     "property": "related_material",
     "details": "Provide any reference to records already included in the TNA catalogue. If you have multiple references, these should be separated by semi-colons.",
     "format": "Text, max 255 characters.",
@@ -152,12 +159,5 @@
     "format": "Text, max 1000 characters",
     "tdrRequirement": "Optional",
     "example": "Date derived from system metadata; actual date of the record is unknown."
-  },
-  {
-    "property": "copyright_details",
-    "details": "List specific copyright holders separated by semi-colons, or provide pre-agreed specific wording. Will be published on Discovery as ‘Restrictions on Use’.",
-    "format": "Text, max 255 characters",
-    "tdrRequirement": "Optional",
-    "example": "BBC; ITV; Joe Bloggs"
   }
 ]
