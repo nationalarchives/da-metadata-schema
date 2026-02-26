@@ -29,10 +29,10 @@
   },
   {
     "property": "description",
-    "details": "Provide a description which gives more context/meaning to the record, especially if the filename is not descriptive enough. Please do check these for spelling and grammar.",
+    "details": "Add references for closely related records held by The National Archives. Agree with your digital transfer advisor before using this field. Separate references with semi-colons.",
     "format": "Text, max 8000 characters",
     "tdrRequirement": "Recommended",
-    "example": "Draft business case for a Learning Resource Centre"
+    "example": "ES 1/565; ES 1/565"
   },
   {
     "property": "former_reference_department",
@@ -45,7 +45,7 @@
     "property": "closure_type",
     "details": "Closed records must have been approved by the Advisory Council. Only the words 'Open' or 'Closed' will be accepted. This is case sensitive and variations on these words will not be accepted.",
     "format": "Open or Closed, default: Open",
-    "tdrRequirement": "Mandatory for closed record",
+    "tdrRequirement": "Mandatory",
     "example": "Closed"
   },
   {
@@ -80,7 +80,7 @@
     "property": "title_closed",
     "details": "Closed record: Yes means the filename should also be closed.",
     "format": "Yes or No, default: No",
-    "tdrRequirement": "Mandatory for closed record",
+    "tdrRequirement": "Mandatory",
     "example": "Yes"
   },
   {
@@ -94,7 +94,7 @@
     "property": "description_closed",
     "details": "Closed record: Yes means the description should also be closed.",
     "format": "Yes or No, default: No",
-    "tdrRequirement": "Mandatory for closed record",
+    "tdrRequirement": "Mandatory",
     "example": "Yes"
   },
   {
