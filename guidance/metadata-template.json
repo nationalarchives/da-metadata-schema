@@ -85,10 +85,10 @@
   },
   {
     "property": "title_alternate",
-    "details": "Closed record: If the filename of this record is closed, please provide an alternate filename (without the file extension) to be displayed on Discovery while the record is closed.",
+    "details": "Closed record: Provide a public-facing filename (no extension) for Discovery. Use square brackets to indicate redacted text. If the whole filename is closed use [title withheld]",
     "format": "Text, max 255 characters",
     "tdrRequirement": "Mandatory if filename is closed",
-    "example": "filename1"
+    "example": "Letter to [name withheld]"
   },
   {
     "property": "description_closed",
@@ -99,10 +99,10 @@
   },
   {
     "property": "description_alternate",
-    "details": "Closed record: If the description of this record is closed, please provide an alternate description to be displayed on Discovery while the record is closed.",
+    "details": "Closed record: Provide a public-facing description for Discovery. Use square brackets to indicate where information has been redacted.",
     "format": "Text, max 8000 characters",
     "tdrRequirement": "Mandatory if description is closed",
-    "example": "This is an alternative description"
+    "example": "Report on [detail withheld]"
   },
   {
     "property": "language",
