@@ -1062,7 +1062,8 @@
       "allowExport": false,
       "alternateKeys": [
         {
-          "tdrDataLoadHeader": "date_created"
+          "tdrDataLoadHeader": "date_created",
+          "sharePointTag": "Created"
         }
       ],
       "downloadFilesOutputs": []

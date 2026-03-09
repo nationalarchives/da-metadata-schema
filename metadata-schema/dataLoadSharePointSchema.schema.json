@@ -35,17 +35,9 @@
     "FileLeafRef": {
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/file_name"
     },
-    "TimeCreated": {
+    "Created": {
       "type": "string",
       "format": "date",
-      "propertyType": "System"
-    },
-    "SiteName": {
-      "type": "string",
-      "propertyType": "System"
-    },
-    "LibraryName": {
-      "type": "string",
       "propertyType": "System"
     }
   },
@@ -59,8 +51,6 @@
     "Length",
     "FileRef",
     "FileLeafRef",
-    "TimeCreated",
-    "SiteName",
-    "LibraryName"
+    "Created"
   ]
 }

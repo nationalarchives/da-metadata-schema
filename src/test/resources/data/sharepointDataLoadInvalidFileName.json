@@ -8,7 +8,5 @@
   "Length": 26,
   "FileRef": "a/filepath/filename1.docx",
   "FileLeafRef": "",
-  "TimeCreated": "2001-12-12",
-  "SiteName": "Site Display Name",
-  "LibraryName": "Library Display Name"
+  "Created": "2001-12-12"
 }
