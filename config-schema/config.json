@@ -738,6 +738,11 @@
           "domain": "BagitExportTemplate",
           "columnIndex": 23,
           "editable": false
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 26,
+          "editable": false
         }
       ]
     },
