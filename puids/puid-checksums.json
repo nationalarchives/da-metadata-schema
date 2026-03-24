@@ -1,0 +1,16 @@
+[
+  {
+    "puid": "zeroByteFile",
+    "checksums": [
+      {
+        "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "checksumDescription": "SHA-256 checksum of a zero-byte (empty) file"
+      },
+      {
+        "checksum": "f01a374e9c81e3db89b3a42940c4d6a5447684986a1296e42bf13f196eed6295",
+        "checksumDescription": "SHA-256 checksum of a BOM-only (byte order mark) file"
+      }
+    ]
+  }
+]
+
