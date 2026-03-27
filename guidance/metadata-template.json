@@ -29,10 +29,10 @@
   },
   {
     "property": "description",
-    "details": "Add references for closely related records held by The National Archives. Agree with your digital transfer advisor before using this field. Separate references with semi-colons.",
+    "details": "Provide a description which gives more context/meaning to the record, especially if the filename is not descriptive enough. Please do check these for spelling and grammar.",
     "format": "Text, max 8000 characters",
     "tdrRequirement": "Recommended",
-    "example": "ES 1/565; ES 1/565"
+    "example": "Draft business case for a Learning Resource Centre"
   },
   {
     "property": "former_reference_department",
@@ -134,10 +134,10 @@
   },
   {
     "property": "related_material",
-    "details": "Provide any reference to records already included in the TNA catalogue. If you have multiple references, these should be separated by semi-colons.",
+    "details": "Add references for closely related records held by The National Archives. Agree with your digital transfer advisor before using this field. Separate references with semi-colons.",
     "format": "Text, max 255 characters.",
     "tdrRequirement": "Optional",
-    "example": "DL 10/71;EE 500/32"
+    "example": "ES 1/565; ES 1/565"
   },
   {
     "property": "restrictions_on_use",
