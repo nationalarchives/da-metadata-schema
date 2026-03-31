@@ -66,4 +66,3 @@ class ExcludedFilenamesSpec extends AnyFlatSpec with Matchers {
     filenames.filterNot(ExcludedFilenames.isExcluded) should contain theSameElementsAs filenames
   }
 }
-

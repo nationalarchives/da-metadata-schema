@@ -145,4 +145,3 @@ Run tests with:
 ```bash
 sbt test
 ```
-
