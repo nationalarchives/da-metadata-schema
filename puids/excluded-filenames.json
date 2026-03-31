@@ -1,0 +1,21 @@
+[
+  {
+    "pattern": "^thumbs\\.db$",
+    "type": "regex",
+    "caseInsensitive": true,
+    "description": "Windows thumbnail cache file"
+  },
+  {
+    "pattern": "^desktop\\.ini$",
+    "type": "regex",
+    "caseInsensitive": true,
+    "description": "Windows desktop configuration file"
+  },
+  {
+    "pattern": ".DS_Store",
+    "type": "exact",
+    "caseInsensitive": false,
+    "description": "macOS folder metadata file"
+  }
+]
+

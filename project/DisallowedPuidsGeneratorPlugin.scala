@@ -23,7 +23,6 @@ object DisallowedPuidsGeneratorPlugin extends AutoPlugin {
         log.warn(s"JSON file not found: $jsonFile")
         Seq.empty[File]
       } else {
-        import ujson.*
         val jsonStr = Using(Source.fromFile(jsonFile)(scala.io.Codec.UTF8))(_.mkString).get
         val parsed = ujson.read(jsonStr)
 

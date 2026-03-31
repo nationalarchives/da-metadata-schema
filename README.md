@@ -7,8 +7,9 @@ This project provides the [JSON schemas](https://json-schema.org/) for defining 
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Schema](#schemas)
-4. [Validation Messages](#validation-messages)
-5. [Usage](#usage)
+4. [Excluded Filenames](#excluded-filenames)
+5. [Validation Messages](#validation-messages)
+6. [Usage](#usage)
 
 ## Introduction
 
@@ -224,6 +225,49 @@ An example of an error file conforming to this schema.
 * `errorKey` is the keyword returned from the Json Schema validation. 'type' indicated null and not a String
 * `property` is the input key (TDR metadata file column header)
 * `message` is the user-friendly message for the error obtained as below, using the property name as used in validation
+
+## Excluded Filenames
+
+The project includes a system for filtering out specific files (such as system files and temporary files) before they are uploaded to the database. This is configured via JSON and automatically generates Scala code at compile time.
+
+### Configuration
+
+The [excluded-filenames.json](puids/excluded-filenames.json) file defines filename patterns that should be excluded from upload. Currently excluded files include:
+- `thumbs.db` (Windows thumbnail cache, case-insensitive)
+- `desktop.ini` (Windows desktop configuration, case-insensitive)
+- `.DS_Store` (macOS folder metadata, case-sensitive)
+
+The configuration supports:
+- **Exact matching**: For precise filename matches
+- **Regex patterns**: For flexible pattern matching (e.g., files starting with `~`)
+- **Case sensitivity control**: For each pattern individually
+
+### Usage in Code
+
+The `ExcludedFilenamesGeneratorPlugin` automatically generates a Scala object with helper methods:
+
+```scala
+import uk.gov.nationalarchives.tdr.schema.generated.ExcludedFilenames
+
+// Check if a single filename should be excluded
+ExcludedFilenames.isExcluded("thumbs.db") // returns true
+
+// Filter a list of filenames
+val filenames = Seq("document.pdf", "thumbs.db", "image.jpg")
+val filtered = ExcludedFilenames.filterExcluded(filenames)
+// Returns: Seq("document.pdf", "image.jpg")
+```
+
+For detailed documentation on adding new exclusion patterns and using regex, see [EXCLUDED_FILENAMES.md](EXCLUDED_FILENAMES.md).
+
+### Relation to Disallowed PUIDs
+
+Previously, system files like `desktop.ini` (PUID: x-fmt/421) were handled via the disallowed PUIDs list. The filename exclusion approach is more appropriate for system files as it:
+- Filters files before they're sent to the database
+- Works based on filename rather than PRONOM format identification
+- Is faster and more maintainable for system-specific files
+
+The PUID `x-fmt/421` has been removed from the disallowed PUIDs list as it's now handled by filename exclusion.
 
 ### Validation Messages
 
