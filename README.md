@@ -254,7 +254,7 @@ ExcludedFilenames.isExcluded("thumbs.db") // returns true
 
 // Filter a list of filenames
 val filenames = Seq("document.pdf", "thumbs.db", "image.jpg")
-val filtered = ExcludedFilenames.filterExcluded(filenames)
+val filtered = filenames.filterNot(ExcludedFilenames.isExcluded)
 // Returns: Seq("document.pdf", "image.jpg")
 ```
 

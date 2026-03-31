@@ -36,7 +36,7 @@ class ExcludedFilenamesSpec extends AnyFlatSpec with Matchers {
     ExcludedFilenames.isExcluded("desktop_settings.ini") shouldBe false
   }
 
-  "ExcludedFilenames.filterExcluded" should "filter out excluded filenames from a list" in {
+  "filtering with isExcluded" should "filter out excluded filenames from a list" in {
     val filenames = Seq(
       "document.pdf",
       "thumbs.db",
@@ -47,7 +47,7 @@ class ExcludedFilenamesSpec extends AnyFlatSpec with Matchers {
       "THUMBS.DB"
     )
 
-    val filtered = ExcludedFilenames.filterExcluded(filenames)
+    val filtered = filenames.filterNot(ExcludedFilenames.isExcluded)
 
     filtered should contain theSameElementsAs Seq(
       "document.pdf",
@@ -58,12 +58,12 @@ class ExcludedFilenamesSpec extends AnyFlatSpec with Matchers {
 
   it should "return empty list when all files are excluded" in {
     val filenames = Seq("thumbs.db", "Desktop.ini", ".DS_Store")
-    ExcludedFilenames.filterExcluded(filenames) shouldBe empty
+    filenames.filterNot(ExcludedFilenames.isExcluded) shouldBe empty
   }
 
   it should "return all files when none are excluded" in {
     val filenames = Seq("document.pdf", "image.jpg", "spreadsheet.xlsx")
-    ExcludedFilenames.filterExcluded(filenames) should contain theSameElementsAs filenames
+    filenames.filterNot(ExcludedFilenames.isExcluded) should contain theSameElementsAs filenames
   }
 }
 

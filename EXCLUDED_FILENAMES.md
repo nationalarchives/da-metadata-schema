@@ -52,14 +52,8 @@ val shouldExclude = ExcludedFilenames.isExcluded("thumbs.db") // returns true
 
 // Filter a list of filenames
 val filenames = Seq("document.pdf", "thumbs.db", "image.jpg", "Desktop.ini")
-val filtered = ExcludedFilenames.filterExcluded(filenames)
+val filtered = filenames.filterNot(ExcludedFilenames.isExcluded)
 // Returns: Seq("document.pdf", "image.jpg")
-
-// Access the raw patterns
-val patterns = ExcludedFilenames.all
-patterns.foreach { pattern =>
-  println(s"${pattern.description}: ${pattern.pattern}")
-}
 ```
 
 ## Adding New Exclusions
