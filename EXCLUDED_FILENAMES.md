@@ -12,14 +12,14 @@ The JSON file contains an array of filename pattern objects, each with the follo
 
 - **pattern** (string, required): The pattern to match against filenames
   - For "exact" type: The exact filename to match
-  - For "regex" type: A regular expression pattern (use `^` and `$` for exact matches)
+  - For "regex" type: A regular expression pattern
 
 - **type** (string, required): The type of pattern matching
   - `"exact"`: Exact string matching
   - `"regex"`: Regular expression matching
 
 - **caseInsensitive** (boolean, required): Whether the matching should be case-insensitive
-  - `true`: Match regardless of case (e.g., "thumbs.db" matches "Thumbs.db", "THUMBS.DB")
+  - `true`: Match regardless of case (e.g., `thumbs.db` matches `Thumbs.db`, `THUMBS.DB`)
   - `false`: Case-sensitive matching
 
 - **description** (string, required): A human-readable description of what this pattern excludes
@@ -28,32 +28,32 @@ The JSON file contains an array of filename pattern objects, each with the follo
 
 The following files are currently excluded by default:
 
-1. **thumbs.db** (case-insensitive)
+1. **thumbs.db** (exact, case-insensitive)
    - Windows thumbnail cache file
-   - Matches: thumbs.db, Thumbs.db, THUMBS.DB, etc.
+   - Matches: `thumbs.db`, `Thumbs.db`, `THUMBS.DB`
 
-2. **desktop.ini** (case-insensitive)
+2. **desktop.ini** (exact, case-sensitive)
    - Windows desktop configuration file
-   - Matches: desktop.ini, Desktop.ini, DESKTOP.INI, etc.
+   - Matches only: `desktop.ini`
 
-3. **.DS_Store** (case-sensitive)
+3. **.DS_Store** (exact, case-sensitive)
    - macOS folder metadata file
-   - Only matches: .DS_Store (exact case)
+   - Matches only: `.DS_Store`
 
 ## Usage in Code
 
-The plugin automatically generates a Scala object `ExcludedFilenames` with helper methods:
+The plugin automatically generates a Scala object `ExcludedFilenames`:
 
 ```scala
 import uk.gov.nationalarchives.tdr.schema.generated.ExcludedFilenames
 
 // Check if a single filename should be excluded
-val shouldExclude = ExcludedFilenames.isExcluded("thumbs.db") // returns true
+val shouldExclude = ExcludedFilenames.isExcluded("thumbs.db") // true
 
 // Filter a list of filenames
-val filenames = Seq("document.pdf", "thumbs.db", "image.jpg", "Desktop.ini")
+val filenames = Seq("document.pdf", "thumbs.db", "Desktop.ini", "desktop.ini")
 val filtered = filenames.filterNot(ExcludedFilenames.isExcluded)
-// Returns: Seq("document.pdf", "image.jpg")
+// Returns: Seq("document.pdf", "Desktop.ini")
 ```
 
 ## Adding New Exclusions
@@ -99,20 +99,12 @@ Add to `excluded-filenames.json`:
 
 ## Regex Pattern Tips
 
-When using regex patterns:
-
-- Use `^` to match the start of the filename
-- Use `$` to match the end of the filename
-- Use `\\.` to match a literal dot (.)
-- Use `.*` to match any characters
-- Use `[a-z]` to match character ranges
-- Use `(option1|option2)` for alternatives
+Regex matching is still supported even though current defaults use exact matching.
 
 Examples:
-- `^thumbs\\.db$` - Exact match for thumbs.db
-- `^~.*` - Files starting with ~
-- `^.*\\.bak$` - Files ending with .bak
-- `^(thumbs|desktop)\\..*` - Files starting with "thumbs." or "desktop."
+- `^~.*` - Files starting with `~`
+- `^.*\\.bak$` - Files ending with `.bak`
+- `^(thumbs|desktop)\\..*` - Files starting with `thumbs.` or `desktop.`
 
 ## Plugin Details
 
@@ -121,7 +113,7 @@ The `ExcludedFilenamesGeneratorPlugin` automatically:
 1. Reads the `puids/excluded-filenames.json` configuration file
 2. Generates a Scala object at compile time with:
    - Case class definitions for pattern matching
-   - Helper methods for checking and filtering filenames
+   - Matching support for both `exact` and `regex` types
    - Efficient regex compilation and caching
 3. Includes the generated code in `target/scala-2.13.16/src_managed/main/generated/ExcludedFilenames.scala`
 

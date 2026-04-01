@@ -233,12 +233,12 @@ The project includes a system for filtering out specific files (such as system f
 ### Configuration
 
 The [excluded-filenames.json](puids/excluded-filenames.json) file defines filename patterns that should be excluded from upload. Currently excluded files include:
-- `thumbs.db` (Windows thumbnail cache, case-insensitive)
-- `desktop.ini` (Windows desktop configuration, case-insensitive)
-- `.DS_Store` (macOS folder metadata, case-sensitive)
+- `thumbs.db` (exact match, case-insensitive)
+- `desktop.ini` (exact match, case-sensitive)
+- `.DS_Store` (exact match, case-sensitive)
 
 The configuration supports:
-- **Exact matching**: For precise filename matches
+- **Exact matching**: For precise filename matches (used by current defaults)
 - **Regex patterns**: For flexible pattern matching (e.g., files starting with `~`)
 - **Case sensitivity control**: For each pattern individually
 
@@ -253,9 +253,9 @@ import uk.gov.nationalarchives.tdr.schema.generated.ExcludedFilenames
 ExcludedFilenames.isExcluded("thumbs.db") // returns true
 
 // Filter a list of filenames
-val filenames = Seq("document.pdf", "thumbs.db", "image.jpg")
+val filenames = Seq("document.pdf", "thumbs.db", "Desktop.ini", "desktop.ini")
 val filtered = filenames.filterNot(ExcludedFilenames.isExcluded)
-// Returns: Seq("document.pdf", "image.jpg")
+// Returns: Seq("document.pdf", "Desktop.ini")
 ```
 
 For detailed documentation on adding new exclusion patterns and using regex, see [EXCLUDED_FILENAMES.md](EXCLUDED_FILENAMES.md).

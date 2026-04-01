@@ -12,11 +12,11 @@ class ExcludedFilenamesSpec extends AnyFlatSpec with Matchers {
     ExcludedFilenames.isExcluded("ThUmBs.Db") shouldBe true
   }
 
-  it should "exclude desktop.ini (case insensitive)" in {
+  it should "exclude desktop.ini (case sensitive)" in {
     ExcludedFilenames.isExcluded("desktop.ini") shouldBe true
-    ExcludedFilenames.isExcluded("Desktop.ini") shouldBe true
-    ExcludedFilenames.isExcluded("DESKTOP.INI") shouldBe true
-    ExcludedFilenames.isExcluded("DeskTop.Ini") shouldBe true
+    ExcludedFilenames.isExcluded("Desktop.ini") shouldBe false
+    ExcludedFilenames.isExcluded("DESKTOP.INI") shouldBe false
+    ExcludedFilenames.isExcluded("DeskTop.Ini") shouldBe false
   }
 
   it should "exclude .DS_Store (case sensitive)" in {
@@ -32,8 +32,14 @@ class ExcludedFilenamesSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "not exclude files with similar names" in {
-    ExcludedFilenames.isExcluded("my_thumbs.db") shouldBe false // doesn't match exact pattern
+    ExcludedFilenames.isExcluded("my_thumbs.db") shouldBe false
     ExcludedFilenames.isExcluded("desktop_settings.ini") shouldBe false
+  }
+
+  "ExcludedFilenames.FilenamePattern" should "support regex matching when type is regex" in {
+    val regexPattern = ExcludedFilenames.FilenamePattern("^~.*", "regex", caseInsensitive = false, "Temp files")
+    regexPattern.matches("~draft.docx") shouldBe true
+    regexPattern.matches("draft.docx") shouldBe false
   }
 
   "filtering with isExcluded" should "filter out excluded filenames from a list" in {
@@ -52,12 +58,13 @@ class ExcludedFilenamesSpec extends AnyFlatSpec with Matchers {
     filtered should contain theSameElementsAs Seq(
       "document.pdf",
       "image.jpg",
+      "Desktop.ini",
       "spreadsheet.xlsx"
     )
   }
 
   it should "return empty list when all files are excluded" in {
-    val filenames = Seq("thumbs.db", "Desktop.ini", ".DS_Store")
+    val filenames = Seq("thumbs.db", ".DS_Store")
     filenames.filterNot(ExcludedFilenames.isExcluded) shouldBe empty
   }
 

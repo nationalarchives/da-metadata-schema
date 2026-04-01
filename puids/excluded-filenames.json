@@ -1,14 +1,14 @@
 [
   {
-    "pattern": "^thumbs\\.db$",
-    "type": "regex",
+    "pattern": "thumbs.db",
+    "type": "exact",
     "caseInsensitive": true,
     "description": "Windows thumbnail cache file"
   },
   {
-    "pattern": "^desktop\\.ini$",
-    "type": "regex",
-    "caseInsensitive": true,
+    "pattern": "desktop.ini",
+    "type": "exact",
+    "caseInsensitive": false,
     "description": "Windows desktop configuration file"
   },
   {
