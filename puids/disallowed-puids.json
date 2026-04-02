@@ -408,12 +408,6 @@
     "puidDescription": "BinHex Binary Text"
   },
   {
-    "puid": "x-fmt/421",
-    "active": true,
-    "reason": "DesktopIni",
-    "puidDescription": "Text Configuration file"
-  },
-  {
     "puid": "x-fmt/426",
     "active": true,
     "reason": "LicenseContainsRegistrationInformation",
