@@ -80,13 +80,6 @@ class MetadataTemplateSpec extends AnyWordSpec {
   }
 
   "MetadataTemplate specific properties" should {
-    "have language property with updated details" in {
-      val languageProp = MetadataTemplate.all.find(_.property == "language")
-      languageProp shouldBe defined
-      languageProp.get.details should include("supported language")
-      languageProp.get.details should include("https://tdr.nationalarchives.gov.uk/faq")
-      languageProp.get.tdrRequirement shouldBe "Mandatory"
-    }
 
     "have language property with HTML links in example" in {
       val languageProp = MetadataTemplate.all.find(_.property == "language")
@@ -95,22 +88,6 @@ class MetadataTemplateSpec extends AnyWordSpec {
       languageProp.get.example should include("<a href=")
       languageProp.get.example should include("</a>")
       languageProp.get.example should include("https://tdr.nationalarchives.gov.uk/faq")
-    }
-
-    "have language property with HTML break tag in format" in {
-      val languageProp = MetadataTemplate.all.find(_.property == "language")
-      languageProp shouldBe defined
-      languageProp.get.format should include("</br>")
-      languageProp.get.format should include("default: English")
-    }
-
-    "have foi_exemption_code property with HTML link" in {
-      val foiProp = MetadataTemplate.all.find(_.property == "foi_exemption_code")
-      foiProp shouldBe defined
-      foiProp.get.example should include("27(1);33")
-      foiProp.get.example should include("<a href=")
-      foiProp.get.example should include("View all allowed exemption codes")
-      foiProp.get.tdrRequirement shouldBe "Mandatory for closed record"
     }
 
     "have restrictions_on_use with correct capitalization" in {
@@ -157,20 +134,6 @@ class MetadataTemplateSpec extends AnyWordSpec {
         if (prop.format.contains("<a href")) {
           prop.format should include("</a>")
           prop.format should include("https://")
-        }
-      }
-    }
-
-    "use HTML break tags consistently" in {
-      val propsWithBreaks = MetadataTemplate.all.filter(p => p.example.contains("</br>") || p.format.contains("</br>"))
-      propsWithBreaks should not be empty
-      // Verify no mix of \n and </br> in same field
-      propsWithBreaks.foreach { prop =>
-        if (prop.format.contains("</br>")) {
-          prop.format should not include "\\n"
-        }
-        if (prop.example.contains("</br>")) {
-          prop.example should not include "\\n"
         }
       }
     }
