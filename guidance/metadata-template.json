@@ -67,7 +67,7 @@
     "details": "Closed record: Provide the FOI exemption codes used to justify closure for the record, as approved by the Advisory Council This should be the same as the code(s) on the closure schedule for the record.",
     "format": "Semi-colon separated list (with no spaces)",
     "tdrRequirement": "Mandatory for closed record",
-    "example": "27(1);33</br><a href=\"https://tdr.nationalarchives.gov.uk/faq#foi-codes\">View all allowed exemption codes</a>"
+    "example": "<a href=\"https://tdr.nationalarchives.gov.uk/faq#foi-codes\">V27(1);33 | see further examples on the FAQ page</a>"
   },
   {
     "property": "foi_exemption_asserted",
@@ -106,10 +106,10 @@
   },
   {
     "property": "language",
-    "details": "Indicate if the record is in <a href=\"https://tdr.nationalarchives.gov.uk/faq#other-languages\">a supported language</a>. This is case sensitive and variations on these words will not be accepted. If you have records in other languages, please contact your digital transfer advisor.",
-    "format": "Semi-colon separated list (with no spaces)</br>default: English",
+    "details": "Indicate if the record is in a supported language. This is case sensitive and variations on these words will not be accepted. If you have records in other languages, please contact your digital transfer advisor.",
+    "format": "Semi-colon separated list (with no spaces)\ndefault: English",
     "tdrRequirement": "Mandatory",
-    "example": "English;Welsh;Hindi</br><a href=\"https://tdr.nationalarchives.gov.uk/faq#other-languages\">View options for all languages</a>"
+    "example": "<a href=\"https://tdr.nationalarchives.gov.uk/faq#other-languages\">English;Welsh;Hindi | see further examples on the FAQ page</a>"
   },
   {
     "property": "file_name_translation",
