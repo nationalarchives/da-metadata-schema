@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   deploy:
-    uses: nationalarchives/tdr-github-actions/.github/workflows/sbt_release.yml@9214d929d74b527c75cdac14ba96812f90b3ebba # v0.0.35
+    uses: nationalarchives/tdr-github-actions/.github/workflows/sbt_release.yml@c130d20af544843b70e2a0e1a44759d4fabf3a5d # v0.0.37
     with:
       library-name: "Metadata validation"
     secrets:
