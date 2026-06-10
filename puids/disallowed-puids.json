@@ -114,12 +114,6 @@
     "puidDescription": "Raw Flux Image"
   },
   {
-    "puid": "fmt/1281",
-    "active": true,
-    "reason": "Zip",
-    "puidDescription": "WARC 1.1"
-  },
-  {
     "puid": "fmt/1340",
     "active": true,
     "reason": "Zip",
@@ -130,12 +124,6 @@
     "active": true,
     "reason": "Zip",
     "puidDescription": "ASICS"
-  },
-  {
-    "puid": "fmt/1355",
-    "active": true,
-    "reason": "Zip",
-    "puidDescription": "WARC 1.0"
   },
   {
     "puid": "fmt/1361",
@@ -176,7 +164,7 @@
   {
     "puid": "fmt/473",
     "active": true,
-    "reason": "OperatingSystemMac",
+    "reason": "NonRecord",
     "puidDescription": "Microsoft Office Owner File"
   },
   {
@@ -428,7 +416,7 @@
   {
     "puid": "x-fmt/45",
     "active": true,
-    "reason": "Template",
+    "reason": "NonRecord",
     "puidDescription": "Microsoft Word Document Template"
   },
   {
