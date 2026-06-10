@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.merged == true && !contains(github.event.pull_request.labels.*.name, 'Version bump') && !contains(github.event.pull_request.labels.*.name, 'github_actions') }}
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
       - run: gh workflow run deploy.yml
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_PAT }}
