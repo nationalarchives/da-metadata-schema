@@ -319,3 +319,4 @@ Other sbt projects that have this project as a dependency can access the local s
   "uk.gov.nationalarchives" % "da-metadata-schema_3" % "[version number]-SNAPSHOT"
   ... other dependences...
 ```
+
