@@ -1166,6 +1166,15 @@
           "editable": false
         }
       ]
+    },
+    {
+      "key": "asset_id",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/asset_id",
+      "propertyType": "System",
+      "expectedTDRHeader": false,
+      "allowExport": false,
+      "alternateKeys": [],
+      "downloadFilesOutputs": []
     }
   ]
 }
