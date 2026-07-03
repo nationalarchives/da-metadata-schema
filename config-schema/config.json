@@ -1173,7 +1173,11 @@
       "propertyType": "System",
       "expectedTDRHeader": false,
       "allowExport": false,
-      "alternateKeys": [],
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "AssetId"
+        }
+      ],
       "downloadFilesOutputs": []
     }
   ]
