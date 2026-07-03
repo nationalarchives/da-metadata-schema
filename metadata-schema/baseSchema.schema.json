@@ -344,6 +344,11 @@
       ],
       "maxLength": 255,
       "pattern": "^[^\\r\\n]*$"
+    },
+    "asset_id": {
+      "description": "Asset id for the record",
+      "type": "string",
+      "format": "uuid"
     }
   }
 }

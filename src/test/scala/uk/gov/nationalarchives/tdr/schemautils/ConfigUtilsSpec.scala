@@ -21,7 +21,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       .getOrElse(Config(List.empty[ConfigItem])).configItems.map(_.key)
 
     "contain the correct number of properties" in {
-      propertyKeys.size should equal(46)
+      propertyKeys.size should equal(47)
     }
 
     "not contain duplicate properties" in {
@@ -95,7 +95,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       val metadataConfiguration = ConfigUtils.loadConfiguration
       metadataConfiguration.getPropertiesByPropertyType("System") shouldBe
         List("file_path", "file_name", "date_last_modified", "file_size", "UUID", "file_reference",
-          "original_identifier", "parent_reference", "file_type", "client_side_checksum", "server_side_checksum")
+          "original_identifier", "parent_reference", "file_type", "client_side_checksum", "server_side_checksum", "asset_id")
       metadataConfiguration.getPropertiesByPropertyType("Supplied") shouldBe
         List("end_date", "description", "former_reference_department", "closure_type", "closure_start_date", "closure_period",
           "foi_exemption_code", "foi_exemption_asserted", "title_closed", "description_closed", "description_alternate", "title_alternate",
