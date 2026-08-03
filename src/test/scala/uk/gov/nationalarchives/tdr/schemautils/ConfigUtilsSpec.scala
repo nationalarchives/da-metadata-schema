@@ -5,7 +5,7 @@ import io.circe.generic.auto._
 import io.circe.jawn.decode
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
-import uk.gov.nationalarchives.tdr.schemautils.ConfigUtils.{Config, ConfigItem}
+import uk.gov.nationalarchives.tdr.schemautils.ConfigUtils.{AlternateKeys, Config, ConfigItem}
 
 import scala.io.Source
 import scala.util.Using
@@ -78,6 +78,13 @@ class ConfigUtilsSpec extends AnyWordSpec {
       metadataConfiguration.propertyToOutputMapper("allowExport")("client_side_checksum") shouldBe "false"
       metadataConfiguration.propertyToOutputMapper("allowExport")("file_path") shouldBe "true"
       metadataConfiguration.propertyToOutputMapper("blah")("blahBlah") shouldBe "blahBlah"
+    }
+
+    "support using typed HeaderSource overloads" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+
+      metadataConfiguration.inputToPropertyMapper(ConfigUtils.HeaderSource.TdrFileHeader)("former reference") shouldBe "former_reference_department"
+      metadataConfiguration.propertyToOutputMapper(ConfigUtils.HeaderSource.DroidHeader)("client_side_checksum") shouldBe "SHA256_HASH"
     }
   }
 
@@ -185,6 +192,45 @@ class ConfigUtilsSpec extends AnyWordSpec {
       mapping("title_closed") shouldBe "false"
       mapping("rights_copyright") shouldBe "Crown"
       mapping("held_by") shouldBe "The National Archives, Kew"
+    }
+  }
+
+  "AlternateKeys decoder" should {
+    "preserve arbitrary string fields for extensibility" in {
+      val json =
+        """
+          |{
+          |  "tdrFileHeader": "filepath",
+          |  "futureHeaderSource": "future-value",
+          |  "fclExport": "Judgment-Type"
+          |}
+          |""".stripMargin
+
+      val decoded = decode[AlternateKeys](json)
+      decoded.isRight shouldBe true
+      val alternateKeys = decoded.getOrElse(fail("Expected AlternateKeys to decode"))
+
+      alternateKeys.values("tdrFileHeader") shouldBe "filepath"
+      alternateKeys.values("futureHeaderSource") shouldBe "future-value"
+      alternateKeys.fclExport shouldBe Some("Judgment-Type")
+    }
+
+    "ignore non-string values and return None for blank fclExport" in {
+      val json =
+        """
+          |{
+          |  "tdrFileHeader": "filepath",
+          |  "numericValue": 123,
+          |  "booleanValue": true,
+          |  "fclExport": ""
+          |}
+          |""".stripMargin
+
+      val alternateKeys = decode[AlternateKeys](json).getOrElse(fail("Expected AlternateKeys to decode"))
+
+      alternateKeys.values.contains("numericValue") shouldBe false
+      alternateKeys.values.contains("booleanValue") shouldBe false
+      alternateKeys.fclExport shouldBe None
     }
   }
 
