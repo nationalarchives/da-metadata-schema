@@ -61,14 +61,15 @@ object ConfigUtils {
     * The returned function is curried, where the first parameter is the domain, and the second parameter is the key. It uses the configuration file to create a mapping of
     * alternate keys to property names.
     *
+    * Prefer calling this via `MetadataConfiguration.inputToPropertyMapper(HeaderSource)` where possible to avoid string literals at call sites.
+    *
     * @param configurationParameters
     *   The configuration parameters containing the base schema and configuration data.
     * @return
     *   A curried function that takes two parameters: the domain and the key, and returns the corresponding property name.
     * @example
-    *   - val configParams = ConfigParameters(baseSchema, baseConfig)
-    *   - val inputMapper = inputToPropertyMapper(configParams)
-    *   - val tdrFileHeaderMapper = inputMapper("tdrFileHeader")
+    *   - val metadataConfiguration = ConfigUtils.loadConfiguration
+    *   - val tdrFileHeaderMapper = metadataConfiguration.inputToPropertyMapper(HeaderSource.TdrFileHeader)
     *   - tdrFileHeaderMapper("Date last modified") // Returns: "date_last_modified"
     */
   def inputToPropertyMapper(configurationParameters: ConfigParameters): String => String => String = {
@@ -83,15 +84,16 @@ object ConfigUtils {
     * The returned function is curried, where the first parameter is the domain, and the second parameter is the property name. It uses the configuration file to create a mapping
     * of property names to alternate keys.
     *
+    * Prefer calling this via `MetadataConfiguration.propertyToOutputMapper(HeaderSource)` where possible to avoid string literals at call sites.
+    *
     * @param configurationParameters
     *   The configuration parameters containing the base schema and configuration data.
     * @return
     *   A curried function that takes two parameters: the domain and the property name, and returns the corresponding alternate key.
     * @example
-    *   - val configParams = ConfigParameters(baseSchema, baseConfig)
-    *   - val propertyMapper = propertyToOutputMapper(configParams)
-    *   - val tdrPropertyFileHeaderMapper("tdrFileHeader")
-    *   - tdrPropertyFileHeaderMapper("date_last_modified") // Returns: "Date last modified"
+    *   - val metadataConfiguration = ConfigUtils.loadConfiguration
+    *   - val tdrPropertyMapper = metadataConfiguration.propertyToOutputMapper(HeaderSource.TdrFileHeader)
+    *   - tdrPropertyMapper("date_last_modified") // Returns: "Date last modified"
     */
   def propertyToOutputMapper(configurationParameters: ConfigParameters): String => String => String = {
 
@@ -288,9 +290,22 @@ object ConfigUtils {
       getDefaultValue: String => String,
       getPropertiesWithDefaultValue: Map[String, String]
     ) {
-    // Typed convenience overloads to avoid string literals at call sites.
+    /** Typed convenience overload for `inputToPropertyMapper`.
+      *
+      * @param source
+      *   Header domain source.
+      * @return
+      *   A function mapping external/source header values to internal property keys.
+      */
     def inputToPropertyMapper(source: HeaderSource): String => String = inputToPropertyMapper(source.jsonFieldName)
 
+    /** Typed convenience overload for `propertyToOutputMapper`.
+      *
+      * @param source
+      *   Header domain source.
+      * @return
+      *   A function mapping internal property keys to external/source header values.
+      */
     def propertyToOutputMapper(source: HeaderSource): String => String = propertyToOutputMapper(source.jsonFieldName)
   }
 
