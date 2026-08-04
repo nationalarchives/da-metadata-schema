@@ -212,7 +212,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
 
       alternateKeys.values("tdrFileHeader") shouldBe "filepath"
       alternateKeys.values("futureHeaderSource") shouldBe "future-value"
-      alternateKeys.fclExport shouldBe Some("Judgment-Type")
+      alternateKeys.values.get("fclExport") shouldBe Some("Judgment-Type")
     }
 
     "ignore non-string values and return None for blank fclExport" in {
@@ -230,7 +230,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
 
       alternateKeys.values.contains("numericValue") shouldBe false
       alternateKeys.values.contains("booleanValue") shouldBe false
-      alternateKeys.fclExport shouldBe None
+      alternateKeys.values.get("fclExport").filter(_.nonEmpty) shouldBe None
     }
   }
 

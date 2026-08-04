@@ -259,7 +259,7 @@ object ConfigUtils {
           expectedTDRHeader = configVal.expectedTDRHeader,
           allowExport = configVal.allowExport,
           judgmentOnly = configVal.judgmentOnly.contains(true),
-          fclExport = alternateKeysOpt.flatMap(_.fclExport)
+          fclExport = alternateKeysOpt.flatMap(_.values.get("fclExport").filter(_.nonEmpty))
         )
       })
   }
@@ -313,9 +313,7 @@ object ConfigUtils {
 
   case class DownloadFilesOutput(domain: String, columnIndex: Int, editable: Boolean)
 
-  case class AlternateKeys(values: Map[String, String]) {
-    def fclExport: Option[String] = values.get("fclExport").filter(_.nonEmpty)
-  }
+  case class AlternateKeys(values: Map[String, String])
 
   case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean,
                         alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]],
