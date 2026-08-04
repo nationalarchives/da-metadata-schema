@@ -12,14 +12,14 @@ import scala.util.Using
 
 class ConfigUtilsSpec extends AnyWordSpec {
 
+  private val nodeSchema = Using(Source.fromResource(ConfigUtils.mapToMetadataEnvironmentFile("config-schema/config.json")))(_.mkString)
+  private val mapper = new ObjectMapper()
+  private val configData = mapper.readTree(nodeSchema.get).toPrettyString
+  private val configItems = decode[Config](configData).getOrElse(Config(List.empty[ConfigItem])).configItems
+  private val propertyKeys = configItems.map(_.key)
+
 
   "config.json" should {
-    val nodeSchema = Using(Source.fromResource(ConfigUtils.mapToMetadataEnvironmentFile("config-schema/config.json")))(_.mkString)
-    val mapper = new ObjectMapper()
-    val configData = mapper.readTree(nodeSchema.get).toPrettyString
-    val propertyKeys = decode[Config](configData)
-      .getOrElse(Config(List.empty[ConfigItem])).configItems.map(_.key)
-
     "contain the correct number of properties" in {
       propertyKeys.size should equal(47)
     }
@@ -38,6 +38,21 @@ class ConfigUtilsSpec extends AnyWordSpec {
       items.configItems.size shouldNot equal(0)
       items.configItems.foreach(
         i => i.$ref should equal(s"$baseSchemaPathPropertiesPath/${i.key}"))
+    }
+  }
+
+  "HeaderSource" should {
+    "expose the expected hardcoded header sources" in {
+      ConfigUtils.HeaderSource.values.map(_.jsonFieldName) shouldBe List(
+        "droidHeader",
+        "fclExport",
+        "hardDriveHeader",
+        "networkDriveHeader",
+        "sharePointTag",
+        "tdrBagitExportHeader",
+        "tdrDataLoadHeader",
+        "tdrFileHeader"
+      )
     }
   }
 

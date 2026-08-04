@@ -215,25 +215,8 @@ object ConfigUtils {
     }.toMap
   }
 
-  sealed trait HeaderSource {
-    def jsonFieldName: String
-    final def getFromAlternateKeys: AlternateKeys => Option[String] = _.values.get(jsonFieldName).filter(_.nonEmpty)
-  }
-
-  object HeaderSource {
-    case object TdrFileHeader extends HeaderSource { val jsonFieldName = "tdrFileHeader" }
-    case object TdrDataLoadHeader extends HeaderSource { val jsonFieldName = "tdrDataLoadHeader" }
-    case object TdrBagitExportHeader extends HeaderSource { val jsonFieldName = "tdrBagitExportHeader" }
-    case object SharePointTag extends HeaderSource { val jsonFieldName = "sharePointTag" }
-    case object DroidHeader extends HeaderSource { val jsonFieldName = "droidHeader" }
-    case object HardDriveHeader extends HeaderSource { val jsonFieldName = "hardDriveHeader" }
-    case object NetworkDriveHeader extends HeaderSource { val jsonFieldName = "networkDriveHeader" }
-
-    val values: List[HeaderSource] = List(
-      TdrFileHeader, TdrDataLoadHeader, TdrBagitExportHeader,
-      SharePointTag, DroidHeader, HardDriveHeader, NetworkDriveHeader
-    )
-  }
+  type HeaderSource = uk.gov.nationalarchives.tdr.schemautils.HeaderSource
+  val HeaderSource: uk.gov.nationalarchives.tdr.schemautils.HeaderSource.type = uk.gov.nationalarchives.tdr.schemautils.HeaderSource
 
   private case class ProcessedConfigItem(
       key: String,
@@ -250,9 +233,7 @@ object ConfigUtils {
       .configItems
       .map(configVal => {
         val alternateKeysOpt = configVal.alternateKeys.headOption
-        val altKeyMap: Map[String, String] = alternateKeysOpt.map { ak =>
-          HeaderSource.values.flatMap(domain => domain.getFromAlternateKeys(ak).map(domain.jsonFieldName -> _)).toMap
-        }.getOrElse(Map.empty)
+        val altKeyMap: Map[String, String] = alternateKeysOpt.map(_.values.filter { case (_, value) => value.nonEmpty }).getOrElse(Map.empty)
         ProcessedConfigItem(
           key = configVal.key,
           alternateKeyValues = altKeyMap,
