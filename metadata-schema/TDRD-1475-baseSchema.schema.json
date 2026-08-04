@@ -213,7 +213,8 @@
       "type": [
         "string",
         "null"
-      ]
+      ],
+      "pattern": "^[^\\r\\n]*$"
     },
     "legal_status": {
       "description": "The legal status of the file",
