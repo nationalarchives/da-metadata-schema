@@ -84,6 +84,11 @@ object ConfigUtils {
     * The returned function is curried, where the first parameter is the domain, and the second parameter is the property name. It uses the configuration file to create a mapping
     * of property names to alternate keys.
     *
+    * The resulting mapper combines two sources:
+    *   - Header-domain mappings from `alternateKeys` (for example `tdrFileHeader`, `droidHeader`, etc.).
+    *   - Configuration metadata domains (`expectedTDRHeader`, `allowExport`, `fclExport`, `judgmentOnly`) so callers can use one domain-based API for both header aliases and
+    *     config flags/labels.
+    *
     * Prefer calling this via `MetadataConfiguration.propertyToOutputMapper(HeaderSource)` where possible to avoid string literals at call sites.
     *
     * @param configurationParameters
