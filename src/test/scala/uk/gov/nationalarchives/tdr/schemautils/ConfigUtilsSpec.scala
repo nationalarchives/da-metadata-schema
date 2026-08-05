@@ -5,21 +5,21 @@ import io.circe.generic.auto._
 import io.circe.jawn.decode
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
-import uk.gov.nationalarchives.tdr.schemautils.ConfigUtils.{Config, ConfigItem}
+import uk.gov.nationalarchives.tdr.schemautils.ConfigUtils.{AlternateKeys, Config, ConfigItem}
 
 import scala.io.Source
 import scala.util.Using
 
 class ConfigUtilsSpec extends AnyWordSpec {
 
+  private val nodeSchema = Using(Source.fromResource(ConfigUtils.mapToMetadataEnvironmentFile("config-schema/config.json")))(_.mkString)
+  private val mapper = new ObjectMapper()
+  private val configData = mapper.readTree(nodeSchema.get).toPrettyString
+  private val configItems = decode[Config](configData).getOrElse(Config(List.empty[ConfigItem])).configItems
+  private val propertyKeys = configItems.map(_.key)
+
 
   "config.json" should {
-    val nodeSchema = Using(Source.fromResource(ConfigUtils.mapToMetadataEnvironmentFile("config-schema/config.json")))(_.mkString)
-    val mapper = new ObjectMapper()
-    val configData = mapper.readTree(nodeSchema.get).toPrettyString
-    val propertyKeys = decode[Config](configData)
-      .getOrElse(Config(List.empty[ConfigItem])).configItems.map(_.key)
-
     "contain the correct number of properties" in {
       propertyKeys.size should equal(47)
     }
@@ -38,6 +38,21 @@ class ConfigUtilsSpec extends AnyWordSpec {
       items.configItems.size shouldNot equal(0)
       items.configItems.foreach(
         i => i.$ref should equal(s"$baseSchemaPathPropertiesPath/${i.key}"))
+    }
+  }
+
+  "HeaderSource" should {
+    "expose the expected hardcoded header sources" in {
+      ConfigUtils.HeaderSource.values.map(_.jsonFieldName) shouldBe List(
+        "droidHeader",
+        "fclExport",
+        "hardDriveHeader",
+        "networkDriveHeader",
+        "sharePointTag",
+        "tdrBagitExportHeader",
+        "tdrDataLoadHeader",
+        "tdrFileHeader"
+      )
     }
   }
 
@@ -78,6 +93,13 @@ class ConfigUtilsSpec extends AnyWordSpec {
       metadataConfiguration.propertyToOutputMapper("allowExport")("client_side_checksum") shouldBe "false"
       metadataConfiguration.propertyToOutputMapper("allowExport")("file_path") shouldBe "true"
       metadataConfiguration.propertyToOutputMapper("blah")("blahBlah") shouldBe "blahBlah"
+    }
+
+    "support using typed HeaderSource overloads" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+
+      metadataConfiguration.inputToPropertyMapper(ConfigUtils.HeaderSource.TdrFileHeader)("former reference") shouldBe "former_reference_department"
+      metadataConfiguration.propertyToOutputMapper(ConfigUtils.HeaderSource.DroidHeader)("client_side_checksum") shouldBe "SHA256_HASH"
     }
   }
 
@@ -185,6 +207,45 @@ class ConfigUtilsSpec extends AnyWordSpec {
       mapping("title_closed") shouldBe "false"
       mapping("rights_copyright") shouldBe "Crown"
       mapping("held_by") shouldBe "The National Archives, Kew"
+    }
+  }
+
+  "AlternateKeys decoder" should {
+    "preserve arbitrary string fields for extensibility" in {
+      val json =
+        """
+          |{
+          |  "tdrFileHeader": "filepath",
+          |  "futureHeaderSource": "future-value",
+          |  "fclExport": "Judgment-Type"
+          |}
+          |""".stripMargin
+
+      val decoded = decode[AlternateKeys](json)
+      decoded.isRight shouldBe true
+      val alternateKeys = decoded.getOrElse(fail("Expected AlternateKeys to decode"))
+
+      alternateKeys.values("tdrFileHeader") shouldBe "filepath"
+      alternateKeys.values("futureHeaderSource") shouldBe "future-value"
+      alternateKeys.values.get("fclExport") shouldBe Some("Judgment-Type")
+    }
+
+    "ignore non-string values and return None for blank fclExport" in {
+      val json =
+        """
+          |{
+          |  "tdrFileHeader": "filepath",
+          |  "numericValue": 123,
+          |  "booleanValue": true,
+          |  "fclExport": ""
+          |}
+          |""".stripMargin
+
+      val alternateKeys = decode[AlternateKeys](json).getOrElse(fail("Expected AlternateKeys to decode"))
+
+      alternateKeys.values.contains("numericValue") shouldBe false
+      alternateKeys.values.contains("booleanValue") shouldBe false
+      alternateKeys.values.get("fclExport").filter(_.nonEmpty) shouldBe None
     }
   }
 

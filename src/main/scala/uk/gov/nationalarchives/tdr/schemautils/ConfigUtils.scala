@@ -61,29 +61,21 @@ object ConfigUtils {
     * The returned function is curried, where the first parameter is the domain, and the second parameter is the key. It uses the configuration file to create a mapping of
     * alternate keys to property names.
     *
+    * Prefer calling this via `MetadataConfiguration.inputToPropertyMapper(HeaderSource)` where possible to avoid string literals at call sites.
+    *
     * @param configurationParameters
     *   The configuration parameters containing the base schema and configuration data.
     * @return
     *   A curried function that takes two parameters: the domain and the key, and returns the corresponding property name.
     * @example
-    *   - val configParams = ConfigParameters(baseSchema, baseConfig)
-    *   - val inputMapper = inputToPropertyMapper(configParams)
-    *   - val tdrFileHeaderMapper = inputMapper("tdrFileHeader")
+    *   - val metadataConfiguration = ConfigUtils.loadConfiguration
+    *   - val tdrFileHeaderMapper = metadataConfiguration.inputToPropertyMapper(HeaderSource.TdrFileHeader)
     *   - tdrFileHeaderMapper("Date last modified") // Returns: "date_last_modified"
     */
   def inputToPropertyMapper(configurationParameters: ConfigParameters): String => String => String = {
 
     val configItems = getConfigItems(configurationParameters)
-    val mapped =
-      Map(
-        "tdrFileHeader" -> configItems.flatMap(cv => cv.tdrFileHeader.map(h => h -> cv.key)).toMap,
-        "tdrDataLoadHeader" -> configItems.filter(_.tdrDataLoadHeader.nonEmpty).map(cv => cv.tdrDataLoadHeader -> cv.key).toMap,
-        "tdrBagitExportHeader" -> configItems.flatMap(cv => cv.tdrBagitExportHeader.map(h => h -> cv.key)).toMap,
-        "sharePointTag" -> configItems.flatMap(cv => cv.sharePointTag.map(h => h -> cv.key)).toMap,
-        "droidHeader" -> configItems.flatMap(cv => cv.droidHeader.map(h => h -> cv.key)).toMap,
-        "hardDriveHeader" -> configItems.flatMap(cv => cv.hardDriveHeader.map(h => h -> cv.key)).toMap,
-        "networkDriveHeader" -> configItems.flatMap(cv => cv.networkDriveHeader.map(h => h -> cv.key)).toMap
-      )
+    val mapped = buildInputDomainMap(configItems)
     domain => key => mapped.get(domain).flatMap(_.get(key)).getOrElse(key)
   }
 
@@ -92,33 +84,32 @@ object ConfigUtils {
     * The returned function is curried, where the first parameter is the domain, and the second parameter is the property name. It uses the configuration file to create a mapping
     * of property names to alternate keys.
     *
+    * The resulting mapper combines two sources:
+    *   - Header-domain mappings from `alternateKeys` (for example `tdrFileHeader`, `droidHeader`, etc.).
+    *   - Configuration metadata domains (`expectedTDRHeader`, `allowExport`, `fclExport`, `judgmentOnly`) so callers can use one domain-based API for both header aliases and
+    *     config flags/labels.
+    *
+    * Prefer calling this via `MetadataConfiguration.propertyToOutputMapper(HeaderSource)` where possible to avoid string literals at call sites.
+    *
     * @param configurationParameters
     *   The configuration parameters containing the base schema and configuration data.
     * @return
     *   A curried function that takes two parameters: the domain and the property name, and returns the corresponding alternate key.
     * @example
-    *   - val configParams = ConfigParameters(baseSchema, baseConfig)
-    *   - val propertyMapper = propertyToOutputMapper(configParams)
-    *   - val tdrPropertyFileHeaderMapper("tdrFileHeader")
-    *   - tdrPropertyFileHeaderMapper("date_last_modified") // Returns: "Date last modified"
+    *   - val metadataConfiguration = ConfigUtils.loadConfiguration
+    *   - val tdrPropertyMapper = metadataConfiguration.propertyToOutputMapper(HeaderSource.TdrFileHeader)
+    *   - tdrPropertyMapper("date_last_modified") // Returns: "Date last modified"
     */
   def propertyToOutputMapper(configurationParameters: ConfigParameters): String => String => String = {
 
     val configItems = getConfigItems(configurationParameters)
-    val mapped =
-      Map(
-        "tdrFileHeader" -> configItems.flatMap(cv => cv.tdrFileHeader.map(h => cv.key -> h)).toMap,
-        "tdrDataLoadHeader" -> configItems.filter(_.tdrDataLoadHeader.nonEmpty).map(cv => cv.key -> cv.tdrDataLoadHeader).toMap,
-        "tdrBagitExportHeader" -> configItems.flatMap(cv => cv.tdrBagitExportHeader.map(h => cv.key -> h)).toMap,
-        "sharePointTag" -> configItems.flatMap(cv => cv.sharePointTag.map(h => cv.key -> h)).toMap,
-        "droidHeader" -> configItems.flatMap(cv => cv.droidHeader.map(h => cv.key -> h)).toMap,
-        "hardDriveHeader" -> configItems.flatMap(cv => cv.hardDriveHeader.map(h => cv.key -> h)).toMap,
-        "networkDriveHeader" -> configItems.flatMap(cv => cv.networkDriveHeader.map(h => cv.key -> h)).toMap,
-        "expectedTDRHeader" -> configItems.map(cv => cv.key -> cv.expectedTDRHeader.toString).toMap,
-        "allowExport" -> configItems.map(cv => cv.key -> cv.allowExport.toString).toMap,
-        "fclExport" -> configItems.flatMap(cv => cv.fclExport.map(h => cv.key -> h)).toMap,
-        "judgmentOnly" -> configItems.map(cv => cv.key -> cv.judgmentOnly.toString).toMap
-      )
+    val altKeyMapped = buildOutputDomainMap(configItems)
+    val mapped = altKeyMapped ++ Map(
+      "expectedTDRHeader" -> configItems.map(cv => cv.key -> cv.expectedTDRHeader.toString).toMap,
+      "allowExport" -> configItems.map(cv => cv.key -> cv.allowExport.toString).toMap,
+      "fclExport" -> configItems.flatMap(cv => cv.fclExport.map(headerValue => cv.key -> headerValue)).toMap,
+      "judgmentOnly" -> configItems.map(cv => cv.key -> cv.judgmentOnly.toString).toMap
+    )
     domain => propertyName => mapped.get(domain).flatMap(_.get(propertyName)).getOrElse(propertyName)
   }
 
@@ -209,45 +200,52 @@ object ConfigUtils {
     configurationParameters.baseConfig
       .getOrElse(Config(List.empty[ConfigItem]))
       .configItems
-      .filter(_.defaultValue.isDefined)
-      .map(item => (item.key, item.defaultValue.get))
+      .flatMap(item => item.defaultValue.map(defaultValue => item.key -> defaultValue))
       .toMap
   }
 
-  private case class ConfigValues(
+  private def buildInputDomainMap(configItems: Seq[ProcessedConfigItem]): Map[String, Map[String, String]] = {
+    HeaderSource.values.map { source =>
+      source.jsonFieldName -> configItems
+        .flatMap(item => item.alternateKeyValues.get(source.jsonFieldName).map(headerValue => headerValue -> item.key))
+        .toMap
+    }.toMap
+  }
+
+  private def buildOutputDomainMap(configItems: Seq[ProcessedConfigItem]): Map[String, Map[String, String]] = {
+    HeaderSource.values.map { source =>
+      source.jsonFieldName -> configItems
+        .flatMap(item => item.alternateKeyValues.get(source.jsonFieldName).map(headerValue => item.key -> headerValue))
+        .toMap
+    }.toMap
+  }
+
+  type HeaderSource = uk.gov.nationalarchives.tdr.schemautils.HeaderSource
+  val HeaderSource: uk.gov.nationalarchives.tdr.schemautils.HeaderSource.type = uk.gov.nationalarchives.tdr.schemautils.HeaderSource
+
+  private case class ProcessedConfigItem(
       key: String,
-      tdrFileHeader: Option[String],
-      tdrDataLoadHeader: String,
-      tdrBagitExportHeader: Option[String],
-      sharePointTag: Option[String],
-      droidHeader: Option[String],
-      hardDriveHeader: Option[String],
-      networkDriveHeader: Option[String],
+      alternateKeyValues: Map[String, String],
       expectedTDRHeader: Boolean,
       allowExport: Boolean,
       judgmentOnly: Boolean,
       fclExport: Option[String] = None
     )
 
-  private def getConfigItems(configurationParameters: ConfigParameters): Seq[ConfigValues] = {
+  private def getConfigItems(configurationParameters: ConfigParameters): Seq[ProcessedConfigItem] = {
     configurationParameters.baseConfig
       .getOrElse(Config(List.empty[ConfigItem]))
       .configItems
       .map(configVal => {
         val alternateKeysOpt = configVal.alternateKeys.headOption
-        ConfigValues(
+        val altKeyMap: Map[String, String] = alternateKeysOpt.map(_.values.filter { case (_, value) => value.nonEmpty }).getOrElse(Map.empty)
+        ProcessedConfigItem(
           key = configVal.key,
-          tdrFileHeader = alternateKeysOpt.flatMap(_.tdrFileHeader),
-          tdrDataLoadHeader = alternateKeysOpt.map(_.tdrDataLoadHeader).getOrElse(""),
-          tdrBagitExportHeader = alternateKeysOpt.flatMap(_.tdrBagitExportHeader),
-          sharePointTag = alternateKeysOpt.flatMap(_.sharePointTag),
-          droidHeader = alternateKeysOpt.flatMap(_.droidHeader),
-          hardDriveHeader = alternateKeysOpt.flatMap(_.hardDriveHeader),
-          networkDriveHeader = alternateKeysOpt.flatMap(_.networkDriveHeader),
+          alternateKeyValues = altKeyMap,
           expectedTDRHeader = configVal.expectedTDRHeader,
           allowExport = configVal.allowExport,
           judgmentOnly = configVal.judgmentOnly.contains(true),
-          fclExport = alternateKeysOpt.flatMap(_.fclExport)
+          fclExport = alternateKeysOpt.flatMap(_.values.get("fclExport").filter(_.nonEmpty))
         )
       })
   }
@@ -277,21 +275,45 @@ object ConfigUtils {
       getPropertiesByPropertyType: String => List[String],
       getDefaultValue: String => String,
       getPropertiesWithDefaultValue: Map[String, String]
-    )
+    ) {
+    /** Typed convenience overload for `inputToPropertyMapper`.
+      *
+      * @param source
+      *   Header domain source.
+      * @return
+      *   A function mapping external/source header values to internal property keys.
+      */
+    def inputToPropertyMapper(source: HeaderSource): String => String = inputToPropertyMapper(source.jsonFieldName)
+
+    /** Typed convenience overload for `propertyToOutputMapper`.
+      *
+      * @param source
+      *   Header domain source.
+      * @return
+      *   A function mapping internal property keys to external/source header values.
+      */
+    def propertyToOutputMapper(source: HeaderSource): String => String = propertyToOutputMapper(source.jsonFieldName)
+  }
 
   case class ConfigParameters(baseSchema: Value, baseConfig: Either[io.circe.Error, Config])
 
   case class DownloadFilesOutput(domain: String, columnIndex: Int, editable: Boolean)
 
-  case class AlternateKeys(tdrFileHeader: Option[String], tdrDataLoadHeader: String, tdrBagitExportHeader: Option[String],
-                           sharePointTag: Option[String], fclExport: Option[String] = None, droidHeader: Option[String] = None,
-                           hardDriveHeader: Option[String] = None, networkDriveHeader: Option[String] = None)
+  case class AlternateKeys(values: Map[String, String])
 
   case class ConfigItem(key: String, propertyType: String, expectedTDRHeader: Boolean, allowExport: Boolean,
                         alternateKeys: List[AlternateKeys], downloadFilesOutputs: Option[List[DownloadFilesOutput]],
                         defaultValue: Option[String] = None, judgmentOnly: Option[Boolean] = Option(false))
 
   private implicit val circeConfig: Configuration = Configuration.default.withDefaults
+  implicit val alternateKeysDecoder: Decoder[AlternateKeys] = Decoder.instance { cursor =>
+    cursor.value.asObject match {
+      case Some(obj) =>
+        val values = obj.toMap.flatMap { case (name, jsonValue) => jsonValue.asString.map(name -> _) }
+        Right(AlternateKeys(values))
+      case None => Left(io.circe.DecodingFailure("AlternateKeys must be a JSON object", cursor.history))
+    }
+  }
   implicit val configItemDecoder: Decoder[ConfigItem] = deriveConfiguredDecoder[ConfigItem]
 
   case class Config(configItems: List[ConfigItem])
