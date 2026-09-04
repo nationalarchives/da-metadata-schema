@@ -141,7 +141,7 @@
       }
     },
     "closure_type": {
-      "description": "Is the record Open or Closed. This is a mandatory field",
+      "description": "Is the record Open, Closed or Retained. This is a mandatory field",
       "type": "string",
       "$ref": "classpath:/metadata-schema/definitionsSchema.schema.json#/definitions/closure_types"
     },
