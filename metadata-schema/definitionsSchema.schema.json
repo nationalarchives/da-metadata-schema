@@ -92,7 +92,8 @@
     },
     "held_by": {
       "enum": [
-        "The National Archives, Kew"
+        "The National Archives, Kew",
+        "held by value for retained record"
       ]
     },
     "copyrights": {
