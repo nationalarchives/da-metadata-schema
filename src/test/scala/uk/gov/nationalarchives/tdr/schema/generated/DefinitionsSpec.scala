@@ -105,11 +105,11 @@ class DefinitionsSpec extends AnyWordSpec {
 
   "Definitions.closure_types" should {
     "contain Open and Closed only" in {
-      Definitions.closure_types.all should contain theSameElementsAs Seq("Closed", "Open")
+      Definitions.closure_types.all should contain theSameElementsAs Seq("Closed", "Open", "Retained for security")
     }
 
-    "have exactly 2 closure types" in {
-      Definitions.closure_types.all.size shouldBe 2
+    "have exactly 3 closure types" in {
+      Definitions.closure_types.all.size shouldBe 3
     }
   }
 

@@ -1,0 +1,12 @@
+{
+  "UUID": "dd",
+  "closure_type": "Retained for security",
+  "closure_start_date": null,
+  "closure_period": null,
+  "foi_exemption_code": null,
+  "foi_exemption_asserted": null,
+  "title_closed": false,
+  "title_alternate": "I added an alternate title, but I didn't close the title",
+  "description_closed": false,
+  "description_alternate": "I added an alternate description, but I didn't close the description"
+}

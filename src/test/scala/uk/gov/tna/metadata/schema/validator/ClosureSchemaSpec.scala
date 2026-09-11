@@ -95,5 +95,74 @@ class ClosureSchemaSpec extends BaseSpec {
 
       errors.size shouldBe 0
     }
+
+    "fail when document is retained and provided closure property is invalid when using closureSchemaRetained" in {
+      val schemaPath = "metadata-schema/closureSchemaRetained.schema.json"
+      val testDataPath = "/data/testDataRetainedInvalid.json"
+      val schemaSetup = createSchema(schemaPath, testDataPath)
+
+      val errors: Seq[String] = schemaSetup._1
+        .validate(schemaSetup._2.toPrettyString, InputFormat.JSON)
+        .asScala
+        .map(_.getMessage)
+        .toSeq
+
+      errors should contain theSameElementsAs Seq(
+        "$.closure_start_date: string found, null expected",
+        "$.closure_period: array found, null expected",
+        "$.foi_exemption_code: array found, null expected",
+        "$.foi_exemption_asserted: string found, null expected",
+        "$.description_closed: string found, boolean expected",
+        "$.title_closed: integer found, boolean expected"
+      )
+    }
+
+    "fail when document is retained and closed fields are true but alternates are missing" in {
+      val schemaPath = "metadata-schema/closureSchemaRetained.schema.json"
+      val testDataPath = "/data/testDataRetainedMissingAlternates.json"
+      val schemaSetup = createSchema(schemaPath, testDataPath)
+
+      val errors: Seq[String] = schemaSetup._1
+        .validate(schemaSetup._2.toPrettyString, InputFormat.JSON)
+        .asScala
+        .map(_.getMessage)
+        .toSeq
+
+      errors should contain theSameElementsAs Seq(
+        "$: required property 'title_alternate' not found",
+        "$: required property 'description_alternate' not found"
+      )
+    }
+
+    "fail when document is retained and alternates are provided but closed flags are false" in {
+      val schemaPath = "metadata-schema/closureSchemaRetained.schema.json"
+      val testDataPath = "/data/testDataRetainedAlternatesWithOpenFlags.json"
+      val schemaSetup = createSchema(schemaPath, testDataPath)
+
+      val errors: Seq[String] = schemaSetup._1
+        .validate(schemaSetup._2.toPrettyString, InputFormat.JSON)
+        .asScala
+        .map(_.getMessage)
+        .toSeq
+
+      errors should contain theSameElementsAs Seq(
+        "$.description_closed: must be the constant value 'true'",
+        "$.title_closed: must be the constant value 'true'"
+      )
+    }
+
+    "succeed when document is retained and valid retained closure property is provided when using closureSchemaRetained" in {
+      val schemaPath = "metadata-schema/closureSchemaRetained.schema.json"
+      val testDataPath = "/data/testDataRetainedValid.json"
+      val schemaSetup = createSchema(schemaPath, testDataPath)
+
+      val errors: Seq[String] = schemaSetup._1
+        .validate(schemaSetup._2.toPrettyString, InputFormat.JSON)
+        .asScala
+        .map(_.getMessage)
+        .toSeq
+
+      errors.size shouldBe 0
+    }
   }
 }

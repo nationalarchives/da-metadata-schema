@@ -1,0 +1,12 @@
+{
+  "UUID": "dd",
+  "closure_type": "Retained for security",
+  "closure_start_date": null,
+  "closure_period": null,
+  "foi_exemption_code": null,
+  "foi_exemption_asserted": null,
+  "title_closed": false,
+  "title_alternate": null,
+  "description_closed": true,
+  "description_alternate": "alternate description"
+}
