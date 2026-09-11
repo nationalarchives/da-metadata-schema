@@ -133,7 +133,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       val metadataConfiguration = ConfigUtils.loadConfiguration
       metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 23
       metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 38
-      metadataConfiguration.downloadFileDisplayProperties("MetadataReviewDetailTemplate").length shouldBe 26
+      metadataConfiguration.downloadFileDisplayProperties("MetadataReviewDetailTemplate").length shouldBe 27
       metadataConfiguration.downloadFileDisplayProperties("UnknownClientTemplate").length shouldBe 0
     }
 
