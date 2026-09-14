@@ -689,6 +689,11 @@
       ],
       "downloadFilesOutputs": [
         {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 27,
+          "editable": false
+        },
+        {
           "domain": "BagitExportTemplate",
           "columnIndex": 8,
           "editable": false

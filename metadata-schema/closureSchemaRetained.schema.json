@@ -1,0 +1,105 @@
+{
+  "$id": "/schema/retained-closure",
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "closure_type": {
+            "const": "Retained for security"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "closure_start_date": {
+            "type": "null"
+          },
+          "closure_period": {
+            "type": "null"
+          },
+          "foi_exemption_code": {
+            "type": "null"
+          },
+          "foi_exemption_asserted": {
+            "type": "null"
+          },
+          "title_closed": {
+            "type": "boolean"
+          },
+          "description_closed": {
+            "type": "boolean"
+          }
+        },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "title_closed": { "const": true }
+                }
+              },
+              "required": ["title_closed"],
+              "then": {
+                "required": ["title_alternate"],
+                "properties": {
+                  "title_alternate": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "description_closed": { "const": true }
+                }
+              },
+              "required": ["description_closed"],
+              "then": {
+                "required": ["description_alternate"],
+                "properties": {
+                  "description_alternate": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "description_alternate": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "description_closed": {
+                    "const": true
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "title_alternate": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "title_closed": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          ]
+      }
+    }
+  ]
+}
