@@ -91,10 +91,11 @@ class DefinitionsSpec extends AnyWordSpec {
       languages should contain("Arabic")
       languages should contain("Somali")
       languages should contain("Vietnamese")
+      languages should contain("Kurdish")
     }
 
-    "have exactly 21 languages" in {
-      Definitions.languages.all.size shouldBe 21
+    "have exactly 22 languages" in {
+      Definitions.languages.all.size shouldBe 22
     }
 
     "not contain duplicate languages" in {
