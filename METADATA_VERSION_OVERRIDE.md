@@ -4,7 +4,7 @@
 
 Use `METADATA_VERSION_OVERRIDE` when you want to introduce or test a new metadata field without changing the default schemas used by released environments.
 
-The override works by looking for environment-specific files with a prefix. For example, if `METADATA_VERSION_OVERRIDE` is set to `TDRD-1475-`, the application will try to load prefixed files such as:
+The override works by looking for environment-specific files with a prefix. For example, if `METADATA_VERSION_OVERRIDE` is set to `TDRD-1475-`, the TDR application will try to load prefixed files such as:
 
 - `config-schema/TDRD-1475-config.json`
 - `metadata-schema/TDRD-1475-baseSchema.schema.json`
@@ -18,11 +18,11 @@ This lets you test changes safely in downstream services before merging them int
 
 ## When to use this
 
-Use this approach when:
+Use this approach when you:
 
-- you need to add a new field for a feature
-- you want to test the new field in a specific environment only
-- you do not want the change to appear in all environments or releases yet
+- need to add a new field for a feature
+- want to test the new field in a specific environment only
+- do not want the change to appear in all environments or releases yet
 
 ## How the override naming works
 
