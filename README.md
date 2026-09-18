@@ -10,6 +10,8 @@ This project provides the [JSON schemas](https://json-schema.org/) for defining 
 4. [Excluded Filenames](#excluded-filenames)
 5. [Validation Messages](#validation-messages)
 6. [Usage](#usage)
+7. [Testing unreleased metadata changes](#testing-unreleased-metadata-changes)
+8. [Local development](#local-development)
 
 ## Introduction
 
@@ -303,6 +305,12 @@ An example using scala and the [networknt json-schema-validator library](https:/
       // validate data
       val errors: util.Set[ValidationMessage] = schema.validate(node.toPrettyString, InputFormat.JSON)
 ```
+
+## Testing unreleased metadata changes
+
+To add and test a new metadata field without affecting released schema versions, use the `METADATA_VERSION_OVERRIDE` mechanism to load feature-specific config and schema files.
+
+For a step-by-step guide, see [METADATA_VERSION_OVERRIDE.md](METADATA_VERSION_OVERRIDE.md).
 
 ## Local development
 
