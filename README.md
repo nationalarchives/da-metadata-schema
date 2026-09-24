@@ -27,6 +27,11 @@ This project provides a set of JSON schemas that define the structure and requir
 - **Validation**: Ensures that metadata entries adhere to a predefined structure and meet specified requirements, reducing errors and inconsistencies.
 - **Extensibility**: Easily extend the schema to accommodate additional metadata fields or custom requirements specific to different teams or use cases.
 
+## Requirements
+
+- JDK 17 or later
+- sbt 2.x
+
 ## JSON Schema
 
 JSON Schema have [defined keywords](https://json-schema.org/understanding-json-schema/reference) used to define data.
