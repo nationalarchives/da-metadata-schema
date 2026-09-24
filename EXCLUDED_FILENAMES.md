@@ -135,5 +135,5 @@ Comprehensive tests are available in:
 
 Run tests with:
 ```bash
-sbt "testOnly *"
+sbt test
 ```
