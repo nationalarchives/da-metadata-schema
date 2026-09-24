@@ -80,7 +80,7 @@ lazy val root = (project in file("."))
     ),
     Compile / resourceGenerators += copyManagedResources(Compile).taskValue,
     Test / resourceGenerators += Def.task {
-      (Compile / resourceGenerators).value
+      (Compile / managedResources).value
       copyManagedDirectories((Compile / resourceManaged).value, (Test / resourceManaged).value)
     }.taskValue
   )
