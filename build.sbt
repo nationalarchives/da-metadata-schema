@@ -54,6 +54,19 @@ releaseProcess := Seq[ReleaseStep](
   pushChanges
 )
 
+lazy val managedResourceDirectories = Seq("metadata-schema", "config-schema", "validation-messages", "guidance", "puids")
+
+def copyManagedResources(configuration: Configuration) = Def.task {
+  val base = baseDirectory.value
+  val out = (configuration / resourceManaged).value
+  managedResourceDirectories.flatMap { directory =>
+    val src = base / directory
+    val dest = out / directory
+    IO.copyDirectory(src, dest)
+    (dest ** "*").get()
+  }
+}
+
 lazy val root = (project in file("."))
   .settings(
     name := "da-metadata-schema",
@@ -67,30 +80,8 @@ lazy val root = (project in file("."))
       circeParser,
       ujsonLib
     ),
-    Compile / resourceGenerators += Def.task {
-      val base = baseDirectory.value
-      val out = (Compile / resourceManaged).value
-      val dirs = Seq("metadata-schema", "config-schema", "validation-messages", "guidance", "puids")
-      val copied = dirs.flatMap { d =>
-        val src = base / d
-        val dest = out / d
-        IO.copyDirectory(src, dest)
-        (dest ** "*").get()
-      }
-      copied
-    }.taskValue,
-    Test / resourceGenerators += Def.task {
-      val base = baseDirectory.value
-      val out = (Test / resourceManaged).value
-      val dirs = Seq("metadata-schema", "config-schema", "validation-messages", "guidance", "puids")
-      val copied = dirs.flatMap { d =>
-        val src = base / d
-        val dest = out / d
-        IO.copyDirectory(src, dest)
-        (dest ** "*").get()
-      }
-      copied
-    }.taskValue
+    Compile / resourceGenerators += copyManagedResources(Compile).taskValue,
+    Test / resourceGenerators += copyManagedResources(Test).taskValue
   )
 
 lazy val copySchema = taskKey[Unit]("copySchema")

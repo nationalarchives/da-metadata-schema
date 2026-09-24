@@ -319,7 +319,9 @@ For a step-by-step guide, see [METADATA_VERSION_OVERRIDE.md](METADATA_VERSION_OV
 
 ## Local development
 
-To publish the schemas locally, run the following commands from the repository directory:
+The standard `package` pipeline now copies `metadata-schema`, `config-schema`, `validation-messages`, `guidance`, and `puids` into managed resources automatically.
+
+To publish the schemas locally, run the following command from the repository directory:
 
 ```
   $ sbt "package;publishLocal"
