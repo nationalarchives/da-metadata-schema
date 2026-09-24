@@ -53,15 +53,16 @@ releaseProcess := Seq[ReleaseStep](
 
 lazy val managedResourceDirectories = Seq("metadata-schema", "config-schema", "validation-messages", "guidance", "puids")
 
-def copyManagedResources(configuration: Configuration) = Def.task {
-  val base = baseDirectory.value
-  val out = (configuration / resourceManaged).value
+def copyManagedDirectories(from: File, to: File): Seq[File] =
   managedResourceDirectories.flatMap { directory =>
-    val src = base / directory
-    val dest = out / directory
+    val src = from / directory
+    val dest = to / directory
     IO.copyDirectory(src, dest)
     (dest ** "*").get()
   }
+
+def copyManagedResources(configuration: Configuration) = Def.task {
+  copyManagedDirectories(baseDirectory.value, (configuration / resourceManaged).value)
 }
 
 lazy val root = (project in file("."))
@@ -77,5 +78,9 @@ lazy val root = (project in file("."))
       circeParser,
       ujsonLib
     ),
-    Compile / resourceGenerators += copyManagedResources(Compile).taskValue
+    Compile / resourceGenerators += copyManagedResources(Compile).taskValue,
+    Test / resourceGenerators += Def.task {
+      (Compile / resourceGenerators).value
+      copyManagedDirectories((Compile / resourceManaged).value, (Test / resourceManaged).value)
+    }.taskValue
   )
