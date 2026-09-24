@@ -322,7 +322,7 @@ For a step-by-step guide, see [METADATA_VERSION_OVERRIDE.md](METADATA_VERSION_OV
 To publish the schemas locally, run the following commands from the repository directory:
 
 ```
-  $ sbt copySchema copyValidationMessageProperties copyGuidanceProperties package publishLocal
+  $ sbt "package;publishLocal"
 
 ```
 

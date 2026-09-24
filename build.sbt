@@ -67,6 +67,18 @@ lazy val root = (project in file("."))
       circeParser,
       ujsonLib
     ),
+    Compile / resourceGenerators += Def.task {
+      val base = baseDirectory.value
+      val out = (Compile / resourceManaged).value
+      val dirs = Seq("metadata-schema", "config-schema", "validation-messages", "guidance", "puids")
+      val copied = dirs.flatMap { d =>
+        val src = base / d
+        val dest = out / d
+        IO.copyDirectory(src, dest)
+        (dest ** "*").get()
+      }
+      copied
+    }.taskValue,
     Test / resourceGenerators += Def.task {
       val base = baseDirectory.value
       val out = (Test / resourceManaged).value

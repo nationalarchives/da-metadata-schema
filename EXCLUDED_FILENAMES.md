@@ -115,7 +115,7 @@ The `ExcludedFilenamesGeneratorPlugin` automatically:
    - Case class definitions for pattern matching
    - Matching support for both `exact` and `regex` types
    - Efficient regex compilation and caching
-3. Includes the generated code in `target/scala-2.13.16/src_managed/main/generated/ExcludedFilenames.scala`
+3. Includes the generated code in `target/out/jvm/scala-2.13.16/da-metadata-schema/src_managed/main/generated/ExcludedFilenames.scala`
 
 ## Relation to Disallowed PUIDs
 
@@ -135,5 +135,5 @@ Comprehensive tests are available in:
 
 Run tests with:
 ```bash
-sbt test
+sbt "testOnly *"
 ```
