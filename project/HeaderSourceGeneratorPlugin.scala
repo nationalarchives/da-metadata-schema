@@ -13,7 +13,7 @@ object HeaderSourceGeneratorPlugin extends AutoPlugin {
 
   override def trigger: PluginTrigger = allRequirements
 
-  override def projectSettings: Seq[Setting[_]] = Seq(
+  override def projectSettings: Seq[Setting[?]] = Seq(
     configJsonFile := baseDirectory.value / "config-schema" / "config.json",
     Compile / sourceGenerators += generateHeaderSources.taskValue,
     generateHeaderSources := {
@@ -38,7 +38,7 @@ object HeaderSourceGeneratorPlugin extends AutoPlugin {
           if (capitalized.nonEmpty && capitalized.head.isDigit) s"_$capitalized" else capitalized
         }
 
-        val jsonStr = Using(Source.fromFile(inputFile)(scala.io.Codec.UTF8))(_.mkString).get
+        val jsonStr = Using(Source.fromFile(inputFile)(using scala.io.Codec.UTF8))(_.mkString).get
         val parsed = ujson.read(jsonStr)
         val headerFields = parsed.obj.get("configItems") match {
           case Some(items: ujson.Arr) =>
@@ -88,4 +88,3 @@ object HeaderSourceGeneratorPlugin extends AutoPlugin {
     }
   )
 }
-

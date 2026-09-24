@@ -13,7 +13,7 @@ object MetadataTemplateGeneratorPlugin extends AutoPlugin {
 
   override def trigger: PluginTrigger = allRequirements
 
-  override def projectSettings: Seq[Setting[_]] = Seq(
+  override def projectSettings: Seq[Setting[?]] = Seq(
     metadataTemplateJsonFile := baseDirectory.value / "guidance" / "metadata-template.json",
     Compile / sourceGenerators += generateMetadataTemplateConstants.taskValue,
     generateMetadataTemplateConstants := {
@@ -24,7 +24,7 @@ object MetadataTemplateGeneratorPlugin extends AutoPlugin {
         Seq.empty[File]
       } else {
         import ujson.*
-        val jsonStr = Using(Source.fromFile(jsonFile)(scala.io.Codec.UTF8))(_.mkString).get
+        val jsonStr = Using(Source.fromFile(jsonFile)(using scala.io.Codec.UTF8))(_.mkString).get
         val parsed = ujson.read(jsonStr)
 
         // Extract metadata template objects
@@ -81,4 +81,3 @@ object MetadataTemplateGeneratorPlugin extends AutoPlugin {
     }
   )
 }
-

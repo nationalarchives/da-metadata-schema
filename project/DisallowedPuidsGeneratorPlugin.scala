@@ -13,7 +13,7 @@ object DisallowedPuidsGeneratorPlugin extends AutoPlugin {
 
   override def trigger: PluginTrigger = allRequirements
 
-  override def projectSettings: Seq[Setting[_]] = Seq(
+  override def projectSettings: Seq[Setting[?]] = Seq(
     disallowedPuidsJsonFile := baseDirectory.value / "puids" / "disallowed-puids.json",
     Compile / sourceGenerators += generateDisallowedPuidsConstants.taskValue,
     generateDisallowedPuidsConstants := {
@@ -23,7 +23,7 @@ object DisallowedPuidsGeneratorPlugin extends AutoPlugin {
         log.warn(s"JSON file not found: $jsonFile")
         Seq.empty[File]
       } else {
-        val jsonStr = Using(Source.fromFile(jsonFile)(scala.io.Codec.UTF8))(_.mkString).get
+        val jsonStr = Using(Source.fromFile(jsonFile)(using scala.io.Codec.UTF8))(_.mkString).get
         val parsed = ujson.read(jsonStr)
 
         // Extract all PUID objects from the array
@@ -68,6 +68,5 @@ object DisallowedPuidsGeneratorPlugin extends AutoPlugin {
     }
   )
 }
-
 
 

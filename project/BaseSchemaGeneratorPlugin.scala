@@ -13,7 +13,7 @@ object BaseSchemaGeneratorPlugin extends AutoPlugin {
 
   override def trigger: PluginTrigger = allRequirements
 
-  override def projectSettings: Seq[Setting[_]] = Seq(
+  override def projectSettings: Seq[Setting[?]] = Seq(
     baseSchemaJsonFile := baseDirectory.value / "metadata-schema" / "baseSchema.schema.json",
     Compile / sourceGenerators += generateBaseSchemaConstants.taskValue,
     generateBaseSchemaConstants := {
@@ -24,7 +24,7 @@ object BaseSchemaGeneratorPlugin extends AutoPlugin {
         Seq.empty[File]
       } else {
         import ujson.*
-        val jsonStr = Using(Source.fromFile(schemaFile)(scala.io.Codec.UTF8))(_.mkString).get
+        val jsonStr = Using(Source.fromFile(schemaFile)(using scala.io.Codec.UTF8))(_.mkString).get
         val parsed = ujson.read(jsonStr)
         val propNames: Seq[String] = parsed.obj.get("properties") match {
           case Some(obj: ujson.Obj) => obj.value.keys.toSeq.sorted

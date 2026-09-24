@@ -13,7 +13,7 @@ object ExcludedFilenamesGeneratorPlugin extends AutoPlugin {
 
   override def trigger: PluginTrigger = allRequirements
 
-  override def projectSettings: Seq[Setting[_]] = Seq(
+  override def projectSettings: Seq[Setting[?]] = Seq(
     excludedFilenamesJsonFile := baseDirectory.value / "puids" / "excluded-filenames.json",
     Compile / sourceGenerators += generateExcludedFilenamesConstants.taskValue,
     generateExcludedFilenamesConstants := {
@@ -23,7 +23,7 @@ object ExcludedFilenamesGeneratorPlugin extends AutoPlugin {
         log.warn(s"JSON file not found: $jsonFile")
         Seq.empty[File]
       } else {
-        val jsonStr = Using(Source.fromFile(jsonFile)(scala.io.Codec.UTF8))(_.mkString).get
+        val jsonStr = Using(Source.fromFile(jsonFile)(using scala.io.Codec.UTF8))(_.mkString).get
         val parsed = ujson.read(jsonStr)
 
         case class FilenamePattern(pattern: String, patternType: String, caseInsensitive: Boolean, description: String)
@@ -37,7 +37,7 @@ object ExcludedFilenamesGeneratorPlugin extends AutoPlugin {
           }
           val description = item.obj.get("description").map(_.str).getOrElse("")
           FilenamePattern(pattern, patternType, caseInsensitive, description)
-        }
+        }.toSeq
 
         val code =
           """package uk.gov.nationalarchives.tdr.schema.generated

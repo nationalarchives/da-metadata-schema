@@ -13,7 +13,7 @@ object DefinitionsGeneratorPlugin extends AutoPlugin {
 
   override def trigger: PluginTrigger = allRequirements
 
-  override def projectSettings: Seq[Setting[_]] = Seq(
+  override def projectSettings: Seq[Setting[?]] = Seq(
     definitionsSchemaJsonFile := baseDirectory.value / "metadata-schema" / "definitionsSchema.schema.json",
     Compile / sourceGenerators += generateDefinitionsConstants.taskValue,
     generateDefinitionsConstants := {
@@ -24,7 +24,7 @@ object DefinitionsGeneratorPlugin extends AutoPlugin {
         Seq.empty[File]
       } else {
         import ujson.*
-        val jsonStr = Using(Source.fromFile(schemaFile)(scala.io.Codec.UTF8))(_.mkString).get
+        val jsonStr = Using(Source.fromFile(schemaFile)(using scala.io.Codec.UTF8))(_.mkString).get
         val parsed = ujson.read(jsonStr)
         val definitions: Seq[(String, Seq[String])] = parsed.obj.get("definitions") match {
           case Some(defs: ujson.Obj) =>
@@ -84,4 +84,3 @@ object DefinitionsGeneratorPlugin extends AutoPlugin {
     }
   )
 }
-
