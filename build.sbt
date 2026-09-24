@@ -52,6 +52,8 @@ releaseProcess := Seq[ReleaseStep](
 )
 
 lazy val managedResourceDirectories = Seq("metadata-schema", "config-schema", "validation-messages", "guidance", "puids")
+@transient lazy val generateManagedCompileResources = taskKey[Seq[File]]("Copy managed resources into the compile resource pipeline")
+@transient lazy val generateManagedTestResources = taskKey[Seq[File]]("Copy managed compile resources into the test resource pipeline")
 
 def copyManagedDirectories(from: File, to: File): Seq[File] =
   managedResourceDirectories.flatMap { directory =>
@@ -71,10 +73,6 @@ def copyManagedFiles(fromRoot: File, toRoot: File, files: Seq[File]): Seq[File] 
     }
   }
 
-def copyManagedResources(configuration: Configuration) = Def.task {
-  copyManagedDirectories(baseDirectory.value, (configuration / resourceManaged).value)
-}
-
 lazy val root = (project in file("."))
   .settings(
     name := "da-metadata-schema",
@@ -88,8 +86,10 @@ lazy val root = (project in file("."))
       circeParser,
       ujsonLib
     ),
-    Compile / resourceGenerators += copyManagedResources(Compile).taskValue,
-    Test / resourceGenerators += Def.task {
+    generateManagedCompileResources := copyManagedDirectories(baseDirectory.value, (Compile / resourceManaged).value),
+    generateManagedTestResources := {
       copyManagedFiles((Compile / resourceManaged).value, (Test / resourceManaged).value, (Compile / managedResources).value)
-    }.taskValue
+    },
+    Compile / resourceGenerators += generateManagedCompileResources.taskValue,
+    Test / resourceGenerators += generateManagedTestResources.taskValue
   )
