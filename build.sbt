@@ -40,9 +40,6 @@ releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,
   inquireVersions,
   runClean,
-  releaseStepTask(copySchema),
-  releaseStepTask(copyValidationMessageProperties),
-  releaseStepTask(copyGuidanceProperties),
   runTest,
   setReleaseVersion,
   commitReleaseVersion,
@@ -80,27 +77,5 @@ lazy val root = (project in file("."))
       circeParser,
       ujsonLib
     ),
-    Compile / resourceGenerators += copyManagedResources(Compile).taskValue,
-    Test / resourceGenerators += copyManagedResources(Test).taskValue
+    Compile / resourceGenerators += copyManagedResources(Compile).taskValue
   )
-
-lazy val copySchema = taskKey[Unit]("copySchema")
-copySchema := {
-  val classesDir = (Compile / classDirectory).value
-  val repoDir = baseDirectory.value
-  IO.copyDirectory(repoDir / "metadata-schema", classesDir / "metadata-schema")
-  IO.copyDirectory(repoDir / "config-schema", classesDir / "config-schema")
-  IO.copyDirectory(repoDir / "puids", classesDir / "puids")
-}
-
-lazy val copyValidationMessageProperties = taskKey[Unit]("copyValidationMessageProperties")
-copyValidationMessageProperties := {
-  val classesDir = (Compile / classDirectory).value
-  IO.copyDirectory(baseDirectory.value / "validation-messages", classesDir / "validation-messages")
-}
-
-lazy val copyGuidanceProperties = taskKey[Unit]("copyGuidanceProperties")
-copyGuidanceProperties := {
-  val classesDir = (Compile / classDirectory).value
-  IO.copyDirectory(baseDirectory.value / "guidance", classesDir / "guidance")
-}
