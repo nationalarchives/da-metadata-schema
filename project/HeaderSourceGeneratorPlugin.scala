@@ -6,7 +6,7 @@ import scala.util.Using
 /** Auto plugin to generate HeaderSource values from config.json alternateKeys fields */
 object HeaderSourceGeneratorPlugin extends AutoPlugin {
   object autoImport {
-    val generateHeaderSources = taskKey[Seq[File]]("Generate HeaderSource values from config.json alternateKeys")
+    @transient val generateHeaderSources = taskKey[Seq[File]]("Generate HeaderSource values from config.json alternateKeys")
     val configJsonFile = settingKey[File]("Location of config.json")
   }
   import autoImport._
@@ -32,7 +32,7 @@ object HeaderSourceGeneratorPlugin extends AutoPlugin {
           val capitalized = withWordBoundaries
             .split("\\s+")
             .filter(_.nonEmpty)
-            .map(segment => segment.head.toUpper + segment.tail)
+            .map(segment => s"${segment.head.toUpper}${segment.tail}")
             .mkString
 
           if (capitalized.nonEmpty && capitalized.head.isDigit) s"_$capitalized" else capitalized

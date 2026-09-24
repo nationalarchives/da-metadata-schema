@@ -5,8 +5,10 @@ import scala.io.Source
 
 /** Auto plugin to generate ExcludedFilenames object from excluded-filenames.json */
 object ExcludedFilenamesGeneratorPlugin extends AutoPlugin {
+  private final case class FilenamePattern(pattern: String, patternType: String, caseInsensitive: Boolean, description: String)
+
   object autoImport {
-    val generateExcludedFilenamesConstants = taskKey[Seq[File]]("Generate ExcludedFilenames list")
+    @transient val generateExcludedFilenamesConstants = taskKey[Seq[File]]("Generate ExcludedFilenames list")
     val excludedFilenamesJsonFile = settingKey[File]("Location of excluded-filenames.json")
   }
   import autoImport._
@@ -25,8 +27,6 @@ object ExcludedFilenamesGeneratorPlugin extends AutoPlugin {
       } else {
         val jsonStr = Using(Source.fromFile(jsonFile)(using scala.io.Codec.UTF8))(_.mkString).get
         val parsed = ujson.read(jsonStr)
-
-        case class FilenamePattern(pattern: String, patternType: String, caseInsensitive: Boolean, description: String)
 
         val patterns: Seq[FilenamePattern] = parsed.arr.map { item =>
           val pattern = item.obj.get("pattern").map(_.str).getOrElse("")

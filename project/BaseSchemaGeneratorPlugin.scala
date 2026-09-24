@@ -6,7 +6,7 @@ import scala.io.Source
 /** Auto plugin to generate BaseSchema object containing property name constants from baseSchema.schema.json */
 object BaseSchemaGeneratorPlugin extends AutoPlugin {
   object autoImport {
-    val generateBaseSchemaConstants = taskKey[Seq[File]]("Generate BaseSchema property name constants")
+    @transient val generateBaseSchemaConstants = taskKey[Seq[File]]("Generate BaseSchema property name constants")
     val baseSchemaJsonFile = settingKey[File]("Location of baseSchema.schema.json")
   }
   import autoImport._

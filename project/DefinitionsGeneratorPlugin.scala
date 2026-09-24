@@ -6,7 +6,7 @@ import scala.io.Source
 /** Auto plugin to generate Definitions object containing enum constants from definitionsSchema.schema.json */
 object DefinitionsGeneratorPlugin extends AutoPlugin {
   object autoImport {
-    val generateDefinitionsConstants = taskKey[Seq[File]]("Generate Definitions enum constants")
+    @transient val generateDefinitionsConstants = taskKey[Seq[File]]("Generate Definitions enum constants")
     val definitionsSchemaJsonFile = settingKey[File]("Location of definitionsSchema.schema.json")
   }
   import autoImport._

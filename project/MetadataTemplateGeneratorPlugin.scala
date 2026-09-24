@@ -5,8 +5,16 @@ import scala.io.Source
 
 /** Auto plugin to generate MetadataTemplate object containing metadata properties from metadata-template.json */
 object MetadataTemplateGeneratorPlugin extends AutoPlugin {
+  private final case class MetadataProperty(
+    property: String,
+    details: String,
+    format: String,
+    tdrRequirement: String,
+    example: String
+  )
+
   object autoImport {
-    val generateMetadataTemplateConstants = taskKey[Seq[File]]("Generate MetadataTemplate properties")
+    @transient val generateMetadataTemplateConstants = taskKey[Seq[File]]("Generate MetadataTemplate properties")
     val metadataTemplateJsonFile = settingKey[File]("Location of metadata-template.json")
   }
   import autoImport._
@@ -26,15 +34,6 @@ object MetadataTemplateGeneratorPlugin extends AutoPlugin {
         import ujson.*
         val jsonStr = Using(Source.fromFile(jsonFile)(using scala.io.Codec.UTF8))(_.mkString).get
         val parsed = ujson.read(jsonStr)
-
-        // Extract metadata template objects
-        case class MetadataProperty(
-          property: String,
-          details: String,
-          format: String,
-          tdrRequirement: String,
-          example: String
-        )
 
         val metadataProperties: Seq[MetadataProperty] = parsed.arr.map { item =>
           val property = item.obj.get("property").map(_.str).getOrElse("")

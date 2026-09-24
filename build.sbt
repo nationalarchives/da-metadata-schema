@@ -1,5 +1,5 @@
 import Dependencies._
-import sbt.url
+import sbt.uri
 import sbtrelease.ReleaseStateTransformations._
 
 ThisBuild / organization := "uk.gov.nationalarchives"
@@ -9,7 +9,7 @@ ThisBuild / scalaVersion := "2.13.16"
 
 ThisBuild / scmInfo := Some(
   ScmInfo(
-    url("https://github.com/nationalarchives/da-metadata-schema"),
+    uri("https://github.com/nationalarchives/da-metadata-schema"),
     "git@github.com:nationalarchives/da-metadata-schema.git"
   )
 )
@@ -19,13 +19,13 @@ developers := List(
     id = "tna-da-bot",
     name = "TNA Digital Archiving",
     email = "s-GitHubDABot@nationalarchives.gov.uk",
-    url = url("https://github.com/nationalarchives/da-metadata-schema")
+    url = uri("https://github.com/nationalarchives/da-metadata-schema")
   )
 )
 
 ThisBuild / description := "JSON Schema to describe The National Archives catalogue metadata"
-ThisBuild / licenses := List("MIT" -> new java.net.URI("https://choosealicense.com/licenses/mit/").toURL)
-ThisBuild / homepage := Some(url("https://github.com/nationalarchives/da-metadata-schema"))
+ThisBuild / licenses := List(License("MIT", uri("https://choosealicense.com/licenses/mit/")))
+ThisBuild / homepage := Some(uri("https://github.com/nationalarchives/da-metadata-schema"))
 crossTarget := target.value / s"scala-${scalaVersion.value}"
 
 useGpgPinentry := true
@@ -75,7 +75,7 @@ lazy val root = (project in file("."))
         val src = base / d
         val dest = out / d
         IO.copyDirectory(src, dest)
-        (dest ** "*").get
+        (dest ** "*").get()
       }
       copied
     }.taskValue
@@ -83,17 +83,21 @@ lazy val root = (project in file("."))
 
 lazy val copySchema = taskKey[Unit]("copySchema")
 copySchema := {
-  IO.copyDirectory(new File("metadata-schema"), new File(s"target/scala-${scalaVersion.value}/classes/metadata-schema"))
-  IO.copyDirectory(new File("config-schema"), new File(s"target/scala-${scalaVersion.value}/classes/config-schema"))
-  IO.copyDirectory(new File("puids"), new File(s"target/scala-${scalaVersion.value}/classes/puids"))
+  val classesDir = (Compile / classDirectory).value
+  val repoDir = baseDirectory.value
+  IO.copyDirectory(repoDir / "metadata-schema", classesDir / "metadata-schema")
+  IO.copyDirectory(repoDir / "config-schema", classesDir / "config-schema")
+  IO.copyDirectory(repoDir / "puids", classesDir / "puids")
 }
 
 lazy val copyValidationMessageProperties = taskKey[Unit]("copyValidationMessageProperties")
 copyValidationMessageProperties := {
-  IO.copyDirectory(new File("validation-messages"), new File(s"target/scala-${scalaVersion.value}/classes/validation-messages"))
+  val classesDir = (Compile / classDirectory).value
+  IO.copyDirectory(baseDirectory.value / "validation-messages", classesDir / "validation-messages")
 }
 
 lazy val copyGuidanceProperties = taskKey[Unit]("copyGuidanceProperties")
 copyGuidanceProperties := {
-  IO.copyDirectory(new File("guidance"), new File(s"target/scala-${scalaVersion.value}/classes/guidance"))
+  val classesDir = (Compile / classDirectory).value
+  IO.copyDirectory(baseDirectory.value / "guidance", classesDir / "guidance")
 }

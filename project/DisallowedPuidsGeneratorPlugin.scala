@@ -5,8 +5,10 @@ import scala.io.Source
 
 /** Auto plugin to generate DisallowedPuids object containing all disallowed PUIDs from disallowed-puids.json */
 object DisallowedPuidsGeneratorPlugin extends AutoPlugin {
+  private final case class PuidEntry(puid: String, active: Boolean, reason: String, puidDescription: String)
+
   object autoImport {
-    val generateDisallowedPuidsConstants = taskKey[Seq[File]]("Generate DisallowedPuids list")
+    @transient val generateDisallowedPuidsConstants = taskKey[Seq[File]]("Generate DisallowedPuids list")
     val disallowedPuidsJsonFile = settingKey[File]("Location of disallowed-puids.json")
   }
   import autoImport._
@@ -25,9 +27,6 @@ object DisallowedPuidsGeneratorPlugin extends AutoPlugin {
       } else {
         val jsonStr = Using(Source.fromFile(jsonFile)(using scala.io.Codec.UTF8))(_.mkString).get
         val parsed = ujson.read(jsonStr)
-
-        // Extract all PUID objects from the array
-        case class PuidEntry(puid: String, active: Boolean, reason: String, puidDescription: String)
 
         val puidEntries: Seq[PuidEntry] = parsed.arr.map { item =>
           val puid = item.obj.get("puid").map(_.str).getOrElse("")
@@ -68,5 +67,3 @@ object DisallowedPuidsGeneratorPlugin extends AutoPlugin {
     }
   )
 }
-
-
