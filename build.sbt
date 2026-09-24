@@ -61,6 +61,16 @@ def copyManagedDirectories(from: File, to: File): Seq[File] =
     (dest ** "*").get()
   }
 
+def copyManagedFiles(fromRoot: File, toRoot: File, files: Seq[File]): Seq[File] =
+  files.filter(_.isFile).flatMap { file =>
+    IO.relativize(fromRoot, file).map { relativePath =>
+      val target = toRoot / relativePath
+      IO.createDirectory(target.getParentFile)
+      IO.copyFile(file, target, preserveLastModified = true)
+      target
+    }
+  }
+
 def copyManagedResources(configuration: Configuration) = Def.task {
   copyManagedDirectories(baseDirectory.value, (configuration / resourceManaged).value)
 }
@@ -80,7 +90,6 @@ lazy val root = (project in file("."))
     ),
     Compile / resourceGenerators += copyManagedResources(Compile).taskValue,
     Test / resourceGenerators += Def.task {
-      (Compile / managedResources).value
-      copyManagedDirectories((Compile / resourceManaged).value, (Test / resourceManaged).value)
+      copyManagedFiles((Compile / resourceManaged).value, (Test / resourceManaged).value, (Compile / managedResources).value)
     }.taskValue
   )
