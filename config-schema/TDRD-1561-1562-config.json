@@ -1176,7 +1176,7 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "former filepath",
-          "tdrDataLoadHeader": "former_filepath_department"
+          "tdrDataLoadHeader": "FormerFilepathDepartment"
         }
       ],
       "downloadFilesOutputs": [
@@ -1206,7 +1206,7 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "catalogue placement",
-          "tdrDataLoadHeader": "catalogue_placement"
+          "tdrDataLoadHeader": "CataloguePlacement"
         }
       ],
       "downloadFilesOutputs": [
