@@ -159,5 +159,19 @@
     "format": "Text, max 1000 characters",
     "tdrRequirement": "Optional",
     "example": "Date derived from system metadata; actual date of the record is unknown."
+  },
+  {
+    "property": "former filepath",
+    "details": "Use this field to provide the original file path (excluding file name) if upload file paths are inaccurate. Will be published to Note field on Discovery.",
+    "format": "Text, max 1000 characters",
+    "tdrRequirement": "Optional",
+    "example": "Meetings/1999/January"
+  },
+  {
+    "property": "catalogue placement",
+    "details": "Contact your Digital Transfer Adviser for guidance.",
+    "format": "Text, max 50 characters",
+    "tdrRequirement": "Optional",
+    "example": ""
   }
 ]

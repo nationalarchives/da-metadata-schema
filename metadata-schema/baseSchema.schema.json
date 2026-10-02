@@ -189,6 +189,24 @@
       "maxLength": 255,
       "pattern": "^[^\\r\\n]*$"
     },
+    "former_filepath_department": {
+      "description": "The former filepath of the department",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 1000,
+      "pattern": "^[^\\r\\n]*$"
+    },
+    "catalogue_placement": {
+      "description": "The catalogue placement of the department",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 50,
+      "pattern": "^[A-Z]{1,5}[ /].*[^\\s/]$"
+    },
     "file_reference": {
       "description": "Human readable reference for the file",
       "type": [
@@ -344,6 +362,13 @@
       ],
       "maxLength": 255,
       "pattern": "^[^\\r\\n]*$"
+    },
+    "citable_ref_prefix": {
+      "description": "The citable reference prefix for the record",
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "asset_id": {
       "description": "Asset id for the record",
