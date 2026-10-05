@@ -690,7 +690,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 27,
+          "columnIndex": 28,
           "editable": false
         },
         {
@@ -721,7 +721,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 23,
+          "columnIndex": 24,
           "editable": false
         }
       ]
@@ -1054,7 +1054,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 22,
+          "columnIndex": 23,
           "editable": true
         },
         {
@@ -1192,7 +1192,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 26,
+          "columnIndex": 27,
           "editable": true
         },
         {
@@ -1222,7 +1222,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 27,
+          "columnIndex": 29,
           "editable": true
         },
         {
@@ -1267,7 +1267,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 28,
+          "columnIndex": 30,
           "editable": true
         },
         {
