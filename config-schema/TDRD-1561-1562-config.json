@@ -1253,6 +1253,31 @@
       ]
     },
     {
+      "key": "inventor",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/inventor",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "inventor",
+          "tdrDataLoadHeader": "Inventor"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 28,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 43,
+          "editable": false
+        }
+      ]
+    },
+    {
       "key": "asset_id",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/asset_id",
       "propertyType": "System",
