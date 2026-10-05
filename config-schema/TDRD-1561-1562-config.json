@@ -639,7 +639,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 40,
+          "columnIndex": 38,
           "editable": false
         }
       ]
@@ -1027,7 +1027,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 37,
+          "columnIndex": 35,
           "editable": false
         }
       ]
@@ -1059,7 +1059,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 38,
+          "columnIndex": 36,
           "editable": false
         }
       ]
@@ -1167,7 +1167,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 39,
+          "columnIndex": 37,
           "editable": false
         }
       ]
@@ -1197,7 +1197,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 40,
+          "columnIndex": 39,
           "editable": false
         }
       ]
@@ -1227,7 +1227,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 41,
+          "columnIndex": 40,
           "editable": false
         }
       ]
@@ -1247,7 +1247,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 42,
+          "columnIndex": 41,
           "editable": false
         }
       ]
@@ -1272,7 +1272,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 43,
+          "columnIndex": 42,
           "editable": false
         }
       ]
