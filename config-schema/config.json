@@ -1173,6 +1173,47 @@
       ]
     },
     {
+      "key": "former_filepath_department",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/former_filepath_department",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "former filepath",
+          "tdrDataLoadHeader": "FormerFilepathDepartment"
+        }
+      ],
+      "downloadFilesOutputs": []
+    },
+    {
+      "key": "catalogue_placement",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/catalogue_placement",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "catalogue placement",
+          "tdrDataLoadHeader": "CataloguePlacement"
+        }
+      ],
+      "downloadFilesOutputs": []
+    },
+    {
+      "key": "citable_ref_prefix",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/citable_ref_prefix",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "CitableRefPrefix"
+        }
+      ],
+      "downloadFilesOutputs": []
+    },
+    {
       "key": "asset_id",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/asset_id",
       "propertyType": "System",
