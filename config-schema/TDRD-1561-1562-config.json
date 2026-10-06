@@ -1263,6 +1263,30 @@
         }
       ],
       "downloadFilesOutputs": []
+    },
+    {
+      "key": "inventor",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/inventor",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrDataLoadHeader": "Inventor"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 30,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 44,
+          "editable": false
+        }
+      ]
     }
   ]
 }
