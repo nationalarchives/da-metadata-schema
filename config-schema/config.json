@@ -1176,7 +1176,7 @@
       "key": "former_filepath_department",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/former_filepath_department",
       "propertyType": "Supplied",
-      "expectedTDRHeader": false,
+      "expectedTDRHeader": true,
       "allowExport": true,
       "alternateKeys": [
         {
@@ -1184,13 +1184,29 @@
           "tdrDataLoadHeader": "FormerFilepathDepartment"
         }
       ],
-      "downloadFilesOutputs": []
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 24,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 26,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 41,
+          "editable": false
+        }
+      ]
     },
     {
       "key": "catalogue_placement",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/catalogue_placement",
       "propertyType": "Supplied",
-      "expectedTDRHeader": false,
+      "expectedTDRHeader": true,
       "allowExport": true,
       "alternateKeys": [
         {
@@ -1198,7 +1214,23 @@
           "tdrDataLoadHeader": "CataloguePlacement"
         }
       ],
-      "downloadFilesOutputs": []
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 25,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 27,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 42,
+          "editable": false
+        }
+      ]
     },
     {
       "key": "citable_ref_prefix",
