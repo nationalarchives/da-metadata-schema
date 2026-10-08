@@ -89,13 +89,15 @@ class DefinitionsSpec extends AnyWordSpec {
     "contain other languages" in {
       val languages = Definitions.languages.all
       languages should contain("Arabic")
+      languages should contain("Amharic")
+      languages should contain("Central Kurdish")
       languages should contain("Somali")
       languages should contain("Vietnamese")
       languages should contain("Kurdish")
     }
 
-    "have exactly 22 languages" in {
-      Definitions.languages.all.size shouldBe 22
+    "have exactly 24 languages" in {
+      Definitions.languages.all.size shouldBe 24
     }
 
     "not contain duplicate languages" in {
