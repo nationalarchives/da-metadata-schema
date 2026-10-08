@@ -54,8 +54,10 @@
     },
     "languages" : {
       "enum": [
+        "Amharic",
         "Arabic",
         "Bengali",
+        "Central Kurdish",
         "Chinese",
         "English",
         "German",
