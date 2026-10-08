@@ -1192,7 +1192,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 26,
+          "columnIndex": 28,
           "editable": true
         },
         {
@@ -1222,7 +1222,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 27,
+          "columnIndex": 29,
           "editable": true
         },
         {
@@ -1265,7 +1265,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 42,
+          "columnIndex": 43,
           "editable": false
         }
       ]

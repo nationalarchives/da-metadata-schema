@@ -639,7 +639,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 38,
+          "columnIndex": 40,
           "editable": false
         }
       ]
@@ -690,7 +690,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 28,
+          "columnIndex": 27,
           "editable": false
         },
         {
@@ -721,7 +721,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 24,
+          "columnIndex": 23,
           "editable": false
         }
       ]
@@ -819,7 +819,7 @@
       "alternateKeys": [
         {
           "tdrFileHeader": "checksum",
-          "tdrDataLoadHeader": "SHA256ClientSideChecksum",          
+          "tdrDataLoadHeader": "SHA256ClientSideChecksum",
           "sharePointTag": "sha256ClientSideChecksum",
           "droidHeader": "SHA256_HASH",
           "hardDriveHeader": "checksum",
@@ -1027,7 +1027,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 35,
+          "columnIndex": 37,
           "editable": false
         }
       ]
@@ -1054,12 +1054,12 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 23,
+          "columnIndex": 22,
           "editable": true
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 36,
+          "columnIndex": 38,
           "editable": false
         }
       ]
@@ -1167,7 +1167,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 37,
+          "columnIndex": 39,
           "editable": false
         }
       ]
@@ -1192,7 +1192,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 27,
+          "columnIndex": 28,
           "editable": true
         },
         {
@@ -1272,7 +1272,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 42,
+          "columnIndex": 44,
           "editable": false
         }
       ]
