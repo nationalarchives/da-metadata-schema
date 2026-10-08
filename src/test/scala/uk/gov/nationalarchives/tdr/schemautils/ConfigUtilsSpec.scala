@@ -21,7 +21,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
 
   "config.json" should {
     "contain the correct number of properties" in {
-      propertyKeys.size should equal(50)
+      propertyKeys.size should equal(51)
     }
 
     "not contain duplicate properties" in {
@@ -132,9 +132,9 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a downloadProperties method that" should {
     "give the downloadProperties config for a specified download" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 24
-      metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 41
-      metadataConfiguration.downloadFileDisplayProperties("MetadataReviewDetailTemplate").length shouldBe 29
+      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 23
+      metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 39
+      metadataConfiguration.downloadFileDisplayProperties("MetadataReviewDetailTemplate").length shouldBe 28
       metadataConfiguration.downloadFileDisplayProperties("UnknownClientTemplate").length shouldBe 0
     }
 
