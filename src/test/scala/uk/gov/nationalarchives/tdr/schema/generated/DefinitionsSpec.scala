@@ -94,8 +94,8 @@ class DefinitionsSpec extends AnyWordSpec {
       languages should contain("Kurdish")
     }
 
-    "have exactly 24 languages" in {
-      Definitions.languages.all.size shouldBe 24
+    "have exactly 22 languages" in {
+      Definitions.languages.all.size shouldBe 22
     }
 
     "not contain duplicate languages" in {

@@ -1173,6 +1173,81 @@
       ]
     },
     {
+      "key": "catalogue_placement",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/catalogue_placement",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "catalogue placement",
+          "tdrDataLoadHeader": "CataloguePlacement"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 25,
+          "editable": true
+        },
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 29,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 40,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "citable_ref_prefix",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/citable_ref_prefix",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "citable_ref_prefix",
+          "tdrDataLoadHeader": "CitableRefPrefix"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 41,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "inventor",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/inventor",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "inventor",
+          "tdrDataLoadHeader": "Inventor"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 30,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 42,
+          "editable": false
+        }
+      ]
+    },
+    {
       "key": "asset_id",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/asset_id",
       "propertyType": "System",

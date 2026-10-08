@@ -54,7 +54,6 @@
     },
     "languages" : {
       "enum": [
-        "Amharic",
         "Arabic",
         "Bengali",
         "Chinese",
@@ -65,7 +64,6 @@
         "Irish Gaelic",
         "Italian",
         "Kurdish",
-        "Kurdish Sorani",
         "Latvian",
         "Lithuanian",
         "Polish",
