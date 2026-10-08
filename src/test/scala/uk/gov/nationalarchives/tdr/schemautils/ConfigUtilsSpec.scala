@@ -132,7 +132,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a downloadProperties method that" should {
     "give the downloadProperties config for a specified download" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 26
+      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 25
       metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 41
       metadataConfiguration.downloadFileDisplayProperties("MetadataReviewDetailTemplate").length shouldBe 30
       metadataConfiguration.downloadFileDisplayProperties("UnknownClientTemplate").length shouldBe 0
