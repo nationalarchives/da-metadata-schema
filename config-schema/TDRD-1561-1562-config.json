@@ -1197,7 +1197,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 39,
+          "columnIndex": 41,
           "editable": false
         }
       ]
@@ -1227,7 +1227,7 @@
         },
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 40,
+          "columnIndex": 42,
           "editable": false
         }
       ]
@@ -1247,7 +1247,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "BagitExportTemplate",
-          "columnIndex": 41,
+          "columnIndex": 43,
           "editable": false
         }
       ]

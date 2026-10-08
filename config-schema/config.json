@@ -1173,10 +1173,24 @@
       ]
     },
     {
+      "key": "former_filepath_department",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/former_filepath_department",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "former filepath",
+          "tdrDataLoadHeader": "FormerFilepathDepartment"
+        }
+      ],
+      "downloadFilesOutputs": []
+    },
+    {
       "key": "catalogue_placement",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/catalogue_placement",
       "propertyType": "Supplied",
-      "expectedTDRHeader": true,
+      "expectedTDRHeader": false,
       "allowExport": true,
       "alternateKeys": [
         {
@@ -1184,23 +1198,7 @@
           "tdrDataLoadHeader": "CataloguePlacement"
         }
       ],
-      "downloadFilesOutputs": [
-        {
-          "domain": "MetadataDownloadTemplate",
-          "columnIndex": 25,
-          "editable": true
-        },
-        {
-          "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 29,
-          "editable": true
-        },
-        {
-          "domain": "BagitExportTemplate",
-          "columnIndex": 40,
-          "editable": false
-        }
-      ]
+      "downloadFilesOutputs": []
     },
     {
       "key": "citable_ref_prefix",
@@ -1210,17 +1208,10 @@
       "allowExport": true,
       "alternateKeys": [
         {
-          "tdrFileHeader": "citable_ref_prefix",
           "tdrDataLoadHeader": "CitableRefPrefix"
         }
       ],
-      "downloadFilesOutputs": [
-        {
-          "domain": "BagitExportTemplate",
-          "columnIndex": 41,
-          "editable": false
-        }
-      ]
+      "downloadFilesOutputs": []
     },
     {
       "key": "inventor",
