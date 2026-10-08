@@ -1192,7 +1192,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 26,
+          "columnIndex": 28,
           "editable": true
         },
         {
@@ -1222,7 +1222,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 27,
+          "columnIndex": 29,
           "editable": true
         },
         {
@@ -1244,6 +1244,31 @@
         }
       ],
       "downloadFilesOutputs": []
+    },
+    {
+      "key": "inventor",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/inventor",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "inventor",
+          "tdrDataLoadHeader": "Inventor"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "MetadataReviewDetailTemplate",
+          "columnIndex": 30,
+          "editable": true
+        },
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 43,
+          "editable": false
+        }
+      ]
     },
     {
       "key": "asset_id",

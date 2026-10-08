@@ -370,6 +370,15 @@
         "null"
       ]
     },
+    "inventor": {
+      "description": "The inventor",
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 250,
+      "pattern": "^[^\\r\\n]*$"
+    },
     "asset_id": {
       "description": "Asset id for the record",
       "type": "string",
