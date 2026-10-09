@@ -730,7 +730,7 @@
       "key": "original_identifier",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/original_identifier",
       "propertyType": "Supplied",
-      "expectedTDRHeader": false,
+      "expectedTDRHeader": true,
       "allowExport": true,
       "alternateKeys": [
         {
@@ -742,7 +742,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 14,
+          "columnIndex": 24,
           "editable": true
         },
         {

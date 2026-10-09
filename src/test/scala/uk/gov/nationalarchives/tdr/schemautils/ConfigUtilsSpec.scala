@@ -179,7 +179,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
       originalIdentifierProperty match {
         case Some(property) =>
           property.key shouldBe "original_identifier"
-          property.columnIndex shouldBe 14
+          property.columnIndex shouldBe 24
           property.editable shouldBe true
         case None => fail("Expected original_identifier to be present in the download properties")
       }
