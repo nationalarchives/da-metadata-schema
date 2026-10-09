@@ -729,16 +729,22 @@
     {
       "key": "original_identifier",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/original_identifier",
-      "propertyType": "System",
-      "expectedTDRHeader": false,
+      "propertyType": "Supplied",
+      "expectedTDRHeader": true,
       "allowExport": true,
       "alternateKeys": [
         {
           "tdrDataLoadHeader": "OriginalFilepath",
-          "tdrBagitExportHeader": "original_filepath"
+          "tdrBagitExportHeader": "original_filepath",
+          "tdrFileHeader": "original identifier"
         }
       ],
       "downloadFilesOutputs": [
+        {
+          "domain": "MetadataDownloadTemplate",
+          "columnIndex": 24,
+          "editable": true
+        },
         {
           "domain": "BagitExportTemplate",
           "columnIndex": 23,

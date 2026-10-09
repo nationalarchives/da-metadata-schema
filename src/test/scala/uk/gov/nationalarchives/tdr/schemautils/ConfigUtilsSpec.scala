@@ -117,12 +117,13 @@ class ConfigUtilsSpec extends AnyWordSpec {
       val metadataConfiguration = ConfigUtils.loadConfiguration
       metadataConfiguration.getPropertiesByPropertyType("System") shouldBe
         List("file_path", "file_name", "date_last_modified", "file_size", "UUID", "file_reference",
-          "original_identifier", "parent_reference", "file_type", "client_side_checksum", "server_side_checksum", "asset_id")
+          "parent_reference", "file_type", "client_side_checksum", "server_side_checksum", "asset_id")
       metadataConfiguration.getPropertiesByPropertyType("Supplied") shouldBe
         List("end_date", "description", "former_reference_department", "closure_type", "closure_start_date", "closure_period",
           "foi_exemption_code", "foi_exemption_asserted", "title_closed", "description_closed", "description_alternate", "title_alternate",
-          "language", "file_name_translation", "rights_copyright", "copyright_details", "restrictions_on_use", "held_by", "legal_status",
-          "related_material","judgment_type", "judgment_update", "judgment_update_type", "judgment_update_details", "judgment_neutral_citation", "judgment_no_neutral_citation", "judgment_reference", "evidence_provided_by",
+          "language", "file_name_translation", "rights_copyright", "copyright_details", "restrictions_on_use", "held_by",
+          "original_identifier", "legal_status", "related_material", "judgment_type", "judgment_update", "judgment_update_type",
+          "judgment_update_details", "judgment_neutral_citation", "judgment_no_neutral_citation", "judgment_reference", "evidence_provided_by",
           "date_created", "date_range", "file_name_translation_language", "start_date", "creating_body", "file_name_language", "note",
           "former_filepath_department", "catalogue_placement", "citable_ref_prefix", "inventor")
       metadataConfiguration.getPropertiesByPropertyType("unknown") shouldBe List()
@@ -132,7 +133,7 @@ class ConfigUtilsSpec extends AnyWordSpec {
   "ConfigUtils should load configuration and provide a downloadProperties method that" should {
     "give the downloadProperties config for a specified download" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
-      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 25
+      metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate").length shouldBe 26
       metadataConfiguration.downloadFileDisplayProperties("BagitExportTemplate").length shouldBe 41
       metadataConfiguration.downloadFileDisplayProperties("MetadataReviewDetailTemplate").length shouldBe 30
       metadataConfiguration.downloadFileDisplayProperties("UnknownClientTemplate").length shouldBe 0
@@ -168,6 +169,19 @@ class ConfigUtilsSpec extends AnyWordSpec {
           property.key shouldBe "file_path"
           property.editable shouldBe false
         case None => fail("Expected file_path to be present in the download properties")
+      }
+    }
+
+    "return the correct DownloadFilesOutput for original identifier" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      val outputs = metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate")
+      val originalIdentifierProperty = outputs.find(property => property.key == "original_identifier")
+      originalIdentifierProperty match {
+        case Some(property) =>
+          property.key shouldBe "original_identifier"
+          property.columnIndex shouldBe 24
+          property.editable shouldBe true
+        case None => fail("Expected original_identifier to be present in the download properties")
       }
     }
 

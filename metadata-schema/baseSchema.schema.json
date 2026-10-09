@@ -231,7 +231,9 @@
       "type": [
         "string",
         "null"
-      ]
+      ],
+      "maxLength": 500,
+      "pattern": "^(No Original Found|[^\\r\\n]*)$"
     },
     "legal_status": {
       "description": "The legal status of the file",
