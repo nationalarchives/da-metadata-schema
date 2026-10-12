@@ -119,6 +119,13 @@
     "example": "filenameEnglish"
   },
   {
+    "property": "original identifier",
+    "details": "Enter file path of original file that exists within this transfer",
+    "format": "Text, max 500 characters",
+    "tdrRequirement": "Optional for redacted record only",
+    "example": "TopLevelFolder/OriginalFileName.doc"
+  },
+  {
     "property": "rights_copyright",
     "details": "Indicate the copyright holder for this record is ‘Crown’, ‘Third party’, ‘UK Parliament’, ‘Open Parliament Licence’ or ‘Unknown’.",
     "format": "Semi-colon separated list (with no spaces) Default: ‘Crown’",
