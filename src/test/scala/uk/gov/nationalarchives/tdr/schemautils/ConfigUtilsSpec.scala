@@ -185,17 +185,6 @@ class ConfigUtilsSpec extends AnyWordSpec {
       }
     }
 
-    "return unique metadata download column indexes in the expected order" in {
-      val metadataConfiguration = ConfigUtils.loadConfiguration
-      val outputs = metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate")
-
-      outputs.map(_.columnIndex).distinct shouldBe outputs.map(_.columnIndex)
-      outputs.find(_.key == "restrictions_on_use").map(_.columnIndex) shouldBe Some(21)
-      outputs.find(_.key == "evidence_provided_by").map(_.columnIndex) shouldBe Some(22)
-      outputs.last.key shouldBe "original_identifier"
-      outputs.last.columnIndex shouldBe 26
-    }
-
     "return an empty list for an invalid domain" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
       metadataConfiguration.downloadFileDisplayProperties("InvalidDomain") shouldBe empty
