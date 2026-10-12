@@ -185,6 +185,13 @@ class ConfigUtilsSpec extends AnyWordSpec {
       }
     }
 
+    "return unique metadata download column indexes" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      val outputs = metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate")
+
+      outputs.map(_.columnIndex).distinct shouldBe outputs.map(_.columnIndex)
+    }
+
     "return an empty list for an invalid domain" in {
       val metadataConfiguration = ConfigUtils.loadConfiguration
       metadataConfiguration.downloadFileDisplayProperties("InvalidDomain") shouldBe empty
