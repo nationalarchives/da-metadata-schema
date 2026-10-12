@@ -179,10 +179,21 @@ class ConfigUtilsSpec extends AnyWordSpec {
       originalIdentifierProperty match {
         case Some(property) =>
           property.key shouldBe "original_identifier"
-          property.columnIndex shouldBe 24
+          property.columnIndex shouldBe 26
           property.editable shouldBe true
         case None => fail("Expected original_identifier to be present in the download properties")
       }
+    }
+
+    "return unique metadata download column indexes in the expected order" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+      val outputs = metadataConfiguration.downloadFileDisplayProperties("MetadataDownloadTemplate")
+
+      outputs.map(_.columnIndex).distinct shouldBe outputs.map(_.columnIndex)
+      outputs.find(_.key == "restrictions_on_use").map(_.columnIndex) shouldBe Some(21)
+      outputs.find(_.key == "evidence_provided_by").map(_.columnIndex) shouldBe Some(22)
+      outputs.last.key shouldBe "original_identifier"
+      outputs.last.columnIndex shouldBe 26
     }
 
     "return an empty list for an invalid domain" in {

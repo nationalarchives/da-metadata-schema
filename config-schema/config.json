@@ -742,7 +742,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 24,
+          "columnIndex": 26,
           "editable": true
         },
         {
@@ -1055,7 +1055,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 21,
+          "columnIndex": 22,
           "editable": true
         },
         {
