@@ -72,7 +72,7 @@ class MetadataTemplateSpec extends AnyWordSpec {
     }
 
     "have valid tdrRequirement values" in {
-      val validRequirements = Set("Mandatory", "Optional", "Recommended", "Mandatory for closed record", "Mandatory if filename is closed", "Mandatory if description is closed")
+      val validRequirements = Set("Mandatory", "Optional", "Recommended", "Mandatory for closed record", "Mandatory if filename is closed", "Mandatory if description is closed", "Optional for redacted record only")
       MetadataTemplate.all.foreach { prop =>
         validRequirements should contain(prop.tdrRequirement)
       }
@@ -193,4 +193,3 @@ class MetadataTemplateSpec extends AnyWordSpec {
     }
   }
 }
-
