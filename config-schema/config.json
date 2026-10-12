@@ -721,7 +721,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 23,
+          "columnIndex": 24,
           "editable": false
         }
       ]
@@ -861,7 +861,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 22,
+          "columnIndex": 23,
           "editable": true
         },
         {
