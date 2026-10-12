@@ -721,7 +721,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 23,
+          "columnIndex": 24,
           "editable": false
         }
       ]
@@ -742,7 +742,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 24,
+          "columnIndex": 26,
           "editable": true
         },
         {
@@ -861,7 +861,7 @@
         },
         {
           "domain": "MetadataReviewDetailTemplate",
-          "columnIndex": 22,
+          "columnIndex": 23,
           "editable": true
         },
         {
@@ -1055,7 +1055,7 @@
       "downloadFilesOutputs": [
         {
           "domain": "MetadataDownloadTemplate",
-          "columnIndex": 21,
+          "columnIndex": 22,
           "editable": true
         },
         {

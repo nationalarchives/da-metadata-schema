@@ -179,9 +179,18 @@ class ConfigUtilsSpec extends AnyWordSpec {
       originalIdentifierProperty match {
         case Some(property) =>
           property.key shouldBe "original_identifier"
-          property.columnIndex shouldBe 24
+          property.columnIndex shouldBe 26
           property.editable shouldBe true
         case None => fail("Expected original_identifier to be present in the download properties")
+      }
+    }
+
+    "return unique download template column indexes" in {
+      val metadataConfiguration = ConfigUtils.loadConfiguration
+
+      List("MetadataDownloadTemplate", "MetadataReviewDetailTemplate", "BagitExportTemplate").foreach { template =>
+        val outputs = metadataConfiguration.downloadFileDisplayProperties(template)
+        outputs.map(_.columnIndex).distinct shouldBe outputs.map(_.columnIndex)
       }
     }
 
