@@ -38,6 +38,7 @@ jobs:
       matrix:
         repository:
           - nationalarchives/tdr-draft-metadata-validator
+          - nationalarchives/tdr-metadata-validation
     steps:
       - name: Checkout da-metadata-schema
         uses: actions/checkout@v4
@@ -103,15 +104,55 @@ jobs:
             exit 0
           fi
 
-          FILES=$(grep -rlE '"da-metadata-schema"[[:space:]]*%[[:space:]]*"[^"]+"' --include='*.scala' --include='*.sbt' . || true)
-          if [ -z "$FILES" ]; then
-            echo "No da-metadata-schema dependency found in $REPOSITORY" >&2
-            exit 1
-          fi
+          python3 - <<'PY'
+          import os, re, sys, pathlib
 
-          for FILE in $FILES; do
-            sed -i -E "s/(\"da-metadata-schema\"[[:space:]]*%[[:space:]]*\")[^\"]+(\")/\1${VERSION}\2/g" "$FILE"
-          done
+          version = os.environ["VERSION"]
+          repo = os.environ["REPOSITORY"]
+          artifact = r'"da-metadata-schema(?:_[0-9.]+)?"'
+          literal_re = re.compile(r'(' + artifact + r'\s*%\s*")[^"]+(")')
+          ident_re = re.compile(artifact + r'\s*%\s*([A-Za-z_][A-Za-z0-9_.]*)')
+
+          files = [
+              p for p in pathlib.Path(".").rglob("*")
+              if p.is_file() and p.suffix in (".scala", ".sbt")
+              and not any(part in (".git", "target") for part in p.parts)
+          ]
+          contents = {p: p.read_text() for p in files}
+
+          found = False
+          idents = set()
+          for text in contents.values():
+              if literal_re.search(text):
+                  found = True
+              for m in ident_re.finditer(text):
+                  found = True
+                  idents.add(m.group(1).split(".")[-1])
+
+          if not found:
+              print(f"No da-metadata-schema dependency found in {repo}", file=sys.stderr)
+              sys.exit(1)
+
+          val_res = {
+              i: re.compile(r'(\bva[lr]\s+' + re.escape(i) + r'\s*(?::\s*String\s*)?=\s*")[^"]+(")')
+              for i in idents
+          }
+          resolved = set()
+          for p, text in contents.items():
+              new = literal_re.sub(lambda m: m.group(1) + version + m.group(2), text)
+              for i, r in val_res.items():
+                  if r.search(new):
+                      resolved.add(i)
+                      new = r.sub(lambda m: m.group(1) + version + m.group(2), new)
+              if new != text:
+                  p.write_text(new)
+                  print(f"Updated {p}")
+
+          missing = idents - resolved
+          if missing:
+              print(f"Could not find version definition for: {', '.join(sorted(missing))} in {repo}", file=sys.stderr)
+              sys.exit(1)
+          PY
 
           if git diff --quiet; then
             echo "$REPOSITORY is already on da-metadata-schema ${VERSION}, nothing to do"
@@ -120,7 +161,6 @@ jobs:
 
           git config --global user.email 181243999+tna-da-bot@users.noreply.github.com
           git config --global user.name tna-da-bot
-          git remote set-url origin https://x-access-token:${WORKFLOW_PAT}@github.com/${{ github.repository }}.git
           git checkout -b "$BRANCH_NAME"
           git commit -am "Update da-metadata-schema to ${VERSION}"
           git push -u origin "$BRANCH_NAME"
