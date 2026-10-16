@@ -38,6 +38,9 @@ jobs:
       matrix:
         repository:
           - nationalarchives/tdr-draft-metadata-validator
+          - nationalarchives/tdr-transfer-frontend
+          - nationalarchives/tdr-consignment-api
+          - nationalarchives/tdr-e2e-tests
           - nationalarchives/tdr-metadata-validation
     steps:
       - name: Checkout da-metadata-schema
