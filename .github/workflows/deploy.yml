@@ -11,13 +11,14 @@ on:
         type: string
         required: false
 
-permissions:
-  id-token: write
-  contents: write
+permissions: {}
 
 jobs:
   deploy:
     if: ${{ !inputs.update-dependent-repos-only }}
+    permissions:
+      id-token: write
+      contents: write
     uses: nationalarchives/tdr-github-actions/.github/workflows/sbt_release.yml@b469512bc31f0425270a12b87ebe68807c3a1daf # v0.0.46
     with:
       library-name: "Metadata schema"
@@ -33,6 +34,8 @@ jobs:
     needs: deploy
     if: ${{ always() && (needs.deploy.result == 'success' || (inputs.update-dependent-repos-only && needs.deploy.result == 'skipped')) }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
       matrix:
@@ -47,8 +50,8 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           ref: ${{ github.ref_name }}
-          fetch-depth: 0
           fetch-tags: true
+          persist-credentials: false
 
       - name: Get released version
         id: version
@@ -91,6 +94,7 @@ jobs:
           repository: ${{ matrix.repository }}
           token: ${{ secrets.WORKFLOW_PAT }}
           path: target-repo
+          persist-credentials: false
 
       - name: Import GPG key
         id: import_gpg
