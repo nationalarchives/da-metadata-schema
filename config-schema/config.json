@@ -1239,19 +1239,6 @@
       ]
     },
     {
-      "key": "citable_ref_prefix",
-      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/citable_ref_prefix",
-      "propertyType": "Supplied",
-      "expectedTDRHeader": false,
-      "allowExport": true,
-      "alternateKeys": [
-        {
-          "tdrDataLoadHeader": "CitableRefPrefix"
-        }
-      ],
-      "downloadFilesOutputs": []
-    },
-    {
       "key": "inventor",
       "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/inventor",
       "propertyType": "Supplied",
@@ -1272,6 +1259,26 @@
         {
           "domain": "BagitExportTemplate",
           "columnIndex": 43,
+          "editable": false
+        }
+      ]
+    },
+    {
+      "key": "citable_ref_prefix",
+      "$ref": "classpath:/metadata-schema/baseSchema.schema.json#/properties/citable_ref_prefix",
+      "propertyType": "Supplied",
+      "expectedTDRHeader": false,
+      "allowExport": true,
+      "alternateKeys": [
+        {
+          "tdrFileHeader": "citable_ref_prefix",
+          "tdrDataLoadHeader": "CitableRefPrefix"
+        }
+      ],
+      "downloadFilesOutputs": [
+        {
+          "domain": "BagitExportTemplate",
+          "columnIndex": 44,
           "editable": false
         }
       ]
