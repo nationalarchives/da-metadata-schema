@@ -38,9 +38,13 @@ jobs:
       matrix:
         repository:
           - nationalarchives/tdr-draft-metadata-validator
+          - nationalarchives/tdr-transfer-frontend
+          - nationalarchives/tdr-consignment-api
+          - nationalarchives/tdr-e2e-tests
+          - nationalarchives/tdr-metadata-validation
     steps:
       - name: Checkout da-metadata-schema
-        uses: actions/checkout@v4
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           ref: ${{ github.ref_name }}
           fetch-depth: 0
@@ -82,7 +86,7 @@ jobs:
           exit 1
 
       - name: Checkout ${{ matrix.repository }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           repository: ${{ matrix.repository }}
           token: ${{ secrets.WORKFLOW_PAT }}
