@@ -1,11 +1,11 @@
-name: TDR Deploy Metadata Schema
+name: TDR Deploy Metadata Schema and Update Dependent Repos
 on:
   workflow_dispatch:
     inputs:
       update-dependent-repos-only:
         description: "Skip the release and only create PRs in dependent repos"
         type: boolean
-        default: true
+        default: false
       version:
         description: "da-metadata-schema version to use (defaults to latest release tag)"
         type: string
