@@ -38,10 +38,6 @@ jobs:
       matrix:
         repository:
           - nationalarchives/tdr-draft-metadata-validator
-          - nationalarchives/tdr-transfer-frontend
-          - nationalarchives/tdr-consignment-api
-          - nationalarchives/tdr-e2e-tests
-          - nationalarchives/tdr-metadata-validation
     steps:
       - name: Checkout da-metadata-schema
         uses: actions/checkout@v4
@@ -91,6 +87,15 @@ jobs:
           repository: ${{ matrix.repository }}
           token: ${{ secrets.WORKFLOW_PAT }}
           path: target-repo
+
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@2dc316deee8e90f13e1a351ab510b4d5bc0c82cd # v7.0.0
+        with:
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Update da-metadata-schema version and create PR
         working-directory: target-repo
@@ -165,7 +170,7 @@ jobs:
           git config --global user.email 181243999+tna-da-bot@users.noreply.github.com
           git config --global user.name tna-da-bot
           git checkout -b "$BRANCH_NAME"
-          git commit -am "Update da-metadata-schema to ${VERSION}"
+          git commit -S -am "Update da-metadata-schema to ${VERSION}"
           git push -u origin "$BRANCH_NAME"
 
           gh pr create \
