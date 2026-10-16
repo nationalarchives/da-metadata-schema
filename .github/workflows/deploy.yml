@@ -1,6 +1,15 @@
 name: TDR Deploy Metadata Schema
 on:
   workflow_dispatch:
+    inputs:
+      update-dependent-repos-only:
+        description: "Skip the release and only create PRs in dependent repos"
+        type: boolean
+        default: true
+      version:
+        description: "da-metadata-schema version to use (defaults to latest release tag)"
+        type: string
+        required: false
 
 permissions:
   id-token: write
@@ -8,9 +17,10 @@ permissions:
 
 jobs:
   deploy:
+    if: ${{ !inputs.update-dependent-repos-only }}
     uses: nationalarchives/tdr-github-actions/.github/workflows/sbt_release.yml@b469512bc31f0425270a12b87ebe68807c3a1daf # v0.0.46
     with:
-      library-name: "Metadata validation"
+      library-name: "Metadata schema"
     secrets:
       WORKFLOW_PAT: ${{ secrets.WORKFLOW_PAT }}
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
@@ -18,3 +28,105 @@ jobs:
       SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
       GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+  update-dependent-repos:
+    needs: deploy
+    if: ${{ always() && (needs.deploy.result == 'success' || (inputs.update-dependent-repos-only && needs.deploy.result == 'skipped')) }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        repository:
+          - nationalarchives/tdr-draft-metadata-validator
+    steps:
+      - name: Checkout da-metadata-schema
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Get released version
+        id: version
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          if [ -n "$INPUT_VERSION" ]; then
+            VERSION="${INPUT_VERSION#v}"
+          else
+            git fetch --tags --force
+            TAG=$(git tag --list 'v*' --sort=-v:refname | head -n 1)
+            if [ -z "$TAG" ]; then
+              echo "No release tag found" >&2
+              exit 1
+            fi
+            VERSION="${TAG#v}"
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Version: ${VERSION}"
+
+      - name: Wait for artifact on Maven Central
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          URL="https://repo1.maven.org/maven2/uk/gov/nationalarchives/da-metadata-schema_2.13/${VERSION}/da-metadata-schema_2.13-${VERSION}.pom"
+          for i in $(seq 1 60); do
+            if curl -sfI "$URL" > /dev/null; then
+              echo "Artifact ${VERSION} is available on Maven Central"
+              exit 0
+            fi
+            echo "Waiting for ${VERSION} to be available on Maven Central (attempt $i/60)..."
+            sleep 30
+          done
+          echo "Timed out waiting for ${VERSION} on Maven Central" >&2
+          exit 1
+
+      - name: Checkout ${{ matrix.repository }}
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          token: ${{ secrets.WORKFLOW_PAT }}
+          path: target-repo
+
+      - name: Update da-metadata-schema version and create PR
+        working-directory: target-repo
+        env:
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
+          VERSION: ${{ steps.version.outputs.version }}
+          REPOSITORY: ${{ matrix.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          BRANCH_NAME="update-da-metadata-schema-${VERSION}"
+
+          if git ls-remote --exit-code --heads origin "$BRANCH_NAME" > /dev/null; then
+            echo "Branch $BRANCH_NAME already exists in $REPOSITORY, skipping"
+            exit 0
+          fi
+
+          FILES=$(grep -rlE '"da-metadata-schema"[[:space:]]*%[[:space:]]*"[^"]+"' --include='*.scala' --include='*.sbt' . || true)
+          if [ -z "$FILES" ]; then
+            echo "No da-metadata-schema dependency found in $REPOSITORY" >&2
+            exit 1
+          fi
+
+          for FILE in $FILES; do
+            sed -i -E "s/(\"da-metadata-schema\"[[:space:]]*%[[:space:]]*\")[^\"]+(\")/\1${VERSION}\2/g" "$FILE"
+          done
+
+          if git diff --quiet; then
+            echo "$REPOSITORY is already on da-metadata-schema ${VERSION}, nothing to do"
+            exit 0
+          fi
+
+          git config --global user.email 181243999+tna-da-bot@users.noreply.github.com
+          git config --global user.name tna-da-bot
+          git remote set-url origin https://x-access-token:${WORKFLOW_PAT}@github.com/${{ github.repository }}.git
+          git checkout -b "$BRANCH_NAME"
+          git commit -am "Update da-metadata-schema to ${VERSION}"
+          git push -u origin "$BRANCH_NAME"
+
+          gh pr create \
+            --repo "$REPOSITORY" \
+            --head "$BRANCH_NAME" \
+            --title "Update da-metadata-schema to ${VERSION}" \
+            --body "Automated PR to update \`da-metadata-schema\` to version \`${VERSION}\`. Created by ${RUN_URL}"
