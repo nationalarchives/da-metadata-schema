@@ -116,9 +116,14 @@ jobs:
         run: |
           BRANCH_NAME="update-da-metadata-schema-${VERSION}"
 
-          if git ls-remote --exit-code --heads origin "$BRANCH_NAME" > /dev/null; then
-            echo "Branch $BRANCH_NAME already exists in $REPOSITORY, skipping"
+          PR_NUMBER=$(gh pr list --repo "$REPOSITORY" --head "$BRANCH_NAME" --state open --json number --jq '.[0].number // empty')
+          if [ -n "$PR_NUMBER" ]; then
+            echo "Open PR #${PR_NUMBER} already exists in $REPOSITORY, skipping"
             exit 0
+          fi
+
+          if git ls-remote --exit-code --heads origin "$BRANCH_NAME" > /dev/null; then
+            git fetch origin "refs/heads/${BRANCH_NAME}:refs/remotes/origin/${BRANCH_NAME}"
           fi
 
           python3 "$GITHUB_WORKSPACE/.github/script/update_metadata_schema_version.py"
@@ -132,7 +137,7 @@ jobs:
           git config --global user.name tna-da-bot
           git checkout -b "$BRANCH_NAME"
           git commit -S -am "Update da-metadata-schema to ${VERSION}"
-          git push -u origin "$BRANCH_NAME"
+          git push --force-with-lease -u origin "$BRANCH_NAME"
 
           gh pr create \
             --repo "$REPOSITORY" \
