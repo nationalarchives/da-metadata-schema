@@ -19,7 +19,7 @@ jobs:
     permissions:
       id-token: write
       contents: write
-    uses: nationalarchives/tdr-github-actions/.github/workflows/sbt_release.yml@b469512bc31f0425270a12b87ebe68807c3a1daf # v0.0.46
+    uses: nationalarchives/tdr-github-actions/.github/workflows/sbt_release.yml@f563794aa48b4ea16cae01caf704aa241a37539f # v0.0.48
     with:
       library-name: "Metadata schema"
     secrets:
@@ -48,7 +48,7 @@ jobs:
           - nationalarchives/tdr-consignment-export
     steps:
       - name: Checkout da-metadata-schema
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.ref_name }}
           fetch-tags: true
@@ -90,7 +90,7 @@ jobs:
           exit 1
 
       - name: Checkout ${{ matrix.repository }}
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: ${{ matrix.repository }}
           token: ${{ secrets.WORKFLOW_PAT }}
