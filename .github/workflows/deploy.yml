@@ -95,7 +95,7 @@ jobs:
           repository: ${{ matrix.repository }}
           token: ${{ secrets.WORKFLOW_PAT }}
           path: target-repo
-          persist-credentials: false
+          persist-credentials: true
 
       - name: Import GPG key
         id: import_gpg
