@@ -19,7 +19,7 @@ jobs:
     permissions:
       id-token: write
       contents: write
-    uses: nationalarchives/tdr-github-actions/.github/workflows/sbt_release.yml@51a06bbc08eb65018238b144d0ad8bfd707a8ffa # v0.0.50
+    uses: nationalarchives/tdr-github-actions/.github/workflows/sbt_release.yml@4b2753940019ebbed38030f1aca49f0eb123a45e # v0.0.55
     with:
       library-name: "Metadata schema"
     secrets:
